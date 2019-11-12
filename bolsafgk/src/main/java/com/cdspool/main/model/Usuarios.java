@@ -35,7 +35,7 @@ public class Usuarios {
 	
 	@JoinColumn(name = "id_municipio")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
-	private Municipio municipio;
+	private Municipios municipio;
 
 	public Integer getId() {
 		return id;
@@ -125,11 +125,11 @@ public class Usuarios {
 		this.fecha = fecha;
 	}
 
-	public Municipio getMunicipio() {
+	public Municipios getMunicipio() {
 		return municipio;
 	}
 
-	public void setMunicipio(Municipio municipio) {
+	public void setMunicipio(Municipios municipio) {
 		this.municipio = municipio;
 	}
 	
