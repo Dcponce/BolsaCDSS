@@ -21,5 +21,4 @@ public class Usuarios {
 	private String token;
 	private Date fecha;
 	
-	private Municipio municipio;
 }
