@@ -1,11 +1,7 @@
 package com.cdspool.main.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,21 +18,20 @@ public class ClaveTeController {
 
 	@Autowired
 	ClaveTeService sClave;
-	
-	
-	//Agregar
+
+	// Agregar
 	@PostMapping
 	public void agregar(@RequestBody ClaveTemporal clavet) {
 		sClave.guardar(clavet);
 	}
-	
-	//Actualizar
+
+	// Actualizar
 	@PutMapping
 	public void actualizar(@RequestBody ClaveTemporal clavet) {
 		sClave.guardar(clavet);
 	}
-	
-	//Eliminar
+
+	// Eliminar
 	@DeleteMapping("/{id}")
 	public void eliminar(@PathVariable Integer id) {
 		sClave.eliminar(id);
