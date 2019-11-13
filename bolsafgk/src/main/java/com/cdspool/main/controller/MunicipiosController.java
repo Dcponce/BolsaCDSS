@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cdspool.main.model.Departamentos;
 import com.cdspool.main.model.Municipios;
+import com.cdspool.main.repository.IDepartamentosRepository;
 import com.cdspool.main.service.MunicipiosService;
 
 @RestController
@@ -21,6 +23,9 @@ public class MunicipiosController {
 
 	@Autowired
 	MunicipiosService sMunicipios;
+	
+	@Autowired
+	IDepartamentosRepository idepa;
 	
 	//Listar
 	@GetMapping
@@ -45,6 +50,14 @@ public class MunicipiosController {
 	@PutMapping
 	public void actualizar(@RequestBody Municipios municipios) {
 		sMunicipios.guardar(municipios);
+	}
+	
+	@GetMapping("api/muny")
+	public List<Departamentos> listDepa(){
+		
+		List<Departamentos> list = (List<Departamentos>) idepa.findAll();
+		
+		return list;
 	}
 	
 }
