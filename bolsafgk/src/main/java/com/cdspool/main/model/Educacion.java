@@ -1,10 +1,12 @@
 package com.cdspool.main.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,9 +22,11 @@ public class Educacion {
 	private String carrera;
 
 	@JoinColumn(name = "id_certificacion")
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private Certificacion id_certificacion;
 
 	@JoinColumn(name = "id_usuario")
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private Usuarios id_usuario;
 
 	public int getId() {
