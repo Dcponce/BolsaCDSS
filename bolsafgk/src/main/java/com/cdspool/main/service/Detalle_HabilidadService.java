@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdspool.main.model.Detalle_habilidades;
+import com.cdspool.main.model.Habilidad;
 import com.cdspool.main.repository.IDeHabilidadRepository;
 import com.cdspool.main.repository.IHabilidadRepository;
 
@@ -31,5 +32,11 @@ public class Detalle_HabilidadService {
 	
 	public void saveDe(Detalle_habilidades detalle) {
 		rDetalle.save(detalle);
+	}
+	
+	//METODOS DE ENTIDAD HABILIDADES
+	
+	public List<Habilidad> listarHa(){
+		return (List<Habilidad>) rHabilidad.findAll();
 	}
 }
