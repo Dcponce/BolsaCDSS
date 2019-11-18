@@ -31,6 +31,8 @@ public class Usuario implements Serializable {
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private TipoUsuario id_tipo;
 
+	private Boolean estado;
+
 	public Integer getId() {
 		return id;
 	}
@@ -69,6 +71,14 @@ public class Usuario implements Serializable {
 
 	public void setId_tipo(TipoUsuario id_tipo) {
 		this.id_tipo = id_tipo;
+	}
+
+	public Boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
 	}
 
 	/**

@@ -24,7 +24,7 @@ public class Educacion {
 	@JoinColumn(name = "id_certificacion")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private Certificacion id_certificacion;
-	
+
 	private String nivel;
 
 	@JoinColumn(name = "id_usuario")
@@ -53,6 +53,14 @@ public class Educacion {
 
 	public void setCarrera(String carrera) {
 		this.carrera = carrera;
+	}
+
+	public String getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
 	}
 
 	public Certificacion getId_certificacion() {

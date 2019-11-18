@@ -7,13 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
 
 @RestController
 @RequestMapping(value = "envio")
@@ -25,28 +22,29 @@ public class EnviodEmailController {
 	@GetMapping
 	public void sendEmailWithAttachment() throws MessagingException, IOException {
 
-        MimeMessage msg = javaMailSender.createMimeMessage();
+		MimeMessage msg = javaMailSender.createMimeMessage();
 
-        // true = multipart message
-        MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-		
-        helper.setTo("david.cordova@proyectosfgk.org");
+		// true = multipart message
+		MimeMessageHelper helper = new MimeMessageHelper(msg, true);
 
-        helper.setSubject("Prueba con diseño");
+		helper.setTo("david.cordova@proyectosfgk.org");
 
-        // default = text/plain
-        //helper.setText("Check attachment for image!");
+		helper.setSubject("Prueba con diseño");
 
-        // true = text/html
-        helper.setText("", true);
+		// default = text/plain
+		// helper.setText("Check attachment for image!");
+
+		// true = text/html
+		helper.setText("", true);
 
 		// hard coded a file path
-        //FileSystemResource file = new FileSystemResource(new File("C:\\Users\\david.poncefgkss\\Desktop\\Bolsa CDS\\map-marker.png"));
+		// FileSystemResource file = new FileSystemResource(new
+		// File("C:\\Users\\david.poncefgkss\\Desktop\\Bolsa CDS\\map-marker.png"));
 
 //        helper.addAttachment("my_photo.png", new ClassPathResource("map-marker.png"));
 
-        javaMailSender.send(msg);
+		javaMailSender.send(msg);
 
-    }
+	}
 
 }

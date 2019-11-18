@@ -25,8 +25,6 @@ public class Alumno {
 
 	private String apellido;
 
-	private String estado;
-
 	private String telefono;
 
 	private String celular;
@@ -68,14 +66,6 @@ public class Alumno {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
 	}
 
 	public String getTelefono() {
