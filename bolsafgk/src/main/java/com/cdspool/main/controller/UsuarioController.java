@@ -12,39 +12,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cdspool.main.model.Credencial;
 import com.cdspool.main.model.TipoUsuario;
-import com.cdspool.main.model.Usuarios;
+import com.cdspool.main.model.Usuario;
 import com.cdspool.main.service.UsuarioService;
 
 @RestController
 @RequestMapping(value = "usuarios")
-public class UsuariosControlador {
-
+public class UsuarioController {
+	
 	@Autowired
-	UsuarioService sUsuarios;
+	UsuarioService uService;
 	
 	@GetMapping
-	public List<Usuarios> lis(){
-		return (List<Usuarios>) sUsuarios.listar();
-	}
-	
-	@GetMapping("api/tipo")
-	public List<TipoUsuario>lisT(){
-		return (List<TipoUsuario>) sUsuarios.lis();
+	public List<Usuario> lista(){
+		return uService.findAll();
 	}
 	
 	@DeleteMapping("/{id}")
-	public void eliminar(@PathVariable Integer id) {
-		sUsuarios.eliminar(id);
+	public void delete(@PathVariable Integer id) {
+		uService.delete(id);
 	}
 	
-	@PostMapping
-	public void agregar(@RequestBody Usuarios usuarios) {
-		sUsuarios.guardar(usuarios);
+	@PostMapping()
+	public void save(@RequestBody Usuario usu) {
+		uService.save(usu);
 	}
 	
 	@PutMapping
-	public void actualizar(@RequestBody Usuarios usuarios) {
-		sUsuarios.guardar(usuarios);
+	public void update(@RequestBody Usuario usu) {
+		uService.save(usu);
 	}
+	
+	@GetMapping("api/listaTipo")
+	public List<TipoUsuario> listaTipo(){
+		return uService.findAllTipo();
+	}
+	
+	@GetMapping("api/cred")
+	public List<Credencial> findAllCred(){
+		return uService.findAllCred();
+	}
+
 }

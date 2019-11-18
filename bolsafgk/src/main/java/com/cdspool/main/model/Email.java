@@ -21,11 +21,11 @@ public class Email {
 	
 	@JoinColumn(name = "usuario_recep")
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Usuarios receptor;
+	private Alumno receptor;
 	
 	@JoinColumn(name = "usuario_emi")
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Usuarios emisor;
+	private Alumno emisor;
 
 	public Integer getId() {
 		return id;
@@ -51,19 +51,19 @@ public class Email {
 		this.contenido = contenido;
 	}
 
-	public Usuarios getReceptor() {
+	public Alumno getReceptor() {
 		return receptor;
 	}
 
-	public void setReceptor(Usuarios receptor) {
+	public void setReceptor(Alumno receptor) {
 		this.receptor = receptor;
 	}
 
-	public Usuarios getEmisor() {
+	public Alumno getEmisor() {
 		return emisor;
 	}
 
-	public void setEmisor(Usuarios emisor) {
+	public void setEmisor(Alumno emisor) {
 		this.emisor = emisor;
 	}
 }

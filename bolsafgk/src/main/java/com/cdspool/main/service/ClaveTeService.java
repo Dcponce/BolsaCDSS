@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cdspool.main.model.ClaveTemporal;
-import com.cdspool.main.model.Usuarios;
+import com.cdspool.main.model.Alumno;
 import com.cdspool.main.repository.IClaveTeRepository;
-import com.cdspool.main.repository.IUsuarioRepository;
+import com.cdspool.main.repository.IAlumnoRepository;
 
 @Service
 @Transactional
@@ -19,7 +19,7 @@ public class ClaveTeService {
 	IClaveTeRepository rClave;
 	
 	@Autowired //Manda a llamar los repositorio
-	IUsuarioRepository rUsuario;
+	IAlumnoRepository rUsuario;
 	
 	//Metodo de listar
 	public List<ClaveTemporal>listar(){
@@ -46,12 +46,12 @@ public class ClaveTeService {
 	}
 	
 	//Metodo Listar
-	public List<Usuarios> lista(){
-		return (List<Usuarios>) rUsuario.findAll();
+	public List<Alumno> lista(){
+		return (List<Alumno>) rUsuario.findAll();
 	}
 	
 	//Metodo Buscar por Id
-	public Usuarios porUsuario(Integer id) {
+	public Alumno porUsuario(Integer id) {
 		return rUsuario.findById(id).get();
 	}
 }

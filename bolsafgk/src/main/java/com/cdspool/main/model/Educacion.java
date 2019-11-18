@@ -27,7 +27,7 @@ public class Educacion {
 
 	@JoinColumn(name = "id_usuario")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
-	private Usuarios id_usuario;
+	private Alumno id_usuario;
 
 	public int getId() {
 		return id;
@@ -61,11 +61,11 @@ public class Educacion {
 		this.id_certificacion = id_certificacion;
 	}
 
-	public Usuarios getId_usuario() {
+	public Alumno getId_usuario() {
 		return id_usuario;
 	}
 
-	public void setId_usuario(Usuarios id_usuario) {
+	public void setId_usuario(Alumno id_usuario) {
 		this.id_usuario = id_usuario;
 	}
 

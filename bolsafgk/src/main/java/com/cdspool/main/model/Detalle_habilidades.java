@@ -23,7 +23,7 @@ public class Detalle_habilidades {
 	
 	@JoinColumn(name = "id_usuario")
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Usuarios usuarios;
+	private Alumno usuarios;
 
 	public Integer getId() {
 		return id;
@@ -41,11 +41,11 @@ public class Detalle_habilidades {
 		this.habilidad = habilidad;
 	}
 
-	public Usuarios getUsuarios() {
+	public Alumno getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(Usuarios usuarios) {
+	public void setUsuarios(Alumno usuarios) {
 		this.usuarios = usuarios;
 	}
 }

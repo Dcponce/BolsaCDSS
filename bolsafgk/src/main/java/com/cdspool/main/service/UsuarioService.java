@@ -7,8 +7,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cdspool.main.model.Credencial;
 import com.cdspool.main.model.TipoUsuario;
-import com.cdspool.main.model.Usuarios;
+import com.cdspool.main.model.Usuario;
+import com.cdspool.main.repository.ICredencialRepository;
 import com.cdspool.main.repository.ITipoUsuarioRepository;
 import com.cdspool.main.repository.IUsuarioRepository;
 
@@ -17,25 +19,44 @@ import com.cdspool.main.repository.IUsuarioRepository;
 public class UsuarioService {
 
 	@Autowired
-	IUsuarioRepository rUsuario;
-	
+	IUsuarioRepository iUsuario;
+
 	@Autowired
-	ITipoUsuarioRepository rTipoUsuario;
-	
-	public List<Usuarios> listar(){
-		return (List<Usuarios>) rUsuario.findAll();
+	ITipoUsuarioRepository iTipo;
+
+	@Autowired
+	ICredencialRepository iCred;
+
+	public List<Usuario> findAll() {
+		return (List<Usuario>) iUsuario.findAll();
 	}
-	
-	public void eliminar(Integer id) {
-		rUsuario.deleteById(id);
+
+	public Usuario findById(Integer id) {
+		return iUsuario.findById(id).get();
 	}
-	
-	public void guardar(Usuarios usuario) {
-		rUsuario.save(usuario);
+
+	public void delete(Integer id) {
+		iUsuario.deleteById(id);
 	}
-	
-	public List<TipoUsuario> lis(){
-		return (List<TipoUsuario>) rTipoUsuario.findAll();
+
+	public void save(Usuario usu) {
+		iUsuario.save(usu);
 	}
-	
+
+	public List<TipoUsuario> findAllTipo() {
+		return (List<TipoUsuario>) iTipo.findAll();
+	}
+
+	public TipoUsuario findByIdTipo(Integer id) {
+		return iTipo.findById(id).get();
+	}
+
+	public List<Credencial> findAllCred() {
+		return (List<Credencial>) iCred.findAll();
+	}
+
+	public Credencial findByIdCred(Integer id) {
+		return iCred.findById(id).get();
+	}
+
 }
