@@ -14,28 +14,37 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "usuario")
-public class Usuarios {
+@Table(name = "alumno")
+public class Alumno {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	private String nombre;
+
 	private String apellido;
-	private String email;
-	private String clave;
+
 	private String estado;
+
 	private String telefono;
+
 	private String celular;
+
 	private String direccion;
-	private String token;
-	
+
+	private String proyecto;
+
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
-	
+
 	@JoinColumn(name = "id_municipio")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
-	private Municipios municipio;
+	private Municipios id_municipio;
+
+	@JoinColumn(name = "id_usuario")
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	private Usuario id_usuario;
 
 	public Integer getId() {
 		return id;
@@ -59,22 +68,6 @@ public class Usuarios {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getClave() {
-		return clave;
-	}
-
-	public void setClave(String clave) {
-		this.clave = clave;
 	}
 
 	public String getEstado() {
@@ -109,12 +102,12 @@ public class Usuarios {
 		this.direccion = direccion;
 	}
 
-	public String getToken() {
-		return token;
+	public String getProyecto() {
+		return proyecto;
 	}
 
-	public void setToken(String token) {
-		this.token = token;
+	public void setProyecto(String proyecto) {
+		this.proyecto = proyecto;
 	}
 
 	public Date getFecha() {
@@ -125,12 +118,20 @@ public class Usuarios {
 		this.fecha = fecha;
 	}
 
-	public Municipios getMunicipio() {
-		return municipio;
+	public Municipios getId_municipio() {
+		return id_municipio;
 	}
 
-	public void setMunicipio(Municipios municipio) {
-		this.municipio = municipio;
+	public void setId_municipio(Municipios id_municipio) {
+		this.id_municipio = id_municipio;
 	}
-	
+
+	public Usuario getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(Usuario id_usuario) {
+		this.id_usuario = id_usuario;
+	}
+
 }
