@@ -19,7 +19,6 @@ public class ClaveTemporal {
     //Entidades
 	private Integer id;
 	private String clavet;
-	private String estado;
 	
 	@JoinColumn(name="id_usuario")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
@@ -40,14 +39,6 @@ public class ClaveTemporal {
 
 	public void setClavet(String clavet) {
 		this.clavet = clavet;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
 	}
 
 	public Alumno getUsuario() {

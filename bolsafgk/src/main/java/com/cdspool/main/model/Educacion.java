@@ -24,6 +24,8 @@ public class Educacion {
 	@JoinColumn(name = "id_certificacion")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private Certificacion id_certificacion;
+	
+	private String nivel;
 
 	@JoinColumn(name = "id_usuario")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
