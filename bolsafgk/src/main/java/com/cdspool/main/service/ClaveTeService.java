@@ -33,10 +33,6 @@ public class ClaveTeService {
 	
 	//Metodo Guardar
 	public void guardar(ClaveTemporal claveT) {
-		claveT.setEstado("Activo");
-		if(claveT.getId()!=null) {
-			claveT.setEstado("Inactivo");
-		}
 		rClave.save(claveT);
 	}
 	
