@@ -1,10 +1,19 @@
 package com.cdspool.main.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.cdspool.main.model.Credencial;
@@ -16,10 +25,10 @@ import com.cdspool.main.repository.IUsuarioRepository;
 
 @Service
 @Transactional
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService {
 
 	@Autowired
-	IUsuarioRepository iUsuario;
+	IUsuarioRepository iUsu;
 
 	@Autowired
 	ITipoUsuarioRepository iTipo;
@@ -28,19 +37,19 @@ public class UsuarioService {
 	ICredencialRepository iCred;
 
 	public List<Usuario> findAll() {
-		return (List<Usuario>) iUsuario.findAll();
+		return (List<Usuario>) iUsu.findAll();
 	}
 
 	public Usuario findById(Integer id) {
-		return iUsuario.findById(id).get();
+		return iUsu.findById(id).get();
 	}
 
 	public void delete(Integer id) {
-		iUsuario.deleteById(id);
+		iUsu.deleteById(id);
 	}
 
 	public void save(Usuario usu) {
-		iUsuario.save(usu);
+		iUsu.save(usu);
 	}
 
 	public List<TipoUsuario> findAllTipo() {
@@ -57,6 +66,35 @@ public class UsuarioService {
 
 	public Credencial findByIdCred(Integer id) {
 		return iCred.findById(id).get();
+	}
+
+	private Logger logger = LoggerFactory.getLogger(UsuarioService.class);
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+		Usuario usua = iUsu.findByEmail(email);
+
+		if (usua == null) {
+			logger.error("Error login: Usuario no existe '" + email + "'");
+			throw new UsernameNotFoundException("Usuario " + email + "no existe");
+		}
+
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+
+		TipoUsuario tipo = usua.getId_tipo();
+
+		logger.info("Tipo: ".concat(tipo.getDescripcion()));
+
+		authorities.add(new SimpleGrantedAuthority(tipo.getDescripcion()));
+
+		if (authorities.isEmpty()) {
+			logger.error("Error login: Usuario '" + email + "' no tiene asignado el rol");
+			throw new UsernameNotFoundException("Error login: Usuario '" + email + "' no tiene asignado el rol");
+		}
+
+		return new User(usua.getEmail(), usua.getClave(), usua.getEstado(), true, true, true, authorities);
+
 	}
 
 }
