@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.cdspool.main.filter.JWTAuthenticationFilter;
 import com.cdspool.main.service.UsuarioService;
 
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
@@ -29,9 +30,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**").permitAll().anyRequest()
-				.authenticated()/*.and().formLogin().permitAll().and().logout().permitAll().and().exceptionHandling()
-				.accessDeniedPage("/error_403")*/.and().csrf().disable().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+				.authenticated()/*
+								 * .and().formLogin().permitAll().and().logout().permitAll().and().
+								 * exceptionHandling() .accessDeniedPage("/error_403")
+								 */.and().addFilter(new JWTAuthenticationFilter(authenticationManager())).csrf()
+				.disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
 	@Autowired
