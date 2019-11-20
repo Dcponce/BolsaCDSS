@@ -22,7 +22,7 @@ public class ClaveTemporal {
 	
 	@JoinColumn(name="id_usuario")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
-	private Alumno usuario;
+	private Usuario usuario;
 
 	//Los Get y Set
 	public Integer getId() {
@@ -41,11 +41,11 @@ public class ClaveTemporal {
 		this.clavet = clavet;
 	}
 
-	public Alumno getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Alumno usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 	
