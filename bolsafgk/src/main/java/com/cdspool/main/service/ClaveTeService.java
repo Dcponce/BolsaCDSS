@@ -1,15 +1,14 @@
 package com.cdspool.main.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cdspool.main.model.ClaveTemporal;
-import com.cdspool.main.model.Alumno;
+import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.IClaveTeRepository;
-import com.cdspool.main.repository.IAlumnoRepository;
+import com.cdspool.main.repository.IUsuarioRepository;
+
 
 @Service
 @Transactional
@@ -19,12 +18,7 @@ public class ClaveTeService {
 	IClaveTeRepository rClave;
 	
 	@Autowired //Manda a llamar los repositorio
-	IAlumnoRepository rUsuario;
-	
-	//Metodo de listar
-	public List<ClaveTemporal>listar(){
-		return(List<ClaveTemporal>) rClave.findAll();
-	}
+	IUsuarioRepository rUsuario;
 	
 	//Metodo Eliminar
 	public void eliminar(Integer id) {
@@ -41,13 +35,8 @@ public class ClaveTeService {
 		return rClave.findById(id).get();
 	}
 	
-	//Metodo Listar
-	public List<Alumno> lista(){
-		return (List<Alumno>) rUsuario.findAll();
-	}
-	
 	//Metodo Buscar por Id
-	public Alumno porUsuario(Integer id) {
+	public Usuario porUsuario(Integer id) {
 		return rUsuario.findById(id).get();
 	}
 }
