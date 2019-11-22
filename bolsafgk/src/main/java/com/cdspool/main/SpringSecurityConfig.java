@@ -17,9 +17,10 @@ import com.cdspool.main.service.UsuarioService;
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Bean
-	public UsuarioService uService() {
-		return new UsuarioService();
+	private UsuarioService uService;
+	
+	public SpringSecurityConfig(UsuarioService uService) {
+		this.uService = uService;
 	}
 
 	@Bean
@@ -39,7 +40,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
-		build.userDetailsService(uService()).passwordEncoder(passwordEncoder());
+		build.userDetailsService(uService).passwordEncoder(passwordEncoder());
 
 	}
 
