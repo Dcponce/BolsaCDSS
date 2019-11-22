@@ -23,8 +23,6 @@ public class DocumentoService {
 	@Autowired
 	ITipoDocRepository iTipo;
 	
-	@Autowired
-	IUsuarioRepository iUser;
 	
 	public List<Documento> findAll(){
 		
@@ -56,8 +54,4 @@ public class DocumentoService {
 		return iTipo.findById(id).get();
 	}
 	
-	public Usuario findByUsuario (Integer id) {
-		return iUser.findById(id).get();
-	}
-
 }
