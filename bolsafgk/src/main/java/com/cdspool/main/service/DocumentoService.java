@@ -30,7 +30,7 @@ public class DocumentoService {
 		
 		return list;
 	}
-//	probando2
+//	probando
 	public Documento findById(Integer id) {
 		return iDoc.findById(id).get();
 	}
