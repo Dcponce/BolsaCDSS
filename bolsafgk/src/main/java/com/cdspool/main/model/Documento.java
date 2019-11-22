@@ -21,7 +21,7 @@ public class Documento {
 
 	@JoinColumn(name = "id_usuario")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
-	private Alumno id_usuario;
+	private Usuario id_usuario;
 
 	@JoinColumn(name = "id_tipodoc")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
@@ -43,11 +43,11 @@ public class Documento {
 		this.ruta = ruta;
 	}
 
-	public Alumno getId_usuario() {
+	public Usuario getId_usuario() {
 		return id_usuario;
 	}
 
-	public void setId_usuario(Alumno id_usuario) {
+	public void setId_usuario(Usuario id_usuario) {
 		this.id_usuario = id_usuario;
 	}
 

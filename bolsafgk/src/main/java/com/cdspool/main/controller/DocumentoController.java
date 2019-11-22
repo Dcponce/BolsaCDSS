@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cdspool.main.model.Documento;
 import com.cdspool.main.model.TipoDocumento;
-import com.cdspool.main.repository.ITipoDocRepository;
+import com.cdspool.main.model.Usuario;
 import com.cdspool.main.service.DocumentoService;
 
 @RestController
@@ -24,16 +24,13 @@ public class DocumentoController {
 	@Autowired
 	DocumentoService dService;
 	
-	@Autowired
-	ITipoDocRepository itipo;
-	
-	@GetMapping
-	public List<Documento> lista(){
-		
-		List<Documento> list = dService.findAll();
-		
-		return list;
-	}
+//	@GetMapping
+//	public List<Documento> lista(){
+//		
+//		List<Documento> list = dService.findAll();
+//		
+//		return list;
+//	}
 	
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
@@ -50,13 +47,18 @@ public class DocumentoController {
 		dService.save(doc);
 	}
 	
-	@GetMapping("api/tipodoc")
-	public List<TipoDocumento> TipoDocList(){
-		
-		List<TipoDocumento> list = (List<TipoDocumento>) itipo.findAll();
-		
-		return list;
+	@GetMapping("/{id}")
+	public TipoDocumento findById(@PathVariable Integer id) {
+		return dService.findByIdTipo(id);
 	}
+
+//	@GetMapping
+//	public List<TipoDocumento> TipoDocList(){
+//		
+//		List<TipoDocumento> list = (List<TipoDocumento>) itipo.findAll();
+//		
+//		return list;
+//	}
 	
 
 }
