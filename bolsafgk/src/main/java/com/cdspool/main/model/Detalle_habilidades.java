@@ -12,18 +12,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "detalle_habilidades")
 public class Detalle_habilidades {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@JoinColumn(name = "id_habilidad")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Habilidad habilidad;
-	
+
 	@JoinColumn(name = "id_usuario")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Alumno usuarios;
+
+	private Integer prioridad;
 
 	public Integer getId() {
 		return id;
@@ -48,4 +50,13 @@ public class Detalle_habilidades {
 	public void setUsuarios(Alumno usuarios) {
 		this.usuarios = usuarios;
 	}
+
+	public Integer getPrioridad() {
+		return prioridad;
+	}
+
+	public void setPrioridad(Integer prioridad) {
+		this.prioridad = prioridad;
+	}
+
 }

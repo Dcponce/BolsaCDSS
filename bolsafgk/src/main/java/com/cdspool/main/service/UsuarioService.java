@@ -3,7 +3,6 @@ package com.cdspool.main.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cdspool.main.model.Credencial;
 import com.cdspool.main.model.TipoUsuario;
@@ -24,7 +24,6 @@ import com.cdspool.main.repository.ITipoUsuarioRepository;
 import com.cdspool.main.repository.IUsuarioRepository;
 
 @Service
-@Transactional
 public class UsuarioService implements UserDetailsService {
 
 	@Autowired
@@ -71,6 +70,7 @@ public class UsuarioService implements UserDetailsService {
 	private Logger logger = LoggerFactory.getLogger(UsuarioService.class);
 
 	@Override
+	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
 		Usuario usua = iUsu.findByEmail(email);

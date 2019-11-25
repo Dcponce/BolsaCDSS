@@ -11,15 +11,17 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.cdspool.main.filter.JWTAuthenticationFilter;
+import com.cdspool.main.filter.JWTAuthorizationFilter;
 import com.cdspool.main.service.UsuarioService;
 
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Bean
-	public UsuarioService uService() {
-		return new UsuarioService();
+	private UsuarioService uService;
+
+	public SpringSecurityConfig(UsuarioService uService) {
+		this.uService = uService;
 	}
 
 	@Bean
@@ -29,17 +31,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**","/upload","/status").permitAll().anyRequest()
-				.authenticated()/*
-								 * .and().formLogin().permitAll().and().logout().permitAll().and().
-								 * exceptionHandling() .accessDeniedPage("/error_403")
-								 */.and().addFilter(new JWTAuthenticationFilter(authenticationManager())).csrf()
-				.disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/upload", "/status").permitAll()
+				.anyRequest().authenticated()/*
+												 * .and().formLogin().permitAll().and().logout().permitAll().and().
+												 * exceptionHandling() .accessDeniedPage("/error_403")
+												 */.and()
+				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
+				.addFilter(new JWTAuthorizationFilter(authenticationManager())).csrf().disable().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
 	@Autowired
 	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
-		build.userDetailsService(uService()).passwordEncoder(passwordEncoder());
+		build.userDetailsService(uService).passwordEncoder(passwordEncoder());
 
 	}
 

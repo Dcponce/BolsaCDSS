@@ -32,7 +32,7 @@ public class UsuarioController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping
+	@GetMapping("/lista")
 	public List<Usuario> lista(){
 		return uService.findAll();
 	}
