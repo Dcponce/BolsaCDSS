@@ -8,10 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cdspool.main.model.Documento;
 import com.cdspool.main.model.TipoDocumento;
-import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.IDocumentoRepository;
 import com.cdspool.main.repository.ITipoDocRepository;
-import com.cdspool.main.repository.IUsuarioRepository;
 
 @Service
 @Transactional

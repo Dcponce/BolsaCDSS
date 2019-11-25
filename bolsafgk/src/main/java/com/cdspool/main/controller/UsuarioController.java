@@ -23,7 +23,7 @@ import com.cdspool.main.service.UserService;
 import com.cdspool.main.service.UsuarioService;
 
 @RestController
-@RequestMapping
+@RequestMapping(value = "usuarios")
 public class UsuarioController {
 	
 	@Autowired
@@ -32,7 +32,7 @@ public class UsuarioController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("/")
+	@GetMapping("/lista")
 	public List<Usuario> lista(){
 		return uService.findAll();
 	}

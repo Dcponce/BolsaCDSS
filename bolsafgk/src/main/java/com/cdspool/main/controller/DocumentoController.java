@@ -1,7 +1,5 @@
 package com.cdspool.main.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,16 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cdspool.main.model.Documento;
 import com.cdspool.main.model.TipoDocumento;
-import com.cdspool.main.model.Usuario;
 import com.cdspool.main.service.DocumentoService;
 
 @RestController
 @RequestMapping(value = "documento")
 public class DocumentoController {
-	
+
 	@Autowired
 	DocumentoService dService;
-	
+
 //	@GetMapping
 //	public List<Documento> lista(){
 //		
@@ -31,22 +28,22 @@ public class DocumentoController {
 //		
 //		return list;
 //	}
-	
+
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
 		dService.delete(id);
 	}
-	
+
 	@PostMapping
 	public void add(@RequestBody Documento doc) {
 		dService.save(doc);
 	}
-	
+
 	@PutMapping
 	public void update(@RequestBody Documento doc) {
 		dService.save(doc);
 	}
-	
+
 	@GetMapping("/{id}")
 	public TipoDocumento findById(@PathVariable Integer id) {
 		return dService.findByIdTipo(id);
@@ -59,6 +56,5 @@ public class DocumentoController {
 //		
 //		return list;
 //	}
-	
 
 }
