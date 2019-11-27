@@ -41,20 +41,16 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/upload", "/status", "/usuarios/**").permitAll()
+		http.authorizeRequests()
+				.antMatchers("/", "/css/**", "/js/**", "/images/**", "/upload", "/status", "/usuarios/**").permitAll()
 				/*
-												 * .and().formLogin().permitAll().and().logout().permitAll().and().
-												 * exceptionHandling() .accessDeniedPage("/error_403")
-												 */.and()
-				.csrf().disable().authorizeRequests()
-				.antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
-			    .permitAll()
-		        .antMatchers(HttpMethod.GET, SecurityConstants.VERIFICATION_EMAIL_URL)
-				.permitAll()
-				.antMatchers(HttpMethod.POST, SecurityConstants.PASSWORD_RESET_REQUEST_URL)
-				.permitAll()	        
-			    .anyRequest().authenticated().and()
-				.addFilter(getAuthenticationFilter())	        
+				 * .and().formLogin().permitAll().and().logout().permitAll().and().
+				 * exceptionHandling() .accessDeniedPage("/error_403")
+				 */.and().csrf().disable().authorizeRequests()
+				.antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
+				.antMatchers(HttpMethod.GET, SecurityConstants.VERIFICATION_EMAIL_URL).permitAll()
+				.antMatchers(HttpMethod.POST, SecurityConstants.PASSWORD_RESET_REQUEST_URL).permitAll().anyRequest()
+				.authenticated().and().addFilter(getAuthenticationFilter())
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager())).csrf().disable().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -64,10 +60,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
 		build.userDetailsService(uService).passwordEncoder(passwordEncoder());
 	}
-	
+
 	protected AuthenticationFilter getAuthenticationFilter() throws Exception {
-	    final AuthenticationFilter filter = new AuthenticationFilter(authenticationManager());
-	    filter.setFilterProcessesUrl("/usuarios/");
-	    return filter;
+		final AuthenticationFilter filter = new AuthenticationFilter(authenticationManager());
+		filter.setFilterProcessesUrl("/usuarios/");
+		return filter;
 	}
 }
