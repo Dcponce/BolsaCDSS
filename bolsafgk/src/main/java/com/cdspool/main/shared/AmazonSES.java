@@ -83,8 +83,7 @@ public class AmazonSES {
 	}
 	
 	public boolean sendPasswordResetRequest(String email, String token) {
-		System.setProperty("aws.accessKeyId", "AKIAJFUYDTFHWIYWYMRA");
-		System.setProperty("aws.secretKey", "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");
+		
 		boolean returnValue = false;
 		
 		AmazonSimpleEmailService client = AmazonSimpleEmailServiceAsyncClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
