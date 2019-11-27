@@ -9,5 +9,4 @@ import com.cdspool.main.model.Usuario;
 public interface UserRepository extends PagingAndSortingRepository<Usuario, Integer>{
 
 	public Usuario findByEmail(String email);
-	Usuario findUsuarioByEmailVerificationToken(String token); 
 }

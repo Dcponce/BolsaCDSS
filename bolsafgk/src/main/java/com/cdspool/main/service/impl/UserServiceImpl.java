@@ -115,19 +115,19 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public boolean verifyEmailToken(String token) {
-		boolean returnValue = false;
-
-        // Find user by token
-        Usuario userEntity = userRepository.findUsuarioByEmailVerificationToken(token);
-
-        if (userEntity != null) {
-            boolean hastokenExpired = Utils.hasTokenExpired(token);
-            if (!hastokenExpired) {
-                userEntity.setEmailVerificationToken(null);
-                userRepository.save(userEntity);
-                returnValue = true;
-            }
-        }
+//		boolean returnValue = false;
+//
+//        // Find user by token
+//        Usuario userEntity = userRepository.findUsuarioByEmailVerificationToken(token);
+//
+//        if (userEntity != null) {
+//            boolean hastokenExpired = Utils.hasTokenExpired(token);
+//            if (!hastokenExpired) {
+//                userEntity.setEmailVerificationToken(null);
+//                userRepository.save(userEntity);
+//                returnValue = true;
+//            }
+//        }
 
         return false;
 	}
