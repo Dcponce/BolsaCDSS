@@ -22,8 +22,10 @@ import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.ICredencialRepository;
 import com.cdspool.main.repository.ITipoUsuarioRepository;
 import com.cdspool.main.repository.IUsuarioRepository;
+import com.cdspool.main.repository.UserRepository;
 
 @Service
+@Transactional
 public class UsuarioService implements UserDetailsService {
 
 	@Autowired
@@ -34,6 +36,9 @@ public class UsuarioService implements UserDetailsService {
 
 	@Autowired
 	ICredencialRepository iCred;
+	
+	@Autowired
+	UserRepository userRepository;
 
 	public List<Usuario> findAll() {
 		return (List<Usuario>) iUsu.findAll();
@@ -70,10 +75,9 @@ public class UsuarioService implements UserDetailsService {
 	private Logger logger = LoggerFactory.getLogger(UsuarioService.class);
 
 	@Override
-	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-		Usuario usua = iUsu.findByEmail(email);
+		Usuario usua = userRepository.findByEmail(email);
 
 		if (usua == null) {
 			logger.error("Error login: Usuario no existe '" + email + "'");
@@ -92,9 +96,7 @@ public class UsuarioService implements UserDetailsService {
 			logger.error("Error login: Usuario '" + email + "' no tiene asignado el rol");
 			throw new UsernameNotFoundException("Error login: Usuario '" + email + "' no tiene asignado el rol");
 		}
-
+		
 		return new User(usua.getEmail(), usua.getClave(), usua.getEstado(), true, true, true, authorities);
-
 	}
-
 }

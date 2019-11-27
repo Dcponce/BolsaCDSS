@@ -7,7 +7,7 @@ import com.cdspool.main.model.Usuario;
 
 @Repository
 public interface IUsuarioRepository extends CrudRepository<Usuario, Integer> {
-
+	
 	public Usuario findByEmail(String email);
 	
 }

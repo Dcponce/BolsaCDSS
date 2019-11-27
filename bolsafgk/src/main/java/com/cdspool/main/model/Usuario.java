@@ -21,6 +21,8 @@ public class Usuario implements Serializable {
 
 	private String email;
 
+	private String emailVerificationToken;
+	
 	@JoinColumn(name = "id_credencial")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private Credencial id_credencial;
@@ -79,6 +81,14 @@ public class Usuario implements Serializable {
 
 	public void setEstado(Boolean estado) {
 		this.estado = estado;
+	}
+
+	public String getEmailVerificationToken() {
+		return emailVerificationToken;
+	}
+
+	public void setEmailVerificationToken(String emailVerificationToken) {
+		this.emailVerificationToken = emailVerificationToken;
 	}
 
 	/**

@@ -13,6 +13,8 @@ public class UserDto implements Serializable{
 
 	private String email;
 	
+	private String emailVerificationToken;
+	
 	private Credencial id_credencial;
 
 	private String clave;
@@ -77,5 +79,13 @@ public class UserDto implements Serializable{
 
 	public void setEstado(Boolean estado) {
 		this.estado = estado;
+	}
+
+	public String getEmailVerificationToken() {
+		return emailVerificationToken;
+	}
+
+	public void setEmailVerificationToken(String emailVerificationToken) {
+		this.emailVerificationToken = emailVerificationToken;
 	}
 }
