@@ -16,7 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import com.cdspool.main.auth.SimpleGrantedAuthoritiesMixin;
+import com.cdspool.main.auth.SimpleGrantedAuthorityMixin;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.jsonwebtoken.Claims;
@@ -67,7 +67,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 			String email = token.getSubject();
 			Object tipo = token.get("tipo");
 			Collection<? extends GrantedAuthority> authorities = Arrays.asList(
-					new ObjectMapper().addMixIn(SimpleGrantedAuthority.class, SimpleGrantedAuthoritiesMixin.class)
+					new ObjectMapper().addMixIn(SimpleGrantedAuthority.class, SimpleGrantedAuthorityMixin.class)
 							.readValue(tipo.toString().getBytes(), SimpleGrantedAuthority[].class));
 
 			authentication = new UsernamePasswordAuthenticationToken(email, null, authorities);
