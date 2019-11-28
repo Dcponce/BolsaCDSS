@@ -1,8 +1,6 @@
 package com.cdspool.main.filter;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,30 +13,28 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.cdspool.main.auth.service.JWTService;
+import com.cdspool.main.auth.service.JWTServiceImpl;
 import com.cdspool.main.model.Usuario;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
-
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	private AuthenticationManager authenticationManager;
+	private JWTService jwtService;
 
-	public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+	public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTService jwtService) {
 
 		this.authenticationManager = authenticationManager;
-
 		setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/login", "POST"));
+
+		this.jwtService = jwtService;
 	}
 
 	@Override
@@ -57,12 +53,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			Usuario user;
 
 			try {
-				
+
 				user = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
-				
+
 				email = user.getEmail();
 				clave = user.getClave();
-				
+
 				logger.info("Email desde request InputStream (raw): " + email);
 				logger.info("Clave desde request InputStream (raw): " + clave);
 
@@ -90,27 +86,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 
-		String email = ((User) authResult.getPrincipal()).getUsername();
+		String token = jwtService.create(authResult);
 
-		Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
-
-		Claims claims = Jwts.claims();
-
-		claims.put("tipo", new ObjectMapper().writeValueAsString(roles));
-
-		String token = Jwts.builder().setClaims(claims).setSubject(email).signWith(Keys.hmacShaKeyFor(
-				"J0bApplicati0nApp@cd$ss20_!9fgkC0h0rte5_&&C0h0rt34_S0_B3rl!n_$pr¡ngB00t_$ecur¡ty&&Jwt_Much0D¡n3r0$$$MVC"
-						.getBytes()),
-				SignatureAlgorithm.HS512).setIssuedAt(new Date())
-				.setExpiration(new Date(System.currentTimeMillis() + 3600000L)).compact();
-
-		response.addHeader("Authorization", "Bearer " + token);
+		response.addHeader(JWTServiceImpl.HEADER_STRING, JWTServiceImpl.TOKEN_PREFIX + token);
 
 		Map<String, Object> body = new HashMap<String, Object>();
 
 		body.put("token", token);
 		body.put("user", (User) authResult.getPrincipal());
-		body.put("mensaje", String.format("Hola %s ¡Has iniciado Sesion con exito!", email));
+		body.put("mensaje", String.format("Hola %s ¡Has iniciado Sesion con exito!",
+				((User) authResult.getPrincipal()).getUsername()));
 
 		response.getWriter().write(new ObjectMapper().writeValueAsString(body));
 		response.setStatus(200);
@@ -121,17 +106,15 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	@Override
 	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException failed) throws IOException, ServletException {
-		
+
 		Map<String, Object> body = new HashMap<String, Object>();
-		
+
 		body.put("mensaje", "Error de autenticacion: email o password incorrecto!");
 		body.put("error", failed.getMessage());
-		
+
 		response.getWriter().write(new ObjectMapper().writeValueAsString(body));
 		response.setStatus(401);
 		response.setContentType("application/json");
 	}
-	
-	
 
 }
