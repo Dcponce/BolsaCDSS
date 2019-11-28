@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 import com.cdspool.main.model.ClaveTemporal;
 import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.IClaveTeRepository;
-import com.cdspool.main.repository.IUsuarioRepository;
 import com.cdspool.main.repository.UserRepository;
 import com.cdspool.main.service.UserService;
-import com.cdspool.main.shared.AmazonSES;
 import com.cdspool.main.shared.UserDto;
 import com.cdspool.main.shared.Utils;
 
@@ -48,9 +46,15 @@ public class UserServiceImpl implements UserService{
 		passwordResetTokenEntity.setUsuario(user);
 		passwordResetTokenRepository.save(passwordResetTokenEntity);
 		
-		returnValue = new AmazonSES().sendPasswordResetRequest(
-				user.getEmail(),
-				token);
+//		try {
+//			returnValue = new AmazonSES().sendPasswordResetRequest(
+//					user.getEmail(),
+//					token);
+//			returnValue = true;
+//		} catch (MessagingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return returnValue;
 	}
 

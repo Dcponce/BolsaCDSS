@@ -29,7 +29,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
 private final AuthenticationManager authenticationManager;
     
-    private String contentType;
+    @SuppressWarnings("unused")
+	private String contentType;
  
     public AuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
@@ -65,7 +66,8 @@ private final AuthenticationManager authenticationManager;
         
         String userName = ((User) auth.getPrincipal()).getUsername();  
         
-        String token = Jwts.builder()
+        @SuppressWarnings("deprecation")
+		String token = Jwts.builder()
                 .setSubject(userName)
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.getTokenSecret() )
