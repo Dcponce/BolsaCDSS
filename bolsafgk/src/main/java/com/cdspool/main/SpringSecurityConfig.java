@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.cdspool.main.auth.service.JWTService;
 import com.cdspool.main.filter.JWTAuthenticationFilter;
 import com.cdspool.main.filter.JWTAuthorizationFilter;
 import com.cdspool.main.security.AuthenticationFilter;
@@ -39,6 +40,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
+	@Autowired
+	private JWTService jwtService;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
@@ -51,9 +55,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, SecurityConstants.VERIFICATION_EMAIL_URL).permitAll()
 				.antMatchers(HttpMethod.POST, SecurityConstants.PASSWORD_RESET_REQUEST_URL).permitAll().anyRequest()
 				.authenticated().and().addFilter(getAuthenticationFilter())
-				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
-				.addFilter(new JWTAuthorizationFilter(authenticationManager())).csrf().disable().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+				.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService))
+				.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService)).csrf().disable()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
 	@Autowired
