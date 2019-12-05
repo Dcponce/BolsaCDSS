@@ -24,8 +24,8 @@ public class CredencialController {
 	@Autowired 
 	ICredencialRepository iCred;
 	
-	@Secured("User")
 	@GetMapping("/lista")
+	@Secured("ROLE_ALUMNO")
 	public List<Credencial> lista(){
 		return (List<Credencial>) iCred.findAll();
 	}

@@ -1,7 +1,6 @@
 package com.cdspool.main;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -21,41 +20,33 @@ import com.cdspool.main.service.UsuarioService;
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
 	private UsuarioService uService;
-
-	@Bean
-	public UsuarioService uService() {
-		return new UsuarioService();
-	}
-
-	public SpringSecurityConfig(UsuarioService uService) {
-		this.uService = uService;
-	}
-
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 
 	@Autowired
 	private JWTService jwtService;
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.antMatchers("/", "/css/**", "/js/**", "/images/**", "/upload", "/status", "/usuarios/**", "/envio/**")
-				.permitAll()/*
-							 * .and().formLogin().permitAll().and().logout().permitAll().and().
-							 * exceptionHandling() .accessDeniedPage("/error_403")
-							 */.and().csrf().disable().authorizeRequests().and()
+				.permitAll().anyRequest().authenticated()
+				/*
+				 * .and().formLogin().permitAll().and().logout().permitAll().and().
+				 * exceptionHandling() .accessDeniedPage("/error_403")
+				 */
+				.and().csrf().disable().authorizeRequests().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService))
-				.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService)).csrf().disable()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+				.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService)).sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
 	@Autowired
 	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
-		build.userDetailsService(uService).passwordEncoder(passwordEncoder());
+		build.userDetailsService(uService).passwordEncoder(passwordEncoder);
 	}
 
 }
