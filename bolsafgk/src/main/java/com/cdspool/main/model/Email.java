@@ -18,6 +18,7 @@ public class Email {
 	private Integer id;
 	private String asunto;
 	private String contenido;
+	private String estado;
 	
 	@JoinColumn(name = "usuario_recep")
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -25,7 +26,7 @@ public class Email {
 	
 	@JoinColumn(name = "usuario_emi")
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Alumno emisor;
+	private Empresa emisor;
 
 	public Integer getId() {
 		return id;
@@ -59,11 +60,20 @@ public class Email {
 		this.receptor = receptor;
 	}
 
-	public Alumno getEmisor() {
+		
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public Empresa getEmisor() {
 		return emisor;
 	}
 
-	public void setEmisor(Alumno emisor) {
+	public void setEmisor(Empresa emisor) {
 		this.emisor = emisor;
 	}
 }
