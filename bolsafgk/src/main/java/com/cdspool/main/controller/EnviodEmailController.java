@@ -2,29 +2,39 @@ package com.cdspool.main.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cdspool.main.model.Alumno;
 import com.cdspool.main.model.ClaveTemporal;
+import com.cdspool.main.model.Email;
+import com.cdspool.main.model.Empresa;
 import com.cdspool.main.model.Usuario;
+import com.cdspool.main.repository.IAlumnoRepository;
 import com.cdspool.main.repository.IClaveTeRepository;
+import com.cdspool.main.repository.IEmailRepository;
+import com.cdspool.main.repository.IEmpresaRepository;
 import com.cdspool.main.repository.IUsuarioRepository;
 
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.util.Base64Utils;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @RestController
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE} )
 @RequestMapping(value = "envio")
 public class EnviodEmailController {
-
+	
 	public String random() {
 		int leftLimit = 97; // letter 'a'
 		int rightLimit = 122; // letter 'z'
@@ -48,36 +58,53 @@ public class EnviodEmailController {
 	
 	@Autowired
 	IClaveTeRepository rTemporal;
+	
+	@Autowired
+	IEmailRepository rEmail;
+	
+	@Autowired
+	IEmpresaRepository rEmpresa;
 
-	@GetMapping
-	public void sendEmailWithAttachment() throws MessagingException, IOException {
+	@Autowired
+	IAlumnoRepository rAlumno;
+	
+	@PostMapping("/propuesta")
+	public void sendEmailWithAttachment(@RequestParam Integer alumno, String asunto, String contenido, Principal principal) throws MessagingException, IOException {
 
+		Usuario usua = rUsuario.findByEmail(principal.getName());
+		int id = usua.getId();
+		
+		Empresa emp = rEmpresa.findById(id).get();
+		Alumno alu = rAlumno.findById(id).get();
+		
+		Usuario correo = rUsuario.findById(alumno).get();
+		String email = correo.getEmail();
+		
+		Email correos = new Email();
+		
 		MimeMessage msg = javaMailSender.createMimeMessage();
 
-		// true = multipart message
 		MimeMessageHelper helper = new MimeMessageHelper(msg, true);
 
-		helper.setTo("david.cordova@proyectosfgk.org");
+		helper.setTo(email);
 
-		helper.setSubject("Prueba con diseño");
+		helper.setSubject(asunto);
 
-		// default = text/plain
-		// helper.setText("Check attachment for image!");
+		helper.setText(contenido, true);
 
-		// true = text/html
-		helper.setText("", true);
-
-		// hard coded a file path
-		// FileSystemResource file = new FileSystemResource(new
-		// File("C:\\Users\\david.poncefgkss\\Desktop\\Bolsa CDS\\map-marker.png"));
-
-//        helper.addAttachment("my_photo.png", new ClassPathResource("map-marker.png"));
-
+		
 		javaMailSender.send(msg);
-
+		
+		correos.setAsunto(asunto);
+		correos.setEmisor(emp);
+		correos.setContenido(contenido);
+		correos.setReceptor(alu);
+		correos.setEstado("A");
+		
+		rEmail.save(correos);
 	}
 
-	@PostMapping
+	@PostMapping("/temporal")
 	public boolean sendPassword(String email) throws MessagingException, IOException {
 		ClaveTemporal ct = new ClaveTemporal();
 		

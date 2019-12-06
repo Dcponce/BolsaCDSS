@@ -34,6 +34,10 @@ public class EmailService {
 		rEmail.save(email);
 	}
 	
+	public Email leer(Integer id) {
+		return rEmail.findById(id).get();
+	}
+	
 	//METODOS ENTIDAD USUARIOS
 	
 	public List<Alumno> listAllUsuario(){
