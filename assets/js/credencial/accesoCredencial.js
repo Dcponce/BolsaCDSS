@@ -1,9 +1,123 @@
 
     $(document).ready(function(){
-        var base_uri="http://localhost:8080/cliente";
+        var base_uri="http://localhost:8080/credencial";
 
         getData(base_uri);
 
-
+        $('#nuevo').on('click', function(){
+            nuevo(base_uri);
+        });
 
     });
+
+    function getData(base_uri){
+        $.ajax({
+            type: "GET", //Metodo por el que se realiza la petición 
+            url: base_uri+"/lista", 
+            contentType: "application/json", // NOT dataType
+            success: function (response) {
+         
+                if (!response['error']) {
+
+                    var i = 0;
+                    tabla = $('#example').DataTable({
+
+                        data: response,
+                        columns: [
+                            {data: 'id'},
+                            {data: 'codigo'},
+                            //{data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a class='btn btn-info btn-sm' class='btnModificar'> <span class='glyphicon glyphicon-wrench'></span></a> <a class='btn btn-danger btn-sm' id='btnEliminar'><span class='glyphicon glyphicon-remove'></span></a>   </div></div>"},
+                            {data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a style='color: #2980b9'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='eliminar("+ response[i].id +")' ><i class='material-icons'>delete_forever</i></a> </div></div>"},
+                        ],
+                        language: {
+                            processing:     "Traitement en cours...",
+                            search:         "Buscar: ",
+                            lengthMenu:    "Mostrar _MENU_ ",
+                            info:           " _START_ a _END_ de _TOTAL_ credenciales",
+                            infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                            infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                            infoPostFix:    "",
+                            loadingRecords: "Chargement en cours...",
+                            zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                            emptyTable:     "Aucune donnée disponible dans le tableau",
+                            paginate: {
+                                first:      "Premier",
+                                previous:   "Anterior",
+                                next:       "siguiente",
+                                last:       "Dernier"
+                            },
+                            aria: {
+                                sortAscending:  ": activer pour trier la colonne par ordre croissant",
+                                sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                            }
+                        }
+                        
+                    });
+                }
+            }
+        });
+
+
+    }
+
+    function nuevo(base_uri){
+        var id = $('#id').val();
+        var codigo = $('#codigo').val();
+        var metodo = "POST";
+        var accion = "guardado";
+
+        if( id > 0){
+            medoto = "PUT";
+            accion= "Actualizado";
+        }else{
+            id = null;
+        }
+
+        var data = {
+            "id": id,
+            "codigo": codigo
+        };
+
+        $.ajax({
+            url: base_uri,
+            method: metodo,
+            contentType:"application/json",
+            data: JSON.stringify(data),
+            success: function(){
+                alert("Registro agregado Exitosamente !!!");
+                getData(b);
+            }
+        }).fail(function(error){
+            alert("Error: " +error);
+
+        });
+
+    }
+
+    function eliminar(id){
+        $.ajax({
+
+            url:"http://localhost:8080/credencial/"+id,
+            method:"DELETE",
+            contentType:"application/json",
+            success: function(){
+
+                $('#mensaje').text("Registro Eliminado exitosamente !!!")
+                
+                getData("http://localhost:8080/credencial/");
+            }
+        });
+    }
+
+    function editar(id){
+
+        $.getJSON("http://localhost:8080/credencial/"+id,function(res){
+
+            if(data != null){
+                $('#id').val(res.id);
+                $('#nombre').val(res.codigo);
+            }
+            
+        });
+
+    }
