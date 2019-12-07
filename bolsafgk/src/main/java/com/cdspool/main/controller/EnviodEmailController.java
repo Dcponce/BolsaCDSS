@@ -19,6 +19,10 @@ import com.cdspool.main.repository.IClaveTeRepository;
 import com.cdspool.main.repository.IEmailRepository;
 import com.cdspool.main.repository.IEmpresaRepository;
 import com.cdspool.main.repository.IUsuarioRepository;
+import com.cdspool.main.service.AlumnoService;
+import com.cdspool.main.service.ClaveTeService;
+import com.cdspool.main.service.EmailService;
+import com.cdspool.main.service.EmpresaService;
 
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.util.Base64Utils;
@@ -57,16 +61,16 @@ public class EnviodEmailController {
 	IUsuarioRepository rUsuario;
 	
 	@Autowired
-	IClaveTeRepository rTemporal;
+	ClaveTeService rTemporal;
 	
 	@Autowired
-	IEmailRepository rEmail;
+	EmailService rEmail;
 	
 	@Autowired
-	IEmpresaRepository rEmpresa;
+	EmpresaService rEmpresa;
 
 	@Autowired
-	IAlumnoRepository rAlumno;
+	AlumnoService rAlumno;
 	
 	@PostMapping("/propuesta")
 	public void sendEmailWithAttachment(@RequestParam Integer alumno, String asunto, String contenido, Principal principal) throws MessagingException, IOException {
@@ -74,8 +78,8 @@ public class EnviodEmailController {
 		Usuario usua = rUsuario.findByEmail(principal.getName());
 		int id = usua.getId();
 		
-		Empresa emp = rEmpresa.findById(id).get();
-		Alumno alu = rAlumno.findById(id).get();
+		Empresa emp = rEmpresa.findById(id);
+		Alumno alu = rAlumno.findById(id);
 		
 		Usuario correo = rUsuario.findById(alumno).get();
 		String email = correo.getEmail();
@@ -127,7 +131,7 @@ public class EnviodEmailController {
 			ct.setUsuario(correo);
 			ct.setClavet(Base64Utils.encodeToString(random().getBytes()));
 			
-			rTemporal.save(ct);
+			rTemporal.guardar(ct);
 			
 			return true;
 		} else {
