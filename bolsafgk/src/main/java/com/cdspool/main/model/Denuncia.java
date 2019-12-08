@@ -15,19 +15,21 @@ public class Denuncia {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//Entidades
+
 	private Integer id;
+
 	private String descripcion;
-	
+
+	private String estado;
+
 	@JoinColumn(name = "id_emisor")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private Usuario emisor;
-	
-	@JoinColumn(name="id_reportado")
+
+	@JoinColumn(name = "id_reportado")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private Usuario reportado;
 
-	//Set y Get
 	public Integer getId() {
 		return id;
 	}
@@ -42,6 +44,14 @@ public class Denuncia {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public Usuario getEmisor() {
@@ -59,6 +69,5 @@ public class Denuncia {
 	public void setReportado(Usuario reportado) {
 		this.reportado = reportado;
 	}
-	
-	
+
 }

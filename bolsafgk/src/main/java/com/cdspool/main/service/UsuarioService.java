@@ -39,6 +39,11 @@ public class UsuarioService implements UserDetailsService {
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	ICredencialRepository iCreden;
+	
+	
 
 	public List<Usuario> findAll() {
 		return (List<Usuario>) iUsu.findAll();
@@ -70,6 +75,10 @@ public class UsuarioService implements UserDetailsService {
 
 	public Credencial findByIdCred(Integer id) {
 		return iCred.findById(id).get();
+	}
+	
+	public Credencial findByCodigo(String codigo) {
+		return iCreden.findByCodigo(codigo);
 	}
 
 	private Logger logger = LoggerFactory.getLogger(UsuarioService.class);
