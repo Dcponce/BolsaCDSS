@@ -79,9 +79,10 @@ public class EnviodEmailController {
 		int id = usua.getId();
 		
 		Empresa emp = rEmpresa.findById(id);
-		Alumno alu = rAlumno.findById(id);
+		Alumno alu = rAlumno.findById(alumno);
 		
 		Usuario correo = rUsuario.findById(alumno).get();
+		
 		String email = correo.getEmail();
 		
 		Email correos = new Email();
