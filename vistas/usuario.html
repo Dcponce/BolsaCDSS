@@ -24,18 +24,28 @@
         </tbody>
     </table> <br>
 
-    <input type="hidden" name="id" id="id">
+    <h2>Formulario Usuarios</h2>
+    <form>
+        <input type="hidden" name="id" id="id">
 
-    <label for="#email">Email</label>
-    <input type="text" name="email" id="email">
+        <label for="#email">Email</label>
+        <input type="text" name="email" id="email"> <br><br>
+    
+        <label for="#credencial">Credencial</label>
+        <input type="text" name="credencial" id="credencial"> <br><br>
+    
+        <label for="">Clave</label>
+        <input type="password" name="clave" id="clave"> <br><br>
 
-    <label for="#credencial">Credencial</label>
-    <input type="text" name="credencial" id="credencial">
+        <label for="">Rol</label>
+        <select name="tipo" id="tipo"> 
+            
+        </select> <br><br>
 
-    <label for="">Rol</label>
-    <select name="tipo" id="tipo">
-        
-    </select>
+        <button type="button" id="nuevo">Guardar</button>
+
+    </form>
+   
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../assets/js/usuario/accesoUsuarios.js"></script>
