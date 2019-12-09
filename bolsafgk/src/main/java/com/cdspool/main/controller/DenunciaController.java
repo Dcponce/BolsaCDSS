@@ -43,10 +43,10 @@ public class DenunciaController {
 		sDenuncia.guardar(denuncia);
 	}
 	
-	//Actualizar
-	@PutMapping
-	public void actualizar(@RequestBody Denuncia denuncia) {
-		sDenuncia.guardar(denuncia);
+	//Buscar
+	@GetMapping("/denuncias/{id}")
+	public Denuncia buscar(@PathVariable Integer id) {
+		return sDenuncia.PorDenuncia(id);
 	}
 	
 	
