@@ -2,9 +2,7 @@ package com.cdspool.main.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,28 +20,29 @@ import com.cdspool.main.repository.ICredencialRepository;
 
 @RestController
 @RequestMapping(value = "credencial")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+		RequestMethod.DELETE })
 public class CredencialController {
-	
-	@Autowired 
+
+	@Autowired
 	ICredencialRepository iCred;
-	
+
 	@GetMapping("/lista")
-	//@Secured("ROLE_ALUMNO")
-	public List<Credencial> lista(){
+	// @Secured("ROLE_ALUMNO")
+	public List<Credencial> lista() {
 		return (List<Credencial>) iCred.findAll();
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
 		iCred.deleteById(id);
 	}
-	
+
 	@PostMapping
 	public void add(@RequestBody Credencial cred) {
 		iCred.save(cred);
 	}
-	
+
 	@PutMapping
 	public void update(@RequestBody Credencial cred) {
 		iCred.save(cred);

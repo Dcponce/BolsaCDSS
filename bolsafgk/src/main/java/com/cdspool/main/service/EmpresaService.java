@@ -36,4 +36,8 @@ public class EmpresaService {
 	public void deleteEmp(Integer id) {
 		rEmpresa.deleteById(id);
 	}
+	
+	public Empresa findById(Integer id) {
+		return rEmpresa.findById(id).get();
+	}
 }

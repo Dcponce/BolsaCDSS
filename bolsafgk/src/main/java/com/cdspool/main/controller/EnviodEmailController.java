@@ -14,11 +14,11 @@ import com.cdspool.main.model.ClaveTemporal;
 import com.cdspool.main.model.Email;
 import com.cdspool.main.model.Empresa;
 import com.cdspool.main.model.Usuario;
-import com.cdspool.main.repository.IAlumnoRepository;
-import com.cdspool.main.repository.IClaveTeRepository;
-import com.cdspool.main.repository.IEmailRepository;
-import com.cdspool.main.repository.IEmpresaRepository;
 import com.cdspool.main.repository.IUsuarioRepository;
+import com.cdspool.main.service.AlumnoService;
+import com.cdspool.main.service.ClaveTeService;
+import com.cdspool.main.service.EmailService;
+import com.cdspool.main.service.EmpresaService;
 
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.util.Base64Utils;
@@ -31,10 +31,11 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE} )
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+		RequestMethod.DELETE })
 @RequestMapping(value = "envio")
 public class EnviodEmailController {
-	
+
 	public String random() {
 		int leftLimit = 97; // letter 'a'
 		int rightLimit = 122; // letter 'z'
@@ -55,33 +56,36 @@ public class EnviodEmailController {
 
 	@Autowired
 	IUsuarioRepository rUsuario;
-	
-	@Autowired
-	IClaveTeRepository rTemporal;
-	
-	@Autowired
-	IEmailRepository rEmail;
-	
-	@Autowired
-	IEmpresaRepository rEmpresa;
 
 	@Autowired
-	IAlumnoRepository rAlumno;
-	
+	ClaveTeService rTemporal;
+
+	@Autowired
+	EmailService rEmail;
+
+	@Autowired
+	EmpresaService rEmpresa;
+
+	@Autowired
+	AlumnoService rAlumno;
+
 	@PostMapping("/propuesta")
-	public void sendEmailWithAttachment(@RequestParam Integer alumno, String asunto, String contenido, Principal principal) throws MessagingException, IOException {
+	public void sendEmailWithAttachment(@RequestParam Integer alumno, String asunto, String contenido,
+			Principal principal) throws MessagingException, IOException {
 
 		Usuario usua = rUsuario.findByEmail(principal.getName());
 		int id = usua.getId();
-		
-		Empresa emp = rEmpresa.findById(id).get();
-		Alumno alu = rAlumno.findById(id).get();
+
+		Empresa emp = rEmpresa.findById(id);
+
+		Alumno alu = rAlumno.findById(alumno);
 		
 		Usuario correo = rUsuario.findById(alumno).get();
+		
 		String email = correo.getEmail();
-		
+
 		Email correos = new Email();
-		
+
 		MimeMessage msg = javaMailSender.createMimeMessage();
 
 		MimeMessageHelper helper = new MimeMessageHelper(msg, true);
@@ -92,22 +96,21 @@ public class EnviodEmailController {
 
 		helper.setText(contenido, true);
 
-		
 		javaMailSender.send(msg);
-		
+
 		correos.setAsunto(asunto);
 		correos.setEmisor(emp);
 		correos.setContenido(contenido);
 		correos.setReceptor(alu);
 		correos.setEstado("A");
-		
+
 		rEmail.save(correos);
 	}
 
 	@PostMapping("/temporal")
 	public boolean sendPassword(String email) throws MessagingException, IOException {
 		ClaveTemporal ct = new ClaveTemporal();
-		
+
 		Usuario correo = rUsuario.findByEmail(email);
 		String var = correo.getEmail();
 
@@ -123,12 +126,12 @@ public class EnviodEmailController {
 			helper.setText("Esta es su contraseña temporal <b>" + random() + "</b>", true);
 
 			javaMailSender.send(msg);
-			
+
 			ct.setUsuario(correo);
 			ct.setClavet(Base64Utils.encodeToString(random().getBytes()));
-			
-			rTemporal.save(ct);
-			
+
+			rTemporal.guardar(ct);
+
 			return true;
 		} else {
 			return false;

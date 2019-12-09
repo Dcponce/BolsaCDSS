@@ -7,5 +7,7 @@ import com.cdspool.main.model.Credencial;
 
 @Repository
 public interface ICredencialRepository extends CrudRepository<Credencial, Integer> {
-
+	
+	public Credencial findByCodigo(String codigo);
+	
 }

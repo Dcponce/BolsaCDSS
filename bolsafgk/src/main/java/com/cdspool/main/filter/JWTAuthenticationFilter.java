@@ -16,6 +16,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.cdspool.main.auth.service.JWTService;
 import com.cdspool.main.auth.service.JWTServiceImpl;
@@ -24,6 +25,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@CrossOrigin(origins = "*")
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	private AuthenticationManager authenticationManager;
