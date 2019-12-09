@@ -53,80 +53,57 @@ function getRoles(uri){
     })
 }
 
-function getCred(uri){
-    $.getJSON(uri, function(data){
-        if(data != null){
-            $('#idCred').empty();
-            var inpu = "";
-            $.each(data, function(i, v){
-                inpu = '<input type="hidden" value=" '+v.id+' "> ';
-
-                $('#idCred').append(inpu);
-
-            });
-
-        }
-    });
-}
-
 function nuevo(uri){
     var id = $('#id').val();
     var email = $('#email').val();
     var credencial = $('#credencial').val();
     var clave = $('#clave').val();
-    var tipo= $('#tipo').val();
-    var mensaje = "";
+    var tipo = $('#tipo').val();
     var metodo = "POST";
-    var accion = "Guardado";
-    var idC = 0;
-    
-    if(id > 0){
-        metodo = "PUT";
+    var accion = "Guardado"
+
+    if (id > 0) {
+        metodo = "PUT"
         accion = "Actualizado"
 
-    }else{
+    } else {
         id = null;
     }
 
     if(credencial != null){
-        $.getJSON(uri+"/byCrede/"+credencial, function(data){
-            
-            if(data != null){
+        var midata = new FormData();
 
-                $.each(data, function(i, v){
-                   idC = v.id;
-                });
+        midata.append("id", id);
+        midata.append("email", email);
+        midata.append("clave", clave);
+        midata.append("credencial", credencial);
+        midata.append("tipo", tipo);
 
-                if(idC){
-                    var data = {
-                        "id": id,
-                        "email": email,
-                        "id_credencial": {
-                            "id": idC
-                        },
-                        "clave": clave,
-                        "id_tipo": {
-                            "id": tipo
-                        }
-                    }
-    
-                    $.ajax({
-                        url: uri,
-                        method: metodo,
-                        contentType: "application/json",
-                        data: JSON.stringify(data),
-                        success:function(){
-                            mensaje = "Registro " + accion + " exitosamente";
-                            alert(mensaje);
-                            getData(uri+"lista");
-                        }
-                    })
-                }else{
-                    alert("Eror al registrarse")
-                }
-                
+        // var data = {
+        //     "id": id,
+        //     "email": email,
+        //     "clave": clave,
+        //     "credencial": credencial,
+        //     "tipo": tipo
+        // }
+
+        $.ajax({
+            url: uri,
+            method: metodo,
+            contentType: "application/json",
+            data: midata,
+            processData: false,
+	        cache: false,
+            success:function(){
+                mensaje = "Registro " + accion + " exitosamente";
+                alert(mensaje);
+                getData(uri);
             }
-        });
-    }
 
+        })
+
+    }else{
+        mensaje = "Todos los campos son requeridos";
+        alert(mensaje);
+    }
 }
