@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var uri = "http://localhost:8080/email";
+    var uri = "http://localhost:8080/denuncia";
 
     listar(uri);
     leer();
@@ -15,10 +15,9 @@ function listar(uri) {
             var fila = "";
             $.each(data, function (i, v) {
                 fila = "<tr>" +
-                    "<td>" + v.asunto + "</td>" +
-                    "<td>" + v.emisor.nombre + "</td>" +
-                    "<td>" + v.receptor.nombre + "</td>" +
-                    "<td>" + v.contenido + "</td>" +
+                    "<td>" + v.emisor.id+ "</td>" +
+                    "<td>" + v.reportado.id + "</td>" +
+                    "<td>" + v.descripcion + "</td>" +
                     "<td> <a href='#' onclick='leer(" + v.id + ")'>Seleccionar</a></td>" +
                     "<td> <a href='#' onclick='eliminar(" + v.id + ")'>Eliminar</a></td>" +
                     "</tr>";
@@ -30,12 +29,11 @@ function listar(uri) {
 }
 
 function leer(id) {
-    $.getJSON("http://localhost:8080/email/correos/" + id, function (data) {
+    $.getJSON("http://localhost:8080/denuncia/denuncias/" + id, function (data) {
         if (data != null) {
-            $('#emi').text(data.emisor.nombre);
-            $('#rece').text(data.receptor.nombre);
-            $('#asu').text(data.asunto);
-            $('#cont').text(data.contenido);
+            $('#emi').text(data.emisor.id);
+            $('#repo').text(data.reportado.id);
+            $('#des').text(data.descripcion);
         }
     });
 
@@ -43,11 +41,11 @@ function leer(id) {
 
 function eliminar(id) {
     $.ajax({
-        url: "http://localhost:8080/email/"+id,
+        url: "http://localhost:8080/denuncia/" + id,
         method: "DELETE",
         contentType: "application/json",
         success: function () {
-            listar("http://localhost:8080/email");
+            listar("http://localhost:8080/denuncia");
         }
     });
 }
