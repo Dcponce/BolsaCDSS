@@ -34,7 +34,8 @@ function leer(id) {
         if (data != null) {
             $('#emi').text(data.emisor.nombre);
             $('#rece').text(data.receptor.nombre);
-            $('#asu').text(data.contenido);
+            $('#asu').text(data.asunto);
+            $('#cont').text(data.contenido);
         }
     });
 
