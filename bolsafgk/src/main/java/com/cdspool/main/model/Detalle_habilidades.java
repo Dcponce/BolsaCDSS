@@ -16,6 +16,8 @@ public class Detalle_habilidades {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	private Integer prioridad;
 
 	@JoinColumn(name = "id_habilidad")
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -23,9 +25,8 @@ public class Detalle_habilidades {
 
 	@JoinColumn(name = "id_usuario")
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Alumno usuarios;
+	private Usuario usuarios;
 
-	private Integer prioridad;
 
 	public Integer getId() {
 		return id;
@@ -43,11 +44,12 @@ public class Detalle_habilidades {
 		this.habilidad = habilidad;
 	}
 
-	public Alumno getUsuarios() {
+
+	public Usuario getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(Alumno usuarios) {
+	public void setUsuarios(Usuario usuarios) {
 		this.usuarios = usuarios;
 	}
 
