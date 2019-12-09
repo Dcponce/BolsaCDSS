@@ -21,13 +21,13 @@
 
                     var i = 0;
                     tabla = $('#example').DataTable({
-
+                    
                         data: response,
                         columns: [
                             {data: 'id'},
                             {data: 'codigo'},
                             //{data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a class='btn btn-info btn-sm' class='btnModificar'> <span class='glyphicon glyphicon-wrench'></span></a> <a class='btn btn-danger btn-sm' id='btnEliminar'><span class='glyphicon glyphicon-remove'></span></a>   </div></div>"},
-                            {data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a style='color: #2980b9'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='eliminar("+ response[i].id +")' ><i class='material-icons'>delete_forever</i></a> </div></div>"},
+                            {data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a style='color: #2980b9' onclick='editar("+response[i].id +")'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='eliminar("+ response[i].id +")' ><i class='material-icons'>delete_forever</i></a> </div></div>"},
                         ],
                         language: {
                             processing:     "Traitement en cours...",
@@ -51,48 +51,45 @@
                                 sortDescending: ": activer pour trier la colonne par ordre décroissant"
                             }
                         }
-                        
                     });
+                
                 }
+                
             }
         });
-
-
     }
 
+
     function nuevo(base_uri){
-        var id = $('#id').val();
+        
+        var id= $('#id').val();
         var codigo = $('#codigo').val();
         var metodo = "POST";
-        var accion = "guardado";
 
-        if( id > 0){
-            medoto = "PUT";
-            accion= "Actualizado";
+        if(id > 0){
+                metodo = "PUT";
+                accion = "Actualizado";
         }else{
             id = null;
         }
 
-        var data = {
+        var data={
             "id": id,
-            "codigo": codigo
+            "codigo": codigo,
         };
 
-        $.ajax({
-            url: base_uri,
-            method: metodo,
-            contentType:"application/json",
-            data: JSON.stringify(data),
-            success: function(){
-                alert("Registro agregado Exitosamente !!!");
-                getData(b);
-            }
-        }).fail(function(error){
-            alert("Error: " +error);
-
-        });
-
-    }
+            $.ajax({
+                url: base_uri,
+                method: metodo,
+                contentType:"application/json",
+                data: JSON.stringify(data),
+                success: function(){
+                    alert("Registro agregar Existosamente !!!");
+                    getData(base_uri);
+                  
+                }
+            });
+        }
 
     function eliminar(id){
         $.ajax({
@@ -101,23 +98,27 @@
             method:"DELETE",
             contentType:"application/json",
             success: function(){
-
-                $('#mensaje').text("Registro Eliminado exitosamente !!!")
-                
-                getData("http://localhost:8080/credencial/");
+                alert("Registro eliminado Existosamente !!!");
+                getData(base_uri);
             }
         });
+        
     }
 
     function editar(id){
-
-        $.getJSON("http://localhost:8080/credencial/"+id,function(res){
-
-            if(data != null){
-                $('#id').val(res.id);
-                $('#nombre').val(res.codigo);
-            }
+        $.getJSON("http://localhost:8080/credencial/credi/"+id, function(res){
             
+            $('#id').val(res.id);
+            $('#codigo').val(res.codigo);
+            getData(base_uri);
+
         });
 
     }
+
+    function clear(){
+        $('#id').val("");
+        $('#codigo').val("");
+
+    }
+
