@@ -1,7 +1,5 @@
 $(document).ready(function(){
     var uri ="http://localhost:8080/login";
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
     $('#iniciar').on('click', function () {
         getToken(uri);
     })
@@ -24,7 +22,11 @@ function getToken(uri){
             data: JSON.stringify(data),
             success: function(res){
                 mensaje = "Token obtenido con exito"
-                alert(res);
+                alert(mensaje);
+                console.log(res)
+                localStorage.setItem("token", JSON.stringify(res["token"]));
+                //localStorage.setItem("Rol", JSON.stringify(res["user"]["authorities"]["authority"]));
+               
             }
         })
         
