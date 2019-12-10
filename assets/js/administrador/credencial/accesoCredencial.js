@@ -15,11 +15,11 @@
             type: "GET", //Metodo por el que se realiza la petición 
             url: base_uri+"/lista", 
             contentType: "application/json", // NOT dataType
-            success: function (response) {
-         
+            success: function (response,i) {
+                
                 if (!response['error']) {
-
-                    var i = 0;
+                    var i=1;
+                    var e =i++;
                     tabla = $('#example').DataTable({
                     
                         data: response,
@@ -27,8 +27,8 @@
                             {data: 'id'},
                             {data: 'codigo'},
                             //{data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a class='btn btn-info btn-sm' class='btnModificar'> <span class='glyphicon glyphicon-wrench'></span></a> <a class='btn btn-danger btn-sm' id='btnEliminar'><span class='glyphicon glyphicon-remove'></span></a>   </div></div>"},
-                            {data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #2980b9' onclick='editar("+response[i].id +")'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='eliminar("+response[i].id +")' ><i class='material-icons'>delete_forever</i></a> </div></div>"},
-                      
+                            {data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #2980b9' onclick='editar("+response[e].id +")'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='eliminar("+response[e].id +")' ><i class='material-icons'>delete_forever</i></a> </div></div>"},
+                          
                         ],
                         language: {
                             processing:     "Traitement en cours...",
