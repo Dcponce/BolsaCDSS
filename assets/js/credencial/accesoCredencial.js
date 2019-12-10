@@ -27,7 +27,8 @@
                             {data: 'id'},
                             {data: 'codigo'},
                             //{data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a class='btn btn-info btn-sm' class='btnModificar'> <span class='glyphicon glyphicon-wrench'></span></a> <a class='btn btn-danger btn-sm' id='btnEliminar'><span class='glyphicon glyphicon-remove'></span></a>   </div></div>"},
-                            {data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a style='color: #2980b9' onclick='editar("+response[i].id +")'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='eliminar("+ response[i].id +")' ><i class='material-icons'>delete_forever</i></a> </div></div>"},
+                            {data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #2980b9' onclick='editar("+response[i].id +")'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='eliminar("+response[i].id +")' ><i class='material-icons'>delete_forever</i></a> </div></div>"},
+                      
                         ],
                         language: {
                             processing:     "Traitement en cours...",
@@ -50,6 +51,7 @@
                                 sortAscending:  ": activer pour trier la colonne par ordre croissant",
                                 sortDescending: ": activer pour trier la colonne par ordre décroissant"
                             }
+
                         }
                     });
                 
