@@ -91,7 +91,7 @@ function getDepto(uriD,id) {
 }
 
 function getMunicipioByDepto(uriD, idDepto, id) {
-    $.getJSON(base_uri +"/muni/"+ idDepto, function (data) {
+    $.getJSON(uriD +"/muni/"+ idDepto, function (data) {
         if (data != null) {
             $('#municipio').empty();
             $('#municipio').append("<option selected disabled>Seleccione un municipio</option>");
