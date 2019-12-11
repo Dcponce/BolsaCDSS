@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cdspool.main.model.Credencial;
-import com.cdspool.main.model.Habilidad;
 import com.cdspool.main.repository.ICredencialRepository;
 
 @RestController
@@ -47,7 +46,7 @@ public class CredencialController {
 	public void update(@RequestBody Credencial cred) {
 		iCred.save(cred);
 	}
-	
+
 	@GetMapping("/credi/{id}")
 	public Credencial porCredencial(@PathVariable Integer id) {
 		return iCred.findById(id).get();
