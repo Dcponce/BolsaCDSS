@@ -63,7 +63,7 @@
                 contentType:"application/json",
                 data: JSON.stringify(data),
                 success: function(){
-                    alert("Registro agregar Existosamente !!!");
+                    alert("Registro guardado Existosamente !!!");
                     getData(base_uri);
                     clear();
                 }
