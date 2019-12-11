@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cdspool.main.model.Departamentos;
 import com.cdspool.main.model.Municipios;
-import com.cdspool.main.repository.IDepartamentosRepository;
 import com.cdspool.main.service.MunicipiosService;
 
 @RestController
@@ -27,13 +26,11 @@ public class MunicipiosController {
 	@Autowired
 	MunicipiosService sMunicipios;
 	
-	@Autowired
-	IDepartamentosRepository idepa;
 	
 	//Listar
 	@GetMapping
-	public List<Municipios> listar(){
-		return (List<Municipios>) sMunicipios.listar();
+	public List<Departamentos> listar(){
+		return sMunicipios.lista();
 	}
 	
 	//Eliminar
@@ -55,12 +52,8 @@ public class MunicipiosController {
 		sMunicipios.guardar(municipios);
 	}
 	
-	@GetMapping("api/muny")
-	public List<Departamentos> listDepa(){
-		
-		List<Departamentos> list = (List<Departamentos>) idepa.findAll();
-		
-		return list;
+	@GetMapping("/muni/{id}")
+	public List<Municipios>buscar(@PathVariable Integer id){
+		return sMunicipios.listarM(id);
 	}
-	
 }

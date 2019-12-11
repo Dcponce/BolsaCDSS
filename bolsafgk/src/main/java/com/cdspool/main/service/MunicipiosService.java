@@ -21,10 +21,10 @@ public class MunicipiosService {
 	@Autowired  //Manda a llamar los repositorio
 	IDepartamentosRepository rDepartamento;
 
-	//Metodo de Listar
-	public List<Municipios> listar(){
-		return (List<Municipios>) rMunicipio.findAll();
-	}
+//	//Metodo de Listar
+//	public List<Municipios> listar(){
+//		return (List<Municipios>) rMunicipio.findAll();
+//	}
 	
 	//Metodo de Eliminar
 	public void eliminar(Integer id) {
