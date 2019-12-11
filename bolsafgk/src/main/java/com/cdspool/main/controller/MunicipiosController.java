@@ -24,37 +24,25 @@ import com.cdspool.main.service.MunicipiosService;
 @RequestMapping(value = "municipios")
 public class MunicipiosController {
 
-	@Autowired
+	@Autowired //Manda a llamar el servicio de municipio
 	MunicipiosService sMunicipios;
 	
-	@Autowired
+	@Autowired //Manda a llamar el repositorio de departamento
 	IDepartamentosRepository idepa;
 	
-	//Listar
+	//Ejecución del metodo Listar
 	@GetMapping
 	public List<Municipios> listar(){
 		return (List<Municipios>) sMunicipios.listar();
 	}
 	
-	//Eliminar
-	@DeleteMapping("/{id}")
-	public void eliminar(@PathVariable Integer id) {
-		sMunicipios.eliminar(id);
-		
+	///Ejecución del metodo buscar el id de Municipio
+	@GetMapping("/municipio/{id}")
+	public Municipios getMunicipio(@PathVariable Integer id) {
+		return sMunicipios.porMunicipio(id);
 	}
 	
-	//Agregar
-	@PostMapping
-	public void agregar (@RequestBody Municipios municipios) {
-		sMunicipios.guardar(municipios);
-	}
-	
-	//Actualizar
-	@PutMapping
-	public void actualizar(@RequestBody Municipios municipios) {
-		sMunicipios.guardar(municipios);
-	}
-	
+	///Ejecución del metodo listar de departamento
 	@GetMapping("api/muny")
 	public List<Departamentos> listDepa(){
 		
@@ -62,5 +50,12 @@ public class MunicipiosController {
 		
 		return list;
 	}
+	
+	///Ejecución del metodo buscar el id de Municipio
+	@GetMapping("/muni/depar/{id}")
+	public Departamentos getDepartamento(@PathVariable Integer id) {
+		return sMunicipios.porDepartamentos(id);
+	}
+	
 	
 }

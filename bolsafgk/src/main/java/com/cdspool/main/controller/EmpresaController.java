@@ -14,34 +14,81 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cdspool.main.model.Departamentos;
 import com.cdspool.main.model.Empresa;
+import com.cdspool.main.model.Municipios;
+import com.cdspool.main.model.Usuario;
+import com.cdspool.main.repository.IDepartamentosRepository;
 import com.cdspool.main.service.EmpresaService;
+import com.cdspool.main.service.MunicipiosService;
 
 @RestController
 @CrossOrigin(origins = "*", methods =  {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping(value = "empresa")
 public class EmpresaController {
 
-	@Autowired
+	
+	@Autowired//Manda a llamar servicio de empresa
 	EmpresaService empresaService;
 	
+	@Autowired//Manda a llamar el servicio de municipio
+	MunicipiosService sMunicipio;
+	
+    @Autowired//Manda a llamar el repositorio de departamento
+    IDepartamentosRepository idepa;
+	
+	//Ejecución del metodo listar
 	@GetMapping
 	public List<Empresa> listar(){
 		return empresaService.listar();
 	}
 	
+	//Ejecución del metodo agregar
 	@PostMapping
 	public void addEm(@RequestBody Empresa empresa) {
 		empresaService.saveEmp(empresa);
 	}
 	
+	//Ejecución del metodo editar
 	@PutMapping
 	public void editEm(@RequestBody Empresa empresa) {
 		empresaService.saveEmp(empresa);
 	}
 	
+	//Ejecución del metodo eliminar 
 	@DeleteMapping("/{id}")
 	public void deleteEm(@PathVariable Integer id) {
 		empresaService.deleteEmp(id);
+	}
+	
+	///Ejecución del metodo buscar el id de Municipio
+	@GetMapping("/municipio/{id}")
+	public Municipios getMunicipio(@PathVariable Integer id) {
+		return sMunicipio.porMunicipio(id);
+	}
+	
+	///Ejecución del metodo listar de departamento
+	@GetMapping("depa/muni")
+	public List<Departamentos> listDepa(){
+		List<Departamentos> list = (List<Departamentos>) idepa.findAll();
+		return list;
+	}
+	
+	///Ejecución del metodo buscar el id de Municipio
+	@GetMapping("/mu/dep/{id}")
+	public Departamentos getDepartamento(@PathVariable Integer id) {
+		return sMunicipio.porDepartamentos(id);
+	}
+	
+	//Ejecución del metodo listar usuario
+	@GetMapping("/usu")
+	public List<Usuario> listarm(){
+		return empresaService.findAllUsua();
+	}
+		
+	//Ejecución del metodo buscar el id de usuario
+	@GetMapping("/usua/{id}")
+	public Usuario getUsuario(@PathVariable Integer id) {
+		return empresaService.findByIdUsua(id);
 	}
 }

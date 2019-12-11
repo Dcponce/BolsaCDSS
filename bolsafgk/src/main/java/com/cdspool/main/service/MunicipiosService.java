@@ -15,10 +15,10 @@ import com.cdspool.main.repository.IMunicipiosRepository;
 @Transactional
 public class MunicipiosService {
 	
-	@Autowired //Manda a llamar los repositorio
+	@Autowired //Manda a llamar los repositorio municipios
 	IMunicipiosRepository rMunicipio;
 	
-	@Autowired  //Manda a llamar los repositorio
+	@Autowired  //Manda a llamar los repositorio departamento
 	IDepartamentosRepository rDepartamento;
 
 	//Metodo de Listar
@@ -26,14 +26,9 @@ public class MunicipiosService {
 		return (List<Municipios>) rMunicipio.findAll();
 	}
 	
-	//Metodo de Eliminar
-	public void eliminar(Integer id) {
-		rMunicipio.deleteById(id);
-	}
-
-	//Metodo de Guardar
-	public void guardar(Municipios municipios) {
-		rMunicipio.save(municipios);
+	//Metodo de Buscar por id
+	public Municipios porMunicipio(Integer id) {
+		return rMunicipio.findById(id).get();
 	}
 	
 	//Metodo de Listar
