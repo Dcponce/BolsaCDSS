@@ -19,6 +19,7 @@ import com.cdspool.main.repository.IHabilidadRepository;
 
 @RestController
 @CrossOrigin(origins = "*", methods =  {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@RequestMapping("habilidades")
 public class HabilidadesController {
 
 	@Autowired
