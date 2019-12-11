@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <section id="personales">
-        <input type="text" id="id">
-        <input type="text" name="txtNombre" id="nombre" placeholder="Nombre">
-        <input type="text" name="txtApellido" id="apellido" placeholder="Apellido">
-        <input type="text" name="txtTelefono" id="telefono" placeholder="Telefono">
-        <input type="text" name="txtCelular" id="celular" placeholder="Celular">
-        <textarea name="txtDireccion" id="direccion" placeholder="Dirección"></textarea>
+        <h2>Datos Personales</h2>
+        <input type="text" id="id"><br>
+        <input type="text" name="txtNombre" id="nombre" placeholder="Nombre"><br>
+        <input type="text" name="txtApellido" id="apellido" placeholder="Apellido"><br>
+        <input type="text" name="txtTelefono" id="telefono" placeholder="Telefono"><br>
+        <input type="text" name="txtCelular" id="celular" placeholder="Celular"><br>
+        <textarea name="txtDireccion" id="direccion" placeholder="Dirección"></textarea><br>
         <select name="txtProyecto" id="proyecto">
             <option selected disabled>Seleccione el proyecto al que pertenece</option>
             <option value="PPE">Puentes para El Empleo</option>
             <option value="FGK">Oportunidades</option>
-        </select>
-        <input type="date" name="txtNacimiento" id="nacimiento">
-        <select name="txtDepartamento" id="departamento"></select>
-        <select name="txtMunicipio" id="municipio"></select>
-        <button type="button" id="guardar">Siguiente</button>
+        </select><br>
+        <input type="date" name="txtNacimiento" id="nacimiento"><br>
+        <select name="txtDepartamento" id="departamento">fdsf</select><br>
+        <select name="txtMunicipio" id="municipio"></select><br>
+        <button type="button" id="datosP">Siguiente</button>
     </section>
+<br><br>
     <section id="educacion">
-
+        <h2>Educación</h2>
+        <input type="text" id="id"><br>
+        <input type="text" name="txtUniversidad" id="universidad" placeholder="Nombre de universidad"><br>
+        <input type="text" name="txtCarrera" id="carrera" placeholder="Nombre de la carrera"><br>
+        <select name="txtCertificacion" id="certificacion"></select><br>
+        <select name="txtNivel" id="nivel"></select><br>
+        <button type="button" id="datosE">Siguiente</button>
     </section>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../../assets/js/alumno/accesoAlumno.js"></script>
 </body>
+
 </html>
