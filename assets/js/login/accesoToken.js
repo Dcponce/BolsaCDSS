@@ -20,13 +20,12 @@ function getToken(uri){
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify(data),
-            success: function(res){
-                mensaje = "Token obtenido con exito"
-                alert(mensaje);
+            success: function(res){ //nehemias@gmail.com
                 console.log(res)
-                localStorage.setItem("token", JSON.stringify(res["token"]));
-                //localStorage.setItem("Rol", JSON.stringify(res["user"]["authorities"]["authority"]));
-               
+                localStorage.setItem("Email", JSON.stringify(res["user"]["username"]));
+                localStorage.setItem("Rol", JSON.stringify(res["user"]["authorities"][0]["authority"]));
+                localStorage.setItem("Bienvenida", JSON.stringify(res["mensaje"]));
+                localStorage.setItem("Token", JSON.stringify(res["token"]));
             }
         })
         
