@@ -23,7 +23,7 @@
             <option value="FGK">Oportunidades</option>
         </select><br>
         <input type="date" name="txtNacimiento" id="nacimiento"><br>
-        <select name="txtDepartamento" id="departamento">fdsf</select><br>
+        <select name="txtDepartamento" id="departamento"></select><br>
         <select name="txtMunicipio" id="municipio"></select><br>
         <button type="button" id="datosP">Siguiente</button>
     </section>
@@ -34,9 +34,36 @@
         <input type="text" name="txtUniversidad" id="universidad" placeholder="Nombre de universidad"><br>
         <input type="text" name="txtCarrera" id="carrera" placeholder="Nombre de la carrera"><br>
         <select name="txtCertificacion" id="certificacion"></select><br>
-        <select name="txtNivel" id="nivel"></select><br>
+        <select name="txtNivel" id="nivel">
+            <option selected disabled>Seleccione su nivel</option>
+            <option value="1">Nivel 1</option>
+            <option value="2">Nivel 2</option>
+            <option value="3">Nivel 3</option>
+        </select><br>
         <button type="button" id="datosE">Siguiente</button>
     </section>
+<br><br>
+<section id="habilidades">
+    <h2>Habilidades</h2>
+    <select name="txtHabilidad" id="habilidad"></select><br>
+    <select name="txtPrioridad" id="prioridad">
+        <option selected disabled>Seleccione un nivel de prioridad</option>
+        <option value="1">Alta</option>
+        <option value="2">Media</option>
+        <option value="3">Baja</option>
+    </select><br>
+    <label for="dominio">Indique el nivel de dominio de la habilidad</label><br>
+    <input type="range" name="txtDominio" id="dominio" min="0" max="100" step="5" value="0"><br>
+    <button type="button" id="datosH">Siguiente</button>
+</section>
+<section id="proyecto">
+    <h2>Proyectos</h2>
+        <label>Link de proyectos</label><br>
+    <input type="text" name="txtLink" id="link1"><br>
+    <input type="text" name="txtLink" id="link2"><br>
+    <input type="text" name="txtLink" id="link3"><br>
+    <button type="button" id="datosPr">Siguiente</button>
+</section>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../../assets/js/alumno/accesoAlumno.js"></script>
