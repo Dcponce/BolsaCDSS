@@ -55,6 +55,9 @@ function guardarH(uriP) {
 
         $.ajax({
             url: uri,
+            headers: {
+                'Authorization': JSON.parse(localStorage.getItem('Token'))
+            },
             method: metodo,
             contentType: "application/json",
             data: JSON.stringify(data),

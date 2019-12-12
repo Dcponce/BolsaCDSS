@@ -42,6 +42,9 @@ function guardarH(uriDt) {
 
         $.ajax({
             url: uriDt,
+            headers: {
+                'Authorization': JSON.parse(localStorage.getItem('Token'))
+            },
             method: metodo,
             contentType: "application/json",
             data: JSON.stringify(data),
@@ -67,22 +70,29 @@ function guardarH(uriDt) {
 }
 
 function getHabi(uriH, id) {
+    $.ajax({
+        url: uriH,
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            if (result != null) {
 
-    $.getJSON(uriH, function (data) {
-        if (data != null) {
-
-            $('#select').empty();
-            $('#select').append("<option selected disabled>Seleccione sus habilidades</option>");
-            var fila = "";
-            $.each(data, function (i, v) {
-
-                if (v.id == id) {
-                    fila = '<option value="' + v.id + '" selected>' + v.descripcion + '</option>';
-                } else {
-                    fila = '<option value="' + v.id + '">' + v.descripcion + '</option>';
-                }
-                $('#select').append(fila);
-            });
+                $('#select').empty();
+                $('#select').append("<option selected disabled>Seleccione sus habilidades</option>");
+                var fila = "";
+                $.each(result, function (i, v) {
+    
+                    if (v.id == id) {
+                        fila = '<option value="' + v.id + '" selected>' + v.descripcion + '</option>';
+                    } else {
+                        fila = '<option value="' + v.id + '">' + v.descripcion + '</option>';
+                    }
+                    $('#select').append(fila);
+                });
+            }
         }
     });
 }

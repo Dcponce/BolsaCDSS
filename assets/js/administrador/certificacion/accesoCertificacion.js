@@ -70,8 +70,11 @@ function nuevo(uri){
                 mensaje = "Registro " + accion + " exitosamente";
                 alert(mensaje);
                 getData(uri);
+                clear();
+            },
+            error: function (error){
+                console.log(error);
             }
-
         })
 
     }else{
@@ -85,7 +88,7 @@ function eliminar(id) {
     $.ajax({
         url: "http://localhost:8080/certificacion/" + id,
         headers: {
-            'Authorization': JSON.parse(localStorage.getItem('Token'))
+            'Authorization': JSON.parse(localStorage.getItem('Token')),
         },
         method: "DELETE",
         contentType: "application/json",
@@ -101,10 +104,24 @@ function eliminar(id) {
 }
 
 function editar(id) {
-    $.getJSON("http://localhost:8080/certificacion/byId/" + id, function (data) {
-        if (data != null) {
-            $('#id').val(data.id);
-            $('#nombre').val(data.nombre);
+    $.ajax({
+        url: "http://localhost:8080/certificacion/byId/" + id,
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        type: 'GET',
+        dataType: "json",
+        success: function (result){
+            if (result != null) {
+                $('#id').val(result.id);
+                $('#nombre').val(result.nombre);
+            }
         }
-    })
+    });
+}
+
+function clear(){
+    $('#id').val("");
+    $('#nombre').val("");
+
 }

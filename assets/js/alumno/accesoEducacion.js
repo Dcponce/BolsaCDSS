@@ -44,6 +44,9 @@ function guardarE(uriE) {
 
         $.ajax({
             url: uriE,
+            headers: {
+                'Authorization': JSON.parse(localStorage.getItem('Token'))
+            },
             method: metodo,
             contentType: "application/json",
             data: JSON.stringify(data),
@@ -67,22 +70,29 @@ function guardarE(uriE) {
 }
 
 function getCert(uriC, id) {
+    $.ajax({
+        url: uriC,
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            if (result != null) {
 
-    $.getJSON(uriC, function (data) {
-        if (data != null) {
+                $('#certificacion').empty();
+                $('#certificacion').append("<option selected disabled>Seleccione su certificación</option>");
+                var fila = "";
+                $.each(result, function (i, v) {
 
-            $('#certificacion').empty();
-            $('#certificacion').append("<option selected disabled>Seleccione su certificación</option>");
-            var fila = "";
-            $.each(data, function (i, v) {
-
-                if (v.id == id) {
-                    fila = '<option value="' + v.id + '" selected>' + v.nombre + '</option>';
-                } else {
-                    fila = '<option value="' + v.id + '">' + v.nombre + '</option>';
-                }
-                $('#certificacion').append(fila);
-            });
+                    if (v.id == id) {
+                        fila = '<option value="' + v.id + '" selected>' + v.nombre + '</option>';
+                    } else {
+                        fila = '<option value="' + v.id + '">' + v.nombre + '</option>';
+                    }
+                    $('#certificacion').append(fila);
+                });
+            }
         }
     });
 }
