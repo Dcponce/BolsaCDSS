@@ -1,5 +1,5 @@
 $(document).ready(function () {
-/*    $('#two-tab').prop("disabled", true);
+/*  $('#two-tab').prop("disabled", true);
     $('#three-tab').prop("disabled", true);
     $('#four-tab').prop("disabled", true);*/
 
