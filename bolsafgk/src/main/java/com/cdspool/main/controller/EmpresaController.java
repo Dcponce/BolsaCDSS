@@ -62,7 +62,7 @@ public class EmpresaController {
 	}
 	
 	///Ejecución del metodo buscar el id de empresa
-	@GetMapping("/em/{id}")
+	@GetMapping("/empresa/{id}")
 	public Empresa getEmpresa(@PathVariable Integer id) {
 		return empresaService.findById(id);
 	}
