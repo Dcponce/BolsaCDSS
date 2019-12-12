@@ -9,6 +9,7 @@ $(document).ready(function () {
 });
 
 function guardarH(uriP) {
+    var uri = uriP;
     var idc = $('#idPr').val();
     var nom = $('#nom').val();
     var lnk = $('#link1').val();
@@ -19,6 +20,7 @@ function guardarH(uriP) {
     var metodo = "POST";
     var accion = "Guardado";
 
+
     if (id > 0) {
         metodo = "PUT";
         accion = "Actualizado";
@@ -26,7 +28,21 @@ function guardarH(uriP) {
         id = null;
     }
 
-    if (lnk != null) {
+    if(nom != "" && lnk != ""){
+        saveH(uri, metodo, id, nom, lnk, idc);
+    }
+
+    if(nom2 != "" && lnk2 != ""){
+        saveH(uri, metodo, id, nom2, lnk2, idc);
+    }
+
+    if(nom3 != "" && lnk3 != ""){
+        saveH(uri, metodo, id, nom3, lnk3, idc);
+    }
+
+}
+
+    function saveH(uri, metodo, id, nom, lnk, idc){
 
         var data = {
             "id": id,
@@ -38,13 +54,14 @@ function guardarH(uriP) {
         };
 
         $.ajax({
-            url: uriP,
+            url: uri,
             method: metodo,
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function () {
-               alert('Datos correctamente almacenados')
+               return true;
             }
+        }).fail(function(){
+            return false;
         });
     }
-}

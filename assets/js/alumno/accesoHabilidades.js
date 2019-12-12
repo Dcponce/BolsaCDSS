@@ -15,7 +15,7 @@ function guardarH(uriDt) {
     var idc = $('#idH').val();
     var pri = $('#prioridad').val();
     var lvl = $('#dominio').val();
-    var hab = $('#habilidad').val();
+    var hab = $('#select').val();
     var metodo = "POST";
     var accion = "Guardado";
 
@@ -71,8 +71,8 @@ function getHabi(uriH, id) {
     $.getJSON(uriH, function (data) {
         if (data != null) {
 
-            $('#habilidad').empty();
-            $('#habilidad').append("<option selected disabled>Seleccione sus habilidades</option>");
+            $('#select').empty();
+            $('#select').append("<option selected disabled>Seleccione sus habilidades</option>");
             var fila = "";
             $.each(data, function (i, v) {
 
@@ -81,7 +81,7 @@ function getHabi(uriH, id) {
                 } else {
                     fila = '<option value="' + v.id + '">' + v.descripcion + '</option>';
                 }
-                $('#habilidad').append(fila);
+                $('#select').append(fila);
             });
         }
     });
