@@ -1,80 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bienvenidos/as</title>
+    <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/ccs/alumnos.css">
 </head>
 
 <body>
-    <section id="personales">
-        <h2>Datos Personales</h2>
-        <input type="text" id="id"><br>
-        <input type="text" name="txtNombre" id="nombre" placeholder="Nombre"><br>
-        <input type="text" name="txtApellido" id="apellido" placeholder="Apellido"><br>
-        <input type="text" name="txtTelefono" id="telefono" placeholder="Telefono"><br>
-        <input type="text" name="txtCelular" id="celular" placeholder="Celular"><br>
-        <textarea name="txtDireccion" id="direccion" placeholder="Dirección"></textarea><br>
-        <select name="txtProyecto" id="proyecto">
-            <option selected disabled>Seleccione el proyecto al que pertenece</option>
-            <option value="PPE">Puentes para El Empleo</option>
-            <option value="FGK">Oportunidades</option>
-        </select><br>
-        <input type="date" name="txtNacimiento" id="nacimiento"><br>
-        <select name="txtDepartamento" id="departamento"></select><br>
-        <select name="txtMunicipio" id="municipio"></select><br>
-        <button type="button" id="datosP">Siguiente</button>
-    </section>
-    <br><br>
-    <section id="educacion">
-        <h2>Educación</h2>
-        <input type="text" id="id"><br>
-        <input type="text" name="txtUniversidad" id="universidad" placeholder="Nombre de universidad"><br>
-        <input type="text" name="txtCarrera" id="carrera" placeholder="Nombre de la carrera"><br>
-        <select name="txtCertificacion" id="certificacion"></select><br>
-        <select name="txtNivel" id="nivel">
-            <option selected disabled>Seleccione su nivel</option>
-            <option value="1">Nivel 1</option>
-            <option value="2">Nivel 2</option>
-            <option value="3">Nivel 3</option>
-        </select><br>
-        <button type="button" id="datosE">Siguiente</button>
-    </section>
-    <br><br>
-    <section id="habilidades">
-        <h2>Habilidades</h2>
-        <select name="txtHabilidad" id="habilidad"></select><br>
-        <select name="txtPrioridad" id="prioridad">
-            <option selected disabled>Seleccione un nivel de prioridad</option>
-            <option value="1">Alta</option>
-            <option value="2">Media</option>
-            <option value="3">Baja</option>
-        </select><br>
-        <label for="dominio">Indique el nivel de dominio de la habilidad</label><br>
-        <input type="range" name="txtDominio" id="dominio" min="0" max="100" step="5" value="0"><br>
-        <button type="button" id="datosH">Siguiente</button>
-    </section>
-    <section id="proyecto" class="active">
-        <h2>Proyectos</h2>
-        <label>Link de proyectos</label><br>
-        <input type="text" name="txtLink" id="link1"><br>
-        <input type="text" name="txtLink" id="link2"><br>
-        <input type="text" name="txtLink" id="link3"><br>
-        <button type="button" id="datosPr">Siguiente</button>
-    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-7">
+                <div class="card mt-3 tab-card">
+                    <div class="card-header tab-card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link show active" id="one-tab" data-toggle="tab" href="#one" role="tab"
+                                    aria-controls="One" aria-selected="true">Personales</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab"
+                                    aria-controls="Two" aria-selected="false">Educación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="three-tab" data-toggle="tab" href="#three" role="tab"
+                                    aria-controls="Three" aria-selected="false">Habilidades</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="four-tab" data-toggle="tab" href="#four" role="tab"
+                                    aria-controls="four" aria-selected="false">Proyectos</a>
+                            </li>
+                        </ul>
+                    </div>
 
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+                            <h2>Datos Personales</h2>
+                            <input type="text" id="id"><br>
+                            <input type="text" name="txtNombre" id="nombre" placeholder="Nombre"><br>
+                            <input type="text" name="txtApellido" id="apellido" placeholder="Apellido"><br>
+                            <input type="text" name="txtTelefono" id="telefono" placeholder="Telefono"><br>
+                            <input type="text" name="txtCelular" id="celular" placeholder="Celular"><br>
+                            <textarea name="txtDireccion" id="direccion" placeholder="Dirección"></textarea><br>
+                            <select name="txtProyecto" id="proyecto">
+                                <option selected disabled>Seleccione el proyecto al que pertenece</option>
+                                <option value="PPE">Puentes para El Empleo</option>
+                                <option value="FGK">Oportunidades</option>
+                            </select><br>
+                            <input type="date" name="txtNacimiento" id="nacimiento"><br>
+                            <select name="txtDepartamento" id="departamento"></select><br>
+                            <select name="txtMunicipio" id="municipio"></select><br>
+                            <button type="button" id="datosP">Siguiente</button>
+                        </div>
+
+                        <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+                            <h2>Educación</h2>
+                            <input type="text" id="idE"><br>
+                            <input type="text" name="txtUniversidad" id="universidad" placeholder="Nombre de universidad"><br>
+                            <input type="text" name="txtCarrera" id="carrera" placeholder="Nombre de la carrera"><br>
+                            <select name="txtCertificacion" id="certificacion"></select><br>
+                            <select name="txtNivel" id="nivel">
+                                <option selected disabled>Seleccione su nivel</option>
+                                <option value="1">Nivel 1</option>
+                                <option value="2">Nivel 2</option>
+                                <option value="3">Nivel 3</option>
+                            </select><br>
+                            <button type="button" id="datosE">Siguiente</button>
+                        </div>
+
+                        <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
+                            <h2>Habilidades</h2>
+                            <input type="text" id="idH"><br>
+                            <select name="txtHabilidad" id="habilidad"></select><br>
+                            <select name="txtPrioridad" id="prioridad">
+                                <option selected disabled>Seleccione un nivel de prioridad</option>
+                                <option value="1">Alta</option>
+                                <option value="2">Media</option>
+                                <option value="3">Baja</option>
+                            </select><br>
+                            <label for="dominio">Indique el nivel de dominio de la habilidad</label><br>
+                            <input type="range" name="txtDominio" id="dominio" min="0" max="100" step="5" value="0"><br>
+                            <button type="button" id="datosH">Siguiente</button>
+                        </div>
+
+                        <div class="tab-pane fade p-4" id="four" role="tabpanel" aria-labelledby="four-tab">
+                            <h2>Proyectos</h2>
+                            <input type="text" id="idPr"><br>
+                            <label>Link de proyectos</label><br>
+                            <input type="text" name="txtNombre" id="nom" placeholder="Nombre de proyecto"><br>
+                            <input type="text" name="txtLink" id="link1" placeholder="Link de proyecto"><br>
+                            <input type="text" name="txtNombre" id="nom2" placeholder="Nombre de proyecto"><br>
+                            <input type="text" name="txtLink" id="link2" placeholder="Link de proyecto"><br>
+                            <input type="text" name="txtNombre" id="nom3" placeholder="Nombre de proyecto"><br>
+                            <input type="text" name="txtLink" id="link3" placeholder="Link de proyecto"><br>
+                            <button type="button" id="datosPr">Siguiente</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
     <script src="../../assets/js/alumno/accesoAlumno.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+    <script src="../../assets/js/alumno/accesoEducacion.js"></script>
+    <script src="../../assets/js/alumno/accesoHabilidades.js"></script>
+    <script src="../../assets/js/alumno/accesoProyectos.js"></script>
 </body>
 
 </html>

@@ -1,21 +1,21 @@
 $(document).ready(function () {
 
     var uriH = "http://localhost:8080/habilidades";
-    var uriH = "http://localhost:8080/detalleHa";
+    var uriDt = "http://localhost:8080/detalleHa";
 
-    getCert(uriC, 0)
+    getHabi(uriH, 0)
 
     $('#datosH').on('click', function () {
-        guardarH(uriE);
+        guardarH(uriDt);
     });
 
 });
 
-function guardarH(uriH) {
-    var idc = $('#idE').val();
-    var pri = $('#universidad').val();
-    var lvl = $('#carrera').val();
-    var hab = $('#certificacion').val();
+function guardarH(uriDt) {
+    var idc = $('#idH').val();
+    var pri = $('#prioridad').val();
+    var lvl = $('#dominio').val();
+    var hab = $('#habilidad').val();
     var metodo = "POST";
     var accion = "Guardado";
 
@@ -26,7 +26,7 @@ function guardarH(uriH) {
         id = null;
     }
 
-    if (cer > 0) {
+    if (hab > 0) {
 
         var data = {
             "id": id,
@@ -41,7 +41,7 @@ function guardarH(uriH) {
         };
 
         $.ajax({
-            url: uriH,
+            url: uriDt,
             method: metodo,
             contentType: "application/json",
             data: JSON.stringify(data),
