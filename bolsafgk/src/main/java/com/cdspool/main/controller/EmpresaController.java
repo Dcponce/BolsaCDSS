@@ -34,9 +34,7 @@ public class EmpresaController {
 	@Autowired//Manda a llamar el servicio de municipio
 	MunicipiosService sMunicipio;
 	
-    @Autowired//Manda a llamar el repositorio de departamento
-    IDepartamentosRepository idepa;
-	
+    
 	//Ejecución del metodo listar
 	@GetMapping
 	public List<Empresa> listar(){
@@ -68,35 +66,28 @@ public class EmpresaController {
 	}
 	
 	//METODOS DE LAS ENTIDDES DEPARTAMENTOs Y MUNICIPIOS
-	@GetMapping("/municipios/{id}")
-	public List<Municipios> getMunicipios(@PathVariable Integer id){
-		return sMunicipio.listar();
+	@GetMapping("/departamento")
+	public List<Departamentos> lista(){
+		return sMunicipio.lista();
 	}
 	
+	///Ejecución del metodo buscar el id de Municipio
 	@GetMapping("/municipio/{id}")
 	public Municipios getMunicipio(@PathVariable Integer id) {
 		return sMunicipio.porMunicipio(id);
 	}
 	
-	@GetMapping("/departam")
-	public List<Departamentos> getDepartamento(){
-		return sMunicipio.lista();
-	}
 	
-	@GetMapping("/departamento/{id}")
+	@GetMapping("/muni/{id}")
+	public List<Municipios>buscar(@PathVariable Integer id){
+		return sMunicipio.listarM(id);
+	}
+
+	
+	///Ejecución del metodo buscar el id de Municipio
+	@GetMapping("/muni/depar/{id}")
 	public Departamentos getDepartamento(@PathVariable Integer id) {
 		return sMunicipio.porDepartamentos(id);
 	}
 	
-	//Ejecución del metodo listar usuario
-	@GetMapping("/usu")
-	public List<Usuario> listarm(){
-		return empresaService.findAllUsua();
-	}
-		
-	//Ejecución del metodo buscar el id de usuario
-	@GetMapping("/usua/{id}")
-	public Usuario getUsuario(@PathVariable Integer id) {
-		return empresaService.findByIdUsua(id);
-	}
 }

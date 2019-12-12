@@ -28,9 +28,8 @@ public class CertificacionController {
 	@GetMapping
 	public List<Certificacion> lista(){
 		
-		List<Certificacion> list = (List<Certificacion>) icerty.findAll();
+		return (List<Certificacion>) icerty.findAll();
 		
-		return list;
 	}
 	
 	@DeleteMapping("/{id}")

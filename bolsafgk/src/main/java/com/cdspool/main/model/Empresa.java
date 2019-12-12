@@ -25,7 +25,7 @@ public class Empresa {
 	
 	@JoinColumn(name = "id_usuario")
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Usuario usuario;
+	private Usuario id_usuario;
 	
 	@JoinColumn(name = "id_municipio")
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -63,19 +63,21 @@ public class Empresa {
 		this.direccion = direccion;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	public Municipios getMunicipio() {
 		return municipio;
 	}
 
 	public void setMunicipio(Municipios municipio) {
 		this.municipio = municipio;
-	}	
+	}
+
+	public Usuario getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(Usuario id_usuario) {
+		this.id_usuario = id_usuario;
+	}
+	
+	
 }

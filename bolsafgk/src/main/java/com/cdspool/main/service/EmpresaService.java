@@ -44,15 +44,4 @@ public class EmpresaService {
 		return rEmpresa.findById(id).get();
 	}
 	
-	//Metodo de listar por usuario
-	public List<Usuario> findAllUsua() {
-		return (List<Usuario>) rUsuario.findAll();
-	}
-	
-	//Metodo de buscar id por usuario
-	public Usuario findByIdUsua(Integer id) {
-		return rUsuario.findById(id).get();
-	}
-	
-	
 }
