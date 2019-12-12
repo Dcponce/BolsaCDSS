@@ -42,8 +42,12 @@ function getData(uri) {
             }
         },
         error: function (error) {
-            localStorage.removeItem('Email', 'Rol', 'Bienvenida', 'Token');
-            location.href = "";
+            localStorage.removeItem( 'Email');
+            localStorage.removeItem( 'Rol');
+            localStorage.removeItem( 'Bienvenida');
+            localStorage.removeItem( 'Token');
+             // ¡¡Esta ruta da error si no la cambias la tu ruta local!!
+            location.href = "file:///C:/Users/HP/Documents/Eclipce%20Projects/BolsaCDS-Vista/BolsaCDSS/index.html";
         }
     });
 }
@@ -71,7 +75,12 @@ function getRoles(uri) {
             }
         },
         error: function (error) {
-            alert("Peticion fallida");
+            localStorage.removeItem( 'Email');
+            localStorage.removeItem( 'Rol');
+            localStorage.removeItem( 'Bienvenida');
+            localStorage.removeItem( 'Token');
+            // ¡¡Esta ruta da error si no la cambias la tu ruta local!!
+            location.href = "file:///C:/Users/HP/Documents/Eclipce%20Projects/BolsaCDS-Vista/BolsaCDSS/index.html";
         }
     });
 }

@@ -7,12 +7,19 @@ $(document).ready(function(){
 })
 
 function getData(uri){
-    $.getJSON(uri, function(data){
-        if(data != null){
-            $("#tabla>tbody").empty();
+    $.ajax({
+        url: uri,
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            if (result != null){
+                $("#tabla>tbody").empty();
             var fila = "";
 
-            $.each(data, function(i, v){
+            $.each(result,  function(i, v){
                 fila = 
                     "<tr>" +
                         "<td>" + v.nombre + "</td>" +
@@ -26,8 +33,9 @@ function getData(uri){
 
                     $('#tabla>tbody').append(fila);   
             });
-        }
-    });
+            }
+        }   
+    }); 
 }
 function nuevo(uri){
     var id = $('#id').val();
@@ -52,6 +60,9 @@ function nuevo(uri){
 
         $.ajax({
             url: uri,
+            headers: {
+                'Authorization': JSON.parse(localStorage.getItem('Token'))
+            },
             method: metodo,
             contentType: "application/json",
             data: JSON.stringify(data),
@@ -72,8 +83,11 @@ function nuevo(uri){
 
 function eliminar(id) {
     $.ajax({
-        method: "DELETE",
         url: "http://localhost:8080/certificacion/" + id,
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        method: "DELETE",
         contentType: "application/json",
         success: function (res) {
             mensaje = "Registro eliminado exitosamente";
