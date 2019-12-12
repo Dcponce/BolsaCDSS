@@ -1,14 +1,18 @@
 $(document).ready(function () {
+<<<<<<< HEAD
 /*  $('#two-tab').prop("disabled", true);
     $('#three-tab').prop("disabled", true);
     $('#four-tab').prop("disabled", true);*/
+=======
+    /*    $('#two-tab').prop("disabled", true);
+        $('#three-tab').prop("disabled", true);
+        $('#four-tab').prop("disabled", true);*/
+>>>>>>> b8ab4b2e94479e041ea2f7680aa3b4f1fb229228
 
     var uri = "http://localhost:8080/alumnos";
     var uriD = "http://localhost:8080/municipios";
-    var uriH = "http://localhost:8080/habilidades";
 
     getDepto(uriD, 0);
-    getHabi(uriH, 0)
 
     $('#datosP').on('click', function () {
         guardar(uri);
@@ -63,6 +67,9 @@ function guardar(uri) {
 
         $.ajax({
             url: uri,
+            headers: {
+                'Authorization': JSON.parse(localStorage.getItem('Token'))
+            },
             method: metodo,
             contentType: "application/json",
             data: JSON.stringify(data),
@@ -83,43 +90,58 @@ function guardar(uri) {
 }
 
 function getDepto(uriD, id) {
+    $.ajax({
+        url: uriD,
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            if (result != null) {
 
-    $.getJSON(uriD, function (data) {
-        if (data != null) {
+                $('#departamento').empty();
+                $('#departamento').append("<option selected disabled>Seleccione un departamento</option>");
 
-            $('#departamento').empty();
-            $('#departamento').append("<option selected disabled>Seleccione un departamento</option>");
+                var fila = "";
+                $.each(result, function (i, v) {
 
-            var fila = "";
-            $.each(data, function (i, v) {
-
-                if (v.id == id) {
-                    fila = '<option value="' + v.id + '" selected>' + v.nombre + '</option>';
-                } else {
-                    fila = '<option value="' + v.id + '">' + v.nombre + '</option>';
-                }
-                $('#departamento').append(fila);
-            });
+                    if (v.id == id) {
+                        fila = '<option value="' + v.id + '" selected>' + v.nombre + '</option>';
+                    } else {
+                        fila = '<option value="' + v.id + '">' + v.nombre + '</option>';
+                    }
+                    $('#departamento').append(fila);
+                });
+            }
         }
     });
 }
 
 function getMunicipioByDepto(uriD, idDepto, id) {
-    $.getJSON(uriD + "/muni/" + idDepto, function (data) {
-        if (data != null) {
-            $('#municipio').empty();
-            $('#municipio').append("<option selected disabled>Seleccione un municipio</option>");
-            var fila = "";
-            $.each(data, function (i, v) {
+    $.ajax({
+        url: uriD + "/muni/" + idDepto,
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            if (result != null) {
+                $('#municipio').empty();
+                $('#municipio').append("<option selected disabled>Seleccione un municipio</option>");
+                var fila = "";
+                $.each(result, function (i, v) {
 
-                if (v.id == id) {
-                    fila = '<option value="' + v.id + '" selected>' + v.nombre + '</option>';
-                } else {
-                    fila = '<option value="' + v.id + '">' + v.nombre + '</option>';
-                }
+                    if (v.id == id) {
+                        fila = '<option value="' + v.id + '" selected>' + v.nombre + '</option>';
+                    } else {
+                        fila = '<option value="' + v.id + '">' + v.nombre + '</option>';
+                    }
 
-                $('#municipio').append(fila);
-            });
+                    $('#municipio').append(fila);
+                });
+            }
         }
     });
 }
