@@ -67,28 +67,23 @@ public class EmpresaController {
 		return empresaService.findById(id);
 	}
 	
-	///Ejecución del metodo buscar el id de Municipio
+	//METODOS DE LAS ENTIDDES DEPARTAMENTOs Y MUNICIPIOS
 	@GetMapping("/municipios/{id}")
+	public List<Municipios> getMunicipios(@PathVariable Integer id){
+		return sMunicipio.listar();
+	}
+	
+	@GetMapping("/municipio/{id}")
 	public Municipios getMunicipio(@PathVariable Integer id) {
 		return sMunicipio.porMunicipio(id);
 	}
 	
-	///Ejecución del metodo listar de departamento
-	@GetMapping("/municipio")
-	public List<Municipios> listMuni(){
-		List<Municipios> lista = (List<Municipios>) sMunicipio.listar();
-		return lista;
+	@GetMapping("/departamentos")
+	public List<Departamentos> getDepartamento(){
+		return sMunicipio.lista();
 	}
 	
-	///Ejecución del metodo listar de departamento
-	@GetMapping("/departa")
-	public List<Departamentos> listDepa(){
-		List<Departamentos> list = (List<Departamentos>) idepa.findAll();
-		return list;
-	}
-	
-	///Ejecución del metodo buscar el id de departamento
-	@GetMapping("/dep/{id}")
+	@GetMapping("/departamento/{id}")
 	public Departamentos getDepartamento(@PathVariable Integer id) {
 		return sMunicipio.porDepartamentos(id);
 	}
