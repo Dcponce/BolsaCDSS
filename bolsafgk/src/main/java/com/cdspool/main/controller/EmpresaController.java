@@ -78,7 +78,7 @@ public class EmpresaController {
 		return sMunicipio.porMunicipio(id);
 	}
 	
-	@GetMapping("/departamentos")
+	@GetMapping("/departam")
 	public List<Departamentos> getDepartamento(){
 		return sMunicipio.lista();
 	}

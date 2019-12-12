@@ -32,7 +32,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()/*.antMatchers(HttpMethod.POST, "/login/**").permitAll()*/
-				.antMatchers("/", "/css/**", "/js/**", "/images/**", "/upload", "/status","/usuarios/**",
+				.antMatchers("/", "/css/**", "/js/**", "/images/**", "/upload", "/status","/envio/**","/habilidades/**",
 						"/envio/**", "/email/**", "/denuncia/**")
 				.permitAll().anyRequest().authenticated()
 				/*
