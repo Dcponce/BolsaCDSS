@@ -23,11 +23,9 @@ public class CertificacionController {
 	ICertificacionRepository icerty;
 
 	@GetMapping
+
 	public List<Certificacion> lista() {
-
-		List<Certificacion> list = (List<Certificacion>) icerty.findAll();
-
-		return list;
+		return (List<Certificacion>) icerty.findAll();
 	}
 
 	@DeleteMapping("/{id}")
@@ -44,7 +42,7 @@ public class CertificacionController {
 	public void update(@RequestBody Certificacion certy) {
 		icerty.save(certy);
 	}
-	
+
 	@GetMapping("/byId/{id}")
 	public Certificacion findById(@PathVariable Integer id) {
 		return icerty.findById(id).get();

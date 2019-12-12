@@ -52,4 +52,9 @@ public class CredencialController {
 		return iCred.findById(id).get();
 	}
 
+	@GetMapping("/credi/{id}")
+	public Credencial porCredencial(@PathVariable Integer id) {
+		return iCred.findById(id).get();
+	}
+
 }

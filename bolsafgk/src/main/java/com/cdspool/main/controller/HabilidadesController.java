@@ -19,7 +19,7 @@ import com.cdspool.main.repository.IHabilidadRepository;
 
 @RestController
 @CrossOrigin(origins = "*", methods =  {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-@RequestMapping(value = "habilidades")
+@RequestMapping("habilidades")
 public class HabilidadesController {
 
 	@Autowired
@@ -28,6 +28,12 @@ public class HabilidadesController {
 	@GetMapping
 	public List<Habilidad> listar(){
 		return (List<Habilidad>) rDetalle.findAll();
+	
+	}
+	
+	@GetMapping("/habi/{id}")
+	public Habilidad porHabilidad(@PathVariable Integer id) {
+		return rDetalle.findById(id).get();
 	}
 	
 	@PostMapping
