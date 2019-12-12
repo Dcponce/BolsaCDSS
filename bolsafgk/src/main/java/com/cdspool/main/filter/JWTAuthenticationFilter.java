@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.cdspool.main.auth.service.JWTService;
 import com.cdspool.main.auth.service.JWTServiceImpl;
 import com.cdspool.main.model.Usuario;
+import com.cdspool.main.repository.IUsuarioRepository;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,6 +30,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @CrossOrigin(origins = "*")
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
+	@Autowired
+	IUsuarioRepository rUsu;
+	
 	private AuthenticationManager authenticationManager;
 	private JWTService jwtService;
 
@@ -93,10 +98,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		response.addHeader(JWTServiceImpl.HEADER_STRING, JWTServiceImpl.TOKEN_PREFIX + token);
 
 		Map<String, Object> body = new HashMap<String, Object>();
-
-		body.put("token", token);
+		
+		body.put("token", "Bearer " + token);
 		body.put("user", (User) authResult.getPrincipal());
-		body.put("mensaje", String.format("Hola %s ¡Has iniciado Sesion con exito!",
+		body.put("mensaje", String.format("%s ¡Has iniciado Sesion con exito!",
 				((User) authResult.getPrincipal()).getUsername()));
 
 		response.getWriter().write(new ObjectMapper().writeValueAsString(body));

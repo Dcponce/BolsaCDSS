@@ -44,4 +44,9 @@ public class HabilidadesController {
 	public void delete(@PathVariable Integer id) {
 		rDetalle.deleteById(id);
 	}
+	
+	@GetMapping("/habi/{id}")
+	public Habilidad findById(@PathVariable Integer id) {
+		return rDetalle.findById(id).get();
+	}
 }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,8 +22,6 @@ import com.cdspool.main.model.Usuario;
 import com.cdspool.main.service.UsuarioService;
 
 @RestController
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
-		RequestMethod.DELETE })
 @RequestMapping(value = "usuarios")
 public class UsuarioController {
 
@@ -36,6 +33,7 @@ public class UsuarioController {
 		return uService.findAll();
 	}
 
+	@CrossOrigin
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
 		uService.delete(id);
@@ -43,11 +41,11 @@ public class UsuarioController {
 
 	@PostMapping()
 	public void save(@RequestParam String credencial, String email, String clave, Integer tipo) {
-		
+
 		Credencial cred = uService.findByCodigo(credencial);
 		String codigo = cred.getCodigo();
 		TipoUsuario usuario = uService.findByIdTipo(tipo);
-		
+
 		if (credencial.equals(codigo)) {
 			Usuario usu = new Usuario();
 			usu.setEmail(email);
@@ -76,6 +74,5 @@ public class UsuarioController {
 	public List<Credencial> findAllCred() {
 		return uService.findAllCred();
 	}
-
 
 }

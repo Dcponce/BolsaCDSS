@@ -46,5 +46,10 @@ public class CredencialController {
 	public void update(@RequestBody Credencial cred) {
 		iCred.save(cred);
 	}
+	
+	@GetMapping("/credi/{id}")
+	public Credencial findById(@PathVariable Integer id) {
+		return iCred.findById(id).get();
+	}
 
 }
