@@ -31,11 +31,6 @@ public class HabilidadesController {
 	
 	}
 	
-	@GetMapping("/habi/{id}")
-	public Habilidad porHabilidad(@PathVariable Integer id) {
-		return rDetalle.findById(id).get();
-	}
-	
 	@PostMapping
 	public void guardar(@RequestBody Habilidad habilidad) {
 		rDetalle.save(habilidad);
