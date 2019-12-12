@@ -21,6 +21,7 @@ function getToken(uri){
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function(res){ //nehemias@gmail.com
+                console.log(res);
                 localStorage.setItem("Email", JSON.stringify(res["user"]["username"]));
                 localStorage.setItem("Bienvenida", JSON.stringify(res["mensaje"]));
                 localStorage.setItem("Token", JSON.stringify(res["token"]));

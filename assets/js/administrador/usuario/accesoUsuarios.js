@@ -17,7 +17,7 @@ function getData(uri) {
         type: 'GET',
         dataType: "json",
         success: function (result) {
-            if (result != null) {
+            if (result) {
                 $("#tabla>tbody").empty();
                 var fila = "";
 
@@ -42,12 +42,8 @@ function getData(uri) {
             }
         },
         error: function (error) {
-            localStorage.removeItem( 'Email');
-            localStorage.removeItem( 'Rol');
-            localStorage.removeItem( 'Bienvenida');
-            localStorage.removeItem( 'Token');
-             // ¡¡Esta ruta da error si no la cambias la tu ruta local!!
-            location.href = "file:///C:/Users/HP/Documents/Eclipce%20Projects/BolsaCDS-Vista/BolsaCDSS/index.html";
+            // ¡¡Esta ruta da error si no la cambias la tu ruta local!!
+            location.href = "file:///C:/Users/nehe.sandovalfgkss/Documents/BolsaCDSvistas/BolsaCDSS/index.html";
         }
     });
 }
@@ -60,27 +56,23 @@ function getRoles(uri) {
         },
         type: 'GET',
         dataType: "json",
-        success: function (result){
+        success: function (result) {
             if (result != null) {
 
                 $('#tipo').empty();
                 var fila = "";
                 $.each(result, function (i, v) {
                     fila = ' <option value=" ' + v.id + ' "> ' + v.descripcion + '</option>';
-    
+
                     $('#tipo').append(fila);
-    
+
                 });
-    
+
             }
         },
         error: function (error) {
-            localStorage.removeItem( 'Email');
-            localStorage.removeItem( 'Rol');
-            localStorage.removeItem( 'Bienvenida');
-            localStorage.removeItem( 'Token');
             // ¡¡Esta ruta da error si no la cambias la tu ruta local!!
-            location.href = "file:///C:/Users/HP/Documents/Eclipce%20Projects/BolsaCDS-Vista/BolsaCDSS/index.html";
+            location.href = "file:///C:/Users/nehe.sandovalfgkss/Documents/BolsaCDSvistas/BolsaCDSS/index.html";
         }
     });
 }
