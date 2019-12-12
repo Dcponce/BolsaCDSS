@@ -61,21 +61,34 @@ public class EmpresaController {
 		empresaService.deleteEmp(id);
 	}
 	
+	///Ejecución del metodo buscar el id de empresa
+	@GetMapping("/em/{id}")
+	public Empresa getEmpresa(@PathVariable Integer id) {
+		return empresaService.findById(id);
+	}
+	
 	///Ejecución del metodo buscar el id de Municipio
-	@GetMapping("/municipio/{id}")
+	@GetMapping("/municipios/{id}")
 	public Municipios getMunicipio(@PathVariable Integer id) {
 		return sMunicipio.porMunicipio(id);
 	}
 	
 	///Ejecución del metodo listar de departamento
-	@GetMapping("depa/muni")
+	@GetMapping("/municipio")
+	public List<Municipios> listMuni(){
+		List<Municipios> lista = (List<Municipios>) sMunicipio.listar();
+		return lista;
+	}
+	
+	///Ejecución del metodo listar de departamento
+	@GetMapping("/departa")
 	public List<Departamentos> listDepa(){
 		List<Departamentos> list = (List<Departamentos>) idepa.findAll();
 		return list;
 	}
 	
-	///Ejecución del metodo buscar el id de Municipio
-	@GetMapping("/mu/dep/{id}")
+	///Ejecución del metodo buscar el id de departamento
+	@GetMapping("/dep/{id}")
 	public Departamentos getDepartamento(@PathVariable Integer id) {
 		return sMunicipio.porDepartamentos(id);
 	}
