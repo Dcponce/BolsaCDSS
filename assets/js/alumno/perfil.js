@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var uriDoc = "http://localhost:8080/document/oupload";
+    var uriDoc = "http://localhost:8080/documento/upload";
 
     $('#perfil').on('click', function () {
         cargarImg(uriDoc);
