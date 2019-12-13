@@ -17,13 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cdspool.main.model.Departamentos;
 import com.cdspool.main.model.Empresa;
 import com.cdspool.main.model.Municipios;
-import com.cdspool.main.model.Usuario;
-import com.cdspool.main.repository.IDepartamentosRepository;
 import com.cdspool.main.service.EmpresaService;
 import com.cdspool.main.service.MunicipiosService;
 
 @RestController
-@CrossOrigin(origins = "*", methods =  {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping(value = "empresa")
 public class EmpresaController {
 

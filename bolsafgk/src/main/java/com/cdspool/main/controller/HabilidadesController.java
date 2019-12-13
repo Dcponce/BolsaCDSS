@@ -31,11 +31,6 @@ public class HabilidadesController {
 	
 	}
 	
-	@GetMapping("/habi/{id}")
-	public Habilidad porHabilidad(@PathVariable Integer id) {
-		return rDetalle.findById(id).get();
-	}
-	
 	@PostMapping
 	public void guardar(@RequestBody Habilidad habilidad) {
 		rDetalle.save(habilidad);
@@ -49,5 +44,10 @@ public class HabilidadesController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
 		rDetalle.deleteById(id);
+	}
+	
+	@GetMapping("/habi/{id}")
+	public Habilidad findById(@PathVariable Integer id) {
+		return rDetalle.findById(id).get();
 	}
 }
