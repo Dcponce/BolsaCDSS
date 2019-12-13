@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../assets/dist/css/bootstrap-select.css">
+
+    <link rel="stylesheet" href="../../assets/css/alumnos.css">
 
     <link href="../../assets/css/menu/css/style.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../assets/css/alumnos.css">
 </head>
 
 <body>
@@ -123,7 +126,9 @@
                         <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
                             <h2>Habilidades</h2>
                             <input type="text" id="idH"><br>
-                            <select name="txtHabilidad" id="habilidad"></select><br>
+                            
+                            <select name="txtHabilidad" id="select" class="selectpicker form-control" data-hide-disabled="true" multiple data-actions-box="true"></select><br>
+
                             <select name="txtPrioridad" id="prioridad">
                                 <option selected disabled>Seleccione un nivel de prioridad</option>
                                 <option value="1">Alta</option>
@@ -154,10 +159,51 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/dist/js/bootstrap-select.js"></script>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+    <script>
+        function createOptions(id) {
+            $.ajax({
+                url: "http://localhost:8080/habilidades",
+                headers: {
+                    'Authorization': JSON.parse(localStorage.getItem('Token'))
+                },
+                type: 'GET',
+                dataType: "json",
+                success: function (result) {
+                    if (result != null) {
+
+                        $('#select').empty();
+
+                        var option = "";
+                        var options = [], _options;
+
+                        $.each(result, function (i, v) {
+                            option = "";
+
+                            if (v.id == id) {
+                                option = '<option value="' + v.id + '" selected>' + v.descripcion + '</option>';
+                            } else {
+                                option = '<option value="' + v.id + '">' + v.descripcion + '</option>';
+                            }
+
+                            options.push(option);
+                        });
+                        _options = options.join('');
+
+                        $('#select')[0].innerHTML = _options;
+                    }
+                }
+
+            });
+        }
+
+
+        createOptions(0);
+        $('#select').selectpicker();
+
+    </script>
 
     <script src="../../assets/js/alumno/accesoAlumno.js"></script>
     <script src="../../assets/js/alumno/accesoEducacion.js"></script>

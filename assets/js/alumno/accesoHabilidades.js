@@ -1,9 +1,6 @@
 $(document).ready(function () {
 
-    var uriH = "http://localhost:8080/habilidades";
     var uriDt = "http://localhost:8080/detalleHa";
-
-    getHabi(uriH, 0)
 
     $('#datosH').on('click', function () {
         guardarH(uriDt);
@@ -67,32 +64,4 @@ function guardarH(uriDt) {
             }
         });
     }
-}
-
-function getHabi(uriH, id) {
-    $.ajax({
-        url: uriH,
-        headers: {
-            'Authorization': JSON.parse(localStorage.getItem('Token'))
-        },
-        type: 'GET',
-        dataType: "json",
-        success: function (result) {
-            if (result != null) {
-
-                $('#select').empty();
-                $('#select').append("<option selected disabled>Seleccione sus habilidades</option>");
-                var fila = "";
-                $.each(result, function (i, v) {
-    
-                    if (v.id == id) {
-                        fila = '<option value="' + v.id + '" selected>' + v.descripcion + '</option>';
-                    } else {
-                        fila = '<option value="' + v.id + '">' + v.descripcion + '</option>';
-                    }
-                    $('#select').append(fila);
-                });
-            }
-        }
-    });
 }

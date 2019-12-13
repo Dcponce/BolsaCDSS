@@ -18,9 +18,10 @@ function cargarImg(uriDoc) {
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
-        method: "POST",
+        type: "POST",
         contentType: "application/json",
         data: midata,
+        crossDomain: true,
         processData: false,
         cache: false,
         success: function () {
