@@ -2,23 +2,24 @@ $(document).ready(function () {
 
     var uriDoc = "http://localhost:8080/documento/upload";
 
+
     $('#perfil').on('click', function () {
         cargarImg(uriDoc);
     });
 });
 
 function cargarImg(uriDoc) {
-    var name = $('#fileName').val();
+    var file = $('#file').val();
 
     var midata = new FormData();
-    midata.append("file", name);
+    midata.append("file", file);
+    
     $.ajax({
-
         url: uriDoc,
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
-        method:"POST",
+        method: "POST",
         contentType: "application/json",
         data: midata,
         processData: false,
@@ -26,7 +27,7 @@ function cargarImg(uriDoc) {
         success: function () {
             alert("Cargar exitosa");
         },
-        error:function(error){
+        error: function (error) {
             alert(error);
         }
     });
