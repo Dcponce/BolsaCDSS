@@ -42,9 +42,7 @@ function getData(uri) {
             }
         },
         error: function (error) {
-            console.log(error);
-            // ¡¡Esta ruta da error si no la cambias la tu ruta local!!
-            //location.href = "../../index.html";
+            location.href = "../../index.html";
         }
     });
 }
@@ -72,9 +70,7 @@ function getRoles(uri) {
             }
         },
         error: function (error) {
-            console.log(error);
-            // ¡¡Esta ruta da error si no la cambias la tu ruta local!!
-            //location.href = "../../index.html";
+            location.href = "../../index.html";
         }
     });
 }

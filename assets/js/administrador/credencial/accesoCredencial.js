@@ -8,6 +8,11 @@ $(document).ready(function () {
         nuevo(base_uri);
     });
 
+    $('#nuevo').click(function() {
+        // Recargo la página
+        location.reload();
+    });
+
 });
 
 function getData(base_uri) {
@@ -94,7 +99,6 @@ function nuevo(base_uri) {
         data: JSON.stringify(data),
         success: function () {
             alert("Registro agregar Existosamente !!!");
-            getData("http://localhost:8080/credencial");
             clear();
 
         }
@@ -111,7 +115,7 @@ function eliminar(id) {
         contentType: "application/json",
         success: function () {
             alert("Registro eliminado Existosamente !!!");
-            getData("http://localhost:8080/credencial/lista");
+            location.reload();
         }
     });
 
