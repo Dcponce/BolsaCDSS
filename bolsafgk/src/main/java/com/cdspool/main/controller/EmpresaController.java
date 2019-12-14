@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cdspool.main.model.Departamentos;
 import com.cdspool.main.model.Empresa;
 import com.cdspool.main.model.Municipios;
+import com.cdspool.main.model.Usuario;
 import com.cdspool.main.service.EmpresaService;
 import com.cdspool.main.service.MunicipiosService;
 
@@ -27,9 +28,6 @@ public class EmpresaController {
 	
 	@Autowired//Manda a llamar servicio de empresa
 	EmpresaService empresaService;
-	
-	@Autowired//Manda a llamar el servicio de municipio
-	MunicipiosService sMunicipio;
 	
     
 	//Ejecución del metodo listar
@@ -62,29 +60,5 @@ public class EmpresaController {
 		return empresaService.findById(id);
 	}
 	
-	//METODOS DE LAS ENTIDDES DEPARTAMENTOs Y MUNICIPIOS
-	@GetMapping("/departamento")
-	public List<Departamentos> lista(){
-		return sMunicipio.lista();
-	}
-	
-	///Ejecución del metodo buscar el id de Municipio
-	@GetMapping("/municipio/{id}")
-	public Municipios getMunicipio(@PathVariable Integer id) {
-		return sMunicipio.porMunicipio(id);
-	}
-	
-	
-	@GetMapping("/muni/{id}")
-	public List<Municipios>buscar(@PathVariable Integer id){
-		return sMunicipio.listarM(id);
-	}
-
-	
-	///Ejecución del metodo buscar el id de Municipio
-	@GetMapping("/muni/depar/{id}")
-	public Departamentos getDepartamento(@PathVariable Integer id) {
-		return sMunicipio.porDepartamentos(id);
-	}
 	
 }

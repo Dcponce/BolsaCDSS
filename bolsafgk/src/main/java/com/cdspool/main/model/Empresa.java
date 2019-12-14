@@ -21,15 +21,11 @@ public class Empresa {
 	
 	private String telefono;
 	
-	private String direccion;	
 	
 	@JoinColumn(name = "id_usuario")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Usuario id_usuario;
 	
-	@JoinColumn(name = "id_municipio")
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Municipios municipio;
 
 	public Integer getId() {
 		return id;
@@ -55,21 +51,6 @@ public class Empresa {
 		this.telefono = telefono;
 	}
 
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public Municipios getMunicipio() {
-		return municipio;
-	}
-
-	public void setMunicipio(Municipios municipio) {
-		this.municipio = municipio;
-	}
 
 	public Usuario getId_usuario() {
 		return id_usuario;
