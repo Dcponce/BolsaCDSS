@@ -1,8 +1,8 @@
 $(document).ready(function () {
-/*  $('#two-tab').prop("disabled", true);
-    $('#three-tab').prop("disabled", true);
-    $('#four-tab').prop("disabled", true);*/
-
+    /*    $('#two-tab').prop("disabled", true);
+        $('#three-tab').prop("disabled", true);
+        $('#four-tab').prop("disabled", true);*/
+        
     var uri = "http://localhost:8080/alumnos";
     var uriD = "http://localhost:8080/municipios";
 
@@ -32,6 +32,8 @@ function guardar(uri) {
     var muni = $('#municipio').val();
     var metodo = "POST";
     var accion = "Guardado";
+
+
 
     if (id > 0) {
         metodo = "PUT";

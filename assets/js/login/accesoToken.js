@@ -2,6 +2,7 @@ $(document).ready(function(){
     var uri ="http://localhost:8080/login";
     $('#iniciar').on('click', function () {
         getToken(uri);
+        getId();
     })
 })
 
@@ -34,4 +35,23 @@ function getToken(uri){
         alert(mensaje);
     }
     
+}
+
+function getId(){
+    var email = localStorage.getItem('Email');
+    var emailR = email.split('"');
+    $.ajax({
+        url: "http://localhost:8080/usuarios/getId/"+emailR[1],
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        method: "GET",
+        contentType: "json",
+        success: function(res){
+            localStorage.setItem("Id", JSON.stringify(res["id"]));
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
 }
