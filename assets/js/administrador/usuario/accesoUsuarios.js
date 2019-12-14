@@ -42,12 +42,7 @@ function getData(uri) {
             }
         },
         error: function (error) {
-            // ¡¡Esta ruta da error si no la cambias la tu ruta local!!
-<<<<<<< HEAD
-            //location.href = "file:///C:/Users/nehe.sandovalfgkss/Documents/BolsaCDSvistas/BolsaCDSS/index.html";
-=======
             location.href = "../../index.html";
->>>>>>> d7fed1dd7b95cc11ed96f40c5fd27ffc3060d181
         }
     });
 }
