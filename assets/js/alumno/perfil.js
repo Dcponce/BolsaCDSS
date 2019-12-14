@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var uriDoc = "http://localhost:8080/documento/upload";
+    var uriDoc = "http://localhost:8080/subir/upload";
 
 
     $('#perfil').on('click', function () {
@@ -11,19 +11,15 @@ $(document).ready(function () {
 function cargarImg(uriDoc) {
     var file = $('#file').val();
 
-    var midata = new FormData();
-    midata.append("file", file);
-    
     $.ajax({
+        data:{
+            "file": file
+        },
         url: uriDoc,
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
-        method: "POST",
-        contentType: "application/json",
-        data: midata,
-        processData: false,
-        cache: false,
+        type: "POST",
         success: function () {
             alert("Cargar exitosa");
         },

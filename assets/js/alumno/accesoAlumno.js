@@ -33,6 +33,8 @@ function guardar(uri) {
     var metodo = "POST";
     var accion = "Guardado";
 
+
+
     if (id > 0) {
         metodo = "PUT";
         accion = "Actualizado";
