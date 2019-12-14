@@ -60,6 +60,10 @@ public class UsuarioService implements UserDetailsService {
 	public void save(Usuario usu) {
 		iUsu.save(usu);
 	}
+	
+	public Usuario getId(String email) {
+		return iUsu.findByEmail(email);
+	}
 
 	public List<TipoUsuario> findAllTipo() {
 		return (List<TipoUsuario>) iTipo.findAll();

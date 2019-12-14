@@ -9,10 +9,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(MultipartException.class)
-	public String handleMultipart(MultipartException e, RedirectAttributes attributes) {
+	public void handleMultipart(MultipartException e, RedirectAttributes attributes) {
 //		attributes.addFlashAttribute("message", e.getCause().getMessage());
-		attributes.addFlashAttribute("message", "Error al cargar el archivo");
+		//attributes.addFlashAttribute("message", "Error al cargar el archivo");
 		
-		return "redirect:/status";
+		//return "{'msg':'Error al cargar el archivo'}";
 	}
 }

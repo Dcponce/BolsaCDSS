@@ -32,7 +32,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 	@Autowired
 	IUsuarioRepository rUsu;
-	
+
 	private AuthenticationManager authenticationManager;
 	private JWTService jwtService;
 
@@ -98,11 +98,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		response.addHeader(JWTServiceImpl.HEADER_STRING, JWTServiceImpl.TOKEN_PREFIX + token);
 
 		Map<String, Object> body = new HashMap<String, Object>();
-		
+
 		body.put("token", "Bearer " + token);
 		body.put("user", (User) authResult.getPrincipal());
-		body.put("mensaje", String.format("%s ¡Has iniciado Sesion con exito!",
-				((User) authResult.getPrincipal()).getUsername()));
+		body.put("mensaje",
+				String.format("%s ¡Has iniciado Sesion con exito!", ((User) authResult.getPrincipal()).getUsername()));
 
 		response.getWriter().write(new ObjectMapper().writeValueAsString(body));
 		response.setStatus(200);

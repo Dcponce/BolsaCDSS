@@ -8,40 +8,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdspool.main.model.Empresa;
-import com.cdspool.main.model.Municipios;
-import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.IEmpresaRepository;
-import com.cdspool.main.repository.IMunicipiosRepository;
 import com.cdspool.main.repository.IUsuarioRepository;
 
 @Service
 @Transactional
 public class EmpresaService {
 
-	@Autowired//Manda a llamar al repositorio de empresa
+	@Autowired // Manda a llamar al repositorio de empresa
 	IEmpresaRepository rEmpresa;
-	
-	@Autowired//Manda a llamar al repositorip de Usuario
+
+	@Autowired // Manda a llamar al repositorip de Usuario
 	IUsuarioRepository rUsuario;
-	
-	//Metodo listar
-	public List<Empresa> listar(){
+
+	// Metodo listar
+	public List<Empresa> listar() {
 		return (List<Empresa>) rEmpresa.findAll();
 	}
-	
-	//Metodo guardar
+
+	// Metodo guardar
 	public void saveEmp(Empresa empresa) {
 		rEmpresa.save(empresa);
 	}
-	
-	//Metodo eliminar
+
+	// Metodo eliminar
 	public void deleteEmp(Integer id) {
 		rEmpresa.deleteById(id);
 	}
-	
-	//Metodo buscar por id de empresa 
+
+	// Metodo buscar por id de empresa
 	public Empresa findById(Integer id) {
 		return rEmpresa.findById(id).get();
 	}
-	
+
 }
