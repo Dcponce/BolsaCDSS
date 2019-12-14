@@ -36,6 +36,9 @@ function nuevo(base_uri) {
 
         $.ajax({
             url: base_uri,
+            headers: {
+                'Authorization': JSON.parse(localStorage.getItem('Token'))
+            },
             method: metodo,
             contentType: "application/json",
             data: JSON.stringify(data),
