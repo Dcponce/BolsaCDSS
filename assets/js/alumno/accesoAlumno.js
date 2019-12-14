@@ -1,14 +1,8 @@
 $(document).ready(function () {
-<<<<<<< HEAD
-/*  $('#two-tab').prop("disabled", true);
-    $('#three-tab').prop("disabled", true);
-    $('#four-tab').prop("disabled", true);*/
-=======
     /*    $('#two-tab').prop("disabled", true);
         $('#three-tab').prop("disabled", true);
         $('#four-tab').prop("disabled", true);*/
->>>>>>> b8ab4b2e94479e041ea2f7680aa3b4f1fb229228
-
+        
     var uri = "http://localhost:8080/alumnos";
     var uriD = "http://localhost:8080/municipios";
 
