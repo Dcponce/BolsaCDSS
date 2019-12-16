@@ -11,17 +11,22 @@ $(document).ready(function () {
 function guardarH(uriP) {
     var uri = uriP;
     var idc = JSON.parse(localStorage.getItem('Id'));
-    var nom = $('#nom').val();
-    var lnk = $('#link1').val();
-    var nom2 = $('#nom2').val();
-    var lnk2 = $('#link2').val();
-    var nom3 = $('#nom3').val();
-    var lnk3 = $('#link3').val();
+    var id1 = $('#idPr0').val();
+    var nom = $('#nom0').val();
+    var lnk = $('#link0').val();
+
+    var id2 = $('#idPr1').val();
+    var nom2 = $('#nom1').val();
+    var lnk2 = $('#link1').val();
+
+    var id3 = $('#idPr2').val();
+    var nom3 = $('#nom2').val();
+    var lnk3 = $('#link2').val();
     var metodo = "POST";
     var accion = "Guardados";
 
 
-    if (id > 0) {
+    if (id1 > 0) {
         metodo = "PUT";
         accion = "Actualizados";
     } else {
@@ -29,15 +34,15 @@ function guardarH(uriP) {
     }
 
     if(nom != "" && lnk != ""){
-        saveH(uri, metodo, id, nom, lnk, idc);
+        saveH(uri, metodo, id1, nom, lnk, idc);
     }
 
     if(nom2 != "" && lnk2 != ""){
-        saveH(uri, metodo, id, nom2, lnk2, idc);
+        saveH(uri, metodo, id2, nom2, lnk2, idc);
     }
 
     if(nom3 != "" && lnk3 != ""){
-        saveH(uri, metodo, id, nom3, lnk3, idc);
+        saveH(uri, metodo, id3, nom3, lnk3, idc);
     }
 
 }
@@ -62,7 +67,7 @@ function guardarH(uriP) {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function () {
-               alert("Datos "+accion+" correctamente");
+               alert("Datos guardados correctamente");
             }
         }).fail(function(){
             alert("No se pudo completar la acción");

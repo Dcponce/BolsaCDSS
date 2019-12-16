@@ -65,7 +65,7 @@ function modificarPro(UriP) {
         success: function (data) {
             if (data != null) {
                 $.each(data, function (i, v) {
-                    $('#idPr').val(v.id);
+                    $('#idPr'+i).val(v.id);
                     $('#nom' + i).val(v.nombre);
                     $('#link' + i).val(v.url);
                 });
