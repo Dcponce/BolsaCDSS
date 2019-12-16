@@ -2,7 +2,6 @@ $(document).ready(function(){
     var uri ="http://localhost:8080/login";
     $('#iniciar').on('click', function () {
         getToken(uri);
-        getId();
     })
 })
 
@@ -27,6 +26,7 @@ function getToken(uri){
                 localStorage.setItem("Bienvenida", JSON.stringify(res["mensaje"]));
                 localStorage.setItem("Token", JSON.stringify(res["token"]));
                 const rol = res["user"]["authorities"][0]["authority"];
+                getId();
             }
         })
         
@@ -38,10 +38,9 @@ function getToken(uri){
 }
 
 function getId(){
-    var email = localStorage.getItem('Email');
-    var emailR = email.split('"');
+    var email = $('#email').val();
     $.ajax({
-        url: "http://localhost:8080/usuarios/getId/"+emailR[1],
+        url: "http://localhost:8080/usuarios/getId/"+email,
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
