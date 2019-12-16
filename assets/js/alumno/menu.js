@@ -14,7 +14,7 @@ function menuDatos() {
         '<a class="nav-link">Cargar Curriculum</a>' +
         ' </li>' +
         ' <li class="nav-item">' +
-        '<a class="nav-link">Vista de Perfil</a>' +
+        '<a class="nav-link" href="curriculum.html">Vista de Perfil</a>' +
         '</li>' +
         '</ul>')
 }

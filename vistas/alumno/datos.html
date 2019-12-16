@@ -74,7 +74,7 @@
                             <input type="text" name="txtCelular" id="celular" placeholder="Celular"><br>
                             <textarea name="txtDireccion" id="direccion" placeholder="Dirección"></textarea><br>
                             <select name="txtProyecto" id="proyecto">
-                                <option selected disabled>Seleccione el proyecto al que pertenece</option>
+                                <option selected disabled value="">Seleccione el proyecto al que pertenece</option>
                                 <option value="PPE">Centros de Desarrollo de Software</option>
                                 <option value="FGK">Oportunidades</option>
                             </select><br>
@@ -121,13 +121,13 @@
                         <div class="tab-pane fade p-4" id="four" role="tabpanel" aria-labelledby="four-tab">
                             <h2>Proyectos</h2>
                             <label>Link de proyectos</label><br>
-                            <input type="text" id="idPr0"><br>
+                            <input type="hidden" id="idPr0">
                             <input type="text" name="txtNombre" id="nom0" placeholder="Nombre de proyecto"><br>
                             <input type="text" name="txtLink" id="link0" placeholder="Link de proyecto"><br>
-                            <input type="text" id="idPr1"><br>
+                            <input type="hidden" id="idPr1">
                             <input type="text" name="txtNombre" id="nom1" placeholder="Nombre de proyecto"><br>
                             <input type="text" name="txtLink" id="link1" placeholder="Link de proyecto"><br>
-                            <input type="text" id="idPr2"><br>
+                            <input type="hidden" id="idPr2">
                             <input type="text" name="txtNombre" id="nom2" placeholder="Nombre de proyecto"><br>
                             <input type="text" name="txtLink" id="link2" placeholder="Link de proyecto"><br>
                             <button type="button" id="datosPr">Guardar</button>
@@ -138,6 +138,28 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cargar imagen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="file" name="file" id="archivo" /><br><br>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="perfil">Cargar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
 
@@ -152,27 +174,6 @@
     <script src="../../assets/js/alumno/menu.js"></script>
     <script src="../../assets/js/alumno/modificarDatos.js"></script>
 
-    <div class="modal fade" id="img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cargar imagen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="file" name="file" id="file" /><br><br>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" id="perfil">Cargar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>

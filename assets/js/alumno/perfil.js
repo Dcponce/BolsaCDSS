@@ -1,30 +1,29 @@
-$(document).ready(function () {
-
-    var uriDoc = "http://localhost:8080/subir/upload";
-
 
     $('#perfil').on('click', function () {
-        cargarImg(uriDoc);
+        cargarImg();
     });
-});
 
-function cargarImg(uriDoc) {
-    var file = $('#file').val();
 
+function cargarImg() {
+    var formData = new FormData();
+    var file = $('#archivo').prop('files')[0];
+    console.log(file);
+    formData.append('file',file);
+    
     $.ajax({
-        data:{
-            "file": file
-        },
-        url: uriDoc,
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
-        type: "POST",
-        success: function () {
-            alert("Cargar exitosa");
-        },
-        error: function (error) {
-            alert(error);
-        }
+        type:'POST',
+        cache:false,
+        contentType:false,
+        processData:false,
+        dataType:"html",
+        data:formData,
+        url:"http://localhost:8080/subir/upload"
+    }).done(function (data){
+        alert("Archivo cargado con exito");
+    }).fail(function(){
+        alert("Error al cargar archivo");
     });
 }
