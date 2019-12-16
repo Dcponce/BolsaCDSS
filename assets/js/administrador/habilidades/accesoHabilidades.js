@@ -75,7 +75,7 @@ function nuevo(base_uri) {
 
     var id = $('#id').val();
     var descripcion = $('#descripcion').val();
-    var tipo = $('#Tipo').val();
+    var tipo = $('#tipo').val();
     var metodo = "POST";
 
     if (id > 0) {
@@ -100,8 +100,9 @@ function nuevo(base_uri) {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function () {
-            alert("Registro guardado Existosamente !!!");
+            alert("Registro agregar Existosamente !!!");
             clear();
+
         }
     });
 }
@@ -119,6 +120,7 @@ function eliminar(id) {
             location.reload();
         }
     });
+
 }
 
 function editar(id) {
@@ -132,7 +134,7 @@ function editar(id) {
         success: function (result) {
             $('#id').val(result.id);
             $('#descripcion').val(result.descripcion);
-            $('#Tipo').val(result.tipo);
+            $('#tipo').val(result.tipo);
         }
     });
 }
@@ -143,3 +145,4 @@ function clear() {
     $('#tipo').val("");
 
 }
+
