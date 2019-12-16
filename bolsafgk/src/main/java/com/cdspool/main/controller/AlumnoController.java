@@ -47,15 +47,8 @@ public class AlumnoController {
 		sAlumno.save(alumno);
 	}
 	
-	@GetMapping("api/listaUsu")
-	public List<Usuario> listaUsua(){
-		return (List<Usuario>) sAlumno.findAllUsua();
+	@GetMapping("usuario/{id}")
+	public Alumno idUsuario(@PathVariable Integer id) {
+		return sAlumno.findByUsuario(id);
 	}
-	
-	@GetMapping("api/listaMuni")
-	public List<Municipios> listaMuni(){
-		return (List<Municipios>) sAlumno.findAllMuni();
-	}
-	
-	
 }

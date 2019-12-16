@@ -52,9 +52,13 @@ public class EducacionController {
 	@GetMapping("api/certi")
 	public List<Certificacion> listaCerty() {
 
-		List<Certificacion> list = eService.findAllCerti();
+		return eService.findAllCerti();
 
-		return list;
+	}
+	
+	@GetMapping("usuario/{id}")
+	public Educacion idUsuario(@PathVariable Integer id) {
+		return eService.findByUsuario(id);
 	}
 
 }

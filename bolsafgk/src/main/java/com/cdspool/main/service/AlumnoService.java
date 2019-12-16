@@ -20,10 +20,7 @@ public class AlumnoService {
 
 	@Autowired
 	IAlumnoRepository iAlumnos;
-
-	@Autowired
-	IMunicipiosRepository iMunicipios;
-
+	
 	@Autowired
 	IUsuarioRepository iUsuario;
 
@@ -42,21 +39,9 @@ public class AlumnoService {
 	public void save(Alumno usuario) {
 		iAlumnos.save(usuario);
 	}
-
-	public List<Municipios> findAllMuni() {
-		return (List<Municipios>) iMunicipios.findAll();
-	}
 	
-	public Municipios findByIdMuni(Integer id) {
-		return iMunicipios.findById(id).get();
+	public Alumno findByUsuario(Integer id) {
+		Usuario user = iUsuario.findById(id).get();
+		return iAlumnos.findByUsuario(user);
 	}
-
-	public List<Usuario> findAllUsua() {
-		return (List<Usuario>) iUsuario.findAll();
-	}
-	
-	public Usuario findByIdUsua(Integer id) {
-		return iUsuario.findById(id).get();
-	}
-
 }

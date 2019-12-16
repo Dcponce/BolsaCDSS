@@ -49,5 +49,10 @@ public class ProyectoController {
 	public void Actualizar(@RequestBody Proyecto proyecto) {
 		sProyecto.agregar(proyecto);
 	}
+	
+	@GetMapping("usuario/{id}")
+	public List<Proyecto> idUsuario(@PathVariable Integer id){
+		return sProyecto.findByUsuario(id);
+	}
 
 }

@@ -8,9 +8,11 @@ import java.nio.file.Paths;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,7 +23,8 @@ import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.IUsuarioRepository;
 
 @RestController
-@RequestMapping("documento")
+@CrossOrigin(origins = "*", methods =  {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@RequestMapping(value = "subir")
 public class FileUploadController {
 
 	@Autowired
@@ -41,7 +44,7 @@ public class FileUploadController {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.home"));
 		builder.append(File.separator);
-		builder.append("Desktop");
+		builder.append("git");
 		builder.append(File.separator);
 		builder.append("Bolsa CDS");
 		builder.append(File.separator);

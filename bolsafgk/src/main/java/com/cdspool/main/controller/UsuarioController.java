@@ -75,4 +75,8 @@ public class UsuarioController {
 		return uService.findAllCred();
 	}
 
+	@GetMapping("getId/{email}")
+	public Usuario getId(@PathVariable String email) {
+		return uService.getId(email);
+	}
 }

@@ -49,7 +49,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.cors().and().authorizeRequests().antMatchers(HttpMethod.POST, "/login/**").permitAll().anyRequest()
+		http.cors().and().authorizeRequests().antMatchers(HttpMethod.POST, "/login/**,/subir/**").permitAll().anyRequest()
 				.authenticated().and().csrf().disable().authorizeRequests().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService)).sessionManagement()

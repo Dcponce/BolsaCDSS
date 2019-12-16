@@ -41,13 +41,8 @@ public class ProyectoService {
 		return rProyecto.findById(id).get();
 	}
 	
-	//Método listar usuario
-	public List<Usuario>lista(){
-		return (List<Usuario>)rUsuario.findAll();
-	}
-	
-	//Método Buscar por Id
-	public Usuario porUsuario(Integer id) {
-		return rUsuario.findById(id).get();
+	public List<Proyecto> findByUsuario(Integer id) {
+		Usuario user = rUsuario.findById(id).get();
+		return rProyecto.findByUsuario(user);
 	}
 }

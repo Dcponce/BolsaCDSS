@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cdspool.main.model.Certificacion;
 import com.cdspool.main.model.Educacion;
+import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.ICertificacionRepository;
 import com.cdspool.main.repository.IEducacionRepository;
+import com.cdspool.main.repository.IUsuarioRepository;
 
 @Service
 @Transactional
@@ -20,6 +22,9 @@ public class EducacionService {
 	
 	@Autowired
 	ICertificacionRepository icerti;
+	
+	@Autowired
+	IUsuarioRepository iUsuario;
 	
 	public List<Educacion> findAll(){
 		
@@ -47,8 +52,8 @@ public class EducacionService {
 		return list;
 	}
 	
-	public Certificacion findByIdCerti(Integer id) {
-		return icerti.findById(id).get();
+	public Educacion findByUsuario (Integer id) {
+		Usuario user = iUsuario.findById(id).get();
+		return iedu.findByUsuario(user);
 	}
-
 }
