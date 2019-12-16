@@ -37,26 +37,27 @@ public class FileUploadController {
 	public String uploadFile(@RequestParam("file") MultipartFile file, Principal principal,
 			RedirectAttributes attributes) throws IOException {
 		if (file == null || file.isEmpty()) {
-			attributes.addFlashAttribute("message", "Por favor seleccione un archivo");
-			return "redirect:/status";
+			//attributes.addFlashAttribute("message", "Por favor seleccione un archivo");
+			return "{'msg':'Por favor seleccione un archivo'}";
 		}
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.home"));
 		builder.append(File.separator);
-		builder.append("git");
+		builder.append("Desktop");
 		builder.append(File.separator);
 		builder.append("Bolsa CDS");
 		builder.append(File.separator);
 		builder.append("cv");
 		builder.append(File.separator);
 		builder.append(file.getOriginalFilename());
-
+		System.out.println("Esto trae: "+file.getOriginalFilename());
 		byte[] fileBytes = file.getBytes();
 		Path path = Paths.get(builder.toString());
 		Files.write(path, fileBytes);
 
-		attributes.addFlashAttribute("message", "Archivo cargado correctamente");
+		
+		//attributes.addFlashAttribute("message", "Archivo cargado correctamente");
 
 		Documento d = new Documento();
 
@@ -66,11 +67,7 @@ public class FileUploadController {
 		d.setId_tipoDoc(dc.findById(1));
 		d.setId_usuario(usua);
 		dc.add(d);
-		return "redirect:/status";
+		return "{'msg':'Archivo cargado correctamente'}";
 	}
 
-	@GetMapping("/status")
-	public String status() {
-		return "status";
-	}
 }
