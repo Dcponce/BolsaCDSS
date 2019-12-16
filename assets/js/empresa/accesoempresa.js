@@ -6,11 +6,12 @@ $(document).ready(function () {
         nuevo(base_uri);
     });
 
+    editar(base_uri)
 
 });
 
 function nuevo(base_uri) {
-    var idc = $('#id').val();
+    var id = $('#id').val();
     var nombre = $('#nombre').val();
     var telefono = $('#telefono').val();
     var metodo = "POST";
@@ -30,7 +31,7 @@ function nuevo(base_uri) {
             "nombre": nombre,
             "telefono": telefono,
             "id_usuario": {
-                "id": idc
+                "id": JSON.parse(localStorage.getItem('Id')),
             }
         };
 
@@ -49,3 +50,20 @@ function nuevo(base_uri) {
     }
 }
 
+function editar(base_uri) {
+    $.ajax({
+        url: base_uri+ "/empre/" + JSON.parse(localStorage.getItem('Id')),
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        method: "GET",
+        contentType: "json",
+        success: function (data) {
+            if (data != null) {
+                $('#id').val(data.id);
+                $('#nombre').val(data.nombre);
+                $('#telefono').val(data.telefono);
+            }
+        }
+    });
+}
