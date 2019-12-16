@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdspool.main.model.Alumno;
-import com.cdspool.main.model.Municipios;
 import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.IAlumnoRepository;
-import com.cdspool.main.repository.IMunicipiosRepository;
 import com.cdspool.main.repository.IUsuarioRepository;
 
 @Service
@@ -20,14 +18,14 @@ public class AlumnoService {
 
 	@Autowired
 	IAlumnoRepository iAlumnos;
-	
+
 	@Autowired
 	IUsuarioRepository iUsuario;
 
 	public List<Alumno> findAll() {
 		return (List<Alumno>) iAlumnos.findAll();
 	}
-	
+
 	public Alumno findById(Integer id) {
 		return iAlumnos.findById(id).get();
 	}
@@ -39,7 +37,7 @@ public class AlumnoService {
 	public void save(Alumno usuario) {
 		iAlumnos.save(usuario);
 	}
-	
+
 	public Alumno findByUsuario(Integer id) {
 		Usuario user = iUsuario.findById(id).get();
 		return iAlumnos.findByUsuario(user);

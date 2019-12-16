@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cdspool.main.model.Departamentos;
 import com.cdspool.main.model.Empresa;
-import com.cdspool.main.model.Municipios;
-import com.cdspool.main.model.Usuario;
 import com.cdspool.main.service.EmpresaService;
 import com.cdspool.main.service.MunicipiosService;
 
