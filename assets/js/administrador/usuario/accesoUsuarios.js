@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var uri = "http://localhost:8080/usuarios";
-  getData(uri + "/lista");
+  getData(uri);
   getRoles(uri + "/api/listaTipo");
   $("#nuevo").on("click", function() {
     getCred();
@@ -94,15 +94,17 @@ function getCred() {
         'Authorization': JSON.parse(localStorage.getItem('Token'))
     },
     method: "GET",
-    contentType: "json",
+    dataType: "json",
+    contentType: "application/json",
     success: function(res) {
-        nuevo("http://localhost:8080/usuarios", JSON.stringify(res));
+        var idC = res["id"];
+        console.log(id);
+        nuevo("http://localhost:8080/usuarios", idC);
     }
-
   });
 }
 
-function nuevo(uri, res) {
+function nuevo(uri, idC) {
   var id = $("#id").val();
   var email = $("#email").val();
   var credencial = $("#credencial").val();
@@ -120,17 +122,17 @@ function nuevo(uri, res) {
 
   if (credencial != null) {
     var data = {
-      id: id,
-      email: email,
-      id_credencial: {
-          id: 3
+      "id": id,
+      "email": email,
+      "id_credencial": {
+          "id": idC
       },
-      clave: clave,
-      id_tipo: {
-          id: tipo
+      "clave": clave,
+      "id_tipo": {
+          "id": tipo
       },
-      estado: true,
-      activo: true
+      "estado": true,
+      "activo": true
     };
 
     $.ajax({
@@ -140,9 +142,9 @@ function nuevo(uri, res) {
       },
       method: metodo,
       contentType: "application/json",
-      data: data,
-      processData: false,
-      cache: false,
+      data: JSON.stringify(data),
+      //processData: false,
+      //cache: false,
       success: function() {
         mensaje = "Registro " + accion + " exitosamente";
         alert(mensaje);

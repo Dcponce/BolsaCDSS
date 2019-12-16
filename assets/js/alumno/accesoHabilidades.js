@@ -81,22 +81,19 @@ function createOptions(id) {
                 $('#select').empty();
 
                 var option = "";
-                var options = [], _options;
+                //var options = [], _options;
 
                 $.each(result, function (i, v) {
                     option = "";
 
-                    if (v.id == id) {
-                        option = '<option value="' + v.id + '" selected>' + v.descripcion + '</option>';
-                    } else {
+                
                         option = '<option value="' + v.id + '">' + v.descripcion + '</option>';
-                    }
-
-                    options.push(option);
+                    
+                        $("#select").append(option);
+                   // options.push(option);
                 });
-                _options = options.join('');
+                //_options = options.join('');
 
-                $('#select')[0].innerHTML = _options;
             }
         }
 
