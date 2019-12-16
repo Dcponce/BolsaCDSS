@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 function guardarH(uriP) {
     var uri = uriP;
-    var idc = $('#idPr').val();
+    var idc = JSON.parse(localStorage.getItem('Id'));
     var nom = $('#nom').val();
     var lnk = $('#link1').val();
     var nom2 = $('#nom2').val();
@@ -18,12 +18,12 @@ function guardarH(uriP) {
     var nom3 = $('#nom3').val();
     var lnk3 = $('#link3').val();
     var metodo = "POST";
-    var accion = "Guardado";
+    var accion = "Guardados";
 
 
     if (id > 0) {
         metodo = "PUT";
-        accion = "Actualizado";
+        accion = "Actualizados";
     } else {
         id = null;
     }
@@ -62,9 +62,9 @@ function guardarH(uriP) {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function () {
-               return true;
+               alert("Datos "+accion+" correctamente");
             }
         }).fail(function(){
-            return false;
+            alert("No se pudo completar la acción");
         });
     }

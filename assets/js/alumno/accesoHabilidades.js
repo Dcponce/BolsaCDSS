@@ -2,6 +2,9 @@ $(document).ready(function () {
 
     var uriDt = "http://localhost:8080/detalleHa";
 
+    createOptions(0);
+    $('#select').selectpicker();
+
     $('#datosH').on('click', function () {
         guardarH(uriDt);
     });
@@ -9,16 +12,14 @@ $(document).ready(function () {
 });
 
 function guardarH(uriDt) {
-    var idc = $('#idH').val();
+    var id = $('#id').val();
     var pri = $('#prioridad').val();
     var lvl = $('#dominio').val();
     var hab = $('#select').val();
     var metodo = "POST";
-    var accion = "Guardado";
 
     if (id > 0) {
         metodo = "PUT";
-        accion = "Actualizado";
     } else {
         id = null;
     }
@@ -33,7 +34,7 @@ function guardarH(uriDt) {
                 "id": hab
             },
             "usuarios": {
-                "id": idc
+                "id": JSON.parse(localStorage.getItem('Id'))
             }
         };
 
@@ -64,4 +65,40 @@ function guardarH(uriDt) {
             }
         });
     }
+}
+
+function createOptions(id) {
+    $.ajax({
+        url: "http://localhost:8080/habilidades",
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            if (result != null) {
+
+                $('#select').empty();
+
+                var option = "";
+                var options = [], _options;
+
+                $.each(result, function (i, v) {
+                    option = "";
+
+                    if (v.id == id) {
+                        option = '<option value="' + v.id + '" selected>' + v.descripcion + '</option>';
+                    } else {
+                        option = '<option value="' + v.id + '">' + v.descripcion + '</option>';
+                    }
+
+                    options.push(option);
+                });
+                _options = options.join('');
+
+                $('#select')[0].innerHTML = _options;
+            }
+        }
+
+    });
 }

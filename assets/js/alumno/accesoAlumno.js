@@ -1,12 +1,12 @@
 $(document).ready(function () {
-    /*    $('#two-tab').prop("disabled", true);
-        $('#three-tab').prop("disabled", true);
-        $('#four-tab').prop("disabled", true);*/
-        
-    var uri = "http://localhost:8080/alumnos";
-    var uriD = "http://localhost:8080/municipios";
+    // $('#two-tab').prop("disabled", true);
+    // $('#three-tab').prop("disabled", true);
+    // $('#four-tab').prop("disabled", true);
 
-    getDepto(uriD, 0);
+    var uri = "http://localhost:8080/alumnos";
+
+
+    getDepto("http://localhost:8080/municipios", 0);
 
     $('#datosP').on('click', function () {
         guardar(uri);
@@ -15,13 +15,13 @@ $(document).ready(function () {
     $('#departamento').on('change', function () {
         var id = $('#departamento').val();
 
-        getMunicipioByDepto(uriD, id, 0);
+        getMunicipioByDepto("http://localhost:8080/municipios", id, 0);
     });
 
 });
 
 function guardar(uri) {
-    var idc = $('#id').val();
+    var id = $('#id').val();
     var nom = $('#nombre').val();
     var apellido = $('#apellido').val();
     var tel = $('#telefono').val();
@@ -31,7 +31,6 @@ function guardar(uri) {
     var nac = $('#nacimiento').val();
     var muni = $('#municipio').val();
     var metodo = "POST";
-    var accion = "Guardado";
 
 
 
@@ -57,7 +56,7 @@ function guardar(uri) {
                 "id": muni
             },
             "id_usuario": {
-                "id": idc
+                "id": JSON.parse(localStorage.getItem('Id')),
             }
         };
 
@@ -80,6 +79,9 @@ function guardar(uri) {
 
                 $('#three').removeClass('show active');
                 $('#four').removeClass('show active');
+            },
+            error: function (error) {
+                alert("No se pudo completar la acción");
             }
         });
     }

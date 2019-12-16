@@ -12,13 +12,12 @@ $(document).ready(function () {
 });
 
 function guardarE(uriE) {
-    var idc = $('#idE').val();
+    var id = $('#id').val();
     var uni = $('#universidad').val();
     var carre = $('#carrera').val();
     var cer = $('#certificacion').val();
     var lvl = $('#nivel').val();
     var metodo = "POST";
-    var accion = "Guardado";
 
     if (id > 0) {
         metodo = "PUT";
@@ -38,7 +37,7 @@ function guardarE(uriE) {
             },
             "nivel": lvl,
             "id_usuario": {
-                "id": idc
+                "id": JSON.parse(localStorage.getItem('Id'))
             }
         };
 

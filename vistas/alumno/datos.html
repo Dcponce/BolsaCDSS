@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Datos personales</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -28,7 +28,7 @@
 
             <nav id="nav-menu-container">
                 <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
-                    <li class=""><a href="../../Inicio.html#body">Inicio</a>
+                    <li class=""><a href="inicio.html">Inicio</a>
                     </li>
                 </ul>
             </nav><!-- #nav-menu-container -->
@@ -38,31 +38,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-5">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Imagen de perfil</a>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Cargar imagen</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <input type="file" name="file" id="file" /><br><br>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" id="perfil">Cargar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-5" id="menuA">
 
             </div>
             <div class="col-7">
@@ -91,7 +67,7 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
                             <h2>Datos Personales</h2>
-                            <input type="text" id="id"><br>
+                            <input type="hidden" id="id"><br>
                             <input type="text" name="txtNombre" id="nombre" placeholder="Nombre"><br>
                             <input type="text" name="txtApellido" id="apellido" placeholder="Apellido"><br>
                             <input type="text" name="txtTelefono" id="telefono" placeholder="Telefono"><br>
@@ -99,7 +75,7 @@
                             <textarea name="txtDireccion" id="direccion" placeholder="Dirección"></textarea><br>
                             <select name="txtProyecto" id="proyecto">
                                 <option selected disabled>Seleccione el proyecto al que pertenece</option>
-                                <option value="PPE">Puentes para El Empleo</option>
+                                <option value="PPE">Centros de Desarrollo de Software</option>
                                 <option value="FGK">Oportunidades</option>
                             </select><br>
                             <input type="date" name="txtNacimiento" id="nacimiento"><br>
@@ -110,7 +86,7 @@
 
                         <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
                             <h2>Educación</h2>
-                            <input type="text" id="idE"><br>
+                            <input type="hidden" id="idE"><br>
                             <input type="text" name="txtUniversidad" id="universidad"
                                 placeholder="Nombre de universidad"><br>
                             <input type="text" name="txtCarrera" id="carrera" placeholder="Nombre de la carrera"><br>
@@ -127,8 +103,9 @@
                         <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
                             <h2>Habilidades</h2>
                             <input type="text" id="idH"><br>
-                            
-                            <select name="txtHabilidad" id="select" class="selectpicker form-control" data-hide-disabled="true" multiple data-actions-box="true"></select><br>
+
+                            <select name="txtHabilidad" id="select" class="selectpicker" data-hide-disabled="true"
+                                multiple data-actions-box="true"></select><br>
 
                             <select name="txtPrioridad" id="prioridad">
                                 <option selected disabled>Seleccione un nivel de prioridad</option>
@@ -143,15 +120,14 @@
 
                         <div class="tab-pane fade p-4" id="four" role="tabpanel" aria-labelledby="four-tab">
                             <h2>Proyectos</h2>
-                            <input type="text" id="idPr"><br>
                             <label>Link de proyectos</label><br>
-                            <input type="text" name="txtNombre" id="nom" placeholder="Nombre de proyecto"><br>
+                            <input type="text" name="txtNombre" id="nom0" placeholder="Nombre de proyecto"><br>
+                            <input type="text" name="txtLink" id="link0" placeholder="Link de proyecto"><br>
+                            <input type="text" name="txtNombre" id="nom1" placeholder="Nombre de proyecto"><br>
                             <input type="text" name="txtLink" id="link1" placeholder="Link de proyecto"><br>
                             <input type="text" name="txtNombre" id="nom2" placeholder="Nombre de proyecto"><br>
                             <input type="text" name="txtLink" id="link2" placeholder="Link de proyecto"><br>
-                            <input type="text" name="txtNombre" id="nom3" placeholder="Nombre de proyecto"><br>
-                            <input type="text" name="txtLink" id="link3" placeholder="Link de proyecto"><br>
-                            <button type="button" id="datosPr">Siguiente</button>
+                            <button type="button" id="datosPr">Guardar</button>
                         </div>
 
                     </div>
@@ -161,56 +137,39 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+
     <script src="../../assets/dist/js/bootstrap-select.js"></script>
+    <script src="../../assets/js/alumno/accesoHabilidades.js"></script>
 
-    <script>
-        function createOptions(id) {
-            $.ajax({
-                url: "http://localhost:8080/habilidades",
-                headers: {
-                    'Authorization': JSON.parse(localStorage.getItem('Token'))
-                },
-                type: 'GET',
-                dataType: "json",
-                success: function (result) {
-                    if (result != null) {
-
-                        $('#select').empty();
-
-                        var option = "";
-                        var options = [], _options;
-
-                        $.each(result, function (i, v) {
-                            option = "";
-
-                            if (v.id == id) {
-                                option = '<option value="' + v.id + '" selected>' + v.descripcion + '</option>';
-                            } else {
-                                option = '<option value="' + v.id + '">' + v.descripcion + '</option>';
-                            }
-
-                            options.push(option);
-                        });
-                        _options = options.join('');
-
-                        $('#select')[0].innerHTML = _options;
-                    }
-                }
-
-            });
-        }
-
-
-        createOptions(0);
-        $('#select').selectpicker();
-
-    </script>
 
     <script src="../../assets/js/alumno/accesoAlumno.js"></script>
     <script src="../../assets/js/alumno/accesoEducacion.js"></script>
-    <script src="../../assets/js/alumno/accesoHabilidades.js"></script>
     <script src="../../assets/js/alumno/accesoProyectos.js"></script>
     <script src="../../assets/js/alumno/perfil.js"></script>
+    <script src="../../assets/js/alumno/menu.js"></script>
+    <script src="../../assets/js/alumno/modificarDatos.js"></script>
+
+    <div class="modal fade" id="img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cargar imagen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="file" name="file" id="file" /><br><br>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="perfil">Cargar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
