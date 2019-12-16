@@ -23,26 +23,31 @@ import com.cdspool.main.service.Detalle_HabilidadService;
 public class HabilidadesController {
 
 	@Autowired
-	Detalle_HabilidadService rDetalle;
+	IHabilidadRepository rHabilidad;
 	
 	@GetMapping
 	public List<Habilidad> listar(){
-		return rDetalle.listarHa();
+		return (List<Habilidad>) rHabilidad.findAll();
 	}
 	
 	@PostMapping
-	public void guardar(@RequestBody Detalle_habilidades detalle) {
-		rDetalle.saveDe(detalle);
+	public void guardar(@RequestBody Habilidad habi) {
+		rHabilidad.save(habi);
 	}
 	
 	@PutMapping
-	public void edit(@RequestBody Detalle_habilidades habilidad) {
-		rDetalle.saveDe(habilidad);
+	public void actualizar(@RequestBody Habilidad habi) {
+		rHabilidad.save(habi);
 	}
 	
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
-		rDetalle.eliminarDe(id);
+		rHabilidad.deleteById(id);
+	}
+	
+	@GetMapping("/habi/{id}")
+	public Habilidad porHabilidad(@PathVariable Integer id) {
+		return rHabilidad.findById(id).get();
 	}
 	
 
