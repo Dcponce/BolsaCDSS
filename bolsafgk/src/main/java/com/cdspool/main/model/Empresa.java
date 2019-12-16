@@ -24,7 +24,7 @@ public class Empresa {
 	
 	@JoinColumn(name = "id_usuario")
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Usuario id_usuario;
+	private Usuario usuario;
 	
 
 	public Integer getId() {
@@ -53,11 +53,11 @@ public class Empresa {
 
 
 	public Usuario getId_usuario() {
-		return id_usuario;
+		return usuario;
 	}
 
-	public void setId_usuario(Usuario id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setId_usuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	
