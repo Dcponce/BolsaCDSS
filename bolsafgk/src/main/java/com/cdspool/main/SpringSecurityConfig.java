@@ -18,7 +18,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.cdspool.main.auth.service.JWTService;
 import com.cdspool.main.filter.JWTAuthenticationFilter;
 import com.cdspool.main.filter.JWTAuthorizationFilter;
-import com.cdspool.main.service.UsuarioService;
+import com.cdspool.main.service.LoginService;
 
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @Configuration
@@ -26,7 +26,7 @@ import com.cdspool.main.service.UsuarioService;
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private UsuarioService uService;
+	private LoginService login;
 
 	@Autowired
 	private JWTService jwtService;
@@ -49,8 +49,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.cors().and().authorizeRequests().antMatchers(HttpMethod.POST, "/login/**,/subir/**").permitAll().anyRequest()
-				.authenticated().and().csrf().disable().authorizeRequests().and()
+		http.cors().and().authorizeRequests().antMatchers(HttpMethod.POST, "/login/**,/subir/**").permitAll()
+				.anyRequest().authenticated().and().csrf().disable().authorizeRequests().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService)).sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -58,7 +58,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
-		build.userDetailsService(uService).passwordEncoder(passwordEncoder);
+		build.userDetailsService(login).passwordEncoder(passwordEncoder);
 	}
 
 }

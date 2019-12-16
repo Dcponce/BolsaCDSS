@@ -12,12 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cdspool.main.model.Departamentos;
 import com.cdspool.main.model.Empresa;
-import com.cdspool.main.model.Municipios;
-import com.cdspool.main.model.Usuario;
 import com.cdspool.main.service.EmpresaService;
-import com.cdspool.main.service.MunicipiosService;
 
 @RestController
 @RequestMapping(value = "empresa")
@@ -25,9 +21,6 @@ public class EmpresaController {
 
 	@Autowired // Manda a llamar servicio de empresa
 	EmpresaService empresaService;
-
-	@Autowired // Manda a llamar el servicio de municipio
-	MunicipiosService sMunicipio;
 
 	// Ejecución del metodo listar
 
@@ -55,8 +48,9 @@ public class EmpresaController {
 	}
 
 	/// Ejecución del metodo buscar el id de empresa
-	@GetMapping("/empresa/{id}")
+	@GetMapping("/empre/{id}")
 	public Empresa getEmpresa(@PathVariable Integer id) {
-		return empresaService.findById(id);
+		return empresaService.findByUsuario(id);
 	}
+
 }
