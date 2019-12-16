@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Habilidad</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/css/bootstrap/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.20/b-1.6.1/sl-1.3.1/datatables.min.css" />
+
     <link href="../../assets/css/menu/css/style.css" rel="stylesheet">
 </head>
 
@@ -46,7 +50,7 @@
             <input type="text" class="form-control" id="descripcion" placeholder="Descripción">
         </div>
 
-        <td><select class="form-control form-control-lg" name="tipo" id="Tipo">
+        <td><select class="form-control form-control-lg" name="tipo" id="tipo">
 
                 <option value="T">Tecnicas</option>
                 <option value="P">Profesionales</option>
@@ -62,7 +66,7 @@
         <hr>
         <h2>Lista</h2>
         <hr>
-        <table id="example" class="display" style="width:100%"></table>
+        <table id="example" class="display" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
@@ -77,7 +81,8 @@
         <tfoot>
             <tr>
                 <th>#</th>
-                <th>Credencial</th>
+                <th>Descripción</th>
+                <th>tipo</th>
                 <th>Acciones</th>
             </tr>
         </tfoot>
@@ -86,14 +91,14 @@
 </div>
 <br><br>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-    <script src="../../assets/js/administrador/habilidades/accesoHabilidades.js"></script>
+<script src="../../assets/js/bootstrap/jquery-3.4.1.min.js"></script>
+<script src="../../assets/js/bootstrap/popper.min.js"></script>
+<script src="../../assets/js/bootstrap/bootstrap.min.js"></script>
+
+<script src="../../assets/js/administrador/habilidades/accesoHabilidades.js"></script>
+
+<!--- *********************************************************  -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
 </body>
 
