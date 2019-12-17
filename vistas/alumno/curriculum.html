@@ -1,51 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Curriculum</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="../../assets/css/menu/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../assets/css/cv/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../assets/css/cv/jasny-bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../assets/css/cv/bootstrap-select.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="../../assets/css/cv/material-kit.css" type="text/css" />
+
+    <link rel="stylesheet" href="../../assets/css/fonts/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../assets/css/fonts/themify-icons.css" />
+
+    <link rel="stylesheet" href="../../assets/css/cv/color-switcher.css" type="text/css" />
+
+    <link rel="stylesheet" href="../../assets/css/extras/animate.css" type="text/css" />
+
+    <link rel="stylesheet" href="../../assets/css/extras/owl.carousel.css" type="text/css" />
+    <link rel="stylesheet" href="../../assets/css/extras/owl.theme.css" type="text/css" />
+
+    <link rel="stylesheet" href="../../assets/css/extras/settings.css" type="text/css" />
+
+    <link rel="stylesheet" href="../../assets/css/cv/slicknav.css" type="text/css" />
+
+    <link rel="stylesheet" href="../../assets/css/cv/main.css" type="text/css" />
+
+    <link rel="stylesheet" href="../../assets/css/cv/responsive.css" type="text/css" />
+
+    <link rel="stylesheet" type="text/css" href="../../assets/css/cv/colors/red.css" media="screen" />
+    <link rel="stylesheet" id="colors" href="../../assets/css/cv/colors/red.css" type="text/css" />
+    <link rel="stylesheet" href="../../assets/css/cv/color-switcher.css" type="text/css" />
+
+
+
 </head>
 
 <body>
-    <header id="header">
+    <div id="content">
         <div class="container">
-
-            <div id="logo" class="pull-left">
-                <h1>
-                    <a href="#body" class="scrollto">Job<span> Application</span><span> Pool</span></a></h1>
-            </div>
-
-            <nav id="nav-menu-container">
-                <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
-                    <li class=""><a href="inicio.html">Inicio</a>
-                    </li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
-
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-5" id="menuA">
-                <a href="datos.html">atras</a>
-            </div>
-            <div class="col-7">
-                <table>
-                    <tr>
-                        <td>Nombre</td>
-                    </tr>
-                </table>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="right-sideabr">
+                        <div class="inner-box">
+                            <h4>Acerca de mí</h4>
+                            <ul class="lest item">
+                                <li><a>Edad</a></li>
+                                <li><label id="edad"></li>
+                                <li><a>Teléfono</a></li>
+                                <li><label id="tel"></li>
+                                <li><a>Celular</a></li>
+                                <li><label id="cel"></li>
+                                <li><a>Correo electrónico</a></li>
+                                <li><label id="email"></li>
+                            </ul>
+                            <h4>Educación</h4>
+                            <ul class="lest item">
+                                <li><label id="uni"></li>
+                                <li><a id="carrera"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="inner-box my-resume">
+                        <div class="author-resume">
+                            <div class="thumb">
+                                <img src="../../../../../git/BolsaCDSS/img/CDS SS G1 2.jpg" alt="" width="128px"
+                                    height="128px">
+                            </div>
+                            <div class="author-info">
+                                <h3><span id="nom"></span> <span id="ape"></span></h3>
+                                <p class="sub-title"><span id="muni"></span>/<span id="dep"></span></p>
+                                <p><span class="address"><i class="ti-location-pin"></i></span>
+                                    <span id="dir"></span></p>
+                            </div>
+                        </div>
+                        <div class="about-me item">
+                            <h3>Programador analista en leguaje <span id="certificacion"></span> <i id="premio"></i></h3>
+                            <p>Nivel <span id="nivel"></span> <span id="completo"></span></p>
+                        </div>
+                        <div class="work-experence item">
+                            <h3>Proyectos realizados <i class="ti-settings"></i></h3>
+                            <div class="social-link">
+                                <a class="twitter" target="_blank" data-original-title="twitter" href="#"
+                                    data-toggle="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a>
+                                <a class="facebook" target="_blank" data-original-title="facebook" href="#"
+                                    data-toggle="tooltip" data-placement="top"><i class="fa fa-facebook"></i></a>
+                                <a class="google" target="_blank" data-original-title="google-plus" href="#"
+                                    data-toggle="tooltip" data-placement="top"><i class="fa fa-google"></i></a>
+                                <a class="linkedin" target="_blank" data-original-title="linkedin" href="#"
+                                    data-toggle="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="education item">
+                            <h3>Habilidades <i class="ti-bookmark"></i></h3>
+                            <h4>Massachusetts Institute Of Technology</h4>
+                            <p>Bachelor of Computer Science</p>
+                            <span class="date">2010-2014</span>
+                            <br>
+                            <h4>Massachusetts Institute Of Technology</h4>
+                            <p>Bachelor of Computer Science</p>
+                            <span class="date">2010-2014</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/alumno/cv.js"></script>
 </body>
 
 </html>
