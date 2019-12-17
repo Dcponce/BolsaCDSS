@@ -21,13 +21,25 @@ function getToken(uri, email) {
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify(data),
-            success: function(res){ //nehemias@gmail.com
-                console.log(res);
+            success: function(res){ 
                 localStorage.setItem("Email", JSON.stringify(res["user"]["username"]));
                 localStorage.setItem("Bienvenida", JSON.stringify(res["mensaje"]));
                 localStorage.setItem("Token", JSON.stringify(res["token"]));
                 const rol = res["user"]["authorities"][0]["authority"];
                 getId(email);
+
+                if(rol == "ROLE_ADMIN"){
+                    location.href = "vistas/administrador/admin.html";
+
+                }else if(rol == "ROLE_EMPRESA"){
+                    location.href = "vistas/empresa/registro.html";
+
+                }else if(rol == "ROLE_ALUMNO"){
+                    location.href = "vistas/alumno/datos.html";
+
+                }else{
+                    location.href = "index.html";
+                }
             }
         })
         
