@@ -9,7 +9,6 @@ import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +22,8 @@ import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.IUsuarioRepository;
 
 @RestController
-@CrossOrigin(origins = "*", methods =  {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+		RequestMethod.DELETE })
 @RequestMapping(value = "subir")
 public class FileUploadController {
 
@@ -37,7 +37,7 @@ public class FileUploadController {
 	public String uploadFile(@RequestParam("file") MultipartFile file, Principal principal,
 			RedirectAttributes attributes) throws IOException {
 		if (file == null || file.isEmpty()) {
-			//attributes.addFlashAttribute("message", "Por favor seleccione un archivo");
+			// attributes.addFlashAttribute("message", "Por favor seleccione un archivo");
 			return "{'msg':'Por favor seleccione un archivo'}";
 		}
 
@@ -51,13 +51,12 @@ public class FileUploadController {
 		builder.append("cv");
 		builder.append(File.separator);
 		builder.append(file.getOriginalFilename());
-		System.out.println("Esto trae: "+file.getOriginalFilename());
+		System.out.println("Esto trae: " + file.getOriginalFilename());
 		byte[] fileBytes = file.getBytes();
 		Path path = Paths.get(builder.toString());
 		Files.write(path, fileBytes);
 
-		
-		//attributes.addFlashAttribute("message", "Archivo cargado correctamente");
+		// attributes.addFlashAttribute("message", "Archivo cargado correctamente");
 
 		Documento d = new Documento();
 

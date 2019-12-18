@@ -17,10 +17,6 @@ public class Detalle_habilidades {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private Integer prioridad;
-
-	private Integer nivel;
-
 	@JoinColumn(name = "id_habilidad")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Habilidad habilidad;
@@ -35,22 +31,6 @@ public class Detalle_habilidades {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getPrioridad() {
-		return prioridad;
-	}
-
-	public void setPrioridad(Integer prioridad) {
-		this.prioridad = prioridad;
-	}
-
-	public Integer getNivel() {
-		return nivel;
-	}
-
-	public void setNivel(Integer nivel) {
-		this.nivel = nivel;
 	}
 
 	public Habilidad getHabilidad() {
