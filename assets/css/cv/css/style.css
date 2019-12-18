@@ -86,7 +86,7 @@ span.menu{
 	top: 0;
 	left: 0;
 	overflow: hidden;
-	padding: 10px 0;
+	padding: 7px 0;
 	max-width: 0;
 	border-bottom: 3px solid #00a78e;
     color: #00a78e;
@@ -256,9 +256,6 @@ background-position: 3px -94px;
 /*-- wellcome-note --*/
 .welcome-note{
 	margin:3em 0;
-}
-.note{
-	
 }
 .note h1{
 	color:#FFF;
@@ -1030,7 +1027,7 @@ div#portfolioModal1,div#portfolioModal2,div#portfolioModal3,div#portfolioModal4,
     top: 25px;
     right: 25px;
    width: 45px;
-    height: 45px
+    height: 45px;
     background-color: transparent;
     cursor: pointer;
     z-index: 1;
