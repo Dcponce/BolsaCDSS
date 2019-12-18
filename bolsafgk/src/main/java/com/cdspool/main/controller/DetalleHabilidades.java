@@ -44,4 +44,9 @@ public class DetalleHabilidades {
 	public void edit(@RequestBody Detalle_habilidades detalle) {
 		deService.saveDe(detalle);
 	}
+	
+	@GetMapping("usuario/{id}")
+	public List<Detalle_habilidades>idUsuario(@PathVariable Integer id){
+		return deService.findByUsuario(id);
+	}
 }
