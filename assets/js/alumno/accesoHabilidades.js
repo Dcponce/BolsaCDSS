@@ -2,8 +2,7 @@ $(document).ready(function () {
 
     var uriDt = "http://localhost:8080/detalleHa";
 
-    createOptions(0);
-    $('#select').selectpicker();
+    createOptions();
 
     $('#datosH').on('click', function () {
         guardarH(uriDt);
@@ -12,7 +11,7 @@ $(document).ready(function () {
 });
 
 function guardarH(uriDt) {
-    var id = $('#id').val();
+    var id = $('#idH').val();
     var pri = $('#prioridad').val();
     var lvl = $('#dominio').val();
     var hab = $('#select').val();
@@ -67,7 +66,7 @@ function guardarH(uriDt) {
     }
 }
 
-function createOptions(id) {
+function createOptions() {
     $.ajax({
         url: "http://localhost:8080/habilidades",
         headers: {

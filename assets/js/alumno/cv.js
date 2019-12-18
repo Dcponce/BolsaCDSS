@@ -2,6 +2,7 @@ $(document).ready(function () {
     personales();
     educacion();
     proyectos();
+    Dhabilidades()
 });
 
 function personales() {
@@ -47,6 +48,20 @@ function educacion() {
         contentType: "json",
         success: function (data) {
             if (data != null) {
+                if (data.universidad != null) {
+                    $('#dts').append('<li>' +
+                        '<ul class="address-text">' +
+                        ' <li><b>Universidad</b></li>' +
+                        ' <li><span id="uni"></span></li>' +
+                        ' </ul >' +
+                        ' </li >' +
+                        '<li>' +
+                        '<ul class="address-text">' +
+                        '<li><b>Carrera </b></li>' +
+                        '<li><span id="carrera"></span></li>' +
+                        '</ul>' +
+                        '</li>')
+                }
                 $('#uni').text(data.universidad);
                 $('#carrera').text(data.carrera);
                 $('#certificacion').text(data.id_certificacion.nombre);
@@ -80,7 +95,7 @@ function proyectos() {
                         ' </div >' +
                         '<div class="col-xs-8 wthree_about_right_grid_right">' +
                         ' <h4>' + v.nombre + '</h4>' +
-                        '<a href="' + v.url +'" class="navigation" target="_blank">Link</a>' +
+                        '<a href="' + v.url + '" class="navigation" target="_blank">Link</a>' +
                         '</div>' +
                         '<div class="clearfix"> </div>' +
                         '</div> ');
@@ -90,3 +105,41 @@ function proyectos() {
     });
 }
 
+function Dhabilidades() {
+    $.ajax({
+        url: "http://localhost:8080/detalleHa/usuario/" + JSON.parse(localStorage.getItem('Id')),
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        method: "GET",
+        contentType: "json",
+        success: function (data) {
+            if (data != null) {
+                $.each(data, function (i, v) {
+                    switch (v.habilidad.tipo) {
+                        case "T":
+                            $('#tec').append('<p>' + v.habilidad.descripcion + '</p>');
+                            break
+                        case "P":
+                            $('#bla').append('<p>' + v.habilidad.descripcion + '</p>');
+                            break
+                        case "O":
+                            $('#Dha').append('<li>Otras</li>');
+                            $('#otra').append('<li>' +
+                                '<div class= "timeline-badge danger" > <i class="glyphicon glyphicon-briefcase"></i></div>' +
+                                '<div class="timeline-panel">' +
+                                '<div class="timeline-heading">' +
+                                '<h4 class="timeline-title">Conocimientos adquiridos</h4>' +
+                                '</div>' +
+                                '<div class="timeline-body">' +
+                                '<p>' + v.habilidad.descripcion + '</p>' +
+                                '</div>' +
+                                ' </div>' +
+                                '</li >');
+                            break
+                    }
+                });
+            }
+        }
+    });
+}
