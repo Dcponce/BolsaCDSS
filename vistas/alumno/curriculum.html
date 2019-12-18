@@ -1,51 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Curriculum</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="../../assets/css/menu/css/style.css" rel="stylesheet">
+
+    <link href="../../assets/css/cv/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="../../assets/css/cv/css/style.css" rel='stylesheet' type='text/css' />
+
+    <link href='//fonts.googleapis.com/css?family=Asap:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+
 </head>
 
 <body>
-    <header id="header">
+    <div id="home" class="header">
         <div class="container">
+            <!-- top-hedader -->
+            <div class="top-header">
+                <!-- /logo -->
+                <!--top-nav---->
+                <div class="banner-info">
+                    <div class="col-md-7 header-right">
+                        <h1>Yo soy</h1>
+                        <h6>Programador analista en lenguaje <span id="certificacion"></span> <i id="premio"></i></h6>
+                        <p style="color: white;">Nivel <span id="nivel"></span> <span id="completo"></span></p>
+                        <ul class="address" id="dts">
 
-            <div id="logo" class="pull-left">
-                <h1>
-                    <a href="#body" class="scrollto">Job<span> Application</span><span> Pool</span></a></h1>
-            </div>
+                            <li>
+                                <ul class="address-text">
+                                    <li><b>Nombre</b></li>
+                                    <li><span id="nom"></span> <span id="ape"></span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="address-text">
+                                    <li><b>Edad</b></li>
+                                    <li><span id="edad"></span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="address-text">
+                                    <li><b>Teléfono </b></li>
+                                    <li><span id="tel"></span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="address-text">
+                                    <li><b>Celular </b></li>
+                                    <li><span id="cel"></span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="address-text">
+                                    <li><b>Dirección </b></li>
+                                    <li><span id="dir"></span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="address-text">
+                                    <li><b>E-mail </b></li>
+                                    <li><span id="email"></span></li>
+                                </ul>
+                            </li>
 
-            <nav id="nav-menu-container">
-                <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
-                    <li class=""><a href="inicio.html">Inicio</a>
-                    </li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
+                        </ul>
+                    </div>
+                    <div class="col-md-5 header-left">
+                        <img src="../../assets/css/cv/images/img1.jpg" alt="">
+                    </div>
+                    <div class="clearfix"> </div>
 
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-5" id="menuA">
-                <a href="datos.html">atras</a>
-            </div>
-            <div class="col-7">
-                <table>
-                    <tr>
-                        <td>Nombre</td>
-                    </tr>
-                </table>
+                </div>
             </div>
         </div>
     </div>
+    <!-- services -->
+    <div id="services" class="services">
+        <div class="container">
+            <div class="service-head one text-center ">
+                <h4>Proyectos</h4>
+                <h3>Mi <span>Experiencia</span></h3>
+                <span class="border two"></span>
+            </div>
+            <!-- services-grids -->
+            <div class="wthree_about_right_grids w3l-agile" id="exp">
+
+                <div class="clearfix"> </div>
+            </div>
+            <!-- services-grids -->
+        </div>
+    </div>
+    <!-- services -->
+    <!--work-experience-->
+    <div id="work" class="work">
+        <div class="container">
+            <div class="service-head text-center">
+                <h4>Lo que puedo hacer</h4>
+                <h3>Mis <span>Habilidades</span></h3>
+                <span class="border one"></span>
+            </div>
+            <div class="time-main w3l-agile">
+                <div class="col-md-6 year-info">
+                    <ul class="year" id="Dha">
+                        <li>Técnicas</li>
+                        <li>Blandas</li>
+                        <div class="clearfix"></div>
+                    </ul>
+                </div>
+                <ul class="col-md-6 timeline" id="otra">
+                    <li>
+                        <div class="timeline-badge info"><i class="glyphicon glyphicon-leaf"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="timeline-title">Lenguajes que conozco</h4>
+                            </div>
+                            <div class="timeline-body" id="tec">
+
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="timeline-badge primary"><i class="glyphicon glyphicon-briefcase"></i></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="timeline-title">Habilidades para la vida y el trabajo</h4>
+                            </div>
+                            <div class="timeline-body" id="bla">
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--//work-experience-->
+
+
+    <div class="modal ab fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog about" role="document">
+            <div class="modal-content about">
+                <div class="modal-header">
+                    <button type="button" class="close ab" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body about">
+                    <div class="about">
+
+                        <div class="about-inner">
+
+                            <img src="images/b3.jpg" alt="about" />
+                            <h4 class="tittle">A Fews words about us</h4>
+                            <p>Lorem ipsum dolor sit amet Integer gravida,Lorem ipsum dolor sit amet Integer gravida
+                                velit,Ming sits in the corner the whole day. She's into crochet. quis dolor
+                                tristiqumsan.Mirum est notare quam littera gothica, quam nunc putamus parum claram,
+                                anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima.
+                                velit quis dolor tristiqumsan.</p>
+                            <p>Lorem ipsum dolor sit amet. Integer gravida velit quis dolor tristiqumsan.anteposuerit
+                                litterarum formas humanitatis per seacula amet Integer gravida velit. </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //blog-pop-->
+
+    <!-- /header -->
+    <div class="footer" id="contact">
+        <div class="container">
+            <div class="copy_right text-center">
+                <p>&copy; 2016 Preface . All rights reserved | Design by <a href="http://w3layouts.com/"
+                        target="_blank">W3layouts.</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- //footer -->
+    <!-- /container -->
+
+    <a href="#home" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    <!--start-smooth-scrolling-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/css/cv/js/bootstrap.js"></script>
+    <script src="../../assets/js/alumno/cv.js"></script>
+
+    <script type="text/javascript" src="../../assets/css/cv/js/move-top.js"></script>
+    <script type="text/javascript" src="../../assets/css/cv/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
 </body>
 
 </html>

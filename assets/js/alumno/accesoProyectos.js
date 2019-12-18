@@ -3,12 +3,12 @@ $(document).ready(function () {
     var uriP = "http://localhost:8080/proyecto";
 
     $('#datosPr').on('click', function () {
-        guardarH(uriP);
+        guardarPuriP(uriP);
     });
 
 });
 
-function guardarH(uriP) {
+function guardarP(uriP) {
     var uri = uriP;
     var idc = JSON.parse(localStorage.getItem('Id'));
     var id1 = $('#idPr0').val();

@@ -89,17 +89,17 @@ function getRoles(uri) {
 function getCred() {
   var credencial = $("#credencial").val();
   $.ajax({
-    url: "http://localhost:8080/usuarios/usu/"+credencial,
+    url: "http://localhost:8080/usuarios/usu/" + credencial,
     headers: {
-        'Authorization': JSON.parse(localStorage.getItem('Token'))
+      Authorization: JSON.parse(localStorage.getItem("Token"))
     },
     method: "GET",
     dataType: "json",
     contentType: "application/json",
     success: function(res) {
-        var idC = res["id"];
-        console.log(id);
-        nuevo("http://localhost:8080/usuarios", idC);
+      var idC = res["id"];
+      console.log(id);
+      nuevo("http://localhost:8080/usuarios", idC);
     }
   });
 }
@@ -122,17 +122,17 @@ function nuevo(uri, idC) {
 
   if (credencial != null) {
     var data = {
-      "id": id,
-      "email": email,
-      "id_credencial": {
-          "id": idC
+      id: id,
+      email: email,
+      id_credencial: {
+        id: idC
       },
-      "clave": clave,
-      "id_tipo": {
-          "id": tipo
+      clave: clave,
+      id_tipo: {
+        id: tipo
       },
-      "estado": true,
-      "activo": true
+      estado: true,
+      activo: false
     };
 
     $.ajax({
