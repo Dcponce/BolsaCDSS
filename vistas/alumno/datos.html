@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Datos personales</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
+    <script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
 
     <link rel="stylesheet" href="../../assets/css/alumnos.css">
 
@@ -102,16 +104,9 @@
                             <h2>Habilidades</h2>
                             <input type="text" id="idH"><br>
 
-                            <select name="txtHabilidad" id="select"></select><br>
-
-                            <select name="txtPrioridad" id="prioridad">
-                                <option selected disabled>Seleccione un nivel de prioridad</option>
-                                <option value="1">Alta</option>
-                                <option value="2">Media</option>
-                                <option value="3">Baja</option>
+                            <select id="select" placeholder="Seleccione 10 habilidades máximo" multiple>
                             </select><br>
-                            <label for="dominio">Indique el nivel de dominio de la habilidad</label><br>
-                            <input type="range" name="txtDominio" id="dominio" min="0" max="100" step="5" value="0"><br>
+
                             <button type="button" id="datosH">Siguiente</button>
                         </div>
 
@@ -158,11 +153,9 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script src="../../assets/js/alumno/accesoHabilidades.js"></script>
-
-
     <script src="../../assets/js/alumno/accesoAlumno.js"></script>
     <script src="../../assets/js/alumno/accesoEducacion.js"></script>
     <script src="../../assets/js/alumno/accesoProyectos.js"></script>

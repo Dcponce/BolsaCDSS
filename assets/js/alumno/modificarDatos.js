@@ -5,6 +5,7 @@ $(document).ready(function () {
     modificar(uriBuscar);
     modificarE("http://localhost:8080/educacion");
     modificarPro("http://localhost:8080/proyecto");
+    modificarDtH("http://localhost:8080/detalleHa");
 });
 
 function modificar(uriBuscar) {
@@ -57,6 +58,25 @@ function modificarE(UriE) {
 function modificarPro(UriP) {
     $.ajax({
         url: UriP + "/usuario/" + JSON.parse(localStorage.getItem('Id')),
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        method: "GET",
+        contentType: "json",
+        success: function (data) {
+            if (data != null) {
+                $.each(data, function (i, v) {
+                    $('#idPr'+i).val(v.id);
+                    $('#nom' + i).val(v.nombre);
+                    $('#link' + i).val(v.url);
+                });
+            }
+        }
+    });
+}
+function modificarDtH(UriDtH) {
+    $.ajax({
+        url: UriDtH + "/usuario/" + JSON.parse(localStorage.getItem('Id')),
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },

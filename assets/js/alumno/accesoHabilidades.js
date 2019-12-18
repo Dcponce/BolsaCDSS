@@ -14,56 +14,59 @@ function guardarH(uriDt) {
     var id = $('#idH').val();
     var pri = $('#prioridad').val();
     var lvl = $('#dominio').val();
-    var hab = $('#select').val();
-    var metodo = "POST";
+    var hab = [$('#select').val()];
 
+    var metodo = "POST";
     if (id > 0) {
         metodo = "PUT";
     } else {
         id = null;
     }
 
-    if (hab > 0) {
+    var count = 0;
+    $.each(hab, function (i, v) {
+        for (var i = 0; i < v.length; i++) {
+            var data = {
+                "id": id,
+                "prioridad": pri,
+                "nivel": lvl,
+                "habilidad": {
+                    "id": v[i]
+                },
+                "usuarios": {
+                    "id": JSON.parse(localStorage.getItem('Id'))
+                }
+            };
 
-        var data = {
-            "id": id,
-            "prioridad": pri,
-            "nivel": lvl,
-            "habilidad": {
-                "id": hab
-            },
-            "usuarios": {
-                "id": JSON.parse(localStorage.getItem('Id'))
-            }
-        };
+            $.ajax({
+                url: uriDt,
+                headers: {
+                    'Authorization': JSON.parse(localStorage.getItem('Token'))
+                },
+                method: metodo,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function () {
+                    $('#one').removeClass('show active');
+                    $('#one-tab').removeClass('show active');
+                    $('#one-tab').prop("disabled", true);
 
-        $.ajax({
-            url: uriDt,
-            headers: {
-                'Authorization': JSON.parse(localStorage.getItem('Token'))
-            },
-            method: metodo,
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            success: function () {
-                $('#one').removeClass('show active');
-                $('#one-tab').removeClass('show active');
-                $('#one-tab').prop("disabled", true);
+                    $('#two').removeClass('show active');
+                    $('#two-tab').removeClass('show active');
+                    $('#two-tab').prop("disabled", true);
 
-                $('#two').removeClass('show active');
-                $('#two-tab').removeClass('show active');
-                $('#two-tab').prop("disabled", true);
+                    $('#three-tab').removeClass('show active');
+                    $('#three').removeClass('show active');
+                    $('#three-tab').prop("disabled", true);
 
-                $('#three-tab').removeClass('show active');
-                $('#three').removeClass('show active');
-                $('#three-tab').prop("disabled", true);
+                    $('#four').addClass('show active');
+                    $('#four-tab').addClass('show active');
+                    $('#four-tab').prop("disabled", false);
+                }
+            });
+        }
+    });
 
-                $('#four').addClass('show active');
-                $('#four-tab').addClass('show active');
-                $('#four-tab').prop("disabled", false);
-            }
-        });
-    }
 }
 
 function createOptions() {
@@ -84,20 +87,20 @@ function createOptions() {
 
                 $.each(result, function (i, v) {
                     option = "";
-
-                    if (v.id == id) {
-                        option = '<option value="' + v.id + '" selected>' + v.descripcion + '</option>';
-                    } else {
-                        option = '<option value="' + v.id + '">' + v.descripcion + '</option>';
-                    }
-
+                    option = (v.id == id) ? '<option value="' + v.id + '" selected>' + v.descripcion + '</option>' : '<option value="' + v.id + '">' + v.descripcion + '</option>';
                     options.push(option);
                 });
-                _options = options.join('');
 
+                _options = options.join('');
                 $('#select')[0].innerHTML = _options;
             }
         }
-
+    }).done(function () {
+        var multipleCancelButton = new Choices('#select', {
+            removeItemButton: true,
+            maxItemCount: 10,
+            searchResultLimit: 5
+            //renderChoiceLimit:5
+        });
     });
 }
