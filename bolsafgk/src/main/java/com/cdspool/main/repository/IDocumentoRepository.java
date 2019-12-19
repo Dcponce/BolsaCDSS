@@ -4,8 +4,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.cdspool.main.model.Documento;
+import com.cdspool.main.model.Usuario;
 
 @Repository
 public interface IDocumentoRepository extends CrudRepository<Documento, Integer> {
+
+	public Documento findByUsuario(Usuario usuario);
 
 }

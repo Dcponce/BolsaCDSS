@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cdspool.main.model.Documento;
 import com.cdspool.main.model.TipoDocumento;
+import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.IDocumentoRepository;
 import com.cdspool.main.repository.ITipoDocRepository;
+import com.cdspool.main.repository.IUsuarioRepository;
 
 @Service
 @Transactional
@@ -21,14 +23,10 @@ public class DocumentoService {
 	@Autowired
 	ITipoDocRepository iTipo;
 	
+	@Autowired
+	IUsuarioRepository iUser;
 	
-	public List<Documento> findAll(){
-		
-		List<Documento> list = (List<Documento>) iDoc.findAll();
-		
-		return list;
-	}
-//	probando
+	
 	public Documento findById(Integer id) {
 		return iDoc.findById(id).get();
 	}
@@ -50,6 +48,11 @@ public class DocumentoService {
 	
 	public TipoDocumento findByIdTipo(Integer id) {
 		return iTipo.findById(id).get();
+	}
+	
+	public Documento findByUsuario(Integer id) {
+		Usuario user = iUser.findById(id).get();
+		return iDoc.findByUsuario(user);
 	}
 	
 }

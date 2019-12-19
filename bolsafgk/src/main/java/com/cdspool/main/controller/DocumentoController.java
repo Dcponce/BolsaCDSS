@@ -17,20 +17,13 @@ import com.cdspool.main.model.TipoDocumento;
 import com.cdspool.main.service.DocumentoService;
 
 @RestController
-@CrossOrigin(origins = "*", methods =  {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+		RequestMethod.DELETE })
 @RequestMapping(value = "documento")
 public class DocumentoController {
 
 	@Autowired
 	DocumentoService dService;
-
-//	@GetMapping
-//	public List<Documento> lista(){
-//		
-//		List<Documento> list = dService.findAll();
-//		
-//		return list;
-//	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
@@ -52,12 +45,9 @@ public class DocumentoController {
 		return dService.findByIdTipo(id);
 	}
 
-//	@GetMapping
-//	public List<TipoDocumento> TipoDocList(){
-//		
-//		List<TipoDocumento> list = (List<TipoDocumento>) itipo.findAll();
-//		
-//		return list;
-//	}
+	@GetMapping("usuario/{id}")
+	public Documento idUsuario(@PathVariable Integer id) {
+		return dService.findByUsuario(id);
+	}
 
 }

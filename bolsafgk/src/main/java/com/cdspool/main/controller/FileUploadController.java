@@ -1,15 +1,15 @@
 package com.cdspool.main.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.Principal;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cdspool.main.model.Documento;
 import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.IUsuarioRepository;
+import com.cdspool.main.service.DocumentoService;
 
 @RestController
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
@@ -32,12 +33,14 @@ public class FileUploadController {
 
 	@Autowired
 	IUsuarioRepository iUsuarioRepository;
+	
+	@Autowired
+	DocumentoService sDocu;
 
-	@PostMapping("/upload")
+	@RequestMapping(value = "/upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String uploadFile(@RequestParam("file") MultipartFile file, Principal principal,
 			RedirectAttributes attributes) throws IOException {
 		if (file == null || file.isEmpty()) {
-			// attributes.addFlashAttribute("message", "Por favor seleccione un archivo");
 			return "{'msg':'Por favor seleccione un archivo'}";
 		}
 
@@ -46,26 +49,34 @@ public class FileUploadController {
 		builder.append(File.separator);
 		builder.append("Desktop");
 		builder.append(File.separator);
-		builder.append("Bolsa CDS");
+		builder.append("Proyecto_n3");
 		builder.append(File.separator);
-		builder.append("cv");
+		builder.append("BolsaCDSS");
+		builder.append(File.separator);
+		builder.append("img");
 		builder.append(File.separator);
 		builder.append(file.getOriginalFilename());
-		System.out.println("Esto trae: " + file.getOriginalFilename());
-		byte[] fileBytes = file.getBytes();
-		Path path = Paths.get(builder.toString());
-		Files.write(path, fileBytes);
 
-		// attributes.addFlashAttribute("message", "Archivo cargado correctamente");
+		File convertFile = new File(builder.toString());
+		convertFile.createNewFile();
 
-		Documento d = new Documento();
+		try (FileOutputStream fout = new FileOutputStream(convertFile)) {
 
-		Usuario usua = iUsuarioRepository.findByEmail(principal.getName());
+			fout.write(file.getBytes());
 
-		d.setRuta(file.getOriginalFilename());
-		d.setId_tipoDoc(dc.findById(1));
-		d.setId_usuario(usua);
-		dc.add(d);
+			Documento d = new Documento();
+			Usuario usua = iUsuarioRepository.findByEmail(principal.getName());
+			
+
+			d.setRuta(file.getOriginalFilename());
+			d.setId_tipoDoc(dc.findById(1));
+			d.setId_usuario(usua);
+			dc.add(d);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return "{'msg':'Archivo cargado correctamente'}";
 	}
 
