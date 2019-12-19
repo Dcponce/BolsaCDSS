@@ -1,16 +1,13 @@
 $(document).ready(function () {
-    var uriBuscar = "http://localhost:8080/alumnos";
 
-
-    modificar(uriBuscar);
-    modificarE("http://localhost:8080/educacion");
-    modificarPro("http://localhost:8080/proyecto");
-    modificarDtH("http://localhost:8080/detalleHa");
+    modificar();
+    modificarE();
+    modificarPro();
 });
 
-function modificar(uriBuscar) {
+function modificar() {
     $.ajax({
-        url: uriBuscar + "/usuario/" + JSON.parse(localStorage.getItem('Id')),
+        url: "http://localhost:8080/alumnos/usuario/" + JSON.parse(localStorage.getItem('Id')),
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
@@ -21,6 +18,8 @@ function modificar(uriBuscar) {
                 $('#id').val(data.id);
                 $('#nombre').val(data.nombre);
                 $('#apellido').val(data.apellido);
+                $('#no').text(data.nombre);
+                $('#ap').text(data.apellido);
                 $('#telefono').val(data.telefono);
                 $('#celular').val(data.celular);
                 $('#direccion').val(data.direccion);
@@ -36,9 +35,9 @@ function modificar(uriBuscar) {
         }
     });
 }
-function modificarE(UriE) {
+function modificarE() {
     $.ajax({
-        url: UriE + "/usuario/" + JSON.parse(localStorage.getItem('Id')),
+        url: "http://localhost:8080/educacion/usuario/" + JSON.parse(localStorage.getItem('Id')),
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
@@ -55,28 +54,9 @@ function modificarE(UriE) {
         }
     });
 }
-function modificarPro(UriP) {
+function modificarPro() {
     $.ajax({
-        url: UriP + "/usuario/" + JSON.parse(localStorage.getItem('Id')),
-        headers: {
-            'Authorization': JSON.parse(localStorage.getItem('Token'))
-        },
-        method: "GET",
-        contentType: "json",
-        success: function (data) {
-            if (data != null) {
-                $.each(data, function (i, v) {
-                    $('#idPr'+i).val(v.id);
-                    $('#nom' + i).val(v.nombre);
-                    $('#link' + i).val(v.url);
-                });
-            }
-        }
-    });
-}
-function modificarDtH(UriDtH) {
-    $.ajax({
-        url: UriDtH + "/usuario/" + JSON.parse(localStorage.getItem('Id')),
+        url: "http://localhost:8080/proyecto/usuario/" + JSON.parse(localStorage.getItem('Id')),
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },

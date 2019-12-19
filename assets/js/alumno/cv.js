@@ -2,7 +2,8 @@ $(document).ready(function () {
     personales();
     educacion();
     proyectos();
-    Dhabilidades()
+    Dhabilidades();
+    Documentos();
 });
 
 function personales() {
@@ -116,6 +117,7 @@ function Dhabilidades() {
         success: function (data) {
             if (data != null) {
                 $.each(data, function (i, v) {
+                    console.log(v.habilidad.descripcion);
                     switch (v.habilidad.tipo) {
                         case "T":
                             $('#tec').append('<p>' + v.habilidad.descripcion + '</p>');
@@ -139,6 +141,21 @@ function Dhabilidades() {
                             break
                     }
                 });
+            }
+        }
+    });
+}
+function Documentos() {
+    $.ajax({
+        url: "http://localhost:8080/documento/usuario/" + JSON.parse(localStorage.getItem('Id')),
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        method: "GET",
+        contentType: "json",
+        success: function (data) {
+            if (data != null) {
+                $('#img').append('<img src="../../../BolsaCDSS/img/'+data.ruta+'" alt="">');
             }
         }
     });
