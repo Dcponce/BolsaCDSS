@@ -59,7 +59,7 @@ function getId(email, rol) {
                     break;
                 case "ROLE_ALUMNO":
                     
-                    ruta = "vistas/alumno/datos.html";
+                    ruta = "vistas/alumno/inicio.html";
                     break;
                 default:
                     ruta = "index.html";
