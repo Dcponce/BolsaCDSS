@@ -15,86 +15,115 @@
     <div id="home" class="header">
         <div class="container">
             <!-- top-hedader -->
-                <div class="top-header">
-                    <div class="banner-info">
-                        <div class="col-md-5 header-right">
-                            <h1>Empresa</h1> <br><br>
+            <div class="top-header">
+                <div class="top-nav">
+                    <div class="navigation">
+                        <div class="logo">
 
-                            <ul class="address" id="dts">
-                                <li>
-                                    <label for="#file" style="color: azure;">Nombre:</label>
-                                    <input class="form-control" type="text" name="nombre" id="nombre"
-                                        placeholder="Nombre">
-                                </li> <br>
-
-                                <li>
-                                    <label for="#file" style="color: azure;">Telefono:</label>
-                                    <input class="form-control" type="text" name="telefono" id="telefono"
-                                        placeholder="Telefóno">
-                                </li> <br>
-
-                                <li>
-                                    <label for="#file" style="color: azure;">Imagen:</label>
-                                    <input style="color: white;" type="file" name="file" id="file">
-                                </li> <br>
-
-                                <li>
-                                    <button class="btn btn-danger" type="button" id="nuevo">Guardar</button>
-                                </li>
-                            </ul>
                         </div>
-                        <div class="col-md-5 header-left">
-                            <img class="rounded " src="../../assets/css/cv/images/img1.jpg" alt="">
+                        <div class="navigation-right">
+                            <nav class="link-effect-3" id="link-effect-3">
+                                <ul class="nav1 nav nav-wil">
+                                    <li class="active"><a data-hover="Home" href="index.html">Home</a></li>
+                                    <li><a class="scroll" data-hover="About" href="#about">About</a></li>
+                                    <li><a class="scroll" data-hover="Services" href="#services">Services</a></li>
+                                    <li><a class="scroll" data-hover="Experience" href="#work">Experience</a></li>
+                                    <li><a class="scroll" data-hover="Portfolio" href="#port">Portfolio</a></li>
+                                    <li><a class="scroll" data-hover="Blog" href="#blogs">Blog</a></li>
+                                    <li><a class="scroll" data-hover="Contact" href="#contact">Contact</a></li>
+                                </ul>
+                            </nav>
+                            <!-- script-for-menu -->
+                            <script>
+                                $("span.menu").click(function () {
+                                    $("ul.nav1").slideToggle(300, function () {
+                                        // Animation complete.
+                                    });
+                                });
+                            </script>
+                            <!-- /script-for-menu -->
                         </div>
-                        <div class="clearfix"> </div>
+                        <div class="clearfix"></div>
                     </div>
+                    <!-- /top-hedader -->
                 </div>
-            </div>
-        </div>
-        <!-- services -->
-        <div id="services" class="services">
-            <div class="container">
-                <div class="service-head one text-center ">
-                    <h4>Filtros</h4>
-                    <h3>Busca <span>Talentos</span></h3>
-                    <span class="border two"></span>
-                </div>
-                <!-- services-grids -->
-                <div class="wthree_about_right_grids w3l-agile">
+                <div class="banner-info">
+                    <div class="col-md-5 header-right">
+                        <h1>Empresa</h1> <br><br>
 
+                        <ul class="address" id="dts">
+                            <li>
+                                <label for="#nombre" style="color: azure;">Nombre:</label>
+                                <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre">
+                            </li> <br>
+
+                            <li>
+                                <label for="#telefono" style="color: azure;">Telefono:</label>
+                                <input class="form-control" type="text" name="telefono" id="telefono"
+                                    placeholder="Telefóno">
+                            </li> <br>
+
+                            <li>
+                                <label for="#file" style="color: azure;">Imagen:</label>
+                                <input style="color: white;" type="file" name="file" id="file">
+                            </li> <br>
+
+                            <li>
+                                <button class="btn btn-danger" type="button" id="nuevo">Guardar</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-5 header-left">
+                        <img class="rounded " src="../../assets/css/cv/images/img1.jpg" alt="">
+                    </div>
                     <div class="clearfix"> </div>
                 </div>
-                <!-- services-grids -->
             </div>
         </div>
+    </div>
+    <!-- services -->
+    <div id="services" class="services">
+        <div class="container">
+            <div class="service-head one text-center ">
+                <h4>Filtros</h4>
+                <h3>Busca <span>Talentos</span></h3>
+                <span class="border two"></span>
+            </div>
+            <!-- services-grids -->
+            <div class="wthree_about_right_grids w3l-agile">
+
+                <div class="clearfix"> </div>
+            </div>
+            <!-- services-grids -->
+        </div>
+    </div>
 
 
 
-        <div class="modal fade" id="img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Cargar imagen</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="file" name="file" id="file" /><br><br>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" id="perfil">Cargar</button>
-                    </div>
+    <div class="modal fade" id="img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cargar imagen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="file" name="file" id="file" /><br><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="perfil">Cargar</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script src="../../assets/js/bootstrap/jquery-3.4.1.min.js"></script>
-        <script src="../../assets/js/bootstrap/popper.min.js"></script>
-        <script src="../../assets/js/bootstrap/bootstrap.min.js"></script>
-        <script src="../../assets/js/empresa/accesoempresa.js"></script>
+    <script src="../../assets/js/bootstrap/jquery-3.4.1.min.js"></script>
+    <script src="../../assets/js/bootstrap/popper.min.js"></script>
+    <script src="../../assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="../../assets/js/empresa/accesoempresa.js"></script>
 </body>
 
 </html>
