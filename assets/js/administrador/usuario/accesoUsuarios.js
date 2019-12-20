@@ -98,7 +98,7 @@ function getCred() {
     contentType: "application/json",
     success: function(res) {
       var idC = res["id"];
-      console.log(id);
+      console.log(idC);
       nuevo("http://localhost:8080/usuarios", idC);
     }
   });
@@ -122,17 +122,17 @@ function nuevo(uri, idC) {
 
   if (credencial != null) {
     var data = {
-      id: id,
-      email: email,
-      id_credencial: {
-        id: idC
+      "id": id,
+      "email": email,
+      "id_credencial": {
+        "id": idC
       },
-      clave: clave,
-      id_tipo: {
-        id: tipo
+      "clave": clave,
+      "id_tipo": {
+        "id": tipo
       },
-      estado: true,
-      activo: false
+      "estado": true,
+      "activo": false
     };
 
     $.ajax({
