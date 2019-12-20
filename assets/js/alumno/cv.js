@@ -155,7 +155,7 @@ function Documentos() {
         contentType: "json",
         success: function (data) {
             if (data != null) {
-                $('#img').append('<img src="../../../BolsaCDSS/img/'+data.ruta+'" alt="">');
+                $('#img').append('<img src="../../../BolsaCDSS/img/' + data.ruta +'" alt="" class="rounded">');
             }
         }
     });

@@ -1,12 +1,12 @@
-$(document).ready(function(){
+$(document).ready(function () {
     var uri = "http://localhost:8080/certificacion";
-    getData(uri );
+    getData(uri);
     $('#nuevo').on('click', function () {
         nuevo(uri);
     })
 })
 
-function getData(uri){
+function getData(uri) {
     $.ajax({
         url: uri,
         headers: {
@@ -15,34 +15,33 @@ function getData(uri){
         type: 'GET',
         dataType: "json",
         success: function (result) {
-            if (result != null){
+            if (result != null) {
                 $("#tabla>tbody").empty();
-            var fila = "";
+                var fila = "";
 
-            $.each(result,  function(i, v){
-                fila = 
-                    "<tr>" +
+                $.each(result, function (i, v) {
+                    fila =
+                        "<tr>" +
                         "<td>" + v.nombre + "</td>" +
-                        "<td>"+
-                            "<button type='button' onclick='eliminar("+v.id+")'>Eliminar</button>" +
-                        "</td>"+
-                        "<td>"+
-                            "<button type='button' onclick='editar("+v.id+")'>Editar</button>" +
-                        "</td>"+
-                    "</tr>";
+                        "<td>" +
+                        "<a href='#' style='color:  #2980b9 ' onclick='editar(" + v.id + ")' data-toggle='modal' data-target='#nuevoU'><i class='material-icons'>edit</i></a>" +
+                        "</td>" +
+                        "<td>" +
+                        "<a href='#' style='color:  #c0392b ' onclick='eliminar(" + v.id + ")' ><i class='material-icons'>delete_forever</i></a>" +
+                        "</td>" +
+                        "</tr>";
 
-                    $('#tabla>tbody').append(fila);   
-            });
+                    $('#tabla>tbody').append(fila);
+                });
             }
-        }   
-    }); 
+        }
+    });
 }
-function nuevo(uri){
+function nuevo(uri) {
     var id = $('#id').val();
     var nombre = $('#nombre').val();
     var metodo = "POST";
-    var accion = "Guardado"
-
+    var accion = "Guardado";
     if (id > 0) {
         metodo = "PUT"
         accion = "Actualizado"
@@ -51,8 +50,8 @@ function nuevo(uri){
         id = null;
     }
 
-    if(nombre != null){
-        
+    if (nombre != null) {
+
         var data = {
             "id": id,
             "nombre": nombre
@@ -66,18 +65,18 @@ function nuevo(uri){
             method: metodo,
             contentType: "application/json",
             data: JSON.stringify(data),
-            success:function(){
+            success: function () {
                 mensaje = "Registro " + accion + " exitosamente";
                 alert(mensaje);
                 getData(uri);
                 clear();
             },
-            error: function (error){
+            error: function (error) {
                 console.log(error);
             }
         })
 
-    }else{
+    } else {
         mensaje = "Todos los campos son requeridos";
         alert(mensaje);
     }
@@ -99,11 +98,12 @@ function eliminar(id) {
         }
     }).fail(function (error) {
         mensaje = "Error: " + error
-       alert(mensaje);
+        alert(mensaje);
     });
 }
 
 function editar(id) {
+    $('#exampleModalLabel').text("Modificar Certificación")
     $.ajax({
         url: "http://localhost:8080/certificacion/byId/" + id,
         headers: {
@@ -111,7 +111,7 @@ function editar(id) {
         },
         type: 'GET',
         dataType: "json",
-        success: function (result){
+        success: function (result) {
             if (result != null) {
                 $('#id').val(result.id);
                 $('#nombre').val(result.nombre);
@@ -120,8 +120,12 @@ function editar(id) {
     });
 }
 
-function clear(){
+function clear() {
     $('#id').val("");
     $('#nombre').val("");
 
+}
+
+function titulo() {
+    $('#exampleModalLabel').text("Nueva certificación")
 }

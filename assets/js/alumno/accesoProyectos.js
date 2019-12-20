@@ -3,7 +3,7 @@ $(document).ready(function () {
     var uriP = "http://localhost:8080/proyecto";
 
     $('#datosPr').on('click', function () {
-        guardarPuriP(uriP);
+        guardarP(uriP);
     });
 
 });
