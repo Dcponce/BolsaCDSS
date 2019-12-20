@@ -33,7 +33,7 @@ public class Usuario implements Serializable {
 
 	private Boolean estado;
 
-	private Boolean activo;
+	private String activo;
 
 	public Integer getId() {
 		return id;
@@ -83,11 +83,11 @@ public class Usuario implements Serializable {
 		this.estado = estado;
 	}
 
-	public Boolean getActivo() {
+	public String getActivo() {
 		return activo;
 	}
 
-	public void setActivo(Boolean activo) {
+	public void setActivo(String activo) {
 		this.activo = activo;
 	}
 

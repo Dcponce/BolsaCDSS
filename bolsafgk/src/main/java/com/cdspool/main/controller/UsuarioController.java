@@ -54,6 +54,22 @@ public class UsuarioController {
 		
 		uService.save(usua);
 	}
+	
+	@PostMapping("alumno")
+	public void saveAlumno(@RequestBody Usuario usu) {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		
+		Usuario usua = new Usuario();
+		
+		usua.setEmail(usu.getEmail());
+		usua.setId_credencial(usu.getId_credencial());
+		usua.setClave(bCryptPasswordEncoder.encode(usu.getClave()));
+		usua.setId_tipo(usu.getId_tipo());
+		usua.setEstado(usu.getEstado());
+		usua.setActivo(usu.getActivo());
+		
+		uService.save(usua);
+	}
 
 	@PutMapping
 	public void update(@RequestBody Usuario usu) {
