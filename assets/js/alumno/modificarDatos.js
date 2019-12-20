@@ -18,8 +18,8 @@ function modificar() {
                 $('#id').val(data.id);
                 $('#nombre').val(data.nombre);
                 $('#apellido').val(data.apellido);
-                $('#no').text(data.nombre);
-                $('#ap').text(data.apellido);
+                $('.user-name').text(data.nombre);
+                $('.display-income').text(data.apellido);
                 $('#telefono').val(data.telefono);
                 $('#celular').val(data.celular);
                 $('#direccion').val(data.direccion);

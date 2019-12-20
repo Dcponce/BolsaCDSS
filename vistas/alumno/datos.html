@@ -1,135 +1,188 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Datos personales</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Alumno</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../../assets/css/perfil/vendors/iconfonts/mdi/css/materialdesignicons.css">
+  <!-- endinject -->
+  <!-- vendor css for this page -->
+  <!-- End vendor css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../../assets/css/perfil/css/shared/style.css">
+  <!-- endinject -->
+  <!-- Layout style -->
+  <link rel="stylesheet" href="../../assets/css/perfil/css/demo_2/style.css">
+  <!-- Layout style -->
+  <link rel="shortcut icon" href="../../assets/css/perfil/images/favicon.ico" />
 
-    <link rel="stylesheet" href="../../assets/css/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
-    <script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
+  <link rel="stylesheet"
+    href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
+  <script
+    src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
 </head>
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-5" id="menuA">
 
+<body class="header-fixed">
+  <!-- partial:partials/_header.html -->
+
+  <!-- partial -->
+  <div class="page-body">
+    <!-- partial:partials/_sidebar.html -->
+    <div class="sidebar">
+    </div>
+    <!-- partial -->
+    <div class="page-content-wrapper">
+      <div class="page-content-wrapper-inner">
+        <div class="content-viewport">
+          <div class="row">
+            <div class="col-12 py-5">
+              <h4>Bienvenido / a</h4>
+              <p class="text-gray user-name"></p>
             </div>
-            <div class="col-8">
-                <div class="card mt-3 tab-card">
-                    <div class="card-header tab-card-header">
-                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link show active" id="one-tab" data-toggle="tab" href="#one" role="tab"
-                                    aria-controls="One" aria-selected="true">Personales</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab"
-                                    aria-controls="Two" aria-selected="false">Educación</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="three-tab" data-toggle="tab" href="#three" role="tab"
-                                    aria-controls="Three" aria-selected="false">Habilidades</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="four-tab" data-toggle="tab" href="#four" role="tab"
-                                    aria-controls="four" aria-selected="false">Proyectos</a>
-                            </li>
-                        </ul>
+          </div>
+          <div class="row">
+            <div class="col-lg-9 col-md-12 equel-grid">
+              <div class="grid widget-revenue-card">
+                <div class="grid-body d-flex flex-column h-100">
+                  <div class="split-header">
+                    <ul class="nav card-header-tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link show active" id="one-tab" data-toggle="tab" href="#one" role="tab"
+                          aria-controls="One" aria-selected="true">Personales</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two"
+                          aria-selected="false">Educación</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="three-tab" data-toggle="tab" href="#three" role="tab"
+                          aria-controls="Three" aria-selected="false">Habilidades</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="four-tab" data-toggle="tab" href="#four" role="tab" aria-controls="four"
+                          aria-selected="false">Proyectos</a>
+                      </li>
+                    </ul>
+                    <div class="content-wrapper v-centered">
                     </div>
+                  </div>
 
+                  <div class="mt-auto">
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
-                            <h2>Datos Personales</h2>
-                            <input type="hidden" id="id"><br>
-                            <input type="text" name="txtNombre" id="nombre" placeholder="Nombre"><br>
-                            <input type="text" name="txtApellido" id="apellido" placeholder="Apellido"><br>
-                            <input type="text" name="txtTelefono" id="telefono" placeholder="Telefono"><br>
-                            <input type="text" name="txtCelular" id="celular" placeholder="Celular"><br>
-                            <textarea name="txtDireccion" id="direccion" placeholder="Dirección"></textarea><br>
-                            <select name="txtProyecto" id="proyecto">
-                                <option selected disabled value="">Seleccione el proyecto al que pertenece</option>
-                                <option value="PPE">Centros de Desarrollo de Software</option>
-                                <option value="FGK">Oportunidades</option>
-                            </select><br>
-                            <input type="date" name="txtNacimiento" id="nacimiento"><br>
-                            <select name="txtDepartamento" id="departamento"></select><br>
-                            <select name="txtMunicipio" id="municipio"></select><br>
-                            <button type="button" id="datosP">Siguiente</button>
-                        </div>
+                      <div class="tab-pane fade show active p-3 col-md-9 showcase_content_area" id="one" role="tabpanel"
+                        aria-labelledby="one-tab">
+                        <h2>Datos Personales</h2>
+                        <input type="hidden" id="id"><br>
+                        <input type="text" name="txtNombre" id="nombre" placeholder="Nombre" class="form-control"><br>
+                        <input type="text" name="txtApellido" id="apellido" placeholder="Apellido"
+                          class="form-control"><br>
+                        <input type="text" name="txtTelefono" id="telefono" placeholder="Telefono"
+                          class="form-control"><br>
+                        <input type="text" name="txtCelular" id="celular" placeholder="Celular"
+                          class="form-control"><br>
+                        <textarea name="txtDireccion" id="direccion" placeholder="Dirección"
+                          class="form-control"></textarea><br>
+                        <select name="txtProyecto" id="proyecto" class="form-group custom-select">
+                          <option selected disabled value="">Seleccione el proyecto al que pertenece</option>
+                          <option value="PPE">Centros de Desarrollo de Software</option>
+                          <option value="FGK">Oportunidades</option>
+                        </select><br>
+                        <input type="date" name="txtNacimiento" id="nacimiento" class="form-control"><br>
+                        <select name="txtDepartamento" id="departamento" class="form-group custom-select"></select><br>
+                        <select name="txtMunicipio" id="municipio" class="form-group custom-select"></select><br>
+                        <div class="btn btn-success has-icon btn-rounded" id="datosP">
+                          <i class="mdi mdi-arrow-right"></i>Siguiente</div>
+                      </div>
 
-                        <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
-                            <h2>Educación</h2>
-                            <input type="hidden" id="idE"><br>
-                            <input type="text" name="txtUniversidad" id="universidad"
-                                placeholder="Nombre de universidad"><br>
-                            <input type="text" name="txtCarrera" id="carrera" placeholder="Nombre de la carrera"><br>
-                            <select name="txtCertificacion" id="certificacion"></select><br>
-                            <select name="txtNivel" id="nivel">
-                                <option selected disabled>Seleccione su nivel</option>
-                                <option value="1">Nivel 1</option>
-                                <option value="2">Nivel 2</option>
-                                <option value="3">Nivel 3</option>
-                            </select><br>
-                            <button type="button" id="datosE">Siguiente</button>
-                        </div>
+                      <div class="tab-pane fade p-3 col-md-9 showcase_content_area" id="two" role="tabpanel"
+                        aria-labelledby="two-tab">
+                        <h2>Educación</h2>
+                        <input type="hidden" id="idE"><br>
+                        <input type="text" name="txtUniversidad" id="universidad" placeholder="Nombre de universidad"
+                          class="form-control"><br>
+                        <input type="text" name="txtCarrera" id="carrera" placeholder="Nombre de la carrera"
+                          class="form-control"><br>
+                        <select name="txtCertificacion" id="certificacion"
+                          class="form-group custom-select"></select><br>
+                        <select name="txtNivel" id="nivel" class="form-group custom-select">
+                          <option selected disabled>Seleccione su nivel</option>
+                          <option value="1">Nivel 1</option>
+                          <option value="2">Nivel 2</option>
+                          <option value="3">Nivel 3</option>
+                        </select><br>
+                        <div class="btn btn-success has-icon btn-rounded" id="datosE">
+                          <i class="mdi mdi-arrow-right"></i>Siguiente</div>
+                      </div>
 
-                        <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
-                            <h2>Habilidades</h2>
-                            <input type="text" id="idH"><br>
+                      <div class="tab-pane fade p-3 col-md-9 showcase_content_area" id="three" role="tabpanel"
+                        aria-labelledby="three-tab">
+                        <h2>Habilidades</h2>
+                        <input type="hidden" id="idH"><br>
 
-                            <select id="select" placeholder="Seleccione 10 habilidades máximo" multiple>
-                            </select><br>
+                        <select id="select" placeholder="Seleccione 10 habilidades máximo"
+                          class="form-group custom-select" multiple>
+                        </select><br>
+                        <div class="btn btn-success has-icon btn-rounded" id="datosH">
+                          <i class="mdi mdi-arrow-right"></i>Siguiente</div>
 
-                            <button type="button" id="datosH">Siguiente</button>
-                        </div>
+                      </div>
 
-                        <div class="tab-pane fade p-4" id="four" role="tabpanel" aria-labelledby="four-tab">
-                            <h2>Proyectos</h2>
-                            <label>Link de proyectos</label><br>
-                            <input type="hidden" id="idPr0">
-                            <input type="text" name="txtNombre" id="nom0" placeholder="Nombre de proyecto"><br>
-                            <input type="text" name="txtLink" id="link0" placeholder="Link de proyecto"><br>
-                            <input type="hidden" id="idPr1">
-                            <input type="text" name="txtNombre" id="nom1" placeholder="Nombre de proyecto"><br>
-                            <input type="text" name="txtLink" id="link1" placeholder="Link de proyecto"><br>
-                            <input type="hidden" id="idPr2">
-                            <input type="text" name="txtNombre" id="nom2" placeholder="Nombre de proyecto"><br>
-                            <input type="text" name="txtLink" id="link2" placeholder="Link de proyecto"><br>
-                            <button type="button" id="datosPr">Guardar</button>
-                        </div>
+                      <div class="tab-pane fade p-4 col-md-9 showcase_content_area" id="four" role="tabpanel"
+                        aria-labelledby="four-tab">
+                        <h2>Proyectos</h2>
+                        <label>Link de proyectos</label><br>
+                        <input type="hidden" id="idPr0">
+                        <input type="text" name="txtNombre" id="nom0" placeholder="Nombre de proyecto"
+                          class="form-control"><br>
+                        <input type="text" name="txtLink" id="link0" placeholder="Link de proyecto"
+                          class="form-control"><br>
+                        <input type="hidden" id="idPr1">
+                        <input type="text" name="txtNombre" id="nom1" placeholder="Nombre de proyecto"
+                          class="form-control"><br>
+                        <input type="text" name="txtLink" id="link1" placeholder="Link de proyecto"
+                          class="form-control"><br>
+                        <input type="hidden" id="idPr2">
+                        <input type="text" name="txtNombre" id="nom2" placeholder="Nombre de proyecto"
+                          class="form-control"><br>
+                        <input type="text" name="txtLink" id="link2" placeholder="Link de proyecto"
+                          class="form-control"><br>
+                        <div class="btn btn-success has-icon btn-rounded" id="datosPr">
+                          <i class="mdi mdi-account-check"></i>Guardar</div>
+                      </div>
 
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+        <!-- content viewport ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- page content ends -->
     </div>
+    <!--page body ends -->
+    <!-- SCRIPT LOADING START FORM HERE /////////////-->
+    <!-- plugins:js -->
+    <script src="../../assets/css/perfil/vendors/js/core.js"></script>
+    <!-- endinject -->
+    <!-- Vendor Js For This Page Ends-->
+    <script src="../../assets/css/perfil/vendors/apexcharts/apexcharts.min.js"></script>
+    <script src="../../assets/css/perfilets/css/perfil/vendors/chartjs/Chart.min.js"></script>
+    <script src="../../assets/css/perfil/js/charts/chartjs.addon.js"></script>
+    <!-- Vendor Js For This Page Ends-->
+    <!-- build:js -->
+    <script src="../../assets/css/perfil/js/template.js"></script>
+    <script src="../../assets/css/perfil/js/dashboard.js"></script>
+    <!-- endbuild -->
 
-    <div class="modal fade" id="img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cargar imagen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="file" name="file" id="archivo" /><br><br>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" id="perfil">Cargar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script src="../../assets/js/alumno/accesoHabilidades.js"></script>
     <script src="../../assets/js/alumno/accesoAlumno.js"></script>

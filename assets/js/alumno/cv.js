@@ -128,7 +128,7 @@ function Dhabilidades() {
                         case "O":
                             $('#Dha').append('<li>Otras</li>');
                             $('#otra').append('<li>' +
-                                '<div class= "timeline-badge danger" > <i class="glyphicon glyphicon-briefcase"></i></div>' +
+                                '<div class= "timeline-badge danger" > <i class="glyphicon glyphicon-link"></i></div>' +
                                 '<div class="timeline-panel">' +
                                 '<div class="timeline-heading">' +
                                 '<h4 class="timeline-title">Conocimientos adquiridos</h4>' +
