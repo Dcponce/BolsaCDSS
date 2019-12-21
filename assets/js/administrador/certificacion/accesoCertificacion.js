@@ -3,7 +3,11 @@ $(document).ready(function () {
     getData(uri);
     $('#nuevo').on('click', function () {
         nuevo(uri);
-    })
+    });
+    $('#delete').on('click', function () {
+        var id = $('#idDelete').val();
+        eliminar(id);
+    });
 })
 
 function getData(uri) {
@@ -27,10 +31,9 @@ function getData(uri) {
                         "<a href='#' style='color:  #2980b9 ' onclick='editar(" + v.id + ")' data-toggle='modal' data-target='#nuevoU'><i class='material-icons'>edit</i></a>" +
                         "</td>" +
                         "<td>" +
-                        "<a href='#' style='color:  #c0392b ' onclick='eliminar(" + v.id + ")' ><i class='material-icons'>delete_forever</i></a>" +
+                    "<a href='#' style='color:  #c0392b' onclick='borrar(" + v.id + ")' data-toggle='modal' data-target='#borrar'><i class='material-icons'>delete_forever</i></a>" +
                         "</td>" +
                         "</tr>";
-
                     $('#tabla>tbody').append(fila);
                 });
             }
@@ -66,8 +69,10 @@ function nuevo(uri) {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function () {
-                mensaje = "Registro " + accion + " exitosamente";
-                alert(mensaje);
+                $('#oko').text('Excelente')
+                $('#msg').text('datos almacenados correctamente.')
+                $('.alert').addClass('alert-success');
+                $('.alert').removeClass('alert-warning');
                 getData(uri);
                 clear();
             },
@@ -77,8 +82,10 @@ function nuevo(uri) {
         })
 
     } else {
-        mensaje = "Todos los campos son requeridos";
-        alert(mensaje);
+        $('#oko').text('Lo sentimos')
+        $('#msg').text('no se logro completar la acción.')
+        $('.alert').addClass('alert-warning');
+        $('.alert').removeClass('alert-success');
     }
 
 }
@@ -92,13 +99,17 @@ function eliminar(id) {
         method: "DELETE",
         contentType: "application/json",
         success: function (res) {
-            mensaje = "Registro eliminado exitosamente";
-            alert(mensaje);
+            $('#oko').text('Excelente')
+            $('#msg').text('datos eliminados correctamente.')
+            $('.alert').addClass('alert-success');
+            $('.alert').removeClass('alert-warning');
             getData("http://localhost:8080/certificacion");
         }
     }).fail(function (error) {
-        mensaje = "Error: " + error
-        alert(mensaje);
+        $('#oko').text('Lo sentimos')
+        $('#msg').text('no se logro completar la acción.')
+        $('.alert').addClass('alert-warning');
+        $('.alert').removeClass('alert-success');
     });
 }
 
@@ -128,4 +139,7 @@ function clear() {
 
 function titulo() {
     $('#exampleModalLabel').text("Nueva certificación")
+}
+function borrar(id) {
+    $('#idDelete').val(id);
 }

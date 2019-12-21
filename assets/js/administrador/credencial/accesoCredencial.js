@@ -8,9 +8,9 @@ $(document).ready(function () {
         nuevo(base_uri);
     });
 
-    $('#nuevo').click(function() {
-        // Recargo la página
-        location.reload();
+    $('#delete').on('click', function () {
+        var id = $('#idDelete').val();
+        eliminar(id);
     });
 
 });
@@ -37,7 +37,7 @@ function getData(base_uri) {
                         //botones
                         {
                             "render": function (data, type, row) {
-                                return "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #2980b9' onclick='editar(" + row.id + ")'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='eliminar(" + row.id + ")' ><i class='material-icons'>delete_forever</i></a> </div></div>"
+                                return "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #2980b9' onclick='editar(" + row.id + ")' data-toggle='modal' data-target='#nuevoU'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='borrar(" + row.id + ")' data-toggle='modal' data-target='#borrar'><i class='material-icons'>delete_forever</i></a> </div></div>"
                             }
                         },
                     ],
@@ -98,10 +98,19 @@ function nuevo(base_uri) {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function () {
-            alert("Registro agregar Existosamente !!!");
+            $('#oko').text('Excelente')
+            $('#msg').text('datos almacenados correctamente.')
+            $('.alert').addClass('alert-success');
+            $('.alert').removeClass('alert-warning');
             clear();
+            location.reload();
 
         }
+    }).fail(function (error) {
+        $('#oko').text('Lo sentimos')
+        $('#msg').text('no se logro completar la acción.')
+        $('.alert').addClass('alert-warning');
+        $('.alert').removeClass('alert-success');
     });
 }
 
@@ -114,9 +123,17 @@ function eliminar(id) {
         method: "DELETE",
         contentType: "application/json",
         success: function () {
-            alert("Registro eliminado Existosamente !!!");
+            $('#oko').text('Excelente')
+            $('#msg').text('datos eliminados correctamente.')
+            $('.alert').addClass('alert-success');
+            $('.alert').removeClass('alert-warning');
             location.reload();
         }
+    }).fail(function (error) {
+        $('#oko').text('Lo sentimos')
+        $('#msg').text('no se logro completar la acción.')
+        $('.alert').addClass('alert-warning');
+        $('.alert').removeClass('alert-success');
     });
 
 }
@@ -142,3 +159,9 @@ function clear() {
 
 }
 
+function titulo() {
+    $('#exampleModalLabel').text("Nueva certificación")
+}
+function borrar(id) {
+    $('#idDelete').val(id);
+}

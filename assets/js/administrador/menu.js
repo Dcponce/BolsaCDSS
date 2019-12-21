@@ -125,7 +125,7 @@ function menuDatos() {
         '<a href="certificacion.html">Certificaciones</a>' +
         '</li>' +
         '<li>' +
-        '<a href="#">Credencial</a>' +
+        '<a href="credencial.html">Credencial</a>' +
         '</li>' +
         '<li>' +
         '<a href="#">Habilidades</a>' +

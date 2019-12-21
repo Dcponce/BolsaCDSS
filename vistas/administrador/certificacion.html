@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Inicio - Administrador</title>
+    <title>Certificación</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../assets/css/perfil/vendors/iconfonts/mdi/css/materialdesignicons.css">
     <!-- endinject -->
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../assets/css/perfil/css/shared/style.css">
     <!-- endinject -->
     <!-- Layout style -->
-    <link rel="stylesheet" href="../../assets/css/perfil/css/demo_2/style.css">
+    <link rel="stylesheet" href="../../assets/css/perfil/css/demo_1/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Layout style -->
     <style>
@@ -36,15 +36,23 @@
         <!-- partial -->
         <div class="page-content-wrapper">
             <div class="page-content-wrapper-inner">
+                <div class="alert alert-dismissible fade show" role="alert">
+                    <b id="oko"></b>
+                    <p id="msg"></p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 <div class="content-viewport">
                     <div class="row">
                         <div class="col-12 py-5">
-                            <h4>Bienvenido</h4>
-                            <p class="text-gray">Administrador</p>
+                            <h4>Certificaciones</h4>
+                            
                         </div>
                     </div>
                     <div style="text-align: right; margin-bottom: 2em;">
-                        <a class="btn btn-success has-icon btn-rounded" data-toggle="modal" data-target="#nuevoU" onclick="titulo()"> <i class="mdi mdi-plus"></i>Nuevo</a>
+                        <a class="btn btn-success has-icon btn-rounded" data-toggle="modal" data-target="#nuevoU"
+                            onclick="titulo()"> <i class="mdi mdi-plus"></i>Nuevo</a>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-6 equel-grid">
@@ -63,15 +71,15 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- content viewport ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
 
-        </footer>
-        <!-- partial -->
-    </div>
-    <!-- page content ends -->
+            <!-- content viewport ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- page content ends -->
     </div>
     <!--page body ends -->
     <!-- SCRIPT LOADING START FORM HERE /////////////-->
@@ -92,7 +100,9 @@
     <script src="../../assets/js/administrador/certificacion/accesoCertificacion.js"></script>
 
 
-    <div class="modal fade" id="nuevoU" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- modal save / update -->
+    <div class="modal fade" id="nuevoU" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -104,7 +114,8 @@
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id">
 
-                    <input type="text" name="txtNombre" id="nombre" placeholder="Nombre de certificación" class="form-control">
+                    <input type="text" name="txtNombre" id="nombre" placeholder="Nombre de certificación"
+                        class="form-control">
 
                 </div>
                 <div class="modal-footer">
@@ -114,35 +125,27 @@
             </div>
         </div>
     </div>
-    <!-- endbuild -->
+
+    <!-- Delete Modal-->
+    <div class="modal fade" id="borrar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Eliminar certificación</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Seguro que quieres eliminar este registro?</p>
+                    <p class="text-warning"><small>Esta acción no se puede deshacer.</small></p>
+                    <input type="hidden" id="idDelete">
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-light" data-dismiss="modal" value="Cancelar">
+                    <button type="button" class="btn btn-danger" id="delete">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
-
-
-
-<!-- <dic class="container">
-    <h1>Certificacion</h1>
-    <table border="1" id="tabla">
-        <thead>
-            <th>Nombre</th>
-            <th colspan="2">Opciones</th>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table> <br>
-
-    <h2>Formulario Certificacion</h2>
-    <form>
-        <input type="hidden" name="id" id="id">
-
-        <label for="#nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre"> <br><br>
-
-        <button type="button" id="nuevo">Guardar</button>
-
-    </form>
-
-</dic>
--->
