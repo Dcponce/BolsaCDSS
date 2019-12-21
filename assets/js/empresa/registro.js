@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var uri = "http://localhost:8080/usuarios/alumno";
+    var uri = "http://localhost:8080/usuarios/empresa";
     $("#nuevo").on("click", function () {
         getCred(uri);
     });
@@ -11,7 +11,7 @@ function nuevo(uri, idC) {
     var accion = "Guardado";
     var credencial = $("#credencial").val();
 
-    if (credencial != "") {
+    if (clave != "") {
         var data = {
             "id": null,
             "email": email,
@@ -20,7 +20,7 @@ function nuevo(uri, idC) {
             },
             "clave": clave,
             "id_tipo": {
-                "id": 3
+                "id": 2
             },
             "estado": true,
             "activo": false
@@ -46,9 +46,8 @@ function nuevo(uri, idC) {
 }
 
 function getCred(uri) {
-    var credencial = $("#credencial").val();
     $.ajax({
-        url: "http://localhost:8080/usuarios/usu/" + credencial,
+        url: "http://localhost:8080/usuarios/usu/" + "3MPRESA",
         method: "GET",
         dataType: "json",
         contentType: "application/json",
