@@ -23,12 +23,12 @@ function getData(uri) {
         $.each(result, function (i, v) {
           fila =
             "<tr>" +
-            "<td>" +v.email +"</td>" +
-            "<td>" +v.id_credencial.codigo +"</td>" +
-            "<td>" +v.id_tipo.descripcion +"</td>" +
-            "<td>" +v.estado +"</td>" +
-            "<td>" +v.activo +"</td>" +
-          "<td>" + "<a href='#' style='color:  #c0392b ' onclick='borrar(" + v.id +")' data-toggle='modal' data-target='#borrar'><i class='material-icons'>delete_forever</i></a>" +"</td>" +
+            "<td>" + v.email + "</td>" +
+            "<td>" + v.id_credencial.codigo + "</td>" +
+            "<td>" + v.id_tipo.descripcion + "</td>" +
+            "<td>" + v.estado + "</td>" +
+            "<td>" + v.activo + "</td>" +
+            "<td>" + "<a href='#' style='color:  #c0392b ' onclick='borrar(" + v.id + ")' data-toggle='modal' data-target='#borrar'><i class='material-icons'>delete_forever</i></a>" + "</td>" +
             "</tr>";
 
           $("#tabla>tbody").append(fila);
@@ -124,17 +124,27 @@ function nuevo(uri, idC) {
       method: metodo,
       contentType: "application/json",
       data: JSON.stringify(data),
-      //processData: false,
-      //cache: false,
       success: function () {
         mensaje = "Registro " + accion + " exitosamente";
-        alert(mensaje);
-        getData(uri);
+        Swal.fire({
+          icon: 'success',
+          title: 'Excelente',
+          text: 'Datos almacenado',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Ok'
+        }).then((result) => {
+          if (result.value) {
+            location.reload();
+          }
+        })
       }
     });
   } else {
-    mensaje = "Todos los campos son requeridos";
-    alert(mensaje);
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'La acción no se pudo completar'
+    });
   }
 }
 

@@ -101,11 +101,15 @@ function nuevo(base_uri) {
             Swal.fire({
                 icon: 'success',
                 title: 'Excelente',
-                text: 'Datos almacenado'
-            });
+                text: 'Datos almacenado',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok'
+            }).then((result) => {
+                if (result.value) {
+                    location.reload();
+                }
+            })
             clear();
-            location.reload();
-
         }
     }).fail(function (error) {
         Swal.fire({
@@ -128,9 +132,14 @@ function eliminar(id) {
             Swal.fire({
                 icon: 'success',
                 title: 'Excelente',
-                text: 'Datos almacenado'
-            });
-            location.reload();
+                text: 'Datos eliminados',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok'
+            }).then((result) => {
+                if (result.value) {
+                    location.reload();
+                }
+            })
         }
     }).fail(function (error) {
         Swal.fire({

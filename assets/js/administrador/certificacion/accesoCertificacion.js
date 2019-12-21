@@ -72,9 +72,14 @@ function nuevo(uri) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Excelente',
-                    text: 'Datos almacenado'
-                });
-                getData(uri);
+                    text: 'Datos almacenado',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.value) {
+                        location.reload();
+                    }
+                })
                 clear();
             },
             error: function (error) {
@@ -104,9 +109,14 @@ function eliminar(id) {
             Swal.fire({
                 icon: 'success',
                 title: 'Excelente',
-                text: 'Datos eliminados'
-            });
-            getData("http://localhost:8080/certificacion");
+                text: 'Datos eliminados',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok'
+            }).then((result) => {
+                if (result.value) {
+                    location.reload();
+                }
+            })
         }
     }).fail(function (error) {
         Swal.fire({
