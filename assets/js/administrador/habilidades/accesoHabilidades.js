@@ -7,9 +7,9 @@ $(document).ready(function () {
         nuevo(base_uri);
     });
 
-    $('#nuevo').click(function() {
-        // Recargo la página
-        location.reload();
+    $('#delete').on('click', function () {
+        var id = $('#idDelete').val();
+        eliminar(id);
     });
 
 });
@@ -37,7 +37,7 @@ function getData(base_uri) {
                         //botones
                         {
                             "render": function (data, type, row) {
-                                return "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #2980b9' onclick='editar(" + row.id + ")'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='eliminar(" + row.id + ")' ><i class='material-icons'>delete_forever</i></a> </div></div>"
+                                return "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #2980b9' onclick='editar(" + row.id + ")' data-toggle='modal' data-target='#nuevoU'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='borrar(" + row.id + ")' data-toggle='modal' data-target='#borrar'><i class='material-icons'>delete_forever</i></a> </div></div>"
                             }
                         },
                     ],
@@ -84,27 +84,39 @@ function nuevo(base_uri) {
     } else {
         id = null;
     }
-
-    var data = {
-        "id": id,
-        "descripcion": descripcion,
-        "tipo": tipo
-    };
-
-    $.ajax({
-        url: base_uri,
-        headers: {
-            'Authorization': JSON.parse(localStorage.getItem('Token'))
-        },
-        method: metodo,
-        contentType: "application/json",
-        data: JSON.stringify(data),
-        success: function () {
-            alert("Registro agregar Existosamente !!!");
-            clear();
-
+    if (descripcion != null) {
+        var data = {
+            "id": id,
+            "descripcion": descripcion,
+            "tipo": tipo
         }
-    });
+
+        $.ajax({
+            url: base_uri,
+            headers: {
+                'Authorization': JSON.parse(localStorage.getItem('Token'))
+            },
+            method: metodo,
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function () {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Excelente',
+                    text: 'Datos almacenado'
+                });
+                clear();
+                location.reload();
+            }
+        }).fail(function (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'La acción no se pudo completar'
+            });
+        });
+    }
+
 }
 
 function eliminar(id) {
@@ -116,14 +128,25 @@ function eliminar(id) {
         method: "DELETE",
         contentType: "application/json",
         success: function () {
-            alert("Registro eliminado Existosamente !!!");
+            Swal.fire({
+                icon: 'success',
+                title: 'Excelente',
+                text: 'Datos eliminados'
+            });
             location.reload();
         }
+    }).fail(function (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La acción no se pudo completar'
+        });
     });
 
 }
 
 function editar(id) {
+    $('#exampleModalLabel').text("Modificar habilidad")
     $.ajax({
         url: "http://localhost:8080/habilidades/habi/" + id,
         headers: {
@@ -146,3 +169,9 @@ function clear() {
 
 }
 
+function titulo() {
+    $('#exampleModalLabel').text("Nueva habilidad")
+}
+function borrar(id) {
+    $('#idDelete').val(id);
+}

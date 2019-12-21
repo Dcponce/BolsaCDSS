@@ -1,8 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function () {
   var uri = "http://localhost:8080/usuarios";
   getData(uri);
   getRoles(uri + "/api/listaTipo");
-  $("#nuevo").on("click", function() {
+  $("#nuevo").on("click", function () {
     getCred();
   });
 });
@@ -15,46 +15,27 @@ function getData(uri) {
     },
     type: "GET",
     dataType: "json",
-    success: function(result) {
+    success: function (result) {
       if (result) {
         $("#tabla>tbody").empty();
         var fila = "";
 
-        $.each(result, function(i, v) {
+        $.each(result, function (i, v) {
           fila =
             "<tr>" +
-            "<td>" +
-            v.email +
-            "</td>" +
-            "<td>" +
-            v.id_credencial.codigo +
-            "</td>" +
-            "<td>" +
-            v.id_tipo.descripcion +
-            "</td>" +
-            "<td>" +
-            v.estado +
-            "</td>" +
-            "<td>" +
-            v.activo +
-            "</td>" +
-            "<td>" +
-            "<button type='button' onclick='eliminar(" +
-            v.id +
-            ")'>Eliminar</button>" +
-            "</td>" +
-            "<td>" +
-            "<button type='button' onclick='eliminar(" +
-            v.id +
-            ")'>Editar</button>" +
-            "</td>" +
+            "<td>" +v.email +"</td>" +
+            "<td>" +v.id_credencial.codigo +"</td>" +
+            "<td>" +v.id_tipo.descripcion +"</td>" +
+            "<td>" +v.estado +"</td>" +
+            "<td>" +v.activo +"</td>" +
+          "<td>" + "<a href='#' style='color:  #c0392b ' onclick='borrar(" + v.id +")' data-toggle='modal' data-target='#borrar'><i class='material-icons'>delete_forever</i></a>" +"</td>" +
             "</tr>";
 
           $("#tabla>tbody").append(fila);
         });
       }
     },
-    error: function(error) {
+    error: function (error) {
       location.href = "../../index.html";
     }
   });
@@ -68,11 +49,11 @@ function getRoles(uri) {
     },
     type: "GET",
     dataType: "json",
-    success: function(result) {
+    success: function (result) {
       if (result != null) {
         $("#tipo").empty();
         var fila = "";
-        $.each(result, function(i, v) {
+        $.each(result, function (i, v) {
           fila =
             ' <option value=" ' + v.id + ' "> ' + v.descripcion + "</option>";
 
@@ -80,7 +61,7 @@ function getRoles(uri) {
         });
       }
     },
-    error: function(error) {
+    error: function (error) {
       location.href = "../../index.html";
     }
   });
@@ -96,7 +77,7 @@ function getCred() {
     method: "GET",
     dataType: "json",
     contentType: "application/json",
-    success: function(res) {
+    success: function (res) {
       var idC = res["id"];
       console.log(idC);
       nuevo("http://localhost:8080/usuarios", idC);
@@ -145,7 +126,7 @@ function nuevo(uri, idC) {
       data: JSON.stringify(data),
       //processData: false,
       //cache: false,
-      success: function() {
+      success: function () {
         mensaje = "Registro " + accion + " exitosamente";
         alert(mensaje);
         getData(uri);
@@ -155,4 +136,11 @@ function nuevo(uri, idC) {
     mensaje = "Todos los campos son requeridos";
     alert(mensaje);
   }
+}
+
+function titulo() {
+  $('#exampleModalLabel').text("Nuevo usuario")
+}
+function borrar(id) {
+  $('#idDelete').val(id);
 }

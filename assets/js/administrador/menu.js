@@ -128,10 +128,10 @@ function menuDatos() {
         '<a href="credencial.html">Credencial</a>' +
         '</li>' +
         '<li>' +
-        '<a href="#">Habilidades</a>' +
+        '<a href="habilidades.html">Habilidades</a>' +
         '</li>' +
         '<li>' +
-        '<a href="#">Usuario</a>' +
+        '<a href="usuario.html">Usuario</a>' +
         '</li>' +
         '</ul>' +
         '</li>' +

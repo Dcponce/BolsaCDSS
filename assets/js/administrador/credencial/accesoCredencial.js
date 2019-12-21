@@ -27,7 +27,7 @@ function getData(base_uri) {
         success: function (response) {
             //alert(response[2].id);
             if (!response['error']) {
-                tabla = $('#example').DataTable({
+                tabla = $('#table').DataTable({
                     //con esto mandamos a traer los datos de la base
                     data: response,
                     columns: [
@@ -98,19 +98,21 @@ function nuevo(base_uri) {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function () {
-            $('#oko').text('Excelente')
-            $('#msg').text('datos almacenados correctamente.')
-            $('.alert').addClass('alert-success');
-            $('.alert').removeClass('alert-warning');
+            Swal.fire({
+                icon: 'success',
+                title: 'Excelente',
+                text: 'Datos almacenado'
+            });
             clear();
             location.reload();
 
         }
     }).fail(function (error) {
-        $('#oko').text('Lo sentimos')
-        $('#msg').text('no se logro completar la acción.')
-        $('.alert').addClass('alert-warning');
-        $('.alert').removeClass('alert-success');
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La acción no se pudo completar'
+        });
     });
 }
 
@@ -123,22 +125,25 @@ function eliminar(id) {
         method: "DELETE",
         contentType: "application/json",
         success: function () {
-            $('#oko').text('Excelente')
-            $('#msg').text('datos eliminados correctamente.')
-            $('.alert').addClass('alert-success');
-            $('.alert').removeClass('alert-warning');
+            Swal.fire({
+                icon: 'success',
+                title: 'Excelente',
+                text: 'Datos almacenado'
+            });
             location.reload();
         }
     }).fail(function (error) {
-        $('#oko').text('Lo sentimos')
-        $('#msg').text('no se logro completar la acción.')
-        $('.alert').addClass('alert-warning');
-        $('.alert').removeClass('alert-success');
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La acción no se pudo completar'
+        });
     });
 
 }
 
 function editar(id) {
+    $('#exampleModalLabel').text("Editar certificación")
     $.ajax({
         url: "http://localhost:8080/credencial/credi/" + id,
         headers: {
