@@ -2,16 +2,132 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../assets/css/bootstrap/bootstrap.min.css">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Correos</title>
-    <link href="../../assets/css/menu/css/style.css" rel="stylesheet">
-</head>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../assets/css/perfil/vendors/iconfonts/mdi/css/materialdesignicons.css">
+    <!-- endinject -->
+    <!-- vendor css for this page -->
+    <!-- End vendor css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../assets/css/perfil/css/shared/style.css">
+    <!-- endinject -->
+    <!-- Layout style -->
+    <link rel="stylesheet" href="../../assets/css/perfil/css/demo_2/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Layout style -->
+    <style>
+        .item-purchase-banner {
+            display: none;
+        }
+    </style>
 
-<body>
+<body class="header-fixed">
+    <!-- partial:partials/_header.html -->
+
+    <!-- partial -->
+    <div class="page-body">
+        <!-- partial:partials/_sidebar.html -->
+        <div class="sidebar">
+
+        </div>
+        <!-- partial -->
+        <div class="page-content-wrapper">
+            <div class="page-content-wrapper-inner">
+                <div class="content-viewport">
+                    <div class="row">
+                        <div class="col-12 py-5">
+                            <h4>Correos</h4>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 equel-grid">
+                            <div class="grid">
+                                <div class="grid-body">
+                                    <div class="split-header">
+                                    </div>
+                                    <div class="vertical-timeline-wrapper">
+                                        <div class="timeline-vertical dashboard-timeline" id="bandeja">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 equel-grid">
+                            <div class="grid">
+                                <div class="grid-body text-gray">
+                                    <div class="d-flex justify-content-between">
+                                        <p id="asu"></p>
+                                        <p id="emi"></p>
+                                    </div>
+                                    <p class="text-black" id="rece"></p>
+                                    <div class="wrapper w-50 mt-4">
+                                        <p id="cont"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- content viewport ends -->
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- page content ends -->
+        </div>
+        <!--page body ends -->
+        <!-- SCRIPT LOADING START FORM HERE /////////////-->
+        <!-- SCRIPT LOADING START FORM HERE /////////////-->
+        <!-- plugins:js -->
+        <script src="../../assets/css/perfil/vendors/js/core.js"></script>
+        <!-- endinject -->
+        <!-- Vendor Js For This Page Ends-->
+        <script src="../../assets/css/perfil/vendors/apexcharts/apexcharts.min.js"></script>
+        <script src="../../assets/css/perfil/js/charts/chartjs.addon.js"></script>
+        <!-- Vendor Js For This Page Ends-->
+        <!-- build:js -->
+        <script src="../../assets/css/perfil/js/template.js"></script>
+        <script src="../../assets/css/perfil/js/dashboard.js"></script>
+        <!-- endbuild -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="../../assets/js/administrador/menu.js"></script>
+        <script src="../../assets/js/administrador/email/accesoEmail.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+        <div class="modal fade" id="borrar">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Eliminar correo</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Seguro que quieres eliminar este registro?</p>
+                        <p class="text-warning"><small>Esta acción no se puede deshacer.</small></p>
+                        <input type="hidden" id="idDelete">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-light" data-dismiss="modal" value="Cancelar">
+                        <button type="button" class="btn btn-danger" id="delete">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>
+
+
+<!-- <body>
 
     <header id="header">
         <div class="container">
@@ -31,7 +147,7 @@
                     <li><a href="habilidades.html">Habilidades</a></li>
                     <li><a href="../../index.html">Usuario</a></li>
                 </ul>
-            </nav><!-- #nav-menu-container -->
+            </nav> #nav-menu-container 
 
         </div>
     </header>
@@ -62,11 +178,9 @@
             <li><label id="cont"></label></li>
         </ul>
     </div>
-    
+
     <script src="../../assets/js/bootstrap/jquery-3.4.1.min.js"></script>
     <script src="../../assets/js/administrador/email/accesoEmail.js"></script>
     <script src="../../assets/js/bootstrap/popper.min.js"></script>
     <script src="../../assets/js/bootstrap/bootstrap.min.js"></script>
-</body>
-
-</html>
+</body> -->

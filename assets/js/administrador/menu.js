@@ -2,6 +2,7 @@ $(document).ready(function () {
     menuDatos();
     menuNav();
     footer();
+    contar();
 });
 
 function footer() {
@@ -13,8 +14,8 @@ function footer() {
         ' </ul>' +
         '</div>' +
         '<div class="col-sm-6 text-center text-sm-left mt-3 mt-sm-0">' +
-        '<small class="text-muted d-block">Derechos reservados © 2019 <a href="http://www.uxcandy.co"' +
-        'target="_blank">UXCANDY</a>. All rights reserved</small>' +
+        '<small class="text-muted d-block">Derechos reservados © 2019 <a href="https://www.fundaciongloriakriete.org/"' +
+        'target="_blank">FGK</a></small>' +
         '<small class="text-gray mt-2">Handcrafted With <i class="mdi mdi-heart text-danger"></i></small>' +
         '</div>' +
         '</div>')
@@ -64,34 +65,27 @@ function menuNav() {
         '</li>' +
         '<li class="nav-item dropdown">' +
         '<a class="nav-link" href="#" id="messageDropdown" data-toggle="dropdown" aria-expanded="false">' +
-        '<i class="mdi mdi-message-outline mdi-1x"></i>' +
-        '<span' +
-        'class="notification-indicator notification-indicator-primary notification-indicator-ripple"></span>' +
-        '</a>' +
-        '<div class="dropdown-menu navbar-dropdown dropdown-menu-right"' +
-        'aria-labelledby="messageDropdown">' +
-        '<div class="dropdown-header">' +
+        ' <i class="mdi mdi-message-outline mdi-1x"></i>' +
+        '<span class="notification-indicator-primary notification-indicator-ripple" id="punto"></span>' +
+        ' </a>' +
+        '<div class="dropdown-menu navbar-dropdown dropdown-menu-right" aria-labelledby="messageDropdown">' +
+        ' <div class="dropdown-header">' +
         '<h6 class="dropdown-title">Correos</h6>' +
-        '<p class="dropdown-title-text">You have 4 unread messages</p>' +
-        '</div>' +
+        ' </div>' +
         '<div class="dropdown-body">' +
-        '<div class="dropdown-list">    ' +
-        '<div class="image-wrapper"> ' +
-        '<img class="profile-img" src="../assets/images/profile/male/image_1.png" ' +
-        'alt="profile image"> ' +
-        '<div class="status-indicator rounded-indicator bg-success"></div> ' +
-        '</div> ' +
-        '<div class="content-wrapper"> ' +
-        '<small class="name">Clifford Gordon</small> ' +
-        '<small class="content-text">Lorem ipsum dolor sit amet.</small> ' +
-        '</div> ' +
-        '</div> ' +
-        '</div> ' +
-        '<div class="dropdown-footer"> ' +
-        '<a href="#">View All</a> ' +
-        '</div> ' +
-        '</div> ' +
-        '</li> ' +
+        '<div class="dropdown-list">' +
+        '<div class="image-wrapper">' +
+        ' </div>' +
+        '<div class="content-wrapper">' +
+        ' <p class="dropdown-title-text"></p>' +
+        ' </div>' +
+        ' </div>' +
+        ' </div>' +
+        '<div class="dropdown-footer">' +
+        '<a href="email.html">Ver todos</a>' +
+        '</div>' +
+        '</div>' +
+        '</li>' +
         '</ul> ' +
         '</div> ' +
         '</div> ' +
@@ -147,7 +141,38 @@ function menuDatos() {
         '<li>' +
         '<a href="#">Empresas</a>' +
         '</li>' +
+        '<li>' +
+        '<a href="email.html">Email</a>' +
+        '</li>' +
         '</ul>' +
         '</li>' +
         '</ul>')
+}
+
+function contar() {
+    $.ajax({
+        url: "http://localhost:8080/email",
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            if (result != null) {
+                var count = 0;
+                $.each(result, function (i, v) {
+                    if (v.estado == "A") {
+                        count++
+                    }
+                });
+                if (count > 0) {
+                    $('.dropdown-title-text').text('Tienes '+count+' correos sin leer')
+                    $('#punto').addClass('notification-indicator')
+                } else {
+                    $('.dropdown-title-text').text('No tienes correos')
+                }
+                $('#count').text(count);
+            }
+        }
+    });
 }
