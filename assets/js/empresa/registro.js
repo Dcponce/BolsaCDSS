@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var uri = "http://localhost:8080/usuarios/empresa";
+    var uri = "http://localhost:8080/usuarios/ingreso";
     $("#nuevo").on("click", function () {
         getCred(uri);
     });
@@ -36,6 +36,7 @@ function nuevo(uri, idC) {
             success: function () {
                 mensaje = "Registro " + accion + " exitosamente";
                 alert(mensaje);
+                
 
             }
         });

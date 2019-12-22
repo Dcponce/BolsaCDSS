@@ -36,6 +36,7 @@ function menuNav() {
         '</button>' +
 
         '<ul class="nav ml-auto">' +
+        '<li> <button onclick="cerrarSesion()">Cerrar</button></li>'+
         '<li class="nav-item dropdown">' +
         '<a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown"' +
         'aria-expanded="false">' +
@@ -175,4 +176,11 @@ function contar() {
             }
         }
     });
+}
+function cerrarSesion(){
+    localStorage.removeItem('Email');
+    localStorage.removeItem('Bienvenida');
+    localStorage.removeItem('Token');
+    localStorage.removeItem('Id');
+    window.location.replace("../../index.html");
 }

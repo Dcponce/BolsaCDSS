@@ -117,6 +117,8 @@ function nuevo(uri, idC) {
   var credencial = $("#credencial").val();
   var clave = $("#clave").val();
   var tipo = $("#tipo").val();
+  var estado = $("#estado").val();
+  var activo = $("#activo").val();
   var metodo = "POST";
   var accion = "Guardado";
 
@@ -138,8 +140,8 @@ function nuevo(uri, idC) {
       "id_tipo": {
         "id": tipo
       },
-      "estado": true,
-      "activo": false
+      "estado": estado,
+      "activo": activo
     };
 
     $.ajax({
@@ -172,6 +174,28 @@ function nuevo(uri, idC) {
       text: 'La acción no se pudo completar'
     });
   }
+}
+
+function editar(id) {
+  $('#exampleModalLabel').text("Modificar Certificación")
+  $.ajax({
+      url: "http://localhost:8080/usuarios/getUsu/" + id,
+      headers: {
+          'Authorization': JSON.parse(localStorage.getItem('Token'))
+      },
+      type: 'GET',
+      dataType: "json",
+      success: function (result) {
+          if (result != null) {
+              $('#id').val(result.id);
+              $('#email').val(result.email);
+              $('#credencial').val(result.id_credencial.codigo);
+              $('#tipo').val(result.id_tipo.descripcion);
+              $('#estado').val(result.estado);
+              $('#activo').val(result.activo);
+          }
+      }
+  });
 }
 
 function titulo() {

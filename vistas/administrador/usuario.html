@@ -121,12 +121,25 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id" class="form-group  form-control">
+                    <label for="#email">Email:</label>
                     <input type="email" name="email" id="email" placeholder="Correo" class="form-group  form-control">
+                    <label for="#credencial">Credencial:</label>
                     <input type="text" name="credencial" id="credencial" placeholder="Credencial" class="form-group  form-control">
+                    <label for="#clave">Clave:</label>
                     <input type="password" name="clave" id="clave" placeholder="Contraseña" class="form-group  form-control">
+                    <label for="#tipo">Rol:</label>
                     <select name="tipo" id="tipo"  class="form-group custom-select"></select>
-
-
+                    <label for="#estado">Estado:</label>
+                    <select name="estado" id="estado"  class="form-group custom-select">
+                        <option value="true">TRUE</option>
+                        <option value="false">FALSE</option>
+                    </select>
+                    <label for="#activo">Activo:</label>
+                    <select name="activo" id="activo"  class="form-group custom-select">
+                        <option value="true">TRUE</option>
+                        <option value="false">FALSE</option>
+                    </select>
+                  
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
