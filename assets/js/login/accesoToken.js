@@ -3,8 +3,8 @@ $(document).ready(function () {
 
     $('#btn').on('click', function () {
         getToken(uri);
-    })
-})
+    });
+});
 
 function getToken(uri) {
     var email = $('#correo').val();
@@ -28,13 +28,15 @@ function getToken(uri) {
                 const rol = res["user"]["authorities"][0]["authority"];
                 getId(email, rol);
             }
-        })
+        }).fail(function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Usuario o contraseña incorrectos'
+            });
+        });
 
-    } else {
-        mensaje = "Todos los campos son requeridos";
-        alert(mensaje);
     }
-
 }
 
 function getId(email, rol) {
@@ -58,7 +60,7 @@ function getId(email, rol) {
                     ruta = "vistas/administrador/admin.html";
                     break;
                 case "ROLE_ALUMNO":
-                    
+
                     ruta = "vistas/alumno/inicio.html";
                     break;
                 default:
