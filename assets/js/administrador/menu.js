@@ -142,10 +142,10 @@ function menuDatos() {
         '</a>' +
         '<ul class="collapse navigation-submenu" id="ui-elements">' +
         '<li>' +
-        '<a href="#">Alumnos</a>' +
+        '<a href="alumno.html">Alumnos</a>' +
         '</li>' +
         '<li>' +
-        '<a href="#">Empresas</a>' +
+        '<a href="empresa.html">Empresas</a>' +
         '</li>' +
         '</ul>' +
         '</li>' +
