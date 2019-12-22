@@ -87,8 +87,14 @@ function activar(data) {
             Swal.fire({
                 icon: 'info',
                 title: 'Revisa tu correo',
-                text: 'Para activación de usuario.'
-            });
+                text: 'Para activación de usuario.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok'
+            }).then((result) => {
+                if (result.value) {
+                    window.location.replace("../../index.html");
+                }
+            })
         },
         error: function () {
             Swal.fire({
