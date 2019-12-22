@@ -1,13 +1,13 @@
 $(document).ready(function () {
     var uri = "http://localhost:8080/login";
 
-    $('#iniciar').on('click', function () {
+    $('#btn').on('click', function () {
         getToken(uri);
     })
 })
 
-function getToken(uri, email) {
-    var email = $('#email').val();
+function getToken(uri) {
+    var email = $('#correo').val();
     var clave = $('#clave').val();
 
     if (email != null && clave != null) {

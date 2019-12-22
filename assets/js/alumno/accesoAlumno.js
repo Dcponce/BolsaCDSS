@@ -1,7 +1,4 @@
 $(document).ready(function () {
-    // $('#two-tab').prop("disabled", true);
-    // $('#three-tab').prop("disabled", true);
-    // $('#four-tab').prop("disabled", true);
 
     var uri = "http://localhost:8080/alumnos";
 
