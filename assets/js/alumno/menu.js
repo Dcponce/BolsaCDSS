@@ -48,6 +48,7 @@ function menuDatos() {
         '  <i class="mdi mdi-chart-donut link-icon"></i>' +
         '  </a>' +
         ' </li>' +
+        '<li> <button onclick="cerrarSesion()">Cerrar</button></li>'+
         '</ul>')
 }
 function menuNav() {
@@ -97,4 +98,12 @@ function imgPerfil() {
             }
         }
     });
+}
+
+function cerrarSesion(){
+    localStorage.removeItem('Email');
+    localStorage.removeItem('Bienvenida');
+    localStorage.removeItem('Token');
+    localStorage.removeItem('Id');
+    window.location.replace("../../index.html");
 }

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var uri = "http://localhost:8080/usuarios/alumno";
+    var uri = "http://localhost:8080/usuarios/ingreso";
     $("#nuevo").on("click", function () {
         getCred(uri);
     });
@@ -36,6 +36,7 @@ function nuevo(uri, idC) {
             success: function () {
                 mensaje = "Registro " + accion + " exitosamente";
                 alert(mensaje);
+                activar(data);
 
             }
         });
@@ -58,6 +59,22 @@ function getCred(uri) {
         },
         error: function () {
             alert("Operacion fallida");
+        }
+    });
+}
+
+function activar(data){
+    $.ajax({
+        url: "http://localhost:8080/usuarios/activacion",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function (res) {
+            alert("Enviado")
+            window.location.replace("../../confirmacion.html");
+        },
+        error: function () {
+            alert("Envio fallido");
         }
     });
 }
