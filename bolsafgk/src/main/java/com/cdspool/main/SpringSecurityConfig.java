@@ -51,8 +51,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.cors().and().authorizeRequests().antMatchers(HttpMethod.POST, "/login/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/usuarios/**").permitAll()
-				.antMatchers(HttpMethod.POST, "/usuarios/**").permitAll().anyRequest().authenticated().and()
-				.csrf().disable().authorizeRequests().and()
+				.antMatchers(HttpMethod.POST, "/usuarios/**").permitAll()
+				.antMatchers(HttpMethod.PUT, "/usuarios/**").permitAll().anyRequest().authenticated().and().csrf()
+				.disable().authorizeRequests().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService)).sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

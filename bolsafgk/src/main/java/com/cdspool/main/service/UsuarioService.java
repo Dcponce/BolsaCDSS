@@ -49,7 +49,7 @@ public class UsuarioService {
 		iUsu.save(usu);
 	}
 
-	public Usuario getId(String email) {
+	public Usuario findByEmail(String email) {
 		return iUsu.findByEmail(email);
 	}
 
