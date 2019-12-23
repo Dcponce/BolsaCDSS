@@ -36,7 +36,6 @@ function menuNav() {
         '</button>' +
 
         '<ul class="nav ml-auto">' +
-        '<li> <button onclick="cerrarSesion()">Cerrar</button></li>'+
         '<li class="nav-item dropdown">' +
         '<a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown"' +
         'aria-expanded="false">' +
@@ -144,6 +143,17 @@ function menuDatos() {
         '</li>' +
         '<li>' +
         '<a href="email.html">Email</a>' +
+        '</li>' +
+        '</ul>' +
+        '</li>' +
+        '<li>' +
+        '<a href="#elements" data-toggle="collapse" aria-expanded="false">' +
+        '<span class="link-title"> Cerrar Sesión</span>' +
+        '<i class="mdi mdi-import"></i>' +
+        '</a>' +
+        '<ul class="collapse navigation-submenu" id="elements">' +
+        '<li>' +
+        '<button type="button" class="btn btn-danger" onclick="cerrarSesion()">Cerrar</button>' +
         '</li>' +
         '</ul>' +
         '</li>' +

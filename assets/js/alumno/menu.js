@@ -48,7 +48,17 @@ function menuDatos() {
         '  <i class="mdi mdi-chart-donut link-icon"></i>' +
         '  </a>' +
         ' </li>' +
-        '<li> <button onclick="cerrarSesion()">Cerrar</button></li>'+
+        '<li>' +
+        '<a href="#elements" data-toggle="collapse" aria-expanded="false">' +
+        '<span class="link-title"> Cerrar Sesión</span>' +
+        '<i class="mdi mdi-import"></i>' +
+        '</a>' +
+        '<ul class="collapse navigation-submenu" id="elements">' +
+        '<li>' +
+        '<button type="button" class="btn btn-danger" onclick="cerrarSesion()">Cerrar</button>' +
+        '</li>' +
+        '</ul>' +
+        '</li>' +
         '</ul>')
 }
 function menuNav() {

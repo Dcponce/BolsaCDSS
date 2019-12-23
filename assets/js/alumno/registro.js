@@ -1,22 +1,22 @@
 $(document).ready(function () {
-    var uri = "http://localhost:8080/usuarios/ingreso";
+
     $("#nuevo").on("click", function () {
-        getCred(uri);
+        getCred();
     });
 })
 
-function nuevo(uri, idC) {
+function nuevo(idC) {
     var email = $("#email").val();
     var clave = $("#clave").val();
     var accion = "Guardado";
-    var credencial = $("#credencial").val();
+    var credencial = (idC)
 
-    if (credencial != "") {
+    if (credencial != null) {
         var data = {
             "id": null,
             "email": email,
             "id_credencial": {
-                "id": idC
+                "id": credencial
             },
             "clave": clave,
             "id_tipo": {
@@ -27,7 +27,7 @@ function nuevo(uri, idC) {
         };
 
         $.ajax({
-            url: uri,
+            url: "http://localhost:8080/usuarios/ingreso",
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify(data),
@@ -35,8 +35,18 @@ function nuevo(uri, idC) {
             //cache: false,
             success: function () {
                 mensaje = "Registro " + accion + " exitosamente";
-                alert(mensaje);
-                activar(data);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Excelente',
+                    text: 'Usuario registrado',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.value) {
+                        activar(data);
+                    }
+                })
+
 
             }
         });
@@ -46,7 +56,7 @@ function nuevo(uri, idC) {
     }
 }
 
-function getCred(uri) {
+function getCred() {
     var credencial = $("#credencial").val();
     $.ajax({
         url: "http://localhost:8080/usuarios/usu/" + credencial,
@@ -55,26 +65,43 @@ function getCred(uri) {
         contentType: "application/json",
         success: function (res) {
             var idC = res["id"];
-            nuevo(uri, idC);
+            nuevo(idC);
         },
         error: function () {
-            alert("Operacion fallida");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Operación fallida'
+            });
         }
     });
 }
 
-function activar(data){
+function activar(data) {
     $.ajax({
         url: "http://localhost:8080/usuarios/activacion",
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function (res) {
-            alert("Enviado")
-            window.location.replace("../../confirmacion.html");
+            Swal.fire({
+                icon: 'info',
+                title: 'Revisa tu correo',
+                text: 'Para activación de usuario.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok'
+            }).then((result) => {
+                if (result.value) {
+                    window.location.replace("../../index.html");
+                }
+            })
         },
         error: function () {
-            alert("Envio fallido");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Envio fallido'
+            });
         }
     });
 }
