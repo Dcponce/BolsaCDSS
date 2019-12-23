@@ -190,6 +190,7 @@ function editar(id) {
               $('#id').val(result.id);
               $('#email').val(result.email);
               $('#credencial').val(result.id_credencial.codigo);
+              $('#clave').val(result.clave);
               $('#tipo').val(result.id_tipo.descripcion);
               $('#estado').val(result.estado);
               $('#activo').val(result.activo);
