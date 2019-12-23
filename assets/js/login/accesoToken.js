@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
   var uri = "http://localhost:8080/login";
-  $("#btn").on("click", function() {
+  $("#btn").on("click", function () {
     getToken(uri);
   });
 });
@@ -20,10 +20,10 @@ function getToken(uri) {
       method: "POST",
       contentType: "application/json",
       data: JSON.stringify(data),
-      success: function(token) {
+      success: function (token) {
         validar(email, token);
       }
-    }).fail(function() {
+    }).fail(function () {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -41,9 +41,9 @@ function getId(email, rol) {
     },
     method: "GET",
     contentType: "json",
-    success: function(res) {
+    success: function (res) {
       localStorage.setItem("Id", JSON.stringify(res["id"]));
-      
+
       var ruta = "";
       switch (rol) {
         case "ROLE_ADMIN":
@@ -73,7 +73,7 @@ function validar(email, token) {
     method: "GET",
     dataType: "json",
     contentType: "application/json",
-    success: function(res) {
+    success: function (res) {
       if (res["activo"] == "true") {
         localStorage.setItem(
           "Email",
@@ -100,12 +100,24 @@ function enviar(email) {
     method: "POST",
     contentType: "application/json",
     data: JSON.stringify(data),
-    success: function(res) {
-      alert("Enviado");
-      window.location.replace("confirmacion.html");
+    success: function (res) {
+      Swal.fire({
+        icon: 'info',
+        title: 'Revisa tu correo',
+        text: 'Para activación de usuario.',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Ok'
+      }).then((result) => {
+        if (result.value) {
+        }
+      })
     },
-    error: function() {
-      alert("Envio fallido");
+    error: function () {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Envio fallido'
+      });
     }
   });
 }

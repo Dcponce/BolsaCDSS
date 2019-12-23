@@ -8,7 +8,6 @@ $(document).ready(function () {
 function nuevo(idC) {
     var email = $("#email").val();
     var clave = $("#clave").val();
-    var accion = "Guardado";
     var credencial = (idC)
 
     if (credencial != null) {
@@ -34,7 +33,6 @@ function nuevo(idC) {
             //processData: false,
             //cache: false,
             success: function () {
-                mensaje = "Registro " + accion + " exitosamente";
                 Swal.fire({
                     icon: 'success',
                     title: 'Excelente',
@@ -51,8 +49,11 @@ function nuevo(idC) {
             }
         });
     } else {
-        mensaje = "Todos los campos son requeridos";
-        alert(mensaje);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La acción no se pudo completar'
+        });
     }
 }
 
