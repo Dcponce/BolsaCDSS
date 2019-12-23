@@ -2,10 +2,9 @@ package com.cdspool.main.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,14 +13,13 @@ import com.cdspool.main.model.ClaveTemporal;
 import com.cdspool.main.model.Email;
 import com.cdspool.main.model.Empresa;
 import com.cdspool.main.model.Usuario;
-import com.cdspool.main.repository.IUsuarioRepository;
 import com.cdspool.main.service.AlumnoService;
 import com.cdspool.main.service.ClaveTeService;
 import com.cdspool.main.service.EmailService;
 import com.cdspool.main.service.EmpresaService;
+import com.cdspool.main.service.UsuarioService;
 
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.util.Base64Utils;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -31,8 +29,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @RestController
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
-		RequestMethod.DELETE })
 @RequestMapping(value = "envio")
 public class EnviodEmailController {
 
@@ -55,7 +51,7 @@ public class EnviodEmailController {
 	private JavaMailSender javaMailSender;
 
 	@Autowired
-	IUsuarioRepository rUsuario;
+	UsuarioService uService;
 
 	@Autowired
 	ClaveTeService rTemporal;
@@ -73,15 +69,15 @@ public class EnviodEmailController {
 	public void sendEmailWithAttachment(@RequestParam Integer alumno, String asunto, String contenido,
 			Principal principal) throws MessagingException, IOException {
 
-		Usuario usua = rUsuario.findByEmail(principal.getName());
+		Usuario usua = uService.findByEmail(principal.getName());
 		int id = usua.getId();
 
-		Empresa emp = rEmpresa.findById(id);
+		Empresa emp = rEmpresa.findByUsuario(id);
 
 		Alumno alu = rAlumno.findById(alumno);
-		
-		Usuario correo = rUsuario.findById(alumno).get();
-		
+
+		Usuario correo = uService.findById(alumno);
+
 		String email = correo.getEmail();
 
 		Email correos = new Email();
@@ -108,27 +104,29 @@ public class EnviodEmailController {
 	}
 
 	@PostMapping("/temporal")
-	public boolean sendPassword(String email) throws MessagingException, IOException {
+	public boolean sendPassword(@RequestBody Usuario usu) throws MessagingException, IOException {
 		ClaveTemporal ct = new ClaveTemporal();
 
-		Usuario correo = rUsuario.findByEmail(email);
-		String var = correo.getEmail();
+		Usuario correo = uService.findByEmail(usu.getEmail());
 
-		if (email.equals(var)) {
+		if (correo.getEmail() != "") {
+			
+			String clave = random();
+			
 			MimeMessage msg = javaMailSender.createMimeMessage();
 
 			MimeMessageHelper helper = new MimeMessageHelper(msg, true);
 
-			helper.setTo(email);
+			helper.setTo(correo.getEmail());
 
 			helper.setSubject("Solicitud de restablecimiento de contraseña");
 
-			helper.setText("Esta es su contraseña temporal <b>" + random() + "</b>", true);
+			helper.setText("Esta es su contraseña temporal <b>" + clave + "</b>", true);
 
 			javaMailSender.send(msg);
 
 			ct.setUsuario(correo);
-			ct.setClavet(Base64Utils.encodeToString(random().getBytes()));
+			ct.setClavet(clave);
 
 			rTemporal.guardar(ct);
 

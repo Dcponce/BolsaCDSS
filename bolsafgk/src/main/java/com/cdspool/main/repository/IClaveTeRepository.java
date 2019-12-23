@@ -7,5 +7,7 @@ import com.cdspool.main.model.ClaveTemporal;
 
 @Repository
 public interface IClaveTeRepository extends CrudRepository<ClaveTemporal, Integer> {
+	
+	public ClaveTemporal findByClavet(String clavet);
 
 }

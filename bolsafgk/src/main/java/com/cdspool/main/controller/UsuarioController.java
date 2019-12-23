@@ -118,6 +118,25 @@ public class UsuarioController {
 		usu.setActivo("true");
 		uService.save(usu);
 	}
+	
+	@PutMapping("clavet")
+	public void UpdateClavet(@RequestBody Usuario usu) {
+		
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setId(usu.getId());
+		usuario.setEmail(usu.getEmail());
+		usuario.setId_credencial(usu.getId_credencial());
+		usuario.setClave(bCryptPasswordEncoder.encode(usu.getClave()));
+		usuario.setId_tipo(usu.getId_tipo());
+		usuario.setEstado(usu.getEstado());
+		usuario.setActivo(usu.getActivo());
+		
+		uService.save(usuario);
+		
+	}
 
 	@GetMapping("api/listaTipo")
 	public List<TipoUsuario> listaTipo() {

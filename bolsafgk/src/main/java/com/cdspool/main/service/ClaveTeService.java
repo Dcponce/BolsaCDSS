@@ -39,6 +39,10 @@ public class ClaveTeService {
 	public Usuario porUsuario(Integer id) {
 		return rUsuario.findById(id).get();
 	}
+	
+	public ClaveTemporal findByClavet(String clavet) {
+		return rClave.findByClavet(clavet);
+	}
 }
 
 
