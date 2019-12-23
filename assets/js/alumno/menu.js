@@ -35,10 +35,10 @@ function menuDatos() {
         '</a>' +
         '<ul class="collapse navigation-submenu" id="sample-pages">' +
         '<li>' +
-        '<a href="#" target="_blank">Imagen de perfil</a>' +
+        '<a href="#" data-toggle="modal" data-target="#im">Imagen de perfil</a>' +
         ' </li>' +
         ' <li>' +
-        '<a href="#" target="_blank">Curriculum</a>' +
+        '<a href="#" data-toggle="modal" data-target="#cv">Curriculum</a>' +
         ' </li>' +
         ' </ul>' +
         '</li>' +
@@ -81,15 +81,10 @@ function menuNav() {
 function footer() {
     $('.footer').append('<div class="row">' +
         '<div class= "col-sm-6 text-center text-sm-right order-sm-1">' +
-        '<ul class="text-gray">' +
-        '<li><a href="#">Terms of use</a></li>' +
-        '<li><a href="#">Privacy Policy</a></li>' +
-        ' </ul>' +
         '</div>' +
         '<div class="col-sm-6 text-center text-sm-left mt-3 mt-sm-0">' +
         '<small class="text-muted d-block">Copyright © 2019 <a href="https://www.fundaciongloriakriete.org/"' +
-        'target="_blank">FGK</a>. All rights reserved</small>' +
-        '<small class="text-gray mt-2">Handcrafted With <i class="mdi mdi-heart text-danger"></i></small>' +
+        'target="_blank">FGK</a>. Todos los derechos reservador</small>' +
         '</div>' +
         '</div>')
 }
