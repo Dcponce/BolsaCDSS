@@ -90,22 +90,10 @@ function footer() {
 }
 
 function imgPerfil() {
-    $.ajax({
-        url: "http://localhost:8080/documento/usuario/" + JSON.parse(localStorage.getItem('Id')),
-        headers: {
-            'Authorization': JSON.parse(localStorage.getItem('Token'))
-        },
-        method: "GET",
-        contentType: "json",
-        success: function (data) {
-            if (data != null) {
-                $('#img').append('<img class="profile-img img-lg rounded-circle" src="../../../BolsaCDSS/img/' + data.ruta + '"alt = "profile image" >');
-            }
-        }
-    });
+    $('#img').append('<img class="profile-img img-lg rounded-circle" src="../../../BolsaCDSS/img/img_' + JSON.parse(localStorage.getItem('Id')) + '.png' + '"alt = "profile image">');
 }
 
-function cerrarSesion(){
+function cerrarSesion() {
     localStorage.removeItem('Email');
     localStorage.removeItem('Bienvenida');
     localStorage.removeItem('Token');
