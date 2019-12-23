@@ -46,6 +46,23 @@ function getId(email, rol) {
     contentType: "json",
     success: function(res) {
       localStorage.setItem("Id", JSON.stringify(res["id"]));
+      
+      var ruta = "";
+      switch (rol) {
+        case "ROLE_ADMIN":
+          ruta = "vistas/administrador/admin.html";
+          break;
+        case "ROLE_EMPRESA":
+          ruta = "vistas/administrador/admin.html";
+          break;
+        case "ROLE_ALUMNO":
+          ruta = "vistas/alumno/inicio.html";
+          break;
+        default:
+          ruta = "index.html";
+          break;
+      }
+      window.location.replace(ruta);
     },
     error: function(error) {
       console.log(error);
