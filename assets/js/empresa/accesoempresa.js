@@ -15,11 +15,9 @@ function nuevo(base_uri) {
     var nombre = $('#nombre').val();
     var telefono = $('#telefono').val();
     var metodo = "POST";
-    var accion = "Guardado";
 
     if (id > 0) {
         metodo = "PUT";
-        accion = "Actualizado";
     } else {
         id = null;
     }
@@ -44,7 +42,11 @@ function nuevo(base_uri) {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function () {
-                alert("Registro agregar Existosamente !!!");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Excelente',
+                    text: 'Datos almacenados correctamente'
+                });
             }
         });
     }
@@ -62,6 +64,7 @@ function editar(base_uri) {
             if (data != null) {
                 $('#id').val(data.id);
                 $('#nombre').val(data.nombre);
+                $('#nom').text(data.nombre);
                 $('#telefono').val(data.telefono);
             }
         }

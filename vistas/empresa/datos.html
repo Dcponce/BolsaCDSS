@@ -2,72 +2,149 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../assets/css/bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-    <link href="../../assets/css/cv/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="../../assets/css/cv/css/style.css" rel='stylesheet' type='text/css' />
-    <title>Empresa</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Datos - Empresa</title>
+    <link rel="icon" type="image/png" href="../../assets/img/Icono pequeño 24x24.png" />
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../assets/css/perfil/vendors/iconfonts/mdi/css/materialdesignicons.css">
+    <!-- endinject -->
+    <!-- vendor css for this page -->
+    <!-- End vendor css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../assets/css/perfil/css/shared/style.css">
+    <!-- endinject -->
+    <!-- Layout style -->
+    <link rel="stylesheet" href="../../assets/css/perfil/css/demo_2/style.css">
+    <!-- Layout style -->
+    <style>
+        .item-purchase-banner {
+            display: none;
+        }
+    </style>
 </head>
 
-<body>
-    <div id="home" class="header">
-        <div class="container">
-            <!-- top-hedader -->
-            <div class="top-header">
-                <div class="top-nav">
-                    <div class="navigation">
-                        <div class="logo">
+<body class="header-fixed">
+    <!-- partial:partials/_header.html -->
 
+    <!-- partial -->
+    <div class="page-body">
+        <!-- partial:partials/_sidebar.html -->
+        <div class="sidebar">
+
+        </div>
+        <!-- partial -->
+        <div class="page-content-wrapper">
+            <div class="page-content-wrapper-inner">
+                <div class="content-viewport">
+                    <div class="row">
+                        <div class="col-12 py-5">
+                            <h4>Bienvenido</h4>
+                            <p class="text-gray" id="nom"></p>
                         </div>
-                        <div class="navigation-right">
-                            <nav class="link-effect-3" id="link-effect-3">
-                                <ul class="nav1 nav nav-wil">
-                                    <li class="active"><a data-hover="Home" href="index.html">Home</a></li>
-                                    <li><a class="scroll" data-hover="About" href="#about">About</a></li>
-                                    <li><a class="scroll" data-hover="Services" href="#services">Services</a></li>
-                                    <li><a class="scroll" data-hover="Experience" href="#work">Experience</a></li>
-                                    <li><a class="scroll" data-hover="Portfolio" href="#port">Portfolio</a></li>
-                                    <li><a class="scroll" data-hover="Blog" href="#blogs">Blog</a></li>
-                                    <li><a class="scroll" data-hover="Contact" href="#contact">Contact</a></li>
-                                </ul>
-                            </nav>
-                            <!-- script-for-menu -->
-                            <script>
-                                $("span.menu").click(function () {
-                                    $("ul.nav1").slideToggle(300, function () {
-                                        // Animation complete.
-                                    });
-                                });
-                            </script>
-                            <!-- /script-for-menu -->
-                        </div>
-                        <div class="clearfix"></div>
                     </div>
-                    <!-- /top-hedader -->
+                    <div class="row">
+                        <div class="col-lg-9 col-md-12 equel-grid">
+                            <div class="grid widget-revenue-card">
+                                <div class="grid-body d-flex flex-column h-100">
+
+                                    <div class="mt-auto">
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active p-3 col-md-9 showcase_content_area"
+                                                id="one" role="tabpanel" aria-labelledby="one-tab">
+                                                <h2 class="form-group">Datos Empresariales</h2>
+                                                <input type="hidden" id="id">
+                                                <input type="text" name="txtNombre" id="nombre" placeholder="Nombre"
+                                                    class="form-group form-control">
+                                                <input type="text" name="telefono" id="telefono" placeholder="Telefóno"
+                                                    class="form-group form-control">
+                                                <div class="btn btn-success has-icon btn-rounded" id="nuevo">
+                                                    <i class="mdi mdi-account-check"></i>Guardar</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="banner-info">
+            </div>
+            <!-- content viewport ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- page content ends -->
+    </div>
+    <!--page body ends -->
+    <!-- SCRIPT LOADING START FORM HERE /////////////-->
+    <!-- SCRIPT LOADING START FORM HERE /////////////-->
+    <!-- plugins:js -->
+    <script src="../../assets/css/perfil/vendors/js/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!-- endinject -->
+    <!-- Vendor Js For This Page Ends-->
+    <script src="../../assets/css/perfil/vendors/apexcharts/apexcharts.min.js"></script>
+    <script src="../../assets/css/perfil/js/charts/chartjs.addon.js"></script>
+    <!-- Vendor Js For This Page Ends-->
+    <!-- build:js -->
+    <script src="../../assets/css/perfil/js/template.js"></script>
+    <script src="../../assets/css/perfil/js/dashboard.js"></script>
+    <!-- endbuild -->
+
+    <script src="../../assets/js/empresa/menu.js"></script>
+    <script src="../../assets/js/empresa/accesoempresa.js"></script>
+    <script src="../../assets/js/empresa/perfil.js"></script>
+    <!-- endbuild -->
+
+    <div class="modal fade" id="subir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cargar imgen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="file" name="file" id="file"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="perfil">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+
+<!-- <div class="banner-info">
                     <div class="col-md-5 header-right">
                         <h1>Empresa</h1> <br><br>
-
+                
                         <ul class="address" id="dts">
                             <li>
                                 <label for="#nombre" style="color: azure;">Nombre:</label>
                                 <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre">
                             </li> <br>
-
+                
                             <li>
                                 <label for="#telefono" style="color: azure;">Telefono:</label>
-                                <input class="form-control" type="text" name="telefono" id="telefono"
-                                    placeholder="Telefóno">
+                                <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefóno">
                             </li> <br>
-
+                
                             <li>
                                 <label for="#file" style="color: azure;">Imagen:</label>
                                 <input style="color: white;" type="file" name="file" id="file">
                             </li> <br>
-
+                
                             <li>
                                 <button class="btn btn-danger" type="button" id="nuevo">Guardar</button>
                             </li>
@@ -78,52 +155,32 @@
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- services -->
-    <div id="services" class="services">
-        <div class="container">
-            <div class="service-head one text-center ">
-                <h4>Filtros</h4>
-                <h3>Busca <span>Talentos</span></h3>
-                <span class="border two"></span>
-            </div>
-            <!-- services-grids -->
-            <div class="wthree_about_right_grids w3l-agile">
-
-                <div class="clearfix"> </div>
-            </div>
-            <!-- services-grids -->
-        </div>
-    </div>
 
 
 
-    <div class="modal fade" id="img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cargar imagen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="file" name="file" id="file" /><br><br>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" id="perfil">Cargar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                    <div class="modal fade" id="img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Cargar imagen</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="file" name="file" id="file" /><br><br>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" id="perfil">Cargar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <script src="../../assets/js/bootstrap/jquery-3.4.1.min.js"></script>
-    <script src="../../assets/js/bootstrap/popper.min.js"></script>
-    <script src="../../assets/js/bootstrap/bootstrap.min.js"></script>
-    <script src="../../assets/js/empresa/accesoempresa.js"></script>
-</body>
 
-</html>
+
+                        <script src="../../assets/js/bootstrap/jquery-3.4.1.min.js"></script>
+                        <script src="../../assets/js/bootstrap/popper.min.js"></script>
+                        <script src="../../assets/js/bootstrap/bootstrap.min.js"></script>
+                        <script src="../../assets/js/empresa/accesoempresa.js"></script> -->

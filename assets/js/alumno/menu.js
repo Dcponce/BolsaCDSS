@@ -51,7 +51,7 @@ function menuDatos() {
         '<li>' +
         '<a href="#elements" data-toggle="collapse" aria-expanded="false">' +
         '<span class="link-title"> Cerrar Sesión</span>' +
-        '<i class="mdi mdi-import"></i>' +
+        '<i class="mdi mdi-import link-icon"></i>' +
         '</a>' +
         '<ul class="collapse navigation-submenu" id="elements">' +
         '<li>' +
