@@ -66,19 +66,12 @@ public class EnviodEmailController {
 	AlumnoService rAlumno;
 
 	@PostMapping("/propuesta")
-	public void sendEmailWithAttachment(@RequestParam Integer alumno, String asunto, String contenido,
-			Principal principal) throws MessagingException, IOException {
+	public void sendEmailWithAttachment(@RequestBody Email email) throws MessagingException, IOException {
 
-		Usuario usua = uService.findByEmail(principal.getName());
-		int id = usua.getId();
-
-		Empresa emp = rEmpresa.findByUsuario(id);
-
-		Alumno alu = rAlumno.findById(alumno);
-
-		Usuario correo = uService.findById(alumno);
-
-		String email = correo.getEmail();
+		Alumno alu = rAlumno.findById(email.getReceptor().getId());
+		Usuario usua = uService.findById(alu.getId_usuario().getId());
+		
+		Empresa emp = rEmpresa.findById(email.getEmisor().getId());
 
 		Email correos = new Email();
 
@@ -86,17 +79,17 @@ public class EnviodEmailController {
 
 		MimeMessageHelper helper = new MimeMessageHelper(msg, true);
 
-		helper.setTo(email);
+		helper.setTo(usua.getEmail());
 
-		helper.setSubject(asunto);
+		helper.setSubject(email.getAsunto());
 
-		helper.setText(contenido, true);
+		helper.setText(email.getContenido(), true);
 
 		javaMailSender.send(msg);
 
-		correos.setAsunto(asunto);
+		correos.setAsunto(email.getAsunto());
 		correos.setEmisor(emp);
-		correos.setContenido(contenido);
+		correos.setContenido(email.getContenido());
 		correos.setReceptor(alu);
 		correos.setEstado("A");
 
