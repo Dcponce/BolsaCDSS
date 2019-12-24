@@ -56,26 +56,26 @@ public class AlumnoService {
 		return iAlumnos.findByUsuario(user);
 	}
 
-	public List<Alumno> filter(Integer depto, Integer certi, Integer[] habilidades) {
-
-		//Certificacion cer = rCerti.findById(certi).get();
-		//Departamentos depa = rDepto.findById(depto).get();
-
-		String habilidad = "";
-		for (Integer i = 0; i < habilidades.length; i++) {
-			Habilidad habi = rHabi.findById(habilidades[i]).get();
-
-			if (habi != null) {
-
-				if (habilidades.length == i) {
-					habilidad += habi.getId();
-				} else {
-					habilidad += habi.getId() + ",";
-				}
-			}
-		}
-		
-		return iAlumnos.findAlumnoByCertificacionOrDepartamentoOrHabilidadNamedParamsNative(certi, depto, habilidad);
-
-	}
+//	public List<Alumno> filter(Integer depto, Integer certi, Integer[] habilidades) {
+//
+//		Certificacion cer = rCerti.findById(certi).get();
+//		Departamentos depa = rDepto.findById(depto).get();
+//
+//		String habilidad = "";
+//		for (Integer i = 0; i < habilidades.length; i++) {
+//			Habilidad habi = rHabi.findById(habilidades[i]).get();
+//
+//			if (habi != null) {
+//
+//				if (habilidades.length == i) {
+//					habilidad += habi.getId();
+//				} else {
+//					habilidad += habi.getId() + ",";
+//				}
+//			}
+//		}
+//		
+//		return iAlumnos.findAlumnoByCertificacionOrDepartamentoOrHabilidadNamedParamsNative(certi, depto, habilidad);
+//
+//	}
 }
