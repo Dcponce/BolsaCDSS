@@ -5,7 +5,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cdspool.main.model.Alumno;
@@ -22,7 +21,6 @@ import com.cdspool.main.service.UsuarioService;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 import java.io.IOException;
-import java.security.Principal;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -70,7 +68,7 @@ public class EnviodEmailController {
 
 		Alumno alu = rAlumno.findById(email.getReceptor().getId());
 		Usuario usua = uService.findById(alu.getId_usuario().getId());
-		
+
 		Empresa emp = rEmpresa.findById(email.getEmisor().getId());
 
 		Email correos = new Email();
@@ -96,7 +94,6 @@ public class EnviodEmailController {
 		rEmail.save(correos);
 	}
 
-
 	@PostMapping("/temporal")
 	public boolean sendPassword(@RequestBody Usuario usu) throws MessagingException, IOException {
 		ClaveTemporal ct = new ClaveTemporal();
@@ -104,9 +101,9 @@ public class EnviodEmailController {
 		Usuario correo = uService.findByEmail(usu.getEmail());
 
 		if (correo.getEmail() != "") {
-			
+
 			String clave = random();
-			
+
 			MimeMessage msg = javaMailSender.createMimeMessage();
 
 			MimeMessageHelper helper = new MimeMessageHelper(msg, true);
