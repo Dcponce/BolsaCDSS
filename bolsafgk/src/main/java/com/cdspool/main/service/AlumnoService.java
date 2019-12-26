@@ -22,7 +22,7 @@ public class AlumnoService {
 
 	@Autowired
 	IAlumnoRepository iAlumnos;
-	
+
 	@Autowired
 	IHabilidadRepository rHabi;
 
@@ -57,22 +57,30 @@ public class AlumnoService {
 	}
 
 	public List<Alumno> filter(Integer depto, Integer certi, Integer[] habilidades) {
-		
-		String habilidad = "";
-		for (Integer i = 0; i < habilidades.length; i++) {
-			Habilidad habi = rHabi.findById(habilidades[i]).get();
 
-			if (habi != null) {
+		if (habilidades != null) {
 
-				if (habilidades.length == i) {
-					habilidad += habi.getId();
-				} else {
-					habilidad += habi.getId() + ",";
+			String habilidad = "";
+
+			for (Integer i = 0; i < habilidades.length; i++) {
+				Habilidad habi = rHabi.findById(habilidades[i]).get();
+
+				if (habi != null) {
+
+					if (habilidades.length == i) {
+						habilidad += habi.getId();
+					} else {
+						habilidad += habi.getId() + ",";
+					}
 				}
 			}
+
+			return iAlumnos.findAlumnoByCertificacionOrDepartamentoOrHabilidadNamedParamsNative(certi, depto,
+					habilidad);
+
+		} else {
+			return iAlumnos.findAlumnoByCertificacionOrDepartamentoOrHabilidadNamedParamsNative(certi, depto, null);
 		}
-		
-		return iAlumnos.findAlumnoByCertificacionOrDepartamentoOrHabilidadNamedParamsNative(certi, depto, habilidad);
 
 	}
 }

@@ -49,21 +49,29 @@ public class AlumnoController {
 	}
 
 	@GetMapping("filter")
-	public List<Alumno> filterEmp(@RequestParam Integer depto, @RequestParam Integer certi, @RequestParam String habilidades) {
-		
-		String[] items = habilidades.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");
+	public List<Alumno> filterEmp(@RequestParam(required = false) Integer depto,
+			@RequestParam(required = false) Integer certi, @RequestParam(required = false) String habil) {
 
-		Integer[] results = new Integer[items.length];
+		if (habil != null) {
+			String[] items = habil.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");
 
-		for (Integer i = 0; i < items.length; i++) {
-			
-		    try {
-		        results[i] = Integer.parseInt(items[i]);
-		        
-		    } catch (NumberFormatException nfe) {
-		        System.err.println("Error al parsear habilidades");
-		    };
+			Integer[] results = new Integer[items.length];
+
+			for (Integer i = 0; i < items.length; i++) {
+
+				try {
+					results[i] = Integer.parseInt(items[i]);
+
+				} catch (NumberFormatException nfe) {
+					System.err.println("Error al parsear habilidades");
+				}
+			}
+
+			return sAlumno.filter(depto, certi, results);
+
+		} else {
+			return sAlumno.filter(depto, certi, null);
 		}
-		return sAlumno.filter(depto, certi, results);
+
 	}
 }
