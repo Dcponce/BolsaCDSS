@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     var uriDt = "http://localhost:8080/detalleHa";
 
-    createOptions();
+    createOptions(id,0);
 
     $('#datosH').on('click', function () {
         guardarH(uriDt);
@@ -69,7 +69,7 @@ function guardarH(uriDt) {
 
 }
 
-function createOptions() {
+function createOptions(id) {
     $.ajax({
         url: "http://localhost:8080/habilidades",
         headers: {
