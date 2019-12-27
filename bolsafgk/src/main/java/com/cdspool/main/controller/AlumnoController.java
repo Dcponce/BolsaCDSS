@@ -3,6 +3,7 @@ package com.cdspool.main.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,31 +25,37 @@ public class AlumnoController {
 	AlumnoService sAlumno;
 
 	@GetMapping
+	@Secured("ROLE_ADMIN")
 	public List<Alumno> lista() {
 		return (List<Alumno>) sAlumno.findAll();
 	}
 
 	@DeleteMapping("/{id}")
+	@Secured("ROLE_ADMIN")
 	public void delete(@PathVariable Integer id) {
 		sAlumno.delete(id);
 	}
 
 	@PostMapping
+	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
 	public void add(@RequestBody Alumno alumno) {
 		sAlumno.save(alumno);
 	}
 
 	@PutMapping
+	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
 	public void update(@RequestBody Alumno alumno) {
 		sAlumno.save(alumno);
 	}
 
 	@GetMapping("usuario/{id}")
+	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
 	public Alumno idUsuario(@PathVariable Integer id) {
 		return sAlumno.findByUsuario(id);
 	}
 
 	@GetMapping("filter")
+	@Secured({"ROLE_EMPRESA", "ROLE_ADMIN"})
 	public List<Alumno> filterEmp(@RequestParam(required = false) String depto,
 			@RequestParam(required = false) String certi, @RequestParam(required = false) String habil) {
 

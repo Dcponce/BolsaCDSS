@@ -1,6 +1,7 @@
 package com.cdspool.main.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,26 +27,31 @@ public class DocumentoController {
 	DocumentoService dService;
 
 	@DeleteMapping("/{id}")
+	@Secured("ROLE_ADMIN")
 	public void delete(@PathVariable Integer id) {
 		dService.delete(id);
 	}
 
 	@PostMapping
+	@Secured({ "ROLE_ALUMNO", "ROLE_EMPRESA", "ROLE_ADMIN" })
 	public void add(@RequestBody Documento doc) {
 		dService.save(doc);
 	}
 
 	@PutMapping
+	@Secured({ "ROLE_ALUMNO", "ROLE_EMPRESA", "ROLE_ADMIN" })
 	public void update(@RequestBody Documento doc) {
 		dService.save(doc);
 	}
 
 	@GetMapping("/{id}")
+	@Secured({ "ROLE_ALUMNO", "ROLE_EMPRESA", "ROLE_ADMIN" })
 	public TipoDocumento findById(@PathVariable Integer id) {
 		return dService.findByIdTipo(id);
 	}
 
 	@GetMapping("usuario/{id}")
+	@Secured({ "ROLE_ALUMNO", "ROLE_EMPRESA", "ROLE_ADMIN" })
 	public Documento idUsuario(@PathVariable Integer id) {
 		return dService.findByUsuario(id);
 	}

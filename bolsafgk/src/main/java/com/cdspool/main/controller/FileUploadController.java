@@ -5,10 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,11 +32,12 @@ public class FileUploadController {
 
 	@Autowired
 	IUsuarioRepository iUsuarioRepository;
-	
+
 	@Autowired
 	DocumentoService sDocu;
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "ROLE_EMPRESA" })
 	public String uploadFile(@RequestParam("file") MultipartFile file, Principal principal,
 			RedirectAttributes attributes) throws IOException {
 		if (file == null || file.isEmpty()) {
@@ -66,7 +66,6 @@ public class FileUploadController {
 
 			Documento d = new Documento();
 			Usuario usua = iUsuarioRepository.findByEmail(principal.getName());
-			
 
 			d.setRuta(file.getOriginalFilename());
 			d.setId_tipoDoc(dc.findById(1));

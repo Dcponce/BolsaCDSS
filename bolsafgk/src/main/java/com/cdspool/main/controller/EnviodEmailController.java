@@ -19,6 +19,7 @@ import com.cdspool.main.service.EmpresaService;
 import com.cdspool.main.service.UsuarioService;
 
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.access.annotation.Secured;
 
 import java.io.IOException;
 import java.util.Random;
@@ -64,6 +65,7 @@ public class EnviodEmailController {
 	AlumnoService rAlumno;
 
 	@PostMapping("/propuesta")
+	@Secured("ROLE_EMPRESA")
 	public void sendEmailWithAttachment(@RequestBody Email email) throws MessagingException, IOException {
 
 		Alumno alu = rAlumno.findById(email.getReceptor().getId());

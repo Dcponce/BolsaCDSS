@@ -9,6 +9,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,11 +37,13 @@ public class UsuarioController {
 	private JavaMailSender javaMailSender;
 
 	@GetMapping()
+	@Secured("ROLE_ADMIN")
 	public List<Usuario> lista() {
 		return uService.findAll();
 	}
 
 	@DeleteMapping("/{id}")
+	@Secured("ROLE_ADMIN")
 	public void delete(@PathVariable Integer id) {
 		uService.delete(id);
 	}

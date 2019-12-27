@@ -3,6 +3,7 @@ package com.cdspool.main.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,30 +26,35 @@ public class EmpresaController {
 	// Ejecución del metodo listar
 
 	@GetMapping
+	@Secured("ROLE_ADMIN")
 	public List<Empresa> listar() {
 		return empresaService.listar();
 	}
 
 	// Ejecución del metodo agregar
 	@PostMapping
+	@Secured({ "ROLE_ADMIN", "ROLE_EMPRESA" })
 	public void addEm(@RequestBody Empresa empresa) {
 		empresaService.saveEmp(empresa);
 	}
 
 	// Ejecución del metodo editar
 	@PutMapping
+	@Secured({ "ROLE_ADMIN", "ROLE_EMPRESA" })
 	public void editEm(@RequestBody Empresa empresa) {
 		empresaService.saveEmp(empresa);
 	}
 
 	// Ejecución del metodo eliminar
 	@DeleteMapping("/{id}")
+	@Secured("ROLE_ADMIN")
 	public void deleteEm(@PathVariable Integer id) {
 		empresaService.deleteEmp(id);
 	}
 
 	/// Ejecución del metodo buscar el id de empresa
 	@GetMapping("/empre/{id}")
+	@Secured({ "ROLE_ADMIN", "ROLE_EMPRESA" })
 	public Empresa getEmpresa(@PathVariable Integer id) {
 		return empresaService.findByUsuario(id);
 	}
