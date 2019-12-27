@@ -188,12 +188,13 @@ function filtro() {
                         '<span class="position"></span>' +
                         '<p>' + v.celular + '</p>' +
                         '<span class="seen">' + v.id_usuario.email + '</span>' +
-                        '<p><a href="#" class="btn btn-primary">Ver curriculum</a></p>' +
+                        '<p><a href="cv.html?id=' + v.id +'" class="btn btn-primary" target="_blank">Ver curriculum</a></p>' +
                         '</div>' +
                         '</div>' +
                         '</div>')
                 });
             }
         }
+
     });
 }

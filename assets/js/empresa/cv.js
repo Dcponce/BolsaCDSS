@@ -1,14 +1,12 @@
 $(document).ready(function () {
     personales();
-    educacion();
-    proyectos();
-    Dhabilidades();
-    Documentos();
 });
 
 function personales() {
+    let params = new URLSearchParams(location.search);
+    var id = params.get('id');
     $.ajax({
-        url: "http://localhost:8080/alumnos/usuario/" + JSON.parse(localStorage.getItem('Id')),
+        url: "http://localhost:8080/alumnos/alumno/" + id,
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
@@ -35,13 +33,17 @@ function personales() {
                 }
                 $('#edad').text(age);
             }
+            educacion(data.id_usuario.id)
+            proyectos(data.id_usuario.id)
+            Dhabilidades(data.id_usuario.id)
+            Documentos(data.id_usuario.id)
         }
     });
 }
 
-function educacion() {
+function educacion(idUs) {
     $.ajax({
-        url: "http://localhost:8080/educacion/usuario/" + JSON.parse(localStorage.getItem('Id')),
+        url: "http://localhost:8080/educacion/usuario/" + idUs,
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
@@ -77,9 +79,9 @@ function educacion() {
     });
 }
 
-function proyectos() {
+function proyectos(idUs) {
     $.ajax({
-        url: "http://localhost:8080/proyecto/usuario/" + JSON.parse(localStorage.getItem('Id')),
+        url: "http://localhost:8080/proyecto/usuario/" + idUs,
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
@@ -106,9 +108,9 @@ function proyectos() {
     });
 }
 
-function Dhabilidades() {
+function Dhabilidades(idUs) {
     $.ajax({
-        url: "http://localhost:8080/detalleHa/usuario/" + JSON.parse(localStorage.getItem('Id')),
+        url: "http://localhost:8080/detalleHa/usuario/" + idUs,
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
@@ -145,6 +147,7 @@ function Dhabilidades() {
         }
     });
 }
-function Documentos() {
-    $('#img').append('<img src="../../../BolsaCDSS/img/img_' + JSON.parse(localStorage.getItem('Id')) + '.png" alt="" class="rounded">');
+function Documentos(idUs) {
+    $('#img').append('<img src="../../../BolsaCDSS/img/img_' + idUs + '.png" alt="" class="rounded">');
+    $('.nav1').append('<li><a href="../../../BolsaCDSS/cv/cv_'+idUs+'.pdf" class="resp-tab-item" style="color: #fff;"><i class="glyphicon glyphicon-download"></i> Curriculum</a></li>')
 }

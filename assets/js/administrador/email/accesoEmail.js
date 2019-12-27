@@ -18,14 +18,22 @@ function listar(uri) {
             if (result != null) {
                 $.each(result, function (i, v) {
                     if (v.estado == "A") {
+                        $('#bandeja').append('<div class= "activity-log" style="background-color: #212F3C;">' + '<a href="#" onclick="leer(' + v.id + ')">' +
+                            '<p class="log-name">' + v.asunto + '</p>' +
+                            '<div class="log-details">' + v.emisor.nombre + '</div>' +
+                            '<div class="log-details">' + v.receptor.nombre + " " + v.receptor.apellido + '</div>' +
+                            '</a>' +
+                            '<a href="#" style="color:#cccccc;" onclick=borrar(' + v.id + ') data-toggle="modal" data-target="#borrar" title="Eliminar"><i class="material-icons">delete_sweep</i></a>' +
+                            '</div>')
+                    } else {
                         $('#bandeja').append(
                             '<div class= "activity-log">' +
-                            '<a href="#" onclick="leer('+v.id+')">' +
-                            '<p class="log-name">'+v.asunto+'</p>' +
-                            '<div class="log-details">' + v.emisor.nombre+'</div>' +
-                            '<div class="log-details">' + v.receptor.nombre + '</div>' +
+                            '<a href="#" onclick="leer(' + v.id + ')">' +
+                            '<p class="log-name">' + v.asunto + '</p>' +
+                            '<div class="log-details">' + v.emisor.nombre + '</div>' +
+                            '<div class="log-details">' + v.receptor.nombre + " " + v.receptor.apellido + '</div>' +
                             '</a>' +
-                            '<a href="#" style="color:#cccccc;" onclick=borrar(' + v.id + ') data-toggle="modal" data-target="#borrar" title="Eliminar"><i class="material-icons">delete_sweep</i></a>'+ 
+                            '<a href="#" style="color:#cccccc;" onclick=borrar(' + v.id + ') data-toggle="modal" data-target="#borrar" title="Eliminar"><i class="material-icons">delete_sweep</i></a>' +
                             '</div>');
                     }
                 });
@@ -45,7 +53,7 @@ function leer(id) {
         success: function (result) {
             if (result != null) {
                 $('#emi').text(result.emisor.nombre);
-                $('#rece').text(result.receptor.nombre);
+                $('#rece').text(result.receptor.nombre + " " + result.receptor.apellido);
                 $('#asu').text(result.asunto);
                 $('#cont').text(result.contenido);
 
@@ -55,7 +63,7 @@ function leer(id) {
     })
 }
 
-function modificar(id,emi,rec,asu,cont) {
+function modificar(id, emi, rec, asu, cont) {
     var id = id;
     var em = emi;
     var re = rec;
