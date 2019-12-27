@@ -49,10 +49,37 @@ public class AlumnoController {
 	}
 
 	@GetMapping("filter")
-	public List<Alumno> filterEmp(@RequestParam(required = false) Integer depto,
-			@RequestParam(required = false) Integer certi, @RequestParam(required = false) String habil) {
+	public List<Alumno> filterEmp(@RequestParam(required = false) String depto,
+			@RequestParam(required = false) String certi, @RequestParam(required = false) String habil) {
 
-		if (habil != null) {
+		/************************************************************************************************************/
+
+		Integer departamento = null;
+
+		if (depto.equals("null")) {
+
+		} else {
+			departamento = Integer.parseInt(depto);
+		}
+
+		/************************************************************************************************************/
+
+		Integer certificacion = null;
+
+		if (certi.equals("null")) {
+
+		} else {
+			certificacion = Integer.parseInt(certi);
+		}
+
+		/************************************************************************************************************/
+
+		if (habil.equals("")) {
+
+			return sAlumno.filter(departamento, certificacion, null);
+
+		} else {
+
 			String[] items = habil.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");
 
 			Integer[] results = new Integer[items.length];
@@ -67,11 +94,11 @@ public class AlumnoController {
 				}
 			}
 
-			return sAlumno.filter(depto, certi, results);
+			return sAlumno.filter(departamento, certificacion, results);
 
-		} else {
-			return sAlumno.filter(depto, certi, null);
 		}
+
+		/************************************************************************************************************/
 
 	}
 }
