@@ -17,7 +17,6 @@ import com.cdspool.main.model.Habilidad;
 import com.cdspool.main.repository.IHabilidadRepository;
 
 @RestController
-@Secured("ROLE_ADMIN")
 @RequestMapping(value = "habilidades")
 public class HabilidadesController {
 
@@ -25,26 +24,31 @@ public class HabilidadesController {
 	IHabilidadRepository rHabilidad;
 
 	@GetMapping
+	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "EMPRESA" })
 	public List<Habilidad> listar() {
 		return (List<Habilidad>) rHabilidad.findAll();
 	}
 
 	@PostMapping
+	@Secured("ROLE_ADMIN")
 	public void guardar(@RequestBody Habilidad habi) {
 		rHabilidad.save(habi);
 	}
 
 	@PutMapping
+	@Secured("ROLE_ADMIN")
 	public void actualizar(@RequestBody Habilidad habi) {
 		rHabilidad.save(habi);
 	}
 
 	@DeleteMapping("/{id}")
+	@Secured("ROLE_ADMIN")
 	public void delete(@PathVariable Integer id) {
 		rHabilidad.deleteById(id);
 	}
 
 	@GetMapping("/habi/{id}")
+	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "EMPRESA" })
 	public Habilidad porHabilidad(@PathVariable Integer id) {
 		return rHabilidad.findById(id).get();
 	}
