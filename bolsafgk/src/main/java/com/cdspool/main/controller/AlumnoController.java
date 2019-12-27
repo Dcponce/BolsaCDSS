@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -54,14 +53,14 @@ public class AlumnoController {
 	public Alumno idUsuario(@PathVariable Integer id) {
 		return sAlumno.findByUsuario(id);
 	}
-	
+
 	@GetMapping("alumno/{id}")
 	public Alumno idAlumno(@PathVariable Integer id) {
 		return sAlumno.findById(id);
 	}
 
 	@GetMapping("filter")
-	@Secured({"ROLE_EMPRESA", "ROLE_ADMIN"})
+	@Secured({ "ROLE_EMPRESA", "ROLE_ADMIN" })
 	public List<Alumno> filterEmp(@RequestParam(required = false) String depto,
 			@RequestParam(required = false) String certi, @RequestParam(required = false) String habil) {
 
