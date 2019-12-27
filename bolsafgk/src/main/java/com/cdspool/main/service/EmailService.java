@@ -15,15 +15,12 @@ import com.cdspool.main.repository.IAlumnoRepository;
 @Service
 @Transactional
 public class EmailService {
-
-	@Autowired
-	IAlumnoRepository rUsuario;
 	
 	@Autowired
 	IEmailRepository rEmail;
 	
 	public List<Email> listAllEmail(){
-		return (List<Email>) rEmail.findAll();
+		return (List<Email>) rEmail.findByOrderByIdDesc();
 	}
 	
 	public void deleteEmail(Integer id) {
@@ -38,9 +35,4 @@ public class EmailService {
 		return rEmail.findById(id).get();
 	}
 	
-	//METODOS ENTIDAD USUARIOS
-	
-	public List<Alumno> listAllUsuario(){
-		return (List<Alumno>) rUsuario.findAll();
-	}
 }
