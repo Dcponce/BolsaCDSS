@@ -3,6 +3,7 @@ package com.cdspool.main.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.cdspool.main.model.Credencial;
 import com.cdspool.main.repository.ICredencialRepository;
 
 @RestController
+@Secured("ROLE_ADMIN")
 @RequestMapping(value = "credencial")
 
 public class CredencialController {
@@ -24,7 +26,6 @@ public class CredencialController {
 	ICredencialRepository iCred;
 
 	@GetMapping("/lista")
-	// @Secured("ROLE_ALUMNO")
 	public List<Credencial> lista() {
 		return (List<Credencial>) iCred.findAll();
 	}

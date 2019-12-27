@@ -3,6 +3,7 @@ package com.cdspool.main.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,27 +24,31 @@ public class CertificacionController {
 	ICertificacionRepository icerty;
 
 	@GetMapping
-
+	@Secured({"ROLE_ADMIN", "ROLE_EMPRESA", "ROLE_ALUMNO"})
 	public List<Certificacion> lista() {
 		return (List<Certificacion>) icerty.findAll();
 	}
 
 	@DeleteMapping("/{id}")
+	@Secured("ROLE_ADMIN")
 	public void delete(@PathVariable Integer id) {
 		icerty.deleteById(id);
 	}
 
 	@PostMapping
+	@Secured("ROLE_ADMIN")
 	public void add(@RequestBody Certificacion certy) {
 		icerty.save(certy);
 	}
 
 	@PutMapping
+	@Secured("ROLE_ADMIN")
 	public void update(@RequestBody Certificacion certy) {
 		icerty.save(certy);
 	}
 
 	@GetMapping("/byId/{id}")
+	@Secured("ROLE_ADMIN")
 	public Certificacion findById(@PathVariable Integer id) {
 		return icerty.findById(id).get();
 	}
