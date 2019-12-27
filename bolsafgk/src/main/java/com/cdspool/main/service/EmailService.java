@@ -8,31 +8,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdspool.main.model.Email;
-import com.cdspool.main.model.Alumno;
 import com.cdspool.main.repository.IEmailRepository;
-import com.cdspool.main.repository.IAlumnoRepository;
 
 @Service
 @Transactional
 public class EmailService {
-	
+
 	@Autowired
 	IEmailRepository rEmail;
-	
-	public List<Email> listAllEmail(){
+
+	public List<Email> listAllEmail() {
 		return (List<Email>) rEmail.findByOrderByIdDesc();
 	}
-	
+
 	public void deleteEmail(Integer id) {
 		rEmail.deleteById(id);
 	}
-	
+
 	public void save(Email email) {
 		rEmail.save(email);
 	}
-	
+
 	public Email leer(Integer id) {
 		return rEmail.findById(id).get();
 	}
-	
+
 }
