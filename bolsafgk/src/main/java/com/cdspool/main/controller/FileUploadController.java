@@ -44,6 +44,8 @@ public class FileUploadController {
 			return "{'msg':'Por favor seleccione un archivo'}";
 		}
 
+		Usuario usua = iUsuarioRepository.findByEmail(principal.getName());
+		
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.home"));
 		builder.append(File.separator);
@@ -55,7 +57,7 @@ public class FileUploadController {
 		builder.append(File.separator);
 		builder.append("img");
 		builder.append(File.separator);
-		builder.append(file.getOriginalFilename());
+		builder.append("img_"+usua.getId()+".png");
 
 		File convertFile = new File(builder.toString());
 		convertFile.createNewFile();
@@ -64,19 +66,47 @@ public class FileUploadController {
 
 			fout.write(file.getBytes());
 
-			Documento d = new Documento();
-			Usuario usua = iUsuarioRepository.findByEmail(principal.getName());
-			
-
-			d.setRuta(file.getOriginalFilename());
-			d.setId_tipoDoc(dc.findById(1));
-			d.setId_usuario(usua);
-			dc.add(d);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		return "{'msg':'Archivo cargado correctamente'}";
+	}
+	@RequestMapping(value = "/curriculum", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public String uploadcv(@RequestParam("file") MultipartFile file, Principal principal,
+			RedirectAttributes attributes) throws IOException {
+		if (file == null || file.isEmpty()) {
+			return "{'msg':'Por favor seleccione un archivo'}";
+		}
+		
+		Usuario usua = iUsuarioRepository.findByEmail(principal.getName());
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append(System.getProperty("user.home"));
+		builder.append(File.separator);
+		builder.append("Desktop");
+		builder.append(File.separator);
+		builder.append("Proyecto_n3");
+		builder.append(File.separator);
+		builder.append("BolsaCDSS");
+		builder.append(File.separator);
+		builder.append("cv");
+		builder.append(File.separator);
+		builder.append("cv_"+usua.getId()+".pdf");
+		
+		File convertFile = new File(builder.toString());
+		convertFile.createNewFile();
+		
+		try (FileOutputStream fout = new FileOutputStream(convertFile)) {
+			
+			fout.write(file.getBytes());
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return "{'msg':'Archivo cargado correctamente'}";
 	}
 
