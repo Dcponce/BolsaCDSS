@@ -16,10 +16,29 @@
     <!-- endinject -->
     <!-- Layout style -->
     <link rel="stylesheet" href="../../assets/css/perfil/css/demo_2/style.css">
+    <link rel="stylesheet"
+        href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
+    <script
+        src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
     <!-- Layout style -->
     <style>
         .item-purchase-banner {
             display: none;
+        }
+
+        .choices__inner,
+        .choices__input,
+        .choices__list--dropdown .choices__item {
+            background-color: #1d2542;
+        }
+        .choices{
+            column-width: 15em;        }
+        .choices__input {
+            color: #fff;
+        }
+
+        .choices__list--dropdown .choices__item--selectable.is-highlighted {
+            background-color: #00aeef;
         }
     </style>
 </head>
@@ -44,7 +63,23 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-lg-12 col-md-12 equel-grid">
+                            <div class="grid widget-revenue-card">
+                                <div class="grid-body d-flex flex-column h-100">
+                                    <div>
+                                        <select id="select" placeholder="Seleccione 10 habilidades máximo"  multiple>
+                                        </select>
+                                        <select id="certi" name="certi" class="custom-select col-5"></select>
+                                        <select id="depa" name="depa" class="custom-select col-3"></select>
+                                       
+                                        <button type="button" id="buscar" class="btn btn-success">Buscar</button>
+                                    </div>
+                                    <div class="row" id="resultado">
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

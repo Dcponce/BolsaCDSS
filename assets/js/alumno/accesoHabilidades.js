@@ -23,7 +23,6 @@ function guardarH(uriDt) {
         id = null;
     }
 
-    var count = 0;
     $.each(hab, function (i, v) {
         for (var i = 0; i < v.length; i++) {
             var data = {
