@@ -24,7 +24,7 @@ public class HabilidadesController {
 	IHabilidadRepository rHabilidad;
 
 	@GetMapping
-	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "EMPRESA" })
+	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "ROLE_EMPRESA" })
 	public List<Habilidad> listar() {
 		return (List<Habilidad>) rHabilidad.findAll();
 	}
