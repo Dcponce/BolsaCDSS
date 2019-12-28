@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="../../assets/img/Icono pequeño 24x24.png" />
     <link rel="stylesheet" type="text/css" href="../../assets/css/registro/css/util.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/registro/css/main.css">
-    <title>Registro Empresa</title>
+    <title>Envio de correo</title>
 </head>
 
 <body>
@@ -19,26 +19,33 @@
                 <div class="login100-form-title"
                     style="background-image: url(../../assets/img/fondoweb1.jpg); background-position: 0px 0px;">
                     <span class="login100-form-title-1">
-                        Cree su usuario
+                        Envie una oferta laboral
                     </span>
                 </div>
 
                 <form class="login100-form validate-form">
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                        <span class="label-input100">Correo</span>
-                        <input class="input100" type="email" name="username" placeholder="Ingrese su correo" id="email">
+                        <span class="label-input100">Para:</span>
+                        <input class="input100" type="hidden" name="id" id="id">
+                        <input class="input100" type="text" name="para" id="para">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                        <span class="label-input100">Clave</span>
-                        <input class="input100" type="password" name="pass" placeholder="Cree tu clave" id="clave">
+                        <span class="label-input100">Asunto:</span>
+                        <input class="input100" type="text" name="asunto" id="asunto">
                         <span class="focus-input100"></span>
                     </div>
-                    
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span class="label-input100">Mensaje:</span>
+                        <input class="input100" type="text" name="msg" id="msg">
+                        <span class="focus-input100"></span>
+                    </div>
+
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn" id="nuevo" type="button">
-                            Registrarse
+                            Enviar
                         </button>
                     </div>
                 </form>
@@ -47,9 +54,8 @@
     </div>
 
     <script src="../../assets/js/bootstrap/jquery-3.4.1.min.js"></script>
-    <script src="../../assets/js/empresa/registro.js"></script>
-    <script src="../../assets/css/registro/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="../../assets/js/empresa/envio.js"></script>
 
 </body>
 

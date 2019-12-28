@@ -18,7 +18,7 @@ function personales() {
                 $('#ape').text(data.apellido);
                 $('#tel').text(data.telefono);
                 $('#cel').text(data.celular);
-                $('#email').text(JSON.parse(localStorage.getItem('Email')));
+                $('#email').text(data.id_usuario.email);
                 $('#dir').text(data.direccion);
                 $('#muni').text(data.id_municipio.nombre);
                 $('#dep').text(data.id_municipio.departamento.nombre);
@@ -36,7 +36,7 @@ function personales() {
             educacion(data.id_usuario.id)
             proyectos(data.id_usuario.id)
             Dhabilidades(data.id_usuario.id)
-            Documentos(data.id_usuario.id)
+            Documentos(data.id_usuario.id, data.id)
         }
     });
 }
@@ -119,7 +119,6 @@ function Dhabilidades(idUs) {
         success: function (data) {
             if (data != null) {
                 $.each(data, function (i, v) {
-                    console.log(v.habilidad.descripcion);
                     switch (v.habilidad.tipo) {
                         case "T":
                             $('#tec').append('<p>' + v.habilidad.descripcion + '</p>');
@@ -147,7 +146,8 @@ function Dhabilidades(idUs) {
         }
     });
 }
-function Documentos(idUs) {
+function Documentos(idUs, id) {
     $('#img').append('<img src="../../../BolsaCDSS/img/img_' + idUs + '.png" alt="" class="rounded">');
-    $('.nav1').append('<li><a href="../../../BolsaCDSS/cv/cv_'+idUs+'.pdf" class="resp-tab-item" style="color: #fff;"><i class="glyphicon glyphicon-download"></i> Curriculum</a></li>')
+    $('.nav1').append('<li><a href="../../../BolsaCDSS/cv/cv_' + idUs + '.pdf" class="resp-tab-item" style="color: #fff;" target="_blank"><i class="glyphicon glyphicon-download"></i> Curriculum</a></li>');
+    $('.nav1').append(' <li><a href="envio.html?correo='+id+'" class="resp-tab-item" style="color: #fff;"><i class="glyphicon glyphicon-send"></i> Enviar propuesta</a></li>');
 }
