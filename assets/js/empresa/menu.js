@@ -63,6 +63,12 @@ function menuDatos() {
         '</a>' +
         '</li>' +
         '<li>' +
+        ' <a href="editar.html">' +
+        '<span class="link-title">Editar Usuario</span>' +
+        ' <i class="mdi mdi-clipboard-outline link-icon"></i>' +
+        ' </a>' +
+        '</li>' +
+        '<li>' +
         '<a href="#" data-toggle="modal" data-target="#subir">' +
         '<span class="link-title">Subir imagen de perfil</span>' +
         '<i class="mdi mdi-basket-unfill link-icon"></i>' +
