@@ -28,6 +28,12 @@ function menuDatos() {
         ' <i class="mdi mdi-clipboard-outline link-icon"></i>' +
         ' </a>' +
         '</li>' +
+        '<li>' +
+        ' <a href="editar.html">' +
+        '<span class="link-title">Editar Usuario</span>' +
+        ' <i class="mdi mdi-clipboard-outline link-icon"></i>' +
+        ' </a>' +
+        '</li>' +
         ' <li>' +
         ' <a href="#sample-pages" data-toggle="collapse" aria-expanded="false">' +
         ' <span class="link-title">Subir documentos</span>' +
