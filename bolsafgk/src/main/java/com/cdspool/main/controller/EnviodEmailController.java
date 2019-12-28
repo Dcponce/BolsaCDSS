@@ -71,7 +71,7 @@ public class EnviodEmailController {
 		Alumno alu = rAlumno.findById(email.getReceptor().getId());
 		Usuario usua = uService.findById(alu.getId_usuario().getId());
 
-		Empresa emp = rEmpresa.findById(email.getEmisor().getId());
+		Empresa emp = rEmpresa.findByUsuario(email.getEmisor().getId());
 
 		Email correos = new Email();
 

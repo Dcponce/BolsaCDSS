@@ -24,7 +24,7 @@ public class HabilidadesController {
 	IHabilidadRepository rHabilidad;
 
 	@GetMapping
-	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "EMPRESA" })
+	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "ROLE_EMPRESA" })
 	public List<Habilidad> listar() {
 		return (List<Habilidad>) rHabilidad.findAll();
 	}
@@ -48,7 +48,7 @@ public class HabilidadesController {
 	}
 
 	@GetMapping("/habi/{id}")
-	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "EMPRESA" })
+	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "ROLE_EMPRESA" })
 	public Habilidad porHabilidad(@PathVariable Integer id) {
 		return rHabilidad.findById(id).get();
 	}
