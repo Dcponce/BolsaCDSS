@@ -64,6 +64,7 @@ public class EnviodEmailController {
 	@Autowired
 	AlumnoService rAlumno;
 
+	//metodo de envio y almacenamiento de propuestas por correo
 	@PostMapping("/propuesta")
 	@Secured("ROLE_EMPRESA")
 	public void sendEmailWithAttachment(@RequestBody Email email) throws MessagingException, IOException {
