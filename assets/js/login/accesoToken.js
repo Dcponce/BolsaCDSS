@@ -84,7 +84,6 @@ function validar(email, token) {
         const rol = token["user"]["authorities"][0]["authority"];
         getId(email, rol);
       } else {
-        alert("Usuario no activo");
         enviar(email);
       }
     }

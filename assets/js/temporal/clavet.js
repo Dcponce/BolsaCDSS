@@ -15,14 +15,12 @@ function temporal(uri, correo) {
   var data = {
     email: correo
   };
-  alert(email);
   $.ajax({
     url: uri,
     method: "POST",
     contentType: "application/json",
     data: JSON.stringify(data),
     success: function(res) {
-      alert("Enviado");
       window.location.replace("autenticacion.html");
     }
   });
@@ -78,7 +76,6 @@ function updateClave(res, password, id) {
     contentType: "application/json",
     data: JSON.stringify(data),
     success: function() {
-      alert("Clave Actualizada");
       eliminar(id);
     }
   });
@@ -93,7 +90,17 @@ function eliminar(id) {
     method: "DELETE",
     contentType: "application/json",
     success: function(res) {
-      alert("Eliminado")
+      Swal.fire({
+        icon: 'info',
+        title: 'Inicia Sesion',
+        text: '¡Utiliza tu nueva clave!',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Ok'
+      }).then((result) => {
+        if (result.value) {
+            window.location.replace("../../login.html");
+        }
+    })
     }
   });
 }
