@@ -1,3 +1,17 @@
+$(document).ready(function () {
+  if(localStorage.getItem('Locked')){
+    Swal.fire({
+      icon: 'info',
+      title: 'Hola.',
+      text: 'Bienveni@',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Ok',
+    });
+  }else{
+    window.top.close();
+  }
+});
+
 $("#btnAc").on("click", function() {
   activar();
 });
