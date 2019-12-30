@@ -26,7 +26,7 @@ function nuevo(idC) {
         };
 
         $.ajax({
-            url: "http://localhost:8080/usuarios/ingreso",
+            url: "http://localhost:8080/usuarios",
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify(data),
