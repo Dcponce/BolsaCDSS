@@ -100,8 +100,7 @@ function enviar(email) {
     contentType: "application/json",
     data: JSON.stringify(data),
     success: function (res) {
-      console.log(res);
-      localStorage.setItem("Activo", JSON.stringify(res["id"]));
+      localStorage.setItem("Locked", JSON.stringify(res["id"]));
       Swal.fire({
         icon: 'info',
         title: 'Revisa tu correo',

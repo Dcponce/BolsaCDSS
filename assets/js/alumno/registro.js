@@ -45,7 +45,6 @@ function nuevo(idC) {
                     }
                 })
 
-
             }
         });
     } else {
@@ -85,6 +84,7 @@ function activar(data) {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function (res) {
+            localStorage.setItem("Locked", JSON.stringify(res["id"]));
             Swal.fire({
                 icon: 'info',
                 title: 'Revisa tu correo',
