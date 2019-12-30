@@ -24,6 +24,7 @@ public class TipoDocController {
 	@Autowired
 	ITipoDocRepository iTipo;
 
+	// Listar Tipos de Documentos
 	@GetMapping
 	public List<TipoDocumento> lista() {
 
@@ -32,16 +33,19 @@ public class TipoDocController {
 		return list;
 	}
 
+	// Eliminar Tipo de Documento
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
 		iTipo.deleteById(id);
 	}
 
+	// Agregar Tipo de Documento
 	@PostMapping
 	public void add(@RequestBody TipoDocumento tipodoc) {
 		iTipo.save(tipodoc);
 	}
 
+	// Editar Tipo de documento
 	@PutMapping
 	public void update(@RequestBody TipoDocumento tipodoc) {
 		iTipo.save(tipodoc);

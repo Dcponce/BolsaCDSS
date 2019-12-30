@@ -18,27 +18,28 @@ import com.cdspool.main.service.MunicipiosService;
 @RequestMapping(value = "municipios")
 public class MunicipiosController {
 
-	@Autowired // Manda a llamar el servicio de municipio
+	@Autowired
 	MunicipiosService sMunicipios;
 
-	// Ejecución del metodo Listar
+	// Listar Municipios
 	@GetMapping
 	public List<Departamentos> listar() {
 		return sMunicipios.lista();
 	}
 
-	/// Ejecución del metodo buscar el id de Municipio
+	// Listar Municipios por id
 	@GetMapping("/municipio/{id}")
 	public Municipios getMunicipio(@PathVariable Integer id) {
 		return sMunicipios.porMunicipio(id);
 	}
 
+	// Listar Municipios por id de Departamento 
 	@GetMapping("/muni/{id}")
 	public List<Municipios> buscar(@PathVariable Integer id) {
 		return sMunicipios.listarM(id);
 	}
 
-	/// Ejecución del metodo buscar el id de Municipio
+	// Listar Departamento por id Municipio
 	@GetMapping("/muni/depar/{id}")
 	public Departamentos getDepartamento(@PathVariable Integer id) {
 		return sMunicipios.porDepartamentos(id);

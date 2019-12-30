@@ -23,30 +23,35 @@ public class HabilidadesController {
 	@Autowired
 	IHabilidadRepository rHabilidad;
 
+	// Listar Habilidades
 	@GetMapping
 	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "ROLE_EMPRESA" })
 	public List<Habilidad> listar() {
 		return (List<Habilidad>) rHabilidad.findAll();
 	}
 
+	// Agregar Habilidad
 	@PostMapping
 	@Secured("ROLE_ADMIN")
 	public void guardar(@RequestBody Habilidad habi) {
 		rHabilidad.save(habi);
 	}
 
+	// Editar Habilidad
 	@PutMapping
 	@Secured("ROLE_ADMIN")
 	public void actualizar(@RequestBody Habilidad habi) {
 		rHabilidad.save(habi);
 	}
 
+	// ELiminar Habilidad
 	@DeleteMapping("/{id}")
 	@Secured("ROLE_ADMIN")
 	public void delete(@PathVariable Integer id) {
 		rHabilidad.deleteById(id);
 	}
 
+	// Listar Hablidad por id
 	@GetMapping("/habi/{id}")
 	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "ROLE_EMPRESA" })
 	public Habilidad porHabilidad(@PathVariable Integer id) {

@@ -23,30 +23,35 @@ public class DetalleHabilidades {
 	@Autowired
 	Detalle_HabilidadService deService;
 
+	// Listar Detalles de Habilidad
 	@GetMapping
 	@Secured("ROLE_ADMIN")
 	public List<Detalle_habilidades> listar() {
 		return (List<Detalle_habilidades>) deService.listar();
 	}
 
+	// Eliminar Detalle Habilidad
 	@DeleteMapping("/{id}")
 	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
 	public void delete(@PathVariable Integer id) {
 		deService.eliminarDe(id);
 	}
 
+	// Agregar Detalle Habilidad
 	@PostMapping
 	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
 	public void guardar(@RequestBody Detalle_habilidades detalle) {
 		deService.saveDe(detalle);
 	}
 
+	// Editar Detalle Habilidad
 	@PutMapping
 	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
 	public void edit(@RequestBody Detalle_habilidades detalle) {
 		deService.saveDe(detalle);
 	}
 
+	// Listar Detalle Habilidad por id
 	@GetMapping("usuario/{id}")
 	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN", "ROLE_EMPRESA" })
 	public List<Detalle_habilidades> idUsuario(@PathVariable Integer id) {

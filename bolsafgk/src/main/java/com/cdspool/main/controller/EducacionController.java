@@ -24,6 +24,7 @@ public class EducacionController {
 	@Autowired
 	EducacionService eService;
 
+	// Listar Educacion
 	@GetMapping
 	@Secured("ROLE_ADMIN")
 	public List<Educacion> lista() {
@@ -33,32 +34,37 @@ public class EducacionController {
 		return list;
 	}
 
+	// Eliminar Educacion 
 	@DeleteMapping("/{id}")
 	@Secured("ROLE_ADMIN")
 	public void delete(@PathVariable Integer id) {
 		eService.delete(id);
 	}
 
+	// Agregar Educacion
 	@PostMapping
 	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO" })
 	public void add(@RequestBody Educacion edu) {
 		eService.save(edu);
 	}
 
+	// Editar Educacion
 	@PutMapping
 	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO" })
 	public void update(@RequestBody Educacion edu) {
 		eService.save(edu);
 	}
 
-	@Secured("ROLE_ADMIN")
+	// Listar Certificaciones
 	@GetMapping("api/certi")
+	@Secured("ROLE_ADMIN")
 	public List<Certificacion> listaCerty() {
 
 		return eService.findAllCerti();
 
 	}
 
+	// Listar Educacion por id de Usuario
 	@GetMapping("usuario/{id}")
 	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "ROLE_EMPRESA" })
 	public Educacion idUsuario(@PathVariable Integer id) {

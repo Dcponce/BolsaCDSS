@@ -8,11 +8,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+	// Si falla la subida de archivos se retorna un mensaje
 	@ExceptionHandler(MultipartException.class)
 	public String handleMultipart(MultipartException e, RedirectAttributes attributes) {
-//		attributes.addFlashAttribute("message", e.getCause().getMessage());
-//		attributes.addFlashAttribute("message", "Error al cargar el archivo");
-		
 		return "{'msg':'Error al cargar el archivo'}";
 	}
 }

@@ -22,28 +22,28 @@ public class DenunciaController {
 	@Autowired
 	DenunciaService sDenuncia;
 
-	// Metodo listar
+	// Listar Denuncia
 	@GetMapping
 	@Secured("ROLE_ADMIN")
 	public List<Denuncia> listar() {
 		return sDenuncia.listar();
 	}
 
-	// Eliminar
+	// Eliminar Denuncia
 	@DeleteMapping("/{id}")
 	@Secured("ROLE_ADMIN")
 	public void eliminar(@PathVariable Integer id) {
 		sDenuncia.eliminar(id);
 	}
 
-	// Agregar
+	// Agregar Denuncia
 	@PostMapping
 	@Secured({"ROLE_EMPRESA", "ROLE_ALUMNO"})
 	public void guardar(@RequestBody Denuncia denuncia) {
 		sDenuncia.guardar(denuncia);
 	}
 
-	// Buscar
+	// Listar Denuncia por id
 	@GetMapping("/denuncias/{id}")
 	@Secured("ROLE_ADMIN")
 	public Denuncia buscar(@PathVariable Integer id) {
