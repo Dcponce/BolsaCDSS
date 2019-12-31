@@ -17,7 +17,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.cdspool.main.auth.service.JWTService;
 import com.cdspool.main.auth.service.JWTServiceImpl;
@@ -27,12 +26,11 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@CrossOrigin(origins = "*")
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	@Autowired
 	IUsuarioRepository rUsu;
-	
+
 	private AuthenticationManager authenticationManager;
 	private JWTService jwtService;
 
@@ -44,6 +42,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		this.jwtService = jwtService;
 	}
 
+	/*
+	 * Se sobre escribe el metodo attemptAuthentication de
+	 * UsernamePasswordAuthenticationFilter el cual funciona de la mano con la
+	 * implementacion de UserDetailsService que de encuentra nuestra clase
+	 * LoginService la cual valida el usuario(email y clave)
+	 * 
+	 */
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
@@ -89,6 +94,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		return authenticationManager.authenticate(authToken);
 	}
 
+	// Si la autenticacion es correcta se genera el token 
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
@@ -98,11 +104,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		response.addHeader(JWTServiceImpl.HEADER_STRING, JWTServiceImpl.TOKEN_PREFIX + token);
 
 		Map<String, Object> body = new HashMap<String, Object>();
-		
+
 		body.put("token", "Bearer " + token);
 		body.put("user", (User) authResult.getPrincipal());
-		body.put("mensaje", String.format("%s ¡Has iniciado Sesion con exito!",
-				((User) authResult.getPrincipal()).getUsername()));
+		body.put("mensaje",
+				String.format("%s ¡Has iniciado Sesion con exito!", ((User) authResult.getPrincipal()).getUsername()));
 
 		response.getWriter().write(new ObjectMapper().writeValueAsString(body));
 		response.setStatus(200);
@@ -110,6 +116,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 	}
 
+	// Si la autenticacion falla se manda un mensaje de error con el estado 401
 	@Override
 	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException failed) throws IOException, ServletException {

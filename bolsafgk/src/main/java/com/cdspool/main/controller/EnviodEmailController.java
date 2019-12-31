@@ -31,6 +31,7 @@ import javax.mail.internet.MimeMessage;
 @RequestMapping(value = "envio")
 public class EnviodEmailController {
 
+	// Generar Clave Temporal
 	public String random() {
 		int leftLimit = 97; // letter 'a'
 		int rightLimit = 122; // letter 'z'
@@ -64,6 +65,7 @@ public class EnviodEmailController {
 	@Autowired
 	AlumnoService rAlumno;
 
+	// Envio de Propuesta Laboral
 	@PostMapping("/propuesta")
 	@Secured("ROLE_EMPRESA")
 	public void sendEmailWithAttachment(@RequestBody Email email) throws MessagingException, IOException {
@@ -79,6 +81,7 @@ public class EnviodEmailController {
 
 		MimeMessageHelper helper = new MimeMessageHelper(msg, true);
 		
+		// Maquetado de Correo Electronico
 		String contenido = "<!DOCTYPE html>\r\n" + 
 				"<html lang=\"en\">\r\n" + 
 				"\r\n" + 
@@ -411,6 +414,7 @@ public class EnviodEmailController {
 		rEmail.save(correos);
 	}
 
+	// Envio de Clave Temporal
 	@PostMapping("/temporal")
 	public boolean sendPassword(@RequestBody Usuario usu) throws MessagingException, IOException {
 		ClaveTemporal ct = new ClaveTemporal();
@@ -421,6 +425,7 @@ public class EnviodEmailController {
 
 			String clave = random();
 			
+			// Maquetado de Correo Electronico
 			String contenido = "<!DOCTYPE html>\r\n" + 
 					"<html lang=\"en\">\r\n" + 
 					"\r\n" + 
@@ -748,6 +753,7 @@ public class EnviodEmailController {
 
 			javaMailSender.send(msg);
 
+			// Se guarda la clave temporal y el usuario 
 			ct.setUsuario(correo);
 			ct.setClavet(clave);
 

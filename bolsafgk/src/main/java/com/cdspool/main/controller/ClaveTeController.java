@@ -21,25 +21,26 @@ public class ClaveTeController {
 	@Autowired
 	ClaveTeService sClave;
 
-	// Agregar
+	// Agregar Clave Temporal
 	@PostMapping
 	public void agregar(@RequestBody ClaveTemporal clavet) {
 		sClave.guardar(clavet);
 	}
 
-	// Actualizar
+	// Actualizar Clave temporal
 	@PutMapping
 	@Secured("ROLE_ADMIN")
 	public void actualizar(@RequestBody ClaveTemporal clavet) {
 		sClave.guardar(clavet);
 	}
 
-	// Eliminar
+	// Eliminar Clave Temporal
 	@DeleteMapping("/{id}")
 	public void eliminar(@PathVariable Integer id) {
 		sClave.eliminar(id);
 	}
 
+	//Listar Clave Temporal por clavet
 	@GetMapping("/{clavet}")
 	public ClaveTemporal byClavet(@PathVariable String clavet) {
 		return sClave.findByClavet(clavet);

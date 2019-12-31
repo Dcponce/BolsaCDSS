@@ -24,41 +24,48 @@ public class AlumnoController {
 	@Autowired
 	AlumnoService sAlumno;
 
+	// Listar Alumnos
 	@GetMapping
 	@Secured("ROLE_ADMIN")
 	public List<Alumno> lista() {
 		return (List<Alumno>) sAlumno.findAll();
 	}
 
+	// Eliminar Alumno
 	@DeleteMapping("/{id}")
 	@Secured("ROLE_ADMIN")
 	public void delete(@PathVariable Integer id) {
 		sAlumno.delete(id);
 	}
 
+	// Ingresar Alumnos
 	@PostMapping
 	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
 	public void add(@RequestBody Alumno alumno) {
 		sAlumno.save(alumno);
 	}
 
+	// Editar Alumnos
 	@PutMapping
 	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
 	public void update(@RequestBody Alumno alumno) {
 		sAlumno.save(alumno);
 	}
 
+	// Listar Alumno por id Usuario
 	@GetMapping("usuario/{id}")
 	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
 	public Alumno idUsuario(@PathVariable Integer id) {
 		return sAlumno.findByUsuario(id);
 	}
 
+	// Listar Alumno por id
 	@GetMapping("alumno/{id}")
 	public Alumno idAlumno(@PathVariable Integer id) {
 		return sAlumno.findById(id);
 	}
 
+	// Filtro de Alumnos 
 	@GetMapping("filter")
 	@Secured({ "ROLE_EMPRESA", "ROLE_ADMIN" })
 	public List<Alumno> filterEmp(@RequestParam(required = false) String depto,
@@ -68,7 +75,7 @@ public class AlumnoController {
 
 		Integer departamento = null;
 
-		if (depto.equals("null")) {
+		if (depto.equals("null") || depto.equals("") || depto.equals(null)) {
 
 		} else {
 			departamento = Integer.parseInt(depto);
@@ -78,7 +85,7 @@ public class AlumnoController {
 
 		Integer certificacion = null;
 
-		if (certi.equals("null")) {
+		if (certi.equals("null") || certi.equals("") || certi.equals(null)) {
 
 		} else {
 			certificacion = Integer.parseInt(certi);
@@ -86,11 +93,13 @@ public class AlumnoController {
 
 		/************************************************************************************************************/
 
-		if (habil.equals("")) {
+		if (habil.equals("") || habil.equals("null") || habil.equals(null)) {
 
 			return sAlumno.filter(departamento, certificacion, null);
 
 		} else {
+			
+			// Se recibe un arreglo de tipo String y se convierte a un arreglo de tipo Integer
 
 			String[] items = habil.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");
 

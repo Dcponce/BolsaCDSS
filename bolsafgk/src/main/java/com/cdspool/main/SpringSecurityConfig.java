@@ -34,6 +34,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
+	// Configuracion Global de Cors
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -57,6 +58,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/temporal/**").permitAll()
 				.antMatchers(HttpMethod.DELETE, "/temporal/**").permitAll().anyRequest().authenticated().and().csrf()
 				.disable().authorizeRequests().and()
+				// filtros JWT
 				.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService))
 				.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService)).sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

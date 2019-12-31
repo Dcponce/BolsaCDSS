@@ -58,6 +58,7 @@ public class AlumnoService {
 
 	public List<Alumno> filter(Integer depto, Integer certi, Integer[] habilidades) {
 
+		// Se recibe un arreglo de tipo Integer el cual se convierte a String
 		if (habilidades != null) {
 
 			String habilidad = "";

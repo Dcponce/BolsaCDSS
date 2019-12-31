@@ -20,38 +20,38 @@ import com.cdspool.main.service.ProyectoService;
 @RequestMapping(value = "proyecto")
 public class ProyectoController {
 
-	// Manda a llamar el servicio
 	@Autowired
 	ProyectoService sProyecto;
 
-	// Ejecución del método Listar
+	// Listar Proyectos
 	@GetMapping
 	@Secured("ROLE_ADMIN")
 	public List<Proyecto> listar() {
 		return (List<Proyecto>) sProyecto.listar();
 	}
 
-	// Ejecución del método Eliminar
+	// Eliminar Proyecto
 	@DeleteMapping("/{id}")
 	@Secured("ROLE_ADMIN")
 	public void eliminar(@PathVariable Integer id) {
 		sProyecto.eliminar(id);
 	}
 
-	// Ejecución del método Agregar
+	// Agregar Proyecto
 	@PostMapping
 	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO" })
 	public void agregar(@RequestBody Proyecto proyecto) {
 		sProyecto.agregar(proyecto);
 	}
 
-	// Ejecución del método actualizar(Modificar)
+	// Actualizar Proyecto
 	@PutMapping
 	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO" })
 	public void Actualizar(@RequestBody Proyecto proyecto) {
 		sProyecto.agregar(proyecto);
 	}
 
+	// Listar Proyectos por id Usuario
 	@GetMapping("usuario/{id}")
 	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO", "ROLE_EMPRESA" })
 	public List<Proyecto> idUsuario(@PathVariable Integer id) {

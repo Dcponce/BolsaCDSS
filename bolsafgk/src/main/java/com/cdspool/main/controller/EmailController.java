@@ -24,26 +24,31 @@ public class EmailController {
 	@Autowired
 	EmailService emailService;
 
+	// Listar Emails
 	@GetMapping
 	public List<Email> listarEmail() {
 		return emailService.listAllEmail();
 	}
 
+	// Agregar Email
 	@PostMapping
 	public void add(@RequestBody Email email) {
 		emailService.save(email);
 	}
 
+	// Editar Email
 	@PutMapping
 	public void edit(@RequestBody Email email) {
 		emailService.save(email);
 	}
 
+	// Eliminar Email
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
 		emailService.deleteEmail(id);
 	}
 
+	// Listar Email por id
 	@GetMapping("/correos/{id}")
 	public Email leer(@PathVariable Integer id) {
 		return emailService.leer(id);

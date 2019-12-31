@@ -21,22 +21,18 @@ public class ProyectoService {
 	@Autowired
 	IUsuarioRepository rUsuario;
 	
-	//Método listar
 	public List<Proyecto> listar(){
 		return (List<Proyecto>)rProyecto.findAll();
 	}
 	
-	//Método Eliminar
 	public void eliminar(Integer id) {
 		rProyecto.deleteById(id);
 	}
 	
-	//Método Agregar
 	public void agregar(Proyecto proyecto) {
 		rProyecto.save(proyecto);
 	}
 	
-	//Método Busca por id
 	public Proyecto porProyecto(Integer id) {
 		return rProyecto.findById(id).get();
 	}

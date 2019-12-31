@@ -36,18 +36,21 @@ public class UsuarioController {
 	@Autowired
 	private JavaMailSender javaMailSender;
 
+	// Listar Usuarios
 	@GetMapping()
 	@Secured("ROLE_ADMIN")
 	public List<Usuario> lista() {
 		return uService.findAll();
 	}
 
+	// Eliminar Usuario
 	@DeleteMapping("/{id}")
 	@Secured("ROLE_ADMIN")
 	public void delete(@PathVariable Integer id) {
 		uService.delete(id);
 	}
 
+	// Agregar Usuario
 	@PostMapping()
 	public void save(@RequestBody Usuario usu) {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -64,34 +67,21 @@ public class UsuarioController {
 		uService.save(usua);
 	}
 
-	@PostMapping("ingreso")
-	public void saveAlumno(@RequestBody Usuario usu) {
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-
-		Usuario usua = new Usuario();
-
-		usua.setEmail(usu.getEmail());
-		usua.setId_credencial(usu.getId_credencial());
-		usua.setClave(bCryptPasswordEncoder.encode(usu.getClave()));
-		usua.setId_tipo(usu.getId_tipo());
-		usua.setEstado(usu.getEstado());
-		usua.setActivo(usu.getActivo());
-
-		uService.save(usua);
-	}
-
+	// Editar Usuario(Administrador)
 	@PutMapping()
 	public void updateUsu(@RequestBody Usuario usu) {
 		uService.save(usu);
 	}
 
+	// Envio de Activacion de Usuario
 	@PostMapping("/activacion")
-	public void sendEmailWithAttachment(@RequestBody Usuario usu) throws MessagingException, IOException {
+	public Usuario sendEmailWithAttachment(@RequestBody Usuario usu) throws MessagingException, IOException {
 
 		Usuario usua = uService.findByEmail(usu.getEmail());
 
 		String asunto = "Activacion de Usuario";
 
+		// Maquetado de Correo Electronico
 		String contenido = "<!DOCTYPE html>\r\n" + 
 				"<html lang=\"en\">\r\n" + 
 				"\r\n" + 
@@ -343,7 +333,7 @@ public class UsuarioController {
 				"                                </tr>\r\n" + 
 				"                                <tr>\r\n" + 
 				"                                    <td align=\"center\" style=\"color: rgb(123, 124, 126); font-weight: bold;\">\r\n" + 
-				"                                        <h2>Activacion de Usuario</h2>\r\n" + 
+				"                                        <h2>Activación de Usuario</h2>\r\n" + 
 				"                                    </td>\r\n" + 
 				"                                </tr>\r\n" + 
 				"                                <tr>\r\n" + 
@@ -425,8 +415,11 @@ public class UsuarioController {
 
 		javaMailSender.send(msg);
 
+		return usua;
+		
 	}
 
+	// Activacion de Usuario
 	@GetMapping("usuario/{id}")
 	public void findByEmail(@PathVariable Integer id) throws URISyntaxException {
 
@@ -435,12 +428,15 @@ public class UsuarioController {
 
 	}
 
+	// Cambio de Activo para Activar el Usuario
 	public void update(Usuario usu) throws URISyntaxException {
-
+		
 		usu.setActivo("true");
 		uService.save(usu);
+		
 	}
 
+	// Reemplazar Clave por Clave Temporal
 	@PutMapping("clavet")
 	public void UpdateClavet(@RequestBody Usuario usu) {
 
@@ -459,18 +455,28 @@ public class UsuarioController {
 		uService.save(usuario);
 
 	}
-
+	
+	// Editar Usuario (Empresa o Alumno)
 	@PutMapping("editU")
 	public void edit(@RequestBody Usuario usu) {
 
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
+		Usuario usua = uService.findById(usu.getId());
+		
 		Usuario usuario = new Usuario();
 
 		usuario.setId(usu.getId());
 		usuario.setEmail(usu.getEmail());
 		usuario.setId_credencial(usu.getId_credencial());
-		usuario.setClave(bCryptPasswordEncoder.encode(usu.getClave()));
+		
+		if(usua.getClave().equals(usu.getClave())) {
+			usuario.setClave(usu.getClave());
+			
+		}else {
+			usuario.setClave(bCryptPasswordEncoder.encode(usu.getClave()));
+		}
+			
 		usuario.setId_tipo(usu.getId_tipo());
 		usuario.setEstado(true);
 		usuario.setActivo("false");
@@ -479,26 +485,31 @@ public class UsuarioController {
 
 	}
 
+	// Listar Tipos de Usuarios 
 	@GetMapping("api/listaTipo")
 	public List<TipoUsuario> listaTipo() {
 		return uService.findAllTipo();
 	}
 
+	// Lista de Credenciales
 	@GetMapping("api/cred")
 	public List<Credencial> findAllCred() {
 		return uService.findAllCred();
 	}
 
+	// Listar Credencial por codigo
 	@GetMapping("usu/{codigo}")
 	public Credencial byCodigo(@PathVariable String codigo) {
 		return uService.findByCodigo(codigo);
 	}
 
+	// Listar Usuario por Email
 	@GetMapping("getId/{email}")
 	public Usuario getId(@PathVariable String email) {
 		return uService.findByEmail(email);
 	}
 
+	// Listar Usuario por id
 	@GetMapping("getUsu/{id}")
 	public Usuario findById(@PathVariable Integer id) {
 		return uService.findById(id);

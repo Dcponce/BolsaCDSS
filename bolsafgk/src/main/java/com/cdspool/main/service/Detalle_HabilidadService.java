@@ -39,7 +39,6 @@ public class Detalle_HabilidadService {
 		rDetalle.save(detalle);
 	}
 	
-	//METODOS DE ENTIDAD HABILIDADES
 	
 	public List<Habilidad> listarHa(){
 		return (List<Habilidad>) rHabilidad.findAll();

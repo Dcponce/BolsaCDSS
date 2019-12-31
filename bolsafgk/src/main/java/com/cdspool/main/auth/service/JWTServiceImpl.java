@@ -25,16 +25,21 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JWTServiceImpl implements JWTService {
 
+	// Clave para generar Token
 	public static final String SECRET = Base64Utils.encodeToString(
 			"J0bApplicati0nApp@cd$ss20_!9fgkC0h0rte5_&&C0h0rt34_S0_B3rl!n_$pr¡ngB00t_$ecur¡ty&&Jwt_Much0D¡n3r0$$$MVC"
 					.getBytes());
 	
-	public static final long EXPIRATION_DATE = 3600000L;
+	// Tiempo del expiracion(24hr)
+	public static final long EXPIRATION_DATE = 86400000L;
 	
+	// Prefijo del token 
 	public static final String TOKEN_PREFIX = "Bearer ";
 
+	// Encabezado del token
 	public static final String HEADER_STRING = "Authorization";
 	
+	// Crear token
 	public String create(Authentication auth) throws JsonProcessingException {
 
 		String email = ((User) auth.getPrincipal()).getUsername();
@@ -53,6 +58,7 @@ public class JWTServiceImpl implements JWTService {
 		return token;
 	}
 
+	// Validar token
 	public boolean validate(String token) {
 
 		try {
@@ -69,6 +75,7 @@ public class JWTServiceImpl implements JWTService {
 
 	}
 
+	// Obtenemos las propiedades
 	public Claims getClaims(String token) {
 
 		Claims claims = Jwts.parser().setSigningKey(SECRET.getBytes()).parseClaimsJws(resolve(token)).getBody();
@@ -82,6 +89,7 @@ public class JWTServiceImpl implements JWTService {
 		return getClaims(token).getSubject();
 	}
 
+	// Obtenemos los roles mediante el metodo anterior(getClaims)
 	public Collection<? extends GrantedAuthority> getRoles(String token) throws IOException {
 
 		Object roles = getClaims(token).get("tipo");
@@ -93,6 +101,7 @@ public class JWTServiceImpl implements JWTService {
 		return authorities;
 	}
 
+	// Verificamos el token 
 	public String resolve(String token) {
 
 		if (token != null && token.startsWith(TOKEN_PREFIX)) {

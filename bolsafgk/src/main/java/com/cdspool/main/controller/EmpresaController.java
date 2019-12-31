@@ -20,39 +20,38 @@ import com.cdspool.main.service.EmpresaService;
 @RequestMapping(value = "empresa")
 public class EmpresaController {
 
-	@Autowired // Manda a llamar servicio de empresa
+	@Autowired 
 	EmpresaService empresaService;
 
-	// Ejecución del metodo listar
-
+	// Listar Empresas
 	@GetMapping
 	@Secured("ROLE_ADMIN")
 	public List<Empresa> listar() {
 		return empresaService.listar();
 	}
 
-	// Ejecución del metodo agregar
+	// Agregar Empresa
 	@PostMapping
 	@Secured({ "ROLE_ADMIN", "ROLE_EMPRESA" })
 	public void addEm(@RequestBody Empresa empresa) {
 		empresaService.saveEmp(empresa);
 	}
 
-	// Ejecución del metodo editar
+	// Editar Empresa
 	@PutMapping
 	@Secured({ "ROLE_ADMIN", "ROLE_EMPRESA" })
 	public void editEm(@RequestBody Empresa empresa) {
 		empresaService.saveEmp(empresa);
 	}
 
-	// Ejecución del metodo eliminar
+	// Eliminar Empresa
 	@DeleteMapping("/{id}")
 	@Secured("ROLE_ADMIN")
 	public void deleteEm(@PathVariable Integer id) {
 		empresaService.deleteEmp(id);
 	}
 
-	/// Ejecución del metodo buscar el id de empresa
+	// Listar por id Usuario
 	@GetMapping("/empre/{id}")
 	@Secured({ "ROLE_ADMIN", "ROLE_EMPRESA" })
 	public Empresa getEmpresa(@PathVariable Integer id) {

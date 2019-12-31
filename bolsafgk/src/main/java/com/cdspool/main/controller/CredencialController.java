@@ -25,26 +25,31 @@ public class CredencialController {
 	@Autowired
 	ICredencialRepository iCred;
 
+	// Listar Credenciales
 	@GetMapping("/lista")
 	public List<Credencial> lista() {
 		return (List<Credencial>) iCred.findAll();
 	}
 
+	// Eliminar Credencial
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
 		iCred.deleteById(id);
 	}
 
+	// Agregar Credencial
 	@PostMapping
 	public void add(@RequestBody Credencial cred) {
 		iCred.save(cred);
 	}
 
+	// Editar Credencial
 	@PutMapping
 	public void update(@RequestBody Credencial cred) {
 		iCred.save(cred);
 	}
 
+	// Listar Credencial por id
 	@GetMapping("/credi/{id}")
 	public Credencial findById(@PathVariable Integer id) {
 		return iCred.findById(id).get();

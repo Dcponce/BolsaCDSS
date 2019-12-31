@@ -19,12 +19,17 @@ import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.UserRepository;
 
 public class LoginService implements UserDetailsService {
-	
+
 	@Autowired
 	UserRepository userRepository;
 
 	private Logger logger = LoggerFactory.getLogger(UsuarioService.class);
-	
+
+	/*
+	 * Se sobre escribe el metodo loadUserByUsername de UserDetailsService para
+	 * realizar la validacion con JPA
+	 * 
+	 */
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -36,6 +41,7 @@ public class LoginService implements UserDetailsService {
 			throw new UsernameNotFoundException("Usuario " + email + "no existe");
 		}
 
+		// Se crea una lista de GrantedAuthority donde iran los roles asignados
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
 		TipoUsuario tipo = usua.getId_tipo();
@@ -48,8 +54,10 @@ public class LoginService implements UserDetailsService {
 			logger.error("Error login: Usuario '" + email + "' no tiene asignado el rol");
 			throw new UsernameNotFoundException("Error login: Usuario '" + email + "' no tiene asignado el rol");
 		}
-		
+
+		// Se retorna el usuario validado. NOTA: El estado es un boolean si está en
+		// false el usuario está bloqueado
 		return new User(usua.getEmail(), usua.getClave(), usua.getEstado(), true, true, true, authorities);
 	}
-	
+
 }

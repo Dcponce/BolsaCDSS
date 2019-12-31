@@ -15,30 +15,26 @@ import com.cdspool.main.repository.IMunicipiosRepository;
 @Transactional
 public class MunicipiosService {
 	
-	@Autowired //Manda a llamar los repositorio municipios
+	@Autowired 
 	IMunicipiosRepository rMunicipio;
 	
-	@Autowired  //Manda a llamar los repositorio departamento
+	@Autowired 
 	IDepartamentosRepository rDepartamento;
 
 
-	//Metodo de Buscar por id
 	public Municipios porMunicipio(Integer id) {
 		return rMunicipio.findById(id).get();
 	}
 	
-	//Metodo de Listar
 	public List<Municipios> listarM(Integer id){
 		Departamentos departamento = rDepartamento.findById(id).get();
 		return (List<Municipios>) rMunicipio.findByDepartamento(departamento);
 	}
 	
-	//Metodo de Listar
 	public List<Departamentos>lista(){
 		return (List<Departamentos>) rDepartamento.findAll();
 	}
 	
-	//Metodo de Buscar por id
 	public Departamentos porDepartamentos(Integer id) {
 		return rDepartamento.findById(id).get();
 	}

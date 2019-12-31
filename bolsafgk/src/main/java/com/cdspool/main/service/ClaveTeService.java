@@ -14,28 +14,24 @@ import com.cdspool.main.repository.IUsuarioRepository;
 @Transactional
 public class ClaveTeService {
 	
-	@Autowired //Manda a llamar los repositorio
+	@Autowired
 	IClaveTeRepository rClave;
 	
-	@Autowired //Manda a llamar los repositorio
+	@Autowired 
 	IUsuarioRepository rUsuario;
 	
-	//Metodo Eliminar
 	public void eliminar(Integer id) {
 		rClave.deleteById(id);
 	}
 	
-	//Metodo Guardar
 	public void guardar(ClaveTemporal claveT) {
 		rClave.save(claveT);
 	}
 	
-	//Metodo buscar por id
 	public ClaveTemporal porClavet(Integer id) {
 		return rClave.findById(id).get();
 	}
 	
-	//Metodo Buscar por Id
 	public Usuario porUsuario(Integer id) {
 		return rUsuario.findById(id).get();
 	}
