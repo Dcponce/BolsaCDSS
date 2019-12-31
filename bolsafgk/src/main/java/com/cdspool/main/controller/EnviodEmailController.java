@@ -338,6 +338,7 @@ public class EnviodEmailController {
 				"                                </tr>\r\n" + 
 				"                                <tr>\r\n" + 
 				"                                    <td align=\"center\" style=\"color: #1c1c1c; line-height: 24px;\">\r\n" + 
+				"										<p>La empresa <b>"+ emp.getNombre() +"</b> le comparte la siguiente oferta</p> \r\n" +
 				"                                       <p>"+ email.getContenido() +"</p> \r\n" + 
 				"                                    </td>\r\n" + 
 				"                                </tr>\r\n" + 
