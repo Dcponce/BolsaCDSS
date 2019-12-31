@@ -87,7 +87,7 @@ function activar(data) {
             localStorage.setItem("Locked", JSON.stringify(res["id"]));
             Swal.fire({
                 icon: 'info',
-                title: 'Revisa tu correo',
+                title: 'Revise su correo',
                 text: 'Para activación de usuario.',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Ok'

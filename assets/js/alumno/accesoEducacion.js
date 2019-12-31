@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-    var uriC = "http://localhost:8080/certificacion";
     var uriE = "http://localhost:8080/educacion";
 
     getCert(uriC, 0)
@@ -68,9 +67,9 @@ function guardarE(uriE) {
     }
 }
 
-function getCert(uriC, id) {
+function getCert(id) {
     $.ajax({
-        url: uriC,
+        url: "http://localhost:8080/certificacion",
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },

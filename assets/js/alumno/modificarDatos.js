@@ -49,8 +49,9 @@ function modificarE() {
                 $('#idE').val(data.id);
                 $('#universidad').val(data.universidad);
                 $('#carrera').val(data.carrera);
-                $('#certificacion').val(data.id_certificacion.id);
+                var idCer= data.id_certificacion.id;
                 $('#nivel').val(data.nivel);
+                getCert(idCer);
             }
         }
     });
