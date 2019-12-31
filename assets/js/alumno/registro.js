@@ -26,7 +26,7 @@ function nuevo(idC) {
         };
 
         $.ajax({
-            url: "http://localhost:8080/usuarios/ingreso",
+            url: "http://localhost:8080/usuarios",
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify(data),
@@ -44,7 +44,6 @@ function nuevo(idC) {
                         activar(data);
                     }
                 })
-
 
             }
         });
@@ -85,6 +84,7 @@ function activar(data) {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function (res) {
+            localStorage.setItem("Locked", JSON.stringify(res["id"]));
             Swal.fire({
                 icon: 'info',
                 title: 'Revisa tu correo',

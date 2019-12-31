@@ -32,7 +32,6 @@
     <div class="page-body">
         <!-- partial:partials/_sidebar.html -->
         <div class="sidebar">
-
         </div>
         <!-- partial -->
         <div class="page-content-wrapper">
@@ -40,47 +39,117 @@
                 <div class="content-viewport">
                     <div class="row">
                         <div class="col-12 py-5">
-                            <h4>Editar Usuario</h4>
+                            <h4>Bienvenido / a</h4>
                             <p class="text-gray user-name"></p>
-                            <div class="container">
-                                <input type="email" name="email" id="email" placeholder="Escriba su correo electronico"
-                                    class="form-control" style="margin: 20px;">
-                                <input type="password" name="clave" id="clave" placeholder="Escriba su clave"
-                                    class="form-control" style="margin: 20px;">
-                                    <button id="edit" style="margin: 20px;" class="btn-danger">Guardar</button>
-                            </div>
-
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-12 equel-grid">
+                            <div class="grid widget-revenue-card">
+                                <div class="grid-body d-flex flex-column h-100">
+                                    <div class="split-header">
+                                        <div class="content-wrapper v-centered">
+                                        </div>
+                                    </div>
 
+                                    <div class="mt-auto">
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active p-3 col-md-9 showcase_content_area"
+                                                id="one" role="tabpanel" aria-labelledby="one-tab">
+                                                <h2 class="form-group">Editar usuario</h2>
+                                            <input type="email" name="email" id="email" placeholder="Usuario" class="form-group form-control">
+                                            <input type="password" name="clave" id="clave" placeholder="Clave" class="form-group form-control">
+                                            <div class="btn btn-success has-icon btn-rounded form-group" id="edit">
+                                                <i class="mdi mdi-account-check"></i>Guardar</div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content viewport ends -->
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- page content ends -->
+        </div>
+
+        <!--page body ends -->
+        <!-- SCRIPT LOADING START FORM HERE /////////////-->
+        <!-- plugins:js -->
+        <script src="../../assets/css/perfil/vendors/js/core.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <!-- endinject -->
+        <!-- Vendor Js For This Page Ends-->
+        <script src="../../assets/css/perfil/vendors/apexcharts/apexcharts.min.js"></script>
+
+        <script src="../../assets/css/perfil/js/charts/chartjs.addon.js"></script>
+        <!-- Vendor Js For This Page Ends-->
+        <!-- build:js -->
+        <script src="../../assets/css/perfil/js/template.js"></script>
+        <script src="../../assets/css/perfil/js/dashboard.js"></script>
+        <!-- endbuild -->
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="../../assets/js/editar_usuario/editar.js"></script>
+        <script src="../../assets/js/alumno/menu.js"></script>
+
+
+        <div class="modal fade" id="im" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cargar imagen</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="file" name="file" id="archivo" /><br><br>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" id="perfil">Cargar</button>
+                    </div>
                 </div>
             </div>
-            <!-- content viewport ends -->
-            <!-- partial:partials/_footer.html -->
-            <footer class="footer">
-
-            </footer>
-            <!-- partial -->
         </div>
-        <!-- page content ends -->
-    </div>
-    <!-- SCRIPT LOADING START FORM HERE /////////////-->
-    <!-- plugins:js -->
-    <script src="../../assets/css/perfil/vendors/js/core.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <!-- endinject -->
-    <!-- Vendor Js For This Page Ends-->
-    <script src="../../assets/css/perfil/vendors/apexcharts/apexcharts.min.js"></script>
-    <script src="../../assets/css/perfil/js/charts/chartjs.addon.js"></script>
-    <!-- Vendor Js For This Page Ends-->
-    <!-- build:js -->
-    <script src="../../assets/css/perfil/js/template.js"></script>
-    <script src="../../assets/css/perfil/js/dashboard.js"></script>
-    <!-- endbuild -->
-    <script src="../../assets/js/editar_usuario/editar.js"></script>
-    <script src="../../assets/js/alumno/modificarDatos.js"></script>
-    <script src="../../assets/js/alumno/menu.js"></script>
-    <script src="../../assets/js/alumno/perfil.js"></script>
+
+        <div class="modal fade" id="cv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="example">Cargar curriculum en formato PDF</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="file" name="file" id="archivocv" /><br><br>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" id="curriculum">Cargar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
+
+<!-- <input type="email" name="email" id="email" placeholder="Escriba su correo electronico" class="form-group form-control">
+<input type="password" name="clave" id="clave" placeholder="Escriba su clave" class="form-group form-control">
+<div class="btn btn-success has-icon btn-rounded form-group" id="edit">
+    <i class="mdi mdi-account-check"></i>Guardar</div>
+</div> -->

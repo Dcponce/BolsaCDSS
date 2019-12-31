@@ -67,9 +67,17 @@ function guardarP(uriP) {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function () {
-               alert("Datos guardados correctamente");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Excelente',
+                    text: 'Datos almacenados correctamente'
+                });
             }
         }).fail(function(){
-            alert("No se pudo completar la acción");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'La acción no se pudo completar'
+            });
         });
     }
