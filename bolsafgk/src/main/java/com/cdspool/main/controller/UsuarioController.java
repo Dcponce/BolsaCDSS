@@ -462,12 +462,21 @@ public class UsuarioController {
 
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
+		Usuario usua = uService.findById(usu.getId());
+		
 		Usuario usuario = new Usuario();
 
 		usuario.setId(usu.getId());
 		usuario.setEmail(usu.getEmail());
 		usuario.setId_credencial(usu.getId_credencial());
-		usuario.setClave(bCryptPasswordEncoder.encode(usu.getClave()));
+		
+		if(usua.getClave().equals(usu.getClave())) {
+			usuario.setClave(usu.getClave());
+			
+		}else {
+			usuario.setClave(bCryptPasswordEncoder.encode(usu.getClave()));
+		}
+			
 		usuario.setId_tipo(usu.getId_tipo());
 		usuario.setEstado(true);
 		usuario.setActivo("false");

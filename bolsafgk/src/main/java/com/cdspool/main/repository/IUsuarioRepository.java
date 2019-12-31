@@ -7,6 +7,7 @@ import com.cdspool.main.model.Usuario;
 @Repository
 public interface IUsuarioRepository extends CrudRepository<Usuario, Integer> {
 
+	// Query para listar usuario por email
 	public Usuario findByEmail(String email);
 
 }

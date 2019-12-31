@@ -16,28 +16,24 @@ import com.cdspool.main.repository.IUsuarioRepository;
 @Transactional
 public class EmpresaService {
 
-	@Autowired // Manda a llamar al repositorio de empresa
+	@Autowired 
 	IEmpresaRepository rEmpresa;
 
-	@Autowired // Manda a llamar al repositorip de Usuario
+	@Autowired
 	IUsuarioRepository rUsuario;
 
-	// Metodo listar
 	public List<Empresa> listar() {
 		return (List<Empresa>) rEmpresa.findAll();
 	}
 
-	// Metodo guardar
 	public void saveEmp(Empresa empresa) {
 		rEmpresa.save(empresa);
 	}
 
-	// Metodo eliminar
 	public void deleteEmp(Integer id) {
 		rEmpresa.deleteById(id);
 	}
 
-	// Metodo buscar por id de empresa
 	public Empresa findById(Integer id) {
 		return rEmpresa.findById(id).get();
 	}

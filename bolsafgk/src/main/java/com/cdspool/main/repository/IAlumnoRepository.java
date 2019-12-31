@@ -13,6 +13,7 @@ import com.cdspool.main.model.Usuario;
 @Repository
 public interface IAlumnoRepository extends CrudRepository<Alumno, Integer> {
 
+	// Query para listar alumnos por habilidad, departamento y certificacion
 	@Query(
 			value = "SELECT * FROM Alumno a INNER JOIN Usuario u ON u.id = a.id_usuario INNER JOIN Educacion e ON e.id_usuario = u.id INNER JOIN Municipio m ON a.id_municipio = m.id INNER JOIN Detalle_habilidades dh ON dh.id_usuario = u.id WHERE (e.id_certificacion = :certi OR m.id_depart = :depto OR dh.id_habilidad IN (:habi)) GROUP BY 1 ORDER BY 1;", 
 			nativeQuery = true)
