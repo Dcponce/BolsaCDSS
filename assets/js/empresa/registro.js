@@ -10,7 +10,7 @@ function nuevo(idC) {
     var clave = $("#clave").val();
     var credencial = (idC)
 
-    if (email != null && email!="") {
+    if (credencial != null && email!="" && clave != "") {
         var data = {
             "id": null,
             "email": email,

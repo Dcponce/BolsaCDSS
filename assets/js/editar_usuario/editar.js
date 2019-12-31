@@ -1,6 +1,6 @@
-$(document).ready(function () {
+$(document).ready(function() {
   getDatos();
-  $("#edit").on("click", function () {
+  $("#edit").on("click", function() {
     getUsuario();
   });
 });
@@ -13,7 +13,7 @@ function getDatos() {
     },
     type: "GET",
     dataType: "json",
-    success: function (result) {
+    success: function(result) {
       if (result != null) {
         $("#email").val(result.email);
         $("#clave").val(result.clave);
@@ -26,50 +26,59 @@ function edit(res) {
   var email = $("#email").val();
   var clave = $("#clave").val();
 
-  var data = {
-    id: res["id"],
-    email: email,
-    id_credencial: {
-      id: res["id_credencial"]["id"]
-    },
-    clave: clave,
-    id_tipo: {
-      id: res["id_tipo"]["id"]
-    },
-    estado: res["estado"],
-    activo: res["activo"]
-  };
+  if (email != "" && clave != "") {
+    var data = {
+      id: res["id"],
+      email: email,
+      id_credencial: {
+        id: res["id_credencial"]["id"]
+      },
+      clave: clave,
+      id_tipo: {
+        id: res["id_tipo"]["id"]
+      },
+      estado: res["estado"],
+      activo: res["activo"]
+    };
 
-  $.ajax({
-    url: "http://localhost:8080/usuarios/editU",
-    headers: {
-      Authorization: JSON.parse(localStorage.getItem("Token"))
-    },
-    method: "PUT",
-    contentType: "application/json",
-    data: JSON.stringify(data),
-    success: function () {
-      Swal.fire({
-        icon: "success",
-        title: "Excelente",
-        text: "Datos almacenado",
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "Ok"
-      }).then(result => {
-        if (result.value) {
-          location.reload();
-        }
-      });
-      clear();
-    },
-    error: function (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'La acción no se pudo completar'
-      });
+    $.ajax({
+      url: "http://localhost:8080/usuarios/editU",
+      headers: {
+        Authorization: JSON.parse(localStorage.getItem("Token"))
+      },
+      method: "PUT",
+      contentType: "application/json",
+      data: JSON.stringify(data),
+      success: function() {
+        Swal.fire({
+          icon: "success",
+          title: "Excelente",
+          text: "Datos almacenado",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Ok"
+        }).then(result => {
+          if (result.value) {
+            location.reload();
+          }
+        });
+        clear();
+      },
+      error: function () {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Envio fallido'
+        });
     }
-  });
+    });
+    
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Todos los campos son requerido"
+    });
+  }
 }
 
 function getUsuario() {
@@ -80,7 +89,7 @@ function getUsuario() {
     },
     type: "GET",
     dataType: "json",
-    success: function (res) {
+    success: function(res) {
       if (res != null) {
         edit(res);
       }
