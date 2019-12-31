@@ -49,7 +49,7 @@ function educacion() {
         contentType: "json",
         success: function (data) {
             if (data != null) {
-                if (data.universidad != null) {
+                if (data.universidad != null & data.universidad!="") {
                     $('#dts').append('<li>' +
                         '<ul class="address-text">' +
                         ' <li><b>Universidad</b></li>' +

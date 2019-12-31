@@ -65,15 +65,13 @@ function envio() {
                         activar(data);
                     }
                 })
-
-
+            }, error: function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Operación fallida'
+                })
             }
         });
-    } else {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'La acción no se pudo completar'
-        });
-    }
+    } 
 }

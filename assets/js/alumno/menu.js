@@ -92,7 +92,9 @@ function footer() {
         '<small class="text-muted d-block">Copyright © 2019 <a href="https://www.fundaciongloriakriete.org/"' +
         'target="_blank">FGK</a>. Todos los derechos reservador</small>' +
         '</div>' +
-        '</div>')
+        '</div>');
+
+    $('.header-fixed').removeClass('purchase-banner-active')
 }
 
 function imgPerfil() {

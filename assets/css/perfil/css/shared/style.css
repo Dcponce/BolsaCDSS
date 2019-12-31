@@ -533,7 +533,8 @@ pre {
   position: relative;
   width: 100%;
   padding-right: 7.5px;
-  padding-left: 7.5px; }
+  padding-left: 7.5px;
+margin-bottom: 3em; }
 
 .col {
   flex-basis: 0;

@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     var uriE = "http://localhost:8080/educacion";
 
-    getCert(uriC, 0)
+    getCert(id, 0)
 
     $('#datosE').on('click', function () {
         guardarE(uriE);
