@@ -35,7 +35,7 @@ function cargarImg() {
             if (result.value) {
                 location.reload();
             }
-        })
+        });
     }).fail(function () {
         Swal.fire({
             icon: 'error',
@@ -66,7 +66,13 @@ function cargarCv() {
         Swal.fire({
             icon: 'success',
             title: 'Excelente',
-            text: 'Archivo cargado con exito'
+            text: 'Archivo cargado con exito',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+        }).then((result) => {
+            if (result.value) {
+                location.reload();
+            }
         });
     }).fail(function () {
         Swal.fire({
