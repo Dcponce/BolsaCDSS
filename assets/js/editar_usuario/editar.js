@@ -1,8 +1,8 @@
-$(document).ready(function() {
-    getDatos();
-    $("#edit").on("click", function() {
-        getUsuario();
-    });
+$(document).ready(function () {
+  getDatos();
+  $("#edit").on("click", function () {
+    getUsuario();
+  });
 });
 
 function getDatos() {
@@ -13,7 +13,7 @@ function getDatos() {
     },
     type: "GET",
     dataType: "json",
-    success: function(result) {
+    success: function (result) {
       if (result != null) {
         $("#email").val(result.email);
         $("#clave").val(result.clave);
@@ -48,7 +48,7 @@ function edit(res) {
     method: "PUT",
     contentType: "application/json",
     data: JSON.stringify(data),
-    success: function() {
+    success: function () {
       Swal.fire({
         icon: "success",
         title: "Excelente",
@@ -62,8 +62,12 @@ function edit(res) {
       });
       clear();
     },
-    error: function(error) {
-      console.log(error);
+    error: function (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'La acción no se pudo completar'
+      });
     }
   });
 }
@@ -76,7 +80,7 @@ function getUsuario() {
     },
     type: "GET",
     dataType: "json",
-    success: function(res) {
+    success: function (res) {
       if (res != null) {
         edit(res);
       }

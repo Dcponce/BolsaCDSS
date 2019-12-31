@@ -30,8 +30,8 @@ function menuDatos() {
         '</li>' +
         '<li>' +
         ' <a href="editar.html">' +
-        '<span class="link-title">Editar Usuario</span>' +
-        ' <i class="mdi mdi-clipboard-outline link-icon"></i>' +
+        '<span class="link-title">Editar usuario</span>' +
+        ' <i class="mdi mdi-account link-icon"></i>' +
         ' </a>' +
         '</li>' +
         ' <li>' +
@@ -71,8 +71,8 @@ function menuNav() {
     $('.header-fixed').append('<nav class="t-header">' +
         '<div class= "t-header-brand-wrapper">' +
         '<a href="inicio.html">' +
-        '<img class="logo" src="../../assets/css/perfil/images/logo.svg" alt="">' +
-        ' <img class="logo-mini" src="../../assets/css/perfil/images/logo_mini.svg" alt="">' +
+        '<img class="logo" src="../../assets/img/Largo.png" alt="" width="100%" height="100%">' +
+        ' <img class="logo-mini" src="../../assets/img/Siglas.png" alt="" width="100%" height="100%">' +
         ' </a>' +
         ' </div>' +
         '<div class="t-header-content-wrapper">' +
