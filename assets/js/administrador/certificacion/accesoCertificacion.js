@@ -78,7 +78,7 @@ function nuevo(uri) {
         id = null;
     }
 
-    if (nombre != null) {
+    if (nombre != "") {
 
         var data = {
             "id": id,
