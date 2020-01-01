@@ -110,6 +110,7 @@ function eliminar(id) {
         contentType: "application/json",
         success: function () {
             listar("http://localhost:8080/email");
+            location.reload();
         }
     });
 }
