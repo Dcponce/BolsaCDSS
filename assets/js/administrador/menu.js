@@ -10,18 +10,20 @@ function footer() {
         '<div class= "col-sm-6 text-center text-sm-right order-sm-1">' +
         '</div>' +
         '<div class="col-sm-6 text-center text-sm-left mt-3 mt-sm-0">' +
-        '<small class="text-muted d-block">Derechos reservados © 2019 <a href="https://www.fundaciongloriakriete.org/"' +
-        'target="_blank">FGK</a></small>' +
+        '<small class="text-muted d-block">Copyright © 2019 <a href="https://www.fundaciongloriakriete.org/"' +
+        'target="_blank">FGK</a>. Todos los derechos reservador</small>' +
         '</div>' +
-        '</div>')
+        '</div>');
+
+    $('.header-fixed').removeClass('purchase-banner-active')
 }
 
 function menuNav() {
     $('.header-fixed').append('<nav class="t-header">' +
         '<div class= "t-header-brand-wrapper">' +
         '<a href="admin.html">' +
-        '<img class="logo" src="../../assets/css/perfil/images/logo.svg" alt="">' +
-        '<img class="logo-mini" src="../../assets/css/perfil/images/logo_mini.svg" alt="">' +
+        '<img class="logo" src="../../assets/img/Largo.png" alt="" width="100%" height="100%">' +
+        '<img class="logo-mini" src="../../assets/img/Siglas.png" alt="" width="100%" height="100%">' +
         '</a>' +
         '</div>' +
         '<div class="t-header-content-wrapper">' +
@@ -89,7 +91,6 @@ function menuNav() {
 
 function menuDatos() {
     $('.sidebar').append('<div class="user-profile">' +
-        '<div class= "display-avatar animated-avatar" id="img">' +
         '</div>' +
         '<div class="info-wrapper">' +
         '<p class="user-name"></p>' +

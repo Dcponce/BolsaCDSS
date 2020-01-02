@@ -32,7 +32,7 @@ function getData(uri) {
                         //botones
                         {
                             "render": function (data, type, row) {
-                                return "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #2980b9' onclick='editar(" + row.id + ")' data-toggle='modal' data-target='#nuevoU'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='borrar(" + row.id + ")' data-toggle='modal' data-target='#borrar'><i class='material-icons'>delete_forever</i></a> </div></div>"
+                                return "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #2980b9' onclick='editar(" + row.id + ")' data-toggle='modal' data-target='#nuevoU' title='Editar'> <i class='material-icons'>edit</i></a> <a href='#' style='color:  #c0392b ' onclick='borrar(" + row.id + ")' data-toggle='modal' data-target='#borrar' title='Eliminar'><i class='material-icons'>delete_forever</i></a> </div></div>"
                             }
                         },
                     ],
@@ -69,10 +69,8 @@ function nuevo(uri) {
     var id = $('#id').val();
     var nombre = $('#nombre').val();
     var metodo = "POST";
-    var accion = "Guardado";
     if (id > 0) {
         metodo = "PUT"
-        accion = "Actualizado"
 
     } else {
         id = null;
@@ -97,7 +95,7 @@ function nuevo(uri) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Excelente',
-                    text: 'Datos almacenado',
+                    text: 'Datos almacenados',
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: 'Ok'
                 }).then((result) => {

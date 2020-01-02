@@ -130,21 +130,23 @@
                     <input type="password" name="clave" id="clave" placeholder="Contraseña" class="form-group  form-control">
                     <label for="#tipo">Rol:</label>
                     <select name="tipo" id="tipo"  class="form-group custom-select"></select>
-                    <label for="#estado">Estado:</label>
+                    <label>Estado:</label>
                     <select name="estado" id="estado"  class="form-group custom-select">
-                        <option value="true">TRUE</option>
-                        <option value="false">FALSE</option>
+                        <option selected disabled>Seleccione un opción</option>
+                        <option value="true">Activo</option>
+                        <option value="false">Inactivo</option>
                     </select>
-                    <label for="#activo">Activo:</label>
+                    <label>Activo:</label>
                     <select name="activo" id="activo"  class="form-group custom-select">
-                        <option value="true">TRUE</option>
-                        <option value="false">FALSE</option>
+                        <option selected disabled>Seleccione un opción</option>
+                        <option value="true">Activo</option>
+                        <option value="false">Inactivo</option>
                     </select>
                   
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-secondary" id="nuevo">Guardar</button>
+                    <button type="button" class="btn btn-success" id="nuevo">Guardar</button>
                 </div>
             </div>
         </div>
