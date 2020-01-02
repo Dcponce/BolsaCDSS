@@ -5,6 +5,9 @@ $(document).ready(function () {
   $("#nuevo").on("click", function () {
     getCred();
   });
+  $("#bloq").on("click", function () {
+    bloquear();
+  });
 });
 
 function getData(uri) {
@@ -33,7 +36,7 @@ function getData(uri) {
             //botones
             {
               "render": function (data, type, row) {
-                return "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #ecb731' onclick='editar(" + row.id + ")' data-toggle='modal' data-target='#nuevoU' title='Bloquear'> <i class='material-icons'>report_off</i></a> </div></div>"
+                return "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #ecb731' onclick='editar(" + row.id + ")' data-toggle='modal' data-target='#bloqueo' title='Bloquear'> <i class='material-icons'>report_off</i></a> </div></div>"
               }
             },
           ],
@@ -116,9 +119,7 @@ function getCred() {
 }
 
 function nuevo(uri, idC) {
-  var id = $("#id").val();
   var email = $("#email").val();
-  var credencial = $("#credencial").val();
   var clave = $("#clave").val();
   var tipo = $("#tipo").val();
   var estado = $("#estado").val();
@@ -128,14 +129,15 @@ function nuevo(uri, idC) {
 
   if (id > 0) {
     metodo = "PUT";
-    activo = "false";
+    estado = "false";
+    idC = $("#credencial").val();
   } else {
     id = null;
   }
 
-  if (credencial != null && email != "" &&  clave != "") {
+  if (credencial != null && email != "" && clave != "") {
     var data = {
-      "id": id,
+      "id": null,
       "email": email,
       "id_credencial": {
         "id": idC
@@ -181,7 +183,6 @@ function nuevo(uri, idC) {
 }
 
 function editar(id) {
-  $('#exampleModalLabel').text("Modificar Certificación")
   $.ajax({
     url: "http://localhost:8080/usuarios/getUsu/" + id,
     headers: {
@@ -191,12 +192,7 @@ function editar(id) {
     dataType: "json",
     success: function (result) {
       if (result != null) {
-        $('#id').val(result.id);
-        $('#email').val(result.email);
-        $('#credencial').val(result.id_credencial.codigo);
-        $('#tipo').val(result.id_tipo.id);
-        $('#estado').val(result.estado);
-        $('#activo').val(result.activo);
+        $("#id").val(result.id);
       }
     }
   });
@@ -207,4 +203,42 @@ function titulo() {
 }
 function borrar(id) {
   $('#idDelete').val(id);
+}
+
+function bloquear(idC) {
+  idC = $("#id").val();
+  if (idC > 0) {
+    var data = {
+      "id": idC,
+    };
+
+    $.ajax({
+      url: "http://localhost:8080/usuarios",
+      headers: {
+        Authorization: JSON.parse(localStorage.getItem("Token"))
+      },
+      method: "PUT",
+      contentType: "application/json",
+      data: JSON.stringify(data),
+      success: function () {
+        Swal.fire({
+          icon: 'success',
+          title: 'Excelente',
+          text: 'Usuario bloqueado',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Ok'
+        }).then((result) => {
+          if (result.value) {
+            location.reload();
+          }
+        })
+      }
+    });
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'La acción no se pudo completar'
+    });
+  }
 }
