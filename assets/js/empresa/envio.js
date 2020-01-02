@@ -30,7 +30,7 @@ function envio() {
     var asunto = $("#asunto").val();
     var contenido = $("#msg").val();
 
-    if (email != null) {
+    if (email != null && asunto != "" && contenido != "") {
         var data = {
             "asunto": asunto,
             "contenido": contenido,
@@ -73,5 +73,12 @@ function envio() {
                 })
             }
         });
-    } 
+        
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Todos los campos son requeridos"
+          });
+    }
 }

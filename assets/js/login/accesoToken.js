@@ -9,7 +9,7 @@ function getToken(uri) {
   var email = $("#correo").val();
   var clave = $("#clave").val();
 
-  if (email != null && clave != null) {
+  if (email != "" && clave != "") {
     var data = {
       email: email,
       clave: clave
@@ -29,6 +29,13 @@ function getToken(uri) {
         title: "Oops...",
         text: "Usuario o contraseña incorrectos"
       });
+    });
+
+  }else{
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Todos los campos son requeridos"
     });
   }
 }
@@ -62,7 +69,11 @@ function getId(email, rol) {
       window.location.replace(ruta);
     },
     error: function (error) {
-      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Usuario no existe"
+      });
     }
   });
 }
