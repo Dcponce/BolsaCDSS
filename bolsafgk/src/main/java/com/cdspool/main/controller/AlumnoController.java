@@ -65,7 +65,7 @@ public class AlumnoController {
 		return sAlumno.findById(id);
 	}
 
-	// Filtro de Alumnos 
+	// Filtro de Alumnos
 	@GetMapping("filter")
 	@Secured({ "ROLE_EMPRESA", "ROLE_ADMIN" })
 	public List<Alumno> filterEmp(@RequestParam(required = false) String depto,
@@ -75,7 +75,7 @@ public class AlumnoController {
 
 		Integer departamento = null;
 
-		if (depto.equals("null") || depto.equals("") || depto.equals(null)) {
+		if (depto.equals("null") || depto.equals("") || depto == null) {
 
 		} else {
 			departamento = Integer.parseInt(depto);
@@ -85,7 +85,7 @@ public class AlumnoController {
 
 		Integer certificacion = null;
 
-		if (certi.equals("null") || certi.equals("") || certi.equals(null)) {
+		if (certi.equals("null") || certi.equals("") || certi == null) {
 
 		} else {
 			certificacion = Integer.parseInt(certi);
@@ -93,13 +93,20 @@ public class AlumnoController {
 
 		/************************************************************************************************************/
 
-		if (habil.equals("") || habil.equals("null") || habil.equals(null)) {
+		if (habil.equals("") || habil.equals("null") || habil == null) {
 
-			return sAlumno.filter(departamento, certificacion, null);
+			if (departamento == null && certificacion == null) {
+
+				return sAlumno.findAll();
+				
+			} else {
+				return sAlumno.filter(departamento, certificacion, null);
+			}
 
 		} else {
-			
-			// Se recibe un arreglo de tipo String y se convierte a un arreglo de tipo Integer
+
+			// Se recibe un arreglo de tipo String y se convierte a un arreglo de tipo
+			// Integer
 
 			String[] items = habil.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");
 
