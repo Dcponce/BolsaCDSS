@@ -70,7 +70,24 @@ public class UsuarioController {
 	// Editar Usuario(Administrador)
 	@PutMapping()
 	public void updateUsu(@RequestBody Usuario usu) {
-		uService.save(usu);
+		Usuario usuario = uService.findById(usu.getId());
+		
+		Usuario usua = new Usuario();
+		
+		usua.setId(usuario.getId());
+		usua.setEmail(usuario.getEmail());
+		usua.setId_credencial(usuario.getId_credencial());
+		usua.setClave(usuario.getClave());
+		usua.setId_tipo(usuario.getId_tipo());
+		if(usuario.getEstado()== true) {
+			usua.setEstado(false);
+		}else {
+			usua.setEstado(true);
+		}
+		
+		usua.setActivo(usuario.getActivo());
+		
+		uService.save(usua);
 	}
 
 	// Envio de Activacion de Usuario
