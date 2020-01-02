@@ -87,7 +87,7 @@ function modificarDtH() {
         success: function (data) {
             if (data != null) {
                 $.each(data, function (i, v) {
-                    var idHab = v.id;
+                    var idHab = v.habilidad.id;
                     createOptions(idHab);
                 });
             }
