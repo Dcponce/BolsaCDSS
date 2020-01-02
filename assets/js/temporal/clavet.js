@@ -3,7 +3,17 @@ $(document).ready(function() {
 
   $("#confirm").on("click", function() {
     var correo = $("#email").val();
-    temporal(uri, correo);
+
+    if(correo != ""){
+      temporal(uri, correo);
+
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Todos los campos son requeridos"
+      });
+    }
   });
 
   $("#aut").on("click", function() {
@@ -29,18 +39,27 @@ function temporal(uri, correo) {
 function autenticacion() {
   var clavet = $("#temporal").val();
 
-  $.ajax({
-    url: "http://localhost:8080/temporal/" + clavet,
-    method: "GET",
-    dataType: "json",
-    contentType: "application/json",
-    success: function(res) {
-      var idUsuario = res["usuario"]["id"];
-      var password = res["clavet"];
-      var id = res["id"];
-      getUsuario(idUsuario, password, id);
-    }
-  });
+  if(clavet != ""){
+    $.ajax({
+      url: "http://localhost:8080/temporal/" + clavet,
+      method: "GET",
+      dataType: "json",
+      contentType: "application/json",
+      success: function(res) {
+        var idUsuario = res["usuario"]["id"];
+        var password = res["clavet"];
+        var id = res["id"];
+        getUsuario(idUsuario, password, id);
+      }
+    });
+
+  }else{
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Todos los campos son requeridos"
+    });
+  }
 }
 
 function getUsuario(idUsuario, password, id) {

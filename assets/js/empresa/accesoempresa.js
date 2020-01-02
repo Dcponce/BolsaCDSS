@@ -28,7 +28,7 @@ function nuevo(base_uri) {
         id = null;
     }
 
-    if (nombre != null) {
+    if (nombre != "" && telefono != "") {
 
         var data = {
             "id": id,
@@ -55,6 +55,13 @@ function nuevo(base_uri) {
                 });
             }
         });
+
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Todos los campos son requeridos"
+          });
     }
 }
 

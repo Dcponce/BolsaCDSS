@@ -38,7 +38,7 @@ function guardar(uri) {
         id = null;
     }
 
-    if (muni > 0) {
+    if (muni > 0 && nom != "" && apellido != "" && cel != "" && dir != "" && nac != "") {
 
         var data = {
             "id": id,
@@ -81,6 +81,13 @@ function guardar(uri) {
                 alert("No se pudo completar la acción");
             }
         });
+
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Operación fallida"
+          });
     }
 }
 
