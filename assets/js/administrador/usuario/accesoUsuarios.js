@@ -133,7 +133,7 @@ function nuevo(uri, idC) {
     id = null;
   }
 
-  if (credencial != null) {
+  if (credencial != null && email != "" &&  clave != "") {
     var data = {
       "id": id,
       "email": email,

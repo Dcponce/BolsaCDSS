@@ -83,7 +83,7 @@ function nuevo(base_uri) {
     } else {
         id = null;
     }
-    if (descripcion != null) {
+    if (descripcion != "") {
         var data = {
             "id": id,
             "descripcion": descripcion,
