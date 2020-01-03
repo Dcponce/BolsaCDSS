@@ -435,6 +435,27 @@ public class UsuarioController {
 		return usua;
 		
 	}
+	
+	// Autorizacion de Alumno
+	@GetMapping("autAlumno")
+	@Secured("ROLE_ALUMNO")
+	public String autAlumno() {
+		return "{'mensaje':'No eres un Alumno'}";
+	}
+
+	// Autorizacion de Empresa
+	@GetMapping("autEmpresa")
+	@Secured("ROLE_EMPRESA")
+	public String autEmpresa() {
+		return "{'mensaje':'No eres una Empresa'}";
+	}
+
+	// Autorizacion de Administrador
+	@GetMapping("autAdmin")
+	@Secured("ROLE_ADMIN")
+	public String autAdmin() {
+		return "{'mensaje':'No eres Administrador'}";
+	}
 
 	// Activacion de Usuario
 	@GetMapping("usuario/{id}")
