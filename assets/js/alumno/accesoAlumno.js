@@ -78,7 +78,11 @@ function guardar(uri) {
                 $('#four').removeClass('show active');
             },
             error: function (error) {
-                alert("No se pudo completar la acción");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "No se pudo completar la acción"
+                  });
             }
         });
 
@@ -86,7 +90,7 @@ function guardar(uri) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Operación fallida"
+            text: "Todos los campos son requeridos"
           });
     }
 }

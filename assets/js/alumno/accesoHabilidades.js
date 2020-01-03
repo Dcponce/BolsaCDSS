@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     var uriDt = "http://localhost:8080/detalleHa";
 
-    createOptions(id,0);
+    createOptions(id, 0);
 
     $('#datosH').on('click', function () {
         guardarH(uriDt);
@@ -12,8 +12,6 @@ $(document).ready(function () {
 
 function guardarH(uriDt) {
     var id = $('#idH').val();
-    var pri = $('#prioridad').val();
-    var lvl = $('#dominio').val();
     var hab = [$('#select').val()];
 
     var metodo = "POST";
@@ -27,8 +25,6 @@ function guardarH(uriDt) {
         for (var i = 0; i < v.length; i++) {
             var data = {
                 "id": id,
-                "prioridad": pri,
-                "nivel": lvl,
                 "habilidad": {
                     "id": v[i]
                 },
@@ -61,6 +57,13 @@ function guardarH(uriDt) {
                     $('#four').addClass('show active');
                     $('#four-tab').addClass('show active');
                     $('#four-tab').prop("disabled", false);
+                },
+                error: function (error) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "No se pudo completar la acción"
+                    });
                 }
             });
         }

@@ -25,24 +25,45 @@
 
                 <form class="login100-form validate-form">
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                        <span class="label-input100">Para:</span>
+                        <span>Para</span>
                         <input class="input100" type="hidden" name="id" id="id">
                         <input class="input100" type="text" name="para" id="para">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                        <span class="label-input100">Asunto:</span>
+                        <span>Asunto</span>
                         <input class="input100" type="text" name="asunto" id="asunto">
                         <span class="focus-input100"></span>
                     </div>
-
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                        <span class="label-input100">Mensaje:</span>
+                        <span>Puesto</span>
+                        <input class="input100" type="text" name="msg" id="puesto">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span>Descripción del puesto</span>
                         <input class="input100" type="text" name="msg" id="msg">
                         <span class="focus-input100"></span>
                     </div>
-
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span>Nombre y teléfono de contacto</span>
+                        <input class="input100" type="text" name="msg" id="contac">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span>Salario</span><br>
+                        <select name="sal" id="sal" class="input100">
+                            <option selected disabled>Seleccione un rago</option>
+                            <option value="Aconveniencia">A conveniencia</option>
+                            <option value="Pasantía">Pasantía</option>
+                            <option value="$300 - $500">$300 - $500</option>
+                            <option value="$501 - $800">$501 - $800</option>
+                            <option value="$801 - $1000">$801 - $1000</option>
+                            <option value="$1001 - a más">$1001 - a más</option>
+                        </select><br>
+                        <span class="focus-input100"></span>
+                    </div><br>
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn" id="nuevo" type="button">
                             Enviar

@@ -29,6 +29,9 @@ function envio() {
     var email = $("#id").val();
     var asunto = $("#asunto").val();
     var contenido = $("#msg").val();
+    var contacto = $("#contac").val();
+    var puesto = $("#puesto").val();
+    var salario = $("#sal").val();
 
     if (email != null && asunto != "" && contenido != "") {
         var data = {
@@ -44,7 +47,7 @@ function envio() {
         };
 
         $.ajax({
-            url: "http://localhost:8080/envio/propuesta",
+            url: "http://localhost:8080/envio/propuesta?contacto="+contacto+"&puesto="+puesto+"&salario="+salario+"",
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('Token'))
             },

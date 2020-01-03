@@ -33,51 +33,51 @@ function guardarP(uriP) {
         id = null;
     }
 
-    if(nom != "" && lnk != ""){
+    if (nom != "" && lnk != "") {
         saveH(uri, metodo, id1, nom, lnk, idc);
     }
 
-    if(nom2 != "" && lnk2 != ""){
+    if (nom2 != "" && lnk2 != "") {
         saveH(uri, metodo, id2, nom2, lnk2, idc);
     }
 
-    if(nom3 != "" && lnk3 != ""){
+    if (nom3 != "" && lnk3 != "") {
         saveH(uri, metodo, id3, nom3, lnk3, idc);
     }
 
 }
 
-    function saveH(uri, metodo, id, nom, lnk, idc){
+function saveH(uri, metodo, id, nom, lnk, idc) {
 
-        var data = {
-            "id": id,
-            "nombre": nom,
-            "url": lnk,
-            "usuario": {
-                "id": idc
-            }
-        };
+    var data = {
+        "id": id,
+        "nombre": nom,
+        "url": lnk,
+        "usuario": {
+            "id": idc
+        }
+    };
 
-        $.ajax({
-            url: uri,
-            headers: {
-                'Authorization': JSON.parse(localStorage.getItem('Token'))
-            },
-            method: metodo,
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            success: function () {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Excelente',
-                    text: 'Datos almacenados correctamente'
-                });
-            }
-        }).fail(function(){
+    $.ajax({
+        url: uri,
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        method: metodo,
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function () {
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'La acción no se pudo completar'
+                icon: 'success',
+                title: 'Excelente',
+                text: 'Datos almacenados correctamente'
             });
-        });
-    }
+        }, error: function (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "No se pudo completar la acción"
+            });
+        }
+    })
+}
