@@ -8,6 +8,9 @@ $(document).ready(function () {
   $("#bloq").on("click", function () {
     bloquear();
   });
+  $("#dbloq").on("click", function () {
+    bloquear();
+  });
 });
 
 function getData(uri) {
@@ -36,7 +39,7 @@ function getData(uri) {
             //botones
             {
               "render": function (data, type, row) {
-                return "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #ecb731' onclick='editar(" + row.id + ")' data-toggle='modal' data-target='#bloqueo' title='Bloquear'> <i class='material-icons'>report_off</i></a> </div></div>"
+                return "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a href='#'style='color: #d03027' onclick='editar(" + row.id + ")' data-toggle='modal' data-target='#bloqueo' title='Bloquear'> <i class='material-icons'>lock</i></a> </div><div class='col-xs-12 Val-UDP'><a href='#'style='color: #ecb731' onclick='editar(" + row.id + ")' data-toggle='modal' data-target='#desblo' title=' Desbloquear'> <i class='material-icons'>lock_open</i></a> </div></div>"
               }
             },
           ],
@@ -193,6 +196,9 @@ function editar(id) {
     success: function (result) {
       if (result != null) {
         $("#id").val(result.id);
+        $("#iddes").val(result.id);
+        $("#st").val(result.estado);
+        
       }
     }
   });
@@ -205,8 +211,9 @@ function borrar(id) {
   $('#idDelete').val(id);
 }
 
-function bloquear(idC) {
+function bloquear() {
   idC = $("#id").val();
+  var st = $("#st").val();
   if (idC > 0) {
     var data = {
       "id": idC,
@@ -221,17 +228,31 @@ function bloquear(idC) {
       contentType: "application/json",
       data: JSON.stringify(data),
       success: function () {
-        Swal.fire({
-          icon: 'success',
-          title: 'Excelente',
-          text: 'Usuario bloqueado',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'Ok'
-        }).then((result) => {
-          if (result.value) {
-            location.reload();
-          }
-        })
+        if (st == "false") {
+          Swal.fire({
+            icon: 'success',
+            title: 'Excelente',
+            text: 'Usuario desbloqueado',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.value) {
+              location.reload();
+            }
+          })
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: 'Excelente',
+            text: 'Usuario bloqueado',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.value) {
+              location.reload();
+            }
+          })
+        }
       }
     });
   } else {
