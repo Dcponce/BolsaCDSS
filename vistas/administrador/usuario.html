@@ -114,7 +114,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="id" id="id" class="form-group  form-control">
                     <label for="#email">Email:</label>
                     <input type="email" name="email" id="email" placeholder="Correo" class="form-group  form-control">
                     <label for="#credencial">Credencial:</label>
@@ -145,73 +144,26 @@
         </div>
     </div>
 
-    <!-- Delete Modal-->
-    <div class="modal fade" id="borrar">
+    <!-- Bloqueo Modal-->
+    <div class="modal fade" id="bloqueo">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Eliminar certificación</h4>
+                    <h4 class="modal-title">Bloquear usuario</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>¿Seguro que quieres eliminar este registro?</p>
-                    <p class="text-warning"><small>Esta acción no se puede deshacer.</small></p>
-                    <input type="hidden" id="idDelete">
+                    <p>¿Seguro que quieres bloquear este usario?</p>
+                    <input type="text" id="id" name="id">
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-light" data-dismiss="modal" value="Cancelar">
-                    <button type="button" class="btn btn-danger" id="delete">Eliminar</button>
+                    <button type="button" class="btn btn-danger" id="bloq">Bloquear</button>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
-
-
-<!-- <body>
-
-    <h1>Usuarios</h1>
-    <table border="1" id="tabla">
-        <thead>
-            <th>Email</th>
-            <th>Credencial</th>
-            <th>Rol</th>
-            <th>Estado</th>
-            <th>Activo</th>
-            <th colspan="2">Opciones</th>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table> <br>
-
-    <h2>Formulario Usuarios</h2>
-    <form>
-        <input type="hidden" name="id" id="id">
-
-        <label for="#email">Email</label>
-        <input type="text" name="email" id="email"> <br><br>
-
-        <label for="#credencial">Credencial</label>
-        <input type="text" name="credencial" id="credencial"> <br><br>
-
-        <label for="">Clave</label>
-        <input type="password" name="clave" id="clave"> <br><br>
-
-        <label for="">Rol</label>
-        <select name="tipo" id="tipo">
-
-        </select> <br><br>
-
-        <button type="button" id="nuevo">Guardar</button>
-
-    </form>
-
-
-    <script src="../../assets/js/bootstrap/jquery-3.4.1.min.js"></script>
-    <script src="../../assets/js/administrador/usuario/accesoUsuarios.js"></script>
-    <script src="../../assets/js/bootstrap/popper.min.js"></script>
-    <script src="../../assets/js/bootstrap/bootstrap.min.js"></script>
-</body> -->
