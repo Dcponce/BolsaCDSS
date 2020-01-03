@@ -3,6 +3,11 @@ $(document).ready(function () {
     menuNav();
     footer();
     imgPerfil()
+
+    $('#mdes').on('click', function () {
+        mmovil();
+    });
+
 });
 
 function footer() {
@@ -21,14 +26,14 @@ function footer() {
 function menuNav() {
     $('.header-fixed').append('<nav class="t-header">' +
         '<div class= "t-header-brand-wrapper">' +
-        '<a href="admin.html">' +
+        '<a href="inicio.html">' +
         '<img class="logo" src="../../assets/img/Largo.png" alt="" width="100%" height="100%">' +
         '<img class="logo-mini" src="../../assets/img/Siglas.png" alt="" width="100%" height="100%">' +
         '</a>' +
         '</div>' +
         '<div class="t-header-content-wrapper">' +
         '<div class="t-header-content">' +
-        '<button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none text-gray">' +
+        '<button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none text-gray" id="mdes">' +
         '<i class="mdi mdi-menu"></i>' +
         '</button>' +
         '</div> ' +
@@ -107,6 +112,13 @@ function imgPerfil() {
     $('#img').append('<img class="profile-img img-lg rounded-circle" src="../../../BolsaCDSS/img/img_' + JSON.parse(localStorage.getItem('Id')) + '.png' + '"alt = "profile image">');
 
 }
+function mmovil() {
+    if ($('.page-body').hasClass('sidebar-collpased')) {
+        $('.page-body').removeClass('sidebar-collpased');
+    } else {
+        $('.page-body').addClass('sidebar-collpased');
+    }
 
+}
 
 

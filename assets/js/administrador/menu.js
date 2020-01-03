@@ -3,6 +3,10 @@ $(document).ready(function () {
     menuNav();
     footer();
     contar();
+
+    $('#mdes').on('click', function () {
+        mmovil();
+    });
 });
 
 function footer() {
@@ -28,7 +32,7 @@ function menuNav() {
         '</div>' +
         '<div class="t-header-content-wrapper">' +
         '<div class="t-header-content">' +
-        '<button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none text-gray">' +
+        '<button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none text-gray" id="mdes">' +
         '<i class="mdi mdi-menu"></i>' +
         '</button>' +
 
@@ -87,6 +91,8 @@ function menuNav() {
         '</div> ' +
         '</div> ' +
         '</nav>')
+
+
 }
 
 function menuDatos() {
@@ -173,7 +179,7 @@ function contar() {
                     }
                 });
                 if (count > 0) {
-                    $('.dropdown-title-text').text('Tienes '+count+' correos sin leer')
+                    $('.dropdown-title-text').text('Tienes ' + count + ' correos sin leer')
                     $('#punto').addClass('notification-indicator')
                 } else {
                     $('.dropdown-title-text').text('No tienes correos')
@@ -183,10 +189,19 @@ function contar() {
         }
     });
 }
-function cerrarSesion(){
+function cerrarSesion() {
     localStorage.removeItem('Email');
     localStorage.removeItem('Bienvenida');
     localStorage.removeItem('Token');
     localStorage.removeItem('Id');
     window.location.replace("../../index.html");
+}
+
+function mmovil() {
+    if ($('.page-body').hasClass('sidebar-collpased')) {
+        $('.page-body').removeClass('sidebar-collpased');
+    } else {
+        $('.page-body').addClass('sidebar-collpased');
+    }
+
 }
