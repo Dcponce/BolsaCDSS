@@ -1,7 +1,7 @@
 $(document).ready(function() {
   getDatos();
   $("#edit").on("click", function() {
-    getUsuario();
+    validar();
   });
 });
 
@@ -15,25 +15,25 @@ function getDatos() {
     dataType: "json",
     success: function(result) {
       if (result != null) {
-        $("#email").val(result.email);
-        $("#clave").val(result.clave);
+        $("#emailU").val(result.email);
+        $("#claveU").val(result.clave);
       }
     }
   });
 }
 
 function edit(res) {
-  var email = $("#email").val();
-  var clave = $("#clave").val();
+  var emailU = $("#emailU").val();
+  var claveU = $("#claveU").val();
 
-  if (email != "" && clave != "") {
+  if (emailU != "" && claveU != "") {
     var data = {
       id: res["id"],
-      email: email,
+      email: emailU,
       id_credencial: {
         id: res["id_credencial"]["id"]
       },
-      clave: clave,
+      clave: claveU,
       id_tipo: {
         id: res["id_tipo"]["id"]
       },
@@ -61,7 +61,6 @@ function edit(res) {
             location.reload();
           }
         });
-        clear();
       },
       error: function () {
         Swal.fire({
@@ -95,4 +94,49 @@ function getUsuario() {
       }
     }
   });
+}
+
+function validar(){
+  var correo = $('#correo').val();
+  var clave = $('#clave').val();
+
+  if (correo != "" && clave != "") {
+    var data = {
+      email: correo,
+      clave: clave
+    };
+
+    $.ajax({
+      url: "http://localhost:8080/login",
+      method: "POST",
+      contentType: "application/json",
+      data: JSON.stringify(data),
+      success: function (token) {
+        if(localStorage.getItem('Bienvenida') == JSON.stringify(token["mensaje"])){
+          getUsuario();
+
+        }else{
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "El usuario que ingreso no le pertenece"
+          });
+        }
+        
+      }
+    }).fail(function () {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Usuario o contraseña incorrectos"
+      });
+    });
+
+  }else{
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Todos los campos son requeridos"
+    });
+  }
 }

@@ -57,12 +57,12 @@
                                             <div class="tab-pane fade show active p-3 col-md-9 showcase_content_area"
                                                 id="one" role="tabpanel" aria-labelledby="one-tab">
                                                 <h2 class="form-group">Editar usuario</h2>
-                                                <input type="email" name="email" id="email" placeholder="Usuario"
+                                                <input type="email" name="email" id="emailU" placeholder="Usuario"
                                                     class="form-group form-control">
-                                                <input type="password" name="clave" id="clave" placeholder="Clave"
+                                                <input type="password" name="clave" id="claveU" placeholder="Clave"
                                                     class="form-group form-control">
-                                                <div class="btn btn-success has-icon btn-rounded form-group" id="edit">
-                                                    <i class="mdi mdi-account-check"></i>Guardar</div>
+                                                <div class="btn btn-success has-icon btn-rounded form-group">
+                                                    <i class="mdi mdi-account-check"></i><a href="#" data-toggle="modal" data-target= "#iniciar" style="color: white;">Guardar</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -145,6 +145,35 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="modal fade" id="iniciar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="example1">Confirmacion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   <h4>Escribe tus Credenciales</h4><br><br>
+                   <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+                    <input class="form-group form-control" type="text" name="username" id="correo" placeholder="Correo">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
+                    <input class="form-group form-control" type="password" name="pass" id="clave" placeholder="Clave">
+                    <span class="focus-input100"></span>
+                </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success"  id="edit">Validar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
