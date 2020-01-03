@@ -5,6 +5,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cdspool.main.model.Alumno;
@@ -68,7 +69,8 @@ public class EnviodEmailController {
 	// Envio de Propuesta Laboral
 	@PostMapping("/propuesta")
 	@Secured("ROLE_EMPRESA")
-	public void sendEmailWithAttachment(@RequestBody Email email) throws MessagingException, IOException {
+	public void sendEmailWithAttachment(@RequestBody Email email, @RequestParam String contacto,
+			@RequestParam String puesto, @RequestParam String salario) throws MessagingException, IOException {
 
 		Alumno alu = rAlumno.findById(email.getReceptor().getId());
 		Usuario usua = uService.findById(alu.getId_usuario().getId());
@@ -339,7 +341,7 @@ public class EnviodEmailController {
 				"                                <tr>\r\n" + 
 				"                                    <td align=\"center\" style=\"color: #1c1c1c; line-height: 24px;\">\r\n" + 
 				"										<p>La empresa <b>"+ emp.getNombre() +"</b> le comparte la siguiente oferta</p> \r\n" +
-				"                                       <p>"+ email.getContenido() +"</p> \r\n" + 
+				"                                       <h1>"+ puesto +"</h1> <p>Descripción del puesto: "+ email.getContenido() +"</p> <p>Salario: <b>"+salario+"</b></p> <p>Contacto: <b>"+contacto+"</b></p> \r\n" + 
 				"                                    </td>\r\n" + 
 				"                                </tr>\r\n" + 
 				"                            </table>\r\n" + 
