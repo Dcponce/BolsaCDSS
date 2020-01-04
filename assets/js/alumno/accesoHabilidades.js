@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     var uriDt = "http://localhost:8080/detalleHa";
 
-    createOptions(id, 0);
+    createOptions();
 
     $('#datosH').on('click', function () {
         guardarH(uriDt);
@@ -11,67 +11,98 @@ $(document).ready(function () {
 });
 
 function guardarH(uriDt) {
-    var id = $('#idH').val();
+
     var hab = [$('#select').val()];
+    var idUsuario = JSON.parse(localStorage.getItem('Id'));
 
-    var metodo = "POST";
-    if (id > 0) {
-        metodo = "PUT";
-    } else {
-        id = null;
+    if (hab.length > 0) {
+
+        //Eliminar todos los registros de habilidades del usuario en sesión
+        $.ajax({
+            url: uriDt + "/deleteByUser/" + idUsuario,
+            headers: {
+                'Authorization': JSON.parse(localStorage.getItem('Token'))
+            },
+            method: "DELETE",
+            contentType: "application/json",
+            success: function () {
+            }
+        });
+
+
+        $.each(hab, function (i, v) {
+
+            for (var i = 0; i < v.length; i++) {
+
+                var data = {
+                    "id": null,
+                    "habilidad": {
+                        "id": v[i]
+                    },
+                    "usuarios": {
+                        "id": idUsuario
+                    }
+                };
+
+                $.ajax({
+                    url: uriDt,
+                    headers: {
+                        'Authorization': JSON.parse(localStorage.getItem('Token'))
+                    },
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    success: function () {
+                        $('#one').removeClass('show active');
+                        $('#one-tab').removeClass('show active');
+                        $('#one-tab').prop("disabled", true);
+
+                        $('#two').removeClass('show active');
+                        $('#two-tab').removeClass('show active');
+                        $('#two-tab').prop("disabled", true);
+
+                        $('#three-tab').removeClass('show active');
+                        $('#three').removeClass('show active');
+                        $('#three-tab').prop("disabled", true);
+
+                        $('#four').addClass('show active');
+                        $('#four-tab').addClass('show active');
+                        $('#four-tab').prop("disabled", false);
+                    }
+                });
+            }
+        });
     }
-
-    $.each(hab, function (i, v) {
-        for (var i = 0; i < v.length; i++) {
-            var data = {
-                "id": id,
-                "habilidad": {
-                    "id": v[i]
-                },
-                "usuarios": {
-                    "id": JSON.parse(localStorage.getItem('Id'))
-                }
-            };
-
-            $.ajax({
-                url: uriDt,
-                headers: {
-                    'Authorization': JSON.parse(localStorage.getItem('Token'))
-                },
-                method: metodo,
-                contentType: "application/json",
-                data: JSON.stringify(data),
-                success: function () {
-                    $('#one').removeClass('show active');
-                    $('#one-tab').removeClass('show active');
-                    $('#one-tab').prop("disabled", true);
-
-                    $('#two').removeClass('show active');
-                    $('#two-tab').removeClass('show active');
-                    $('#two-tab').prop("disabled", true);
-
-                    $('#three-tab').removeClass('show active');
-                    $('#three').removeClass('show active');
-                    $('#three-tab').prop("disabled", true);
-
-                    $('#four').addClass('show active');
-                    $('#four-tab').addClass('show active');
-                    $('#four-tab').prop("disabled", false);
-                },
-                error: function (error) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "No se pudo completar la acción"
-                    });
-                }
-            });
-        }
-    });
-
 }
 
-function createOptions(id) {
+
+function getHabByUser() {
+    var ids = [];
+
+    $.ajax({
+        url: "http://localhost:8080/detalleHa/usuario/" + JSON.parse(localStorage.getItem('Id')),
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        method: "GET",
+        contentType: "json",
+        success: function (data) {
+            if (data != null) {
+                $.each(data, function (i, v) {
+                    ids.push(v.habilidad.id);
+                });
+            }
+        }
+    });
+    
+    return ids;
+}
+
+
+function createOptions() {
+
+    var ids = getHabByUser();
+    console.log(ids);
     $.ajax({
         url: "http://localhost:8080/habilidades",
         headers: {
@@ -88,8 +119,13 @@ function createOptions(id) {
                 var options = [], _options;
 
                 $.each(result, function (i, v) {
+
                     option = "";
-                    option = (v.id == id) ? '<option value="' + v.id + '" selected>' + v.descripcion + '</option>' : '<option value="' + v.id + '">' + v.descripcion + '</option>';
+                    if (ids.length == 0) {
+                        option = '<option value="' + v.id + '">' + v.descripcion + '</option>';
+                    } else {
+                        option = (ids.includes(v.id)) ? '<option value="' + v.id + '" selected>' + v.descripcion + '</option>' : '<option value="' + v.id + '">' + v.descripcion + '</option>';
+                    }
                     options.push(option);
                 });
 

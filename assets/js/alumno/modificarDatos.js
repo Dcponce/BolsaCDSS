@@ -3,7 +3,6 @@ $(document).ready(function () {
     modificar();
     modificarE();
     modificarPro();
-    modificarDtH();
 });
 
 function modificar() {
@@ -70,25 +69,6 @@ function modificarPro() {
                     $('#idPr'+i).val(v.id);
                     $('#nom' + i).val(v.nombre);
                     $('#link' + i).val(v.url);
-                });
-            }
-        }
-    });
-}
-
-function modificarDtH() {
-    $.ajax({
-        url: "http://localhost:8080/detalleHa/usuario/" + JSON.parse(localStorage.getItem('Id')),
-        headers: {
-            'Authorization': JSON.parse(localStorage.getItem('Token'))
-        },
-        method: "GET",
-        contentType: "json",
-        success: function (data) {
-            if (data != null) {
-                $.each(data, function (i, v) {
-                    var idHab = v.habilidad.id;
-                    createOptions(idHab);
                 });
             }
         }
