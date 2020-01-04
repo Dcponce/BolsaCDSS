@@ -399,6 +399,11 @@ public class EnviodEmailController {
 				"</body>\r\n" + 
 				"\r\n" + 
 				"</html>";
+		
+		String cont = "{'puesto':'" + puesto + "','descripccion':'" + email.getContenido() + "','salario':'" + salario
+				+ "','contacto': '" + contacto + "'}";
+		
+		
 
 		helper.setTo(usua.getEmail());
 
@@ -410,7 +415,7 @@ public class EnviodEmailController {
 
 		correos.setAsunto(email.getAsunto());
 		correos.setEmisor(emp);
-		correos.setContenido(email.getContenido());
+		correos.setContenido(cont);
 		correos.setReceptor(alu);
 		correos.setEstado("A");
 
