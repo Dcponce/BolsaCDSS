@@ -16,4 +16,7 @@ public interface IDeHabilidadRepository extends CrudRepository<Detalle_habilidad
 
 	// Query para listar detalle de habilidad por usuario
 	public List<Detalle_habilidades> findByUsuarios(Usuario usuario);
+	
+	//Query para eliminar detalle de habilidades por usuario
+	public void deleteByUsuarios(Usuario usuario);
 }

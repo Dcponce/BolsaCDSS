@@ -48,4 +48,10 @@ public class Detalle_HabilidadService {
 		Usuario user = rUsuario.findById(id).get();
 		return rDetalle.findByUsuarios(user);
 	}
+	
+	public void deleteByUsuario(Integer id){
+		Usuario user = rUsuario.findById(id).get();
+		rDetalle.deleteByUsuarios(user);
+	}
+
 }

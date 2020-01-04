@@ -30,13 +30,6 @@ public class DetalleHabilidades {
 		return (List<Detalle_habilidades>) deService.listar();
 	}
 
-	// Eliminar Detalle Habilidad
-	@DeleteMapping("/{id}")
-	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
-	public void delete(@PathVariable Integer id) {
-		deService.eliminarDe(id);
-	}
-
 	// Agregar Detalle Habilidad
 	@PostMapping
 	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
@@ -57,4 +50,12 @@ public class DetalleHabilidades {
 	public List<Detalle_habilidades> idUsuario(@PathVariable Integer id) {
 		return deService.findByUsuario(id);
 	}
+	
+	// Eliminar Detalle Habilidad por usuario
+		@DeleteMapping("/deleteByUser/{id}")
+		@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
+		public void deleteByUsuarios(@PathVariable Integer id) {
+			deService.deleteByUsuario(id);
+		}
+
 }
