@@ -69,8 +69,8 @@ public class EnviodEmailController {
 	// Envio de Propuesta Laboral
 	@PostMapping("/propuesta")
 	@Secured("ROLE_EMPRESA")
-	public void sendEmailWithAttachment(@RequestBody Email email, @RequestParam String contacto,
-			@RequestParam String puesto, @RequestParam String salario) throws MessagingException, IOException {
+	public void sendEmailWithAttachment(@RequestBody Email email, @RequestParam String contacto, String puesto,
+			String salario, String direccion, String link, String info) throws MessagingException, IOException {
 
 		Alumno alu = rAlumno.findById(email.getReceptor().getId());
 		Usuario usua = uService.findById(alu.getId_usuario().getId());
@@ -82,6 +82,13 @@ public class EnviodEmailController {
 		MimeMessage msg = javaMailSender.createMimeMessage();
 
 		MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+		
+		System.err.println("Contacto: "+contacto);
+		System.err.println("Puesto: "+puesto);
+		System.err.println("Salario: "+salario);
+		System.err.println("Direccion: "+direccion);
+		System.err.println("Link: "+link);
+		System.err.println("Informacion: "+info);
 		
 		// Maquetado de Correo Electronico
 		String contenido = "<!DOCTYPE html>\r\n" + 
@@ -305,15 +312,15 @@ public class EnviodEmailController {
 				"            }\r\n" + 
 				"        }\r\n" + 
 				"    </style>\r\n" + 
-				"    <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"w3l-scale\" style=\"background-color: rgb(242, 152, 0);\"\r\n" + 
-				"        width=\"100%\">\r\n" + 
+				"    <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"w3l-scale\"\r\n" + 
+				"        style=\"background-color: rgb(242, 152, 0);\" width=\"100%\">\r\n" + 
 				"        <tr>\r\n" + 
 				"            <td height=\"75\">&nbsp;</td>\r\n" + 
 				"        </tr>\r\n" + 
 				"    </table>\r\n" + 
 				"\r\n" + 
-				"    <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"w3l-scale\" style=\"background-color: rgb(242, 152, 0);\"\r\n" + 
-				"        width=\"100%\">\r\n" + 
+				"    <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"w3l-scale\"\r\n" + 
+				"        style=\"background-color: rgb(242, 152, 0);\" width=\"100%\">\r\n" + 
 				"        <tr>\r\n" + 
 				"            <td>\r\n" + 
 				"                <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"w3l-scale\"\r\n" + 
@@ -335,13 +342,29 @@ public class EnviodEmailController {
 				"                                </tr>\r\n" + 
 				"                                <tr>\r\n" + 
 				"                                    <td align=\"center\" style=\"color: rgb(123, 124, 126); font-weight: bold;\">\r\n" + 
-				"                                        <h2>¡Oferta Laboral!</h2>\r\n" + 
+				"                                        <h2><b>¡La empresa <span style=\"color: rgb(225, 0, 26);\">"+emp.getNombre()+"</span> le comparte la siguiente oferta!</b></h2>\r\n" + 
 				"                                    </td>\r\n" + 
 				"                                </tr>\r\n" + 
 				"                                <tr>\r\n" + 
-				"                                    <td align=\"center\" style=\"color: #1c1c1c; line-height: 24px;\">\r\n" + 
-				"										<p>La empresa <b>"+ emp.getNombre() +"</b> le comparte la siguiente oferta</p> \r\n" +
-				"                                       <h1>"+ puesto +"</h1> <p>Descripción del puesto: "+ email.getContenido() +"</p> <p>Salario: <b>"+salario+"</b></p> <p>Contacto: <b>"+contacto+"</b></p> \r\n" + 
+				"                                    <td height=\"1\" style=\"background-color: #E8E8E8\"></td>\r\n" + 
+				"                                </tr>\r\n" + 
+				"                                <tr>\r\n" + 
+				"                                    <td align=\"center\" style=\"color: #1c1c1c; line-height: 24px;font-size: 15px;\">\r\n" + 
+				"                                        <h2 style=\"color: rgb(245, 152, 1)\">"+puesto+"</h2>\r\n" + 
+				"                                        <label><b>Descripcion del puesto:</b></label>\r\n" + 
+				"                                        <p>"+email.getContenido()+"</p>\r\n" + 
+				"                                        <p><b>Salario: </b>"+salario+"</p>\r\n" + 
+				"                                        <label><b>Contacto:</b></label>\r\n" + 
+				"                                        <p>"+contacto+"</p>\r\n" + 
+				"                                        <label><b>Datos de entrevista:</b></label>\r\n" +
+				"                                        <p>"+info+"</p>\r\n" +
+				"                                        <label><b>Direccion:</b></label>\r\n" +
+				"                                        <p><a href=\""+link+"\" style=\"text-decoration: none; color: rgb(225, 0, 26)\">"+direccion+"</a></p>\r\n" +
+				"                                    </td>\r\n" + 
+				"                                </tr>\r\n" + 
+				"                                <tr>\r\n" + 
+				"                                    <td align=\"center\" style=\"font-size: 17px; color: #1c1c1c; line-height: 24px;\">\r\n" + 
+				"                                       \r\n" + 
 				"                                    </td>\r\n" + 
 				"                                </tr>\r\n" + 
 				"                            </table>\r\n" + 
@@ -361,8 +384,8 @@ public class EnviodEmailController {
 				"            </td>\r\n" + 
 				"        </tr>\r\n" + 
 				"    </table>\r\n" + 
-				"    <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"w3l-scale\" style=\"background-color: rgb(242, 152, 0);\"\r\n" + 
-				"        width=\"100%\">\r\n" + 
+				"    <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"w3l-scale\"\r\n" + 
+				"        style=\"background-color: rgb(242, 152, 0);\" width=\"100%\">\r\n" + 
 				"        <tr>\r\n" + 
 				"            <td>\r\n" + 
 				"                <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"w3l-scale\"\r\n" + 
@@ -397,12 +420,11 @@ public class EnviodEmailController {
 				"        </tr>\r\n" + 
 				"    </table>\r\n" + 
 				"</body>\r\n" + 
-				"\r\n" + 
 				"</html>";
 		
 		String cont = "{'puesto':'" + puesto + "','descripccion':'" + email.getContenido() + "','salario':'" + salario
-				+ "','contacto': '" + contacto + "'}";
-		
+				+ "','contacto': '" + contacto + "','direccion':'" + direccion + "','link':'" + link + "','info':'"
+				+ info + "'}";
 		
 
 		helper.setTo(usua.getEmail());
