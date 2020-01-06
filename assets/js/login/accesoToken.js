@@ -92,7 +92,7 @@ function validar(email, token) {
         );
         localStorage.setItem("Bienvenida", JSON.stringify(token["mensaje"]));
         localStorage.setItem("Token", JSON.stringify(token["token"]));
-        const rol = token["user"]["authorities"][0]["authority"];
+        var rol = token["user"]["authorities"][0]["authority"];
         getId(email, rol);
       } else {
         enviar(email);
