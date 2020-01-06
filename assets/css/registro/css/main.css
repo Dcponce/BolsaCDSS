@@ -246,7 +246,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 43px 88px 93px;
+  padding: 43px 88px 93px 125px;
 }
 
 
