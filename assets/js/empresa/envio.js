@@ -32,6 +32,9 @@ function envio() {
     var contacto = $("#contac").val();
     var puesto = $("#puesto").val();
     var salario = $("#sal").val();
+    var direccion = $("#direc").val();
+    var link = $("#link").val();
+    var info = $('#info').val();
 
     if (email != null && asunto != "" && contenido != "") {
         var data = {
@@ -47,7 +50,7 @@ function envio() {
         };
 
         $.ajax({
-            url: "http://localhost:8080/envio/propuesta?contacto="+contacto+"&puesto="+puesto+"&salario="+salario+"",
+            url: "http://localhost:8080/envio/propuesta?contacto="+contacto+"&puesto="+puesto+"&salario="+salario+"&direccion="+direccion+"&link="+link+"&info="+info+"",
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('Token'))
             },
@@ -65,7 +68,6 @@ function envio() {
                     confirmButtonText: 'Ok'
                 }).then((result) => {
                     if (result.value) {
-                        activar(data);
                     }
                 })
             }, error: function () {
