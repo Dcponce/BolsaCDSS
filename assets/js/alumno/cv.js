@@ -117,7 +117,10 @@ function Dhabilidades() {
         success: function (data) {
             if (data != null) {
                 $.each(data, function (i, v) {
-                    console.log(v.habilidad.descripcion);
+                    if (v.habilidad.tipo == "O") {
+                        $('#Dha').show("slow");
+                        $('#ocultar').show("slow");
+                    }
                     switch (v.habilidad.tipo) {
                         case "T":
                             $('#tec').append('<p>' + v.habilidad.descripcion + '</p>');
@@ -126,20 +129,9 @@ function Dhabilidades() {
                             $('#bla').append('<p>' + v.habilidad.descripcion + '</p>');
                             break
                         case "O":
-                            $('#Dha').append('<li>Otras</li>');
-                            $('#otra').append('<li>' +
-                                '<div class= "timeline-badge danger" > <i class="glyphicon glyphicon-link"></i></div>' +
-                                '<div class="timeline-panel">' +
-                                '<div class="timeline-heading">' +
-                                '<h4 class="timeline-title">Conocimientos adquiridos</h4>' +
-                                '</div>' +
-                                '<div class="timeline-body">' +
-                                '<p>' + v.habilidad.descripcion + '</p>' +
-                                '</div>' +
-                                ' </div>' +
-                                '</li >');
+                            $('#otra').append('<p>' + v.habilidad.descripcion + '</p>');
                             break
-                    }
+                    };
                 });
             }
         }

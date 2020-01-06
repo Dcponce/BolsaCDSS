@@ -119,6 +119,10 @@ function Dhabilidades(idUs) {
         success: function (data) {
             if (data != null) {
                 $.each(data, function (i, v) {
+                    if (v.habilidad.tipo == "O") {
+                        $('#Dha').show("slow");
+                        $('#ocultar').show("slow");
+                    }
                     switch (v.habilidad.tipo) {
                         case "T":
                             $('#tec').append('<p>' + v.habilidad.descripcion + '</p>');
@@ -127,18 +131,7 @@ function Dhabilidades(idUs) {
                             $('#bla').append('<p>' + v.habilidad.descripcion + '</p>');
                             break
                         case "O":
-                            $('#Dha').append('<li>Otras</li>');
-                            $('#otra').append('<li>' +
-                                '<div class= "timeline-badge danger" > <i class="glyphicon glyphicon-link"></i></div>' +
-                                '<div class="timeline-panel">' +
-                                '<div class="timeline-heading">' +
-                                '<h4 class="timeline-title">Conocimientos adquiridos</h4>' +
-                                '</div>' +
-                                '<div class="timeline-body">' +
-                                '<p>' + v.habilidad.descripcion + '</p>' +
-                                '</div>' +
-                                ' </div>' +
-                                '</li >');
+                            $('#otra').append('<p>' + v.habilidad.descripcion + '</p>');
                             break
                     }
                 });
@@ -149,5 +142,5 @@ function Dhabilidades(idUs) {
 function Documentos(idUs, id) {
     $('#img').append('<img src="../../../BolsaCDSS/img/img_' + idUs + '.png" alt="" class="rounded">');
     $('.nav1').append('<li><a href="../../../BolsaCDSS/cv/cv_' + idUs + '.pdf" class="resp-tab-item" style="color: #fff;" target="_blank"><i class="glyphicon glyphicon-download"></i> Curriculum</a></li>');
-    $('.nav1').append(' <li><a href="envio.html?correo='+id+'" class="resp-tab-item" style="color: #fff;"><i class="glyphicon glyphicon-send"></i> Enviar propuesta</a></li>');
+    $('.nav1').append(' <li><a href="envio.html?correo=' + id + '" class="resp-tab-item" style="color: #fff;"><i class="glyphicon glyphicon-send"></i> Enviar propuesta</a></li>');
 }
