@@ -41,6 +41,8 @@ function nuevo(idC) {
                     confirmButtonText: 'Ok'
                 }).then((result) => {
                     if (result.value) {
+                        $('#gif').show();
+                        $('.limiter').addClass('cuerpo');
                         activar(data);
                     }
                 })
@@ -84,6 +86,8 @@ function activar(data) {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function (res) {
+            $('#gif').hide();
+            $('.limiter').removeClass('cuerpo');
             localStorage.setItem("Locked", JSON.stringify(res["id"]));
             Swal.fire({
                 icon: 'info',

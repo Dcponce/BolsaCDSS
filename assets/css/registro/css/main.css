@@ -513,4 +513,38 @@ input.input100 {
   }
 }
 
+#loading-bar-spinner.spinner {
+  left: 50%;
+  margin-left: -20px;
+  top: 50%;
+  margin-top: -20px;
+  position: absolute;
+  z-index: 30 !important;
+  animation: loading-bar-spinner 400ms linear infinite;
+  
+}
+
+#loading-bar-spinner.spinner .spinner-icon {
+  width: 40px;
+  height: 40px;
+  border: solid 4px transparent;
+  border-top-color: #A3D214 !important;
+  border-left-color: #A3D214 !important;
+  border-radius: 50%;
+}
+
+@keyframes loading-bar-spinner {
+  0% {
+      transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+      transform: rotate(360deg);
+  }
+}
+.cuerpo{
+  background-color: #0000; opacity: 0.2;
+}
 

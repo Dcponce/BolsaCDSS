@@ -1,13 +1,13 @@
-$(document).ready(function() {
+$(document).ready(function () {
   var uri = "http://localhost:8080/envio/temporal";
 
-  $("#confirm").on("click", function() {
+  $("#confirm").on("click", function () {
     var correo = $("#email").val();
 
-    if(correo != ""){
+    if (correo != "") {
       temporal(uri, correo);
 
-    }else{
+    } else {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -16,21 +16,23 @@ $(document).ready(function() {
     }
   });
 
-  $("#aut").on("click", function() {
+  $("#aut").on("click", function () {
     autenticacion();
   });
 });
 
 function temporal(uri, correo) {
+  $('#gif').show();
+  $('.limiter').addClass('cuerpo');
   var data = {
-    email: correo
+    "email": correo
   };
   $.ajax({
     url: uri,
     method: "POST",
     contentType: "application/json",
     data: JSON.stringify(data),
-    success: function(res) {
+    success: function (res) {
       window.location.replace("autenticacion.html");
     }
   });
@@ -39,13 +41,13 @@ function temporal(uri, correo) {
 function autenticacion() {
   var clavet = $("#temporal").val();
 
-  if(clavet != ""){
+  if (clavet != "") {
     $.ajax({
       url: "http://localhost:8080/temporal/" + clavet,
       method: "GET",
       dataType: "json",
       contentType: "application/json",
-      success: function(res) {
+      success: function (res) {
         var idUsuario = res["usuario"]["id"];
         var password = res["clavet"];
         var id = res["id"];
@@ -53,7 +55,7 @@ function autenticacion() {
       }
     });
 
-  }else{
+  } else {
     Swal.fire({
       icon: "error",
       title: "Oops...",
@@ -68,7 +70,7 @@ function getUsuario(idUsuario, password, id) {
     method: "GET",
     dataType: "json",
     contentType: "application/json",
-    success: function(res) {
+    success: function (res) {
       updateClave(res, password, id);
     }
   });
@@ -94,7 +96,7 @@ function updateClave(res, password, id) {
     method: "PUT",
     contentType: "application/json",
     data: JSON.stringify(data),
-    success: function() {
+    success: function () {
       eliminar(id);
     }
   });
@@ -108,7 +110,7 @@ function eliminar(id) {
     },
     method: "DELETE",
     contentType: "application/json",
-    success: function(res) {
+    success: function (res) {
       Swal.fire({
         icon: 'info',
         title: 'Inicia Sesion',
@@ -117,9 +119,9 @@ function eliminar(id) {
         confirmButtonText: 'Ok'
       }).then((result) => {
         if (result.value) {
-            window.location.replace("../../login.html");
+          window.location.replace("../../login.html");
         }
-    })
+      })
     }
   });
 }

@@ -49,8 +49,11 @@ function envio() {
             }
         };
 
+        $('#gif').show();
+        $('.limiter').addClass('cuerpo');
+
         $.ajax({
-            url: "http://localhost:8080/envio/propuesta?contacto="+contacto+"&puesto="+puesto+"&salario="+salario+"&direccion="+direccion+"&link="+link+"&info="+info+"",
+            url: "http://localhost:8080/envio/propuesta?contacto=" + contacto + "&puesto=" + puesto + "&salario=" + salario + "&direccion=" + direccion + "&link=" + link + "&info=" + info + "",
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('Token'))
             },
@@ -60,6 +63,8 @@ function envio() {
             //processData: false,
             //cache: false,
             success: function () {
+                $('#gif').hide();
+                $('.limiter').removeClass('cuerpo');
                 Swal.fire({
                     icon: 'success',
                     title: 'Excelente',
@@ -78,12 +83,12 @@ function envio() {
                 })
             }
         });
-        
-    }else{
+
+    } else {
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Todos los campos son requeridos"
-          });
+        });
     }
 }

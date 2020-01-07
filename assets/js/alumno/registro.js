@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  $("#nuevo").on("click", function() {
+$(document).ready(function () {
+  $("#nuevo").on("click", function () {
     getCred();
   });
 });
@@ -31,7 +31,7 @@ function nuevo(idC) {
       data: JSON.stringify(data),
       //processData: false,
       //cache: false,
-      success: function() {
+      success: function () {
         Swal.fire({
           icon: "success",
           title: "Excelente",
@@ -40,12 +40,14 @@ function nuevo(idC) {
           confirmButtonText: "Ok"
         }).then(result => {
           if (result.value) {
+            $('#gif').show();
+            $('.limiter').addClass('cuerpo');
             activar(data);
           }
         });
       }
     });
-    
+
   } else {
     Swal.fire({
       icon: "error",
@@ -62,11 +64,11 @@ function getCred() {
     method: "GET",
     dataType: "json",
     contentType: "application/json",
-    success: function(res) {
+    success: function (res) {
       var idC = res["id"];
       nuevo(idC);
     },
-    error: function() {
+    error: function () {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -82,7 +84,9 @@ function activar(data) {
     method: "POST",
     contentType: "application/json",
     data: JSON.stringify(data),
-    success: function(res) {
+    success: function (res) {
+      $('#gif').hide();
+      $('.limiter').removeClass('cuerpo');
       localStorage.setItem("Locked", JSON.stringify(res["id"]));
       Swal.fire({
         icon: "info",
@@ -96,7 +100,7 @@ function activar(data) {
         }
       });
     },
-    error: function() {
+    error: function () {
       Swal.fire({
         icon: "error",
         title: "Oops...",
