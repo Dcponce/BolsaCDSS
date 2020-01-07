@@ -46,11 +46,9 @@ public class FileUploadController {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.home"));
 		builder.append(File.separator);
-		builder.append("Desktop");
+		builder.append("apache");
 		builder.append(File.separator);
-		builder.append("Proyecto_n3");
-		builder.append(File.separator);
-		builder.append("BolsaCDSS");
+		builder.append("htdocs");
 		builder.append(File.separator);
 		builder.append("img");
 		builder.append(File.separator);
@@ -83,11 +81,9 @@ public class FileUploadController {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.home"));
 		builder.append(File.separator);
-		builder.append("Desktop");
+		builder.append("apache");
 		builder.append(File.separator);
-		builder.append("Proyecto_n3");
-		builder.append(File.separator);
-		builder.append("BolsaCDSS");
+		builder.append("htdocs");
 		builder.append(File.separator);
 		builder.append("cv");
 		builder.append(File.separator);
