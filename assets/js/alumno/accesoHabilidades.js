@@ -102,7 +102,6 @@ function getHabByUser() {
 function createOptions() {
 
     var ids = getHabByUser();
-    console.log(ids);
     $.ajax({
         url: "http://localhost:8080/habilidades",
         headers: {
