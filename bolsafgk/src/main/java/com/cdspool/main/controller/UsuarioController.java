@@ -355,7 +355,7 @@ public class UsuarioController {
 				"                                </tr>\r\n" + 
 				"                                <tr>\r\n" + 
 				"                                    <td align=\"center\" style=\"color: #1c1c1c; line-height: 24px;\">\r\n" + 
-				"                                       <p>Para poder activar el usuario se hace la respectiva validacion de\r\n" + 
+				"                                       <p>Para poder activar el usuario se hace la respectiva validación de\r\n" + 
 				"                                        correo electronico. De click en el enlace para activar su usuario.</p> \r\n" + 
 				"                                    </td>\r\n" + 
 				"                                </tr>\r\n" + 
