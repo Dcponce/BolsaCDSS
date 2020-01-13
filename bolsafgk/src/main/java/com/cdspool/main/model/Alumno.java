@@ -1,6 +1,6 @@
 package com.cdspool.main.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +34,7 @@ public class Alumno {
 	private String proyecto;
 
 	@Temporal(TemporalType.DATE)
-	private Date fecha;
+	private Calendar fecha;
 
 	@JoinColumn(name = "id_municipio")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
@@ -100,11 +100,11 @@ public class Alumno {
 		this.proyecto = proyecto;
 	}
 
-	public Date getFecha() {
+	public Calendar getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(Calendar fecha) {
 		this.fecha = fecha;
 	}
 
