@@ -44,13 +44,12 @@ public class FileUploadController {
 		Usuario usua = iUsuarioRepository.findByEmail(principal.getName());
 
 		StringBuilder builder = new StringBuilder();
-		builder.append(System.getProperty("user.home"));
 		builder.append(File.separator);
-		builder.append("Desktop");
+		builder.append("home");
 		builder.append(File.separator);
-		builder.append("Proyecto_n3");
+		builder.append("japuser");
 		builder.append(File.separator);
-		builder.append("BolsaCDSS");
+		builder.append("public_html");
 		builder.append(File.separator);
 		builder.append("img");
 		builder.append(File.separator);
@@ -81,13 +80,12 @@ public class FileUploadController {
 		Usuario usua = iUsuarioRepository.findByEmail(principal.getName());
 
 		StringBuilder builder = new StringBuilder();
-		builder.append(System.getProperty("user.home"));
 		builder.append(File.separator);
-		builder.append("Desktop");
+		builder.append("home");
 		builder.append(File.separator);
-		builder.append("Proyecto_n3");
+		builder.append("japuser");
 		builder.append(File.separator);
-		builder.append("BolsaCDSS");
+		builder.append("public_html");
 		builder.append(File.separator);
 		builder.append("cv");
 		builder.append(File.separator);

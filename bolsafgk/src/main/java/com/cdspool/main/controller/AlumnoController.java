@@ -26,7 +26,7 @@ public class AlumnoController {
 
 	// Listar Alumnos
 	@GetMapping
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_EMPRESA"})
 	public List<Alumno> lista() {
 		return (List<Alumno>) sAlumno.findAll();
 	}
