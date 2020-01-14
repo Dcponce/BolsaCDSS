@@ -79,7 +79,13 @@ function menuDatos() {
         '<li>' +
         '<a href="filtros.html">' +
         '<span class="link-title">Buscar talento</span>' +
-        '<i class="mdi mdi-magnify link-icon"></i>' +
+        '<i class="mdi mdi-account-search link-icon"></i>' +
+        '</a>' +
+        '</li>' +
+        '<li>' +
+        '<a href="../../glosario.html">' +
+        '<span class="link-title">Glosario</span>' +
+        '<i class="mdi mdi-book-open-variant link-icon"></i>' +
         '</a>' +
         '</li>' +
         '<li>' +
