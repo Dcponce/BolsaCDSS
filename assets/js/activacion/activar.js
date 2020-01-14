@@ -1,26 +1,13 @@
-$(document).ready(function () {
-  if(localStorage.getItem('Locked')){
-    Swal.fire({
-      icon: 'info',
-      title: 'Hola.',
-      text: 'Bienveni@',
-      confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Ok',
-    });
-  }else{
-    window.top.close();
-  }
-});
-
-$("#btnAc").on("click", function() {
+$("#btnAc").on("click", function () {
   activar();
 });
 
 function activar() {
+  let params = new URLSearchParams(location.search);
+  var id = params.get('id');
   $.ajax({
     url:
-      "http://localhost:8080/usuarios/usuario/" +
-      localStorage.getItem("Locked"),
+      "http://localhost:8080/usuarios/usuario/" + id,
     method: "GET",
     dataType: "json",
     contentType: "application/json"
@@ -33,8 +20,7 @@ function activar() {
     confirmButtonText: 'Ok',
   }).then((result) => {
     if (result.value) {
-        localStorage.removeItem('Locked');
-        window.top.close();
+      window.top.close();
     }
   })
 }
