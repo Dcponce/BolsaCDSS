@@ -15,6 +15,9 @@ $(document).ready(function () {
       });
     }
   });
+  $("#finalizar").on("click", function () {
+    getUsuario(localStorage.getItem('idUser'), localStorage.getItem('idPass'))
+  });
 
   $("#aut").on("click", function () {
     autenticacion();
@@ -48,10 +51,16 @@ function autenticacion() {
       dataType: "json",
       contentType: "application/json",
       success: function (res) {
-        var idUsuario = res["usuario"]["id"];
-        var password = res["clavet"];
-        var id = res["id"];
-        getUsuario(idUsuario, password, id);
+        localStorage.setItem("idUser", JSON.stringify(res["usuario"]["id"]))
+        localStorage.setItem("idPass", JSON.stringify(res["id"]))
+        window.location.replace("editar.html");
+      },
+      error: function(error){
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Usted no cuenta con una contraseña temporal."
+        });
       }
     });
 
@@ -64,19 +73,21 @@ function autenticacion() {
   }
 }
 
-function getUsuario(idUsuario, password, id) {
+function getUsuario(idUsuario, id) {
+  var password = $("#nueva").val();
+
   $.ajax({
     url: "http://localhost:8080/usuarios/getUsu/" + idUsuario,
     method: "GET",
     dataType: "json",
     contentType: "application/json",
     success: function (res) {
-      updateClave(res, password, id);
+      updateClave(res, id, password);
     }
   });
 }
 
-function updateClave(res, password, id) {
+function updateClave(res, id, password) {
   var data = {
     id: res["id"],
     email: res["email"],
@@ -111,9 +122,11 @@ function eliminar(id) {
     method: "DELETE",
     contentType: "application/json",
     success: function (res) {
+      localStorage.removeItem('idUser');
+      localStorage.removeItem('idPass');
       Swal.fire({
         icon: 'info',
-        title: 'Inicia Sesion',
+        title: 'Contraseña Actualizada',
         text: '¡Utiliza tu nueva clave!',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Ok'
