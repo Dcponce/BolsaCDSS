@@ -60,6 +60,12 @@ function menuDatos() {
         '  </a>' +
         ' </li>' +
         '<li>' +
+        ' <a href="../../../BolsaCDSS/cv/cv_' + JSON.parse(localStorage.getItem('Id')) + '.pdf" target="_blank">' +
+        ' <span class="link-title">Ver curriculum</span>' +
+        ' <i class="mdi mdi-eye link-icon"></i>' +
+        ' </a>' +
+        ' </li>' +
+        '<li>' +
         '<a href="#elements" data-toggle="collapse" aria-expanded="false">' +
         '<span class="link-title"> Cerrar Sesión</span>' +
         '<i class="mdi mdi-import link-icon"></i>' +
@@ -76,7 +82,7 @@ function menuNav() {
     $('.header-fixed').append('<nav class="t-header">' +
         '<div class= "t-header-brand-wrapper">' +
         '<a href="inicio.html">' +
-        '<img class="logo" src="../../assets/img/Largo.png" alt="" width="100%" height="100%">' +
+        '<img class="logo" src="../../assets/img/Siglas.png" alt="" width="50%" height="50%">' +
         ' <img class="logo-mini" src="../../assets/img/Siglas.png" alt="" width="100%" height="100%">' +
         ' </a>' +
         ' </div>' +

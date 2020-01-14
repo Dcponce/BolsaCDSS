@@ -35,35 +35,7 @@ function menuNav() {
         '<button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none text-gray" id="mdes">' +
         '<i class="mdi mdi-menu"></i>' +
         '</button>' +
-
         '<ul class="nav ml-auto">' +
-        '<li class="nav-item dropdown">' +
-        '<a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown"' +
-        'aria-expanded="false">' +
-        '<i class="mdi mdi-bell-outline mdi-1x"></i>' +
-        '</a>' +
-        '<div class="dropdown-menu navbar-dropdown dropdown-menu-right"' +
-        'aria-labelledby="notificationDropdown">' +
-        '<div class="dropdown-header">' +
-        '<h6 class="dropdown-title">Denuncias</h6>' +
-        '<p class="dropdown-title-text">You have 4 unread notification</p>' +
-        '</div>' +
-        '<div class="dropdown-body">' +
-        ' <div class="dropdown-list">' +
-        '<div class="icon-wrapper rounded-circle bg-inverse-primary text-primary">' +
-        '<i class="mdi mdi-alert"></i>' +
-        '</div>' +
-        '<div class="content-wrapper">' +
-        '<small class="name">Storage Full</small>' +
-        '<small class="content-text">Server storage almost full</small>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '<div class="dropdown-footer">' +
-        '<a href="#">View All</a>' +
-        '</div>' +
-        '</div>' +
-        '</li>' +
         '<li class="nav-item dropdown">' +
         '<a class="nav-link" href="#" id="messageDropdown" data-toggle="dropdown" aria-expanded="false">' +
         ' <i class="mdi mdi-message-outline mdi-1x"></i>' +
