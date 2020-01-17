@@ -2,6 +2,18 @@ $(document).ready(function () {
   $("#nuevo").on("click", function () {
     getCred();
   });
+
+  $('#show').mousedown(function(){
+    $('#clave').removeAttr('type');
+    $('#show').addClass('fa-eye-slash').removeClass('fa-eye');
+
+});
+
+$('#show').mouseup(function(){
+    $('#clave').attr('type', 'password');
+    $('#show').addClass('fa-eye').removeClass('fa-eye-slash');
+
+});
 });
 
 function nuevo(idC) {
