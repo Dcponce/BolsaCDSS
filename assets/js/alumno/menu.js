@@ -82,8 +82,8 @@ function menuNav() {
     $('.header-fixed').append('<nav class="t-header">' +
         '<div class= "t-header-brand-wrapper">' +
         '<a href="inicio.html">' +
-        '<img class="logo" src="../../assets/img/Siglas.png" alt="" width="50%" height="50%">' +
-        ' <img class="logo-mini" src="../../assets/img/Siglas.png" alt="" width="100%" height="100%">' +
+        '<img class="logo" src="../../assets/img/logos jap-04.png" alt="">' +
+        ' <img class="logo-mini" src="../../assets/img/Siglas.png" alt="">' +
         ' </a>' +
         ' </div>' +
         '<div class="t-header-content-wrapper">' +

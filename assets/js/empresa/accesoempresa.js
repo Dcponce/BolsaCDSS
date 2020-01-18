@@ -1,5 +1,5 @@
     var current_page = 1;
-    var records_per_page = 2;
+    var records_per_page = 15;
     var listData = new Array();
     $("#btn_next").css("visibility", "hidden");
     $("#btn_prev").css("visibility", "hidden");
@@ -9,6 +9,8 @@
     $(document).ready(function () {
 
         var base_uri = "http://localhost:8080/empresa";
+
+        filtro();
 
         $('#nuevo').on('click', function () {
             nuevo(base_uri);
@@ -129,7 +131,7 @@
                 if (result != null) {
 
                     $('#certi').empty();
-                    $('#certi').append("<option selected disabled>Seleccione una certificaci�n</option>");
+                    $('#certi').append("<option selected disabled>Seleccione una certificación</option>");
                     var fila = "";
                     $.each(result, function (i, v) {
                         fila = '<option value="' + v.id + '">' + v.nombre + '</option>';

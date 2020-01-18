@@ -23,18 +23,32 @@ function guardarP(uriP) {
     var nom3 = $('#nom2').val();
     var lnk3 = $('#link2').val();
     var metodo = "POST";
-    var accion = "Guardados";
-
 
     if (id1 > 0) {
         metodo = "PUT";
-        accion = "Actualizados";
     } else {
         id = null;
     }
 
     if (nom != "" && lnk != "") {
         saveH(uri, metodo, id1, nom, lnk, idc);
+        Swal.fire({
+            icon: 'success',
+            title: 'Excelente',
+            text: 'Datos almacenados correctamente'
+        });
+    } else {
+        Swal.fire({
+            icon: 'success',
+            title: 'Excelente',
+            text: 'Datos almacenados correctamente',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+        }).then((result) => {
+            if (result.value) {
+                location.href = "inicio.html";
+            }
+        })
     }
 
     if (nom2 != "" && lnk2 != "") {
@@ -67,11 +81,7 @@ function saveH(uri, metodo, id, nom, lnk, idc) {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function () {
-            Swal.fire({
-                icon: 'success',
-                title: 'Excelente',
-                text: 'Datos almacenados correctamente'
-            });
+            
         }, error: function (error) {
             Swal.fire({
                 icon: "error",

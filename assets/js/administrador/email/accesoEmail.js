@@ -52,10 +52,18 @@ function leer(id) {
         dataType: "json",
         success: function (result) {
             if (result != null) {
+                var test = result.contenido;
+                var pri = test.split(",");
                 $('#emi').text(result.emisor.nombre);
                 $('#rece').text(result.receptor.nombre + " " + result.receptor.apellido);
                 $('#asu').text(result.asunto);
-                $('#cont').text(result.contenido);
+                $('#pue').text(pri[0]);
+                $('#descr').text(pri[1]);
+                $('#sa').text(pri[2]);
+                $('#contac').text(pri[3]);
+                $('#direct').text(pri[4]);
+                $('#como').text(pri[5]);
+                $('#info').text(pri[6]);
 
                 modificar(result.id, result.emisor.id, result.receptor.id, result.asunto, result.contenido);
             }

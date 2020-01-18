@@ -27,7 +27,7 @@ function menuNav() {
     $('.header-fixed').append('<nav class="t-header">' +
         '<div class= "t-header-brand-wrapper">' +
         '<a href="inicio.html">' +
-        '<img class="logo" src="../../assets/img/Largo.png" alt="" width="100%" height="100%">' +
+        '<img class="logo" src="../../assets/imglogos jap-04.png" alt="" width="100%" height="100%">' +
         '<img class="logo-mini" src="../../assets/img/Siglas.png" alt="" width="100%" height="100%">' +
         '</a>' +
         '</div>' +
