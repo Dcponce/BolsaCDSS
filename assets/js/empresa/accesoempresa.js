@@ -92,6 +92,7 @@
                 icon: "error",
                 title: "Oops...",
                 text: "Todos los campos son requeridos"
+
             });
         }
     }
