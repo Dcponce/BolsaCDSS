@@ -422,8 +422,8 @@ public class EnviodEmailController {
 				"</body>\r\n" + 
 				"</html>";
 		
-		String cont = "{'puesto':'" + puesto + "','descripccion':'" + email.getContenido() + "','salario':'" + salario
-				+ "','contacto': '" + contacto + "','direccion':'" + direccion + "','link':'" + link + "','info':'"
+		String cont = "Puesto: " + puesto + ", Descripción: " + email.getContenido() + " , Salario: " + salario
+				+ ", Contacto: " + contacto + ", Dirección: " + direccion + ", Como llegar: " + link + " ,Más detalles: "
 				+ info + "'}";
 		
 
