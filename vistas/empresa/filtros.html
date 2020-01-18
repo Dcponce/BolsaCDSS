@@ -66,7 +66,7 @@
                             <div class="grid widget-revenue-card">
                                 <div class="grid-body d-flex flex-column h-100">
                                     <div>
-                                        <select id="select" placeholder="Seleccione 10 habilidades máximo" multiple>
+                                        <select id="select" placeholder="Seleccione 10 habilidades m�ximo" multiple>
                                         </select>
                                         <select id="certi" name="certi" class="custom-select col-5"></select>
                                         <select id="depa" name="depa" class="custom-select col-3"></select>
@@ -76,12 +76,28 @@
                                     <div class="row" id="resultado" style="margin-top: 5em ;">
 
                                     </div>
+                                    
+                                    <div id="btn-pagination">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <button type="button" id="btn_prev" class="btn btn-primary" onclick="prevPage()">Anterior</button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                page: <span id="page"></span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                    <button type="button" id="btn_next" class="btn btn-primary" onclick="nextPage()">Siguiente</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- content viewport ends -->
             <!-- partial:partials/_footer.html -->
             <footer class="footer">
