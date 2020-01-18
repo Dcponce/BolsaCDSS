@@ -48,7 +48,7 @@ function modificarE() {
                 $('#idE').val(data.id);
                 $('#universidad').val(data.universidad);
                 $('#carrera').val(data.carrera);
-                var idCer= data.id_certificacion.id;
+                var idCer = data.id_certificacion.id;
                 $('#nivel').val(data.nivel);
                 getCert(idCer);
             }
@@ -64,13 +64,77 @@ function modificarPro() {
         method: "GET",
         contentType: "json",
         success: function (data) {
+
             if (data != null) {
+                var total = data.length;
+
                 $.each(data, function (i, v) {
-                    $('#idPr'+i).val(v.id);
-                    $('#nom' + i).val(v.nombre);
-                    $('#link' + i).val(v.url);
+                    $('#formulario').append('<input type="hidden" id="idPr' + i + '" value="' + v.id + '">' +
+                        '<input type="text" name="txtNombre" id="nom' + i + '" placeholder="Nombre de proyecto" class="form-control" value="' + v.nombre + '"><br>' +
+                        '<input type="text" name="txtLink" id="link' + i + '" placeholder="Link de proyecto" class="form-control" value="' + v.url + '">' +
+                        '<a href="#" style=" color:  #c0392b " onclick="borrar(\'' + v.id + '\')" title="Eliminar"><i class="material-icons">delete_forever</i></a>');
                 });
+
+                if (total < 3) {
+                    for (var i = 0; i < (3 - total); i++) {
+                        $('#formulario').append('<input type="hidden" id="idPr' + i + '">' +
+                            '<input type="text" name="txtNombre" id="nom' + i + '" placeholder="Nombre de proyecto" class="form-control"><br>' +
+                            '<input type="text" name="txtLink" id="link' + i + '" placeholder="Link de proyecto" class="form-control"><br>');
+                    }
+                }
+
+            } else{
+                for (var i = 0; i < 3; i++) {
+                    $('#formulario').append('<input type="hidden" id="idPr' + i + '">' +
+                        '<input type="text" name="txtNombre" id="nom' + i + '" placeholder="Nombre de proyecto" class="form-control"><br>' +
+                        '<input type="text" name="txtLink" id="link' + i + '" placeholder="Link de proyecto" class="form-control"><br>');
+                }
             }
         }
     });
 }
+
+function borrar(id) {
+    Swal.fire({
+        icon: 'success',
+        title: 'Excelente',
+        text: 'Datos eliminados',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Ok'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: "http://localhost:8080/proyecto/" + id,
+                headers: {
+                    'Authorization': JSON.parse(localStorage.getItem('Token')),
+                },
+                method: "DELETE",
+                contentType: "application/json",
+                success: function (res) {
+                    location.reload();
+                }
+            }).fail(function (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'La acción no se pudo completar'
+                });
+            });
+        }
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -250,7 +250,8 @@
             contentType: "json",
             success: function (data) {
                 if (data != null) {
-                    $('#resultado').empty();
+                   
+                    
                     var content = '';
                     $.each(data, function (i, v) {
 

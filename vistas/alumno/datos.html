@@ -21,6 +21,7 @@
   <!-- endinject -->
   <!-- Layout style -->
   <link rel="stylesheet" href="../../assets/css/perfil/css/demo_2/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet"
     href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
@@ -37,9 +38,11 @@
     .choices__list--dropdown .choices__item {
       background-color: #1d2542;
     }
-    .choices__input{
+
+    .choices__input {
       color: #fff;
     }
+
     .choices__list--dropdown .choices__item--selectable.is-highlighted {
       background-color: #00aeef;
     }
@@ -151,27 +154,13 @@
 
                       </div>
 
-                      <div class="tab-pane fade p-4 col-md-9 showcase_content_area" id="four" role="tabpanel"
+                      <div class="tab-pane fade p-4 col-md-11 showcase_content_area" id="four" role="tabpanel"
                         aria-labelledby="four-tab">
                         <h2>Proyectos</h2>
                         <label>Link de proyectos</label><br>
-                        <input type="hidden" id="idPr0">
-                        <input type="text" name="txtNombre" id="nom0" placeholder="Nombre de proyecto"
-                          class="form-control"><br>
-                        <input type="text" name="txtLink" id="link0" placeholder="Link de proyecto"
-                          class="form-control"><br>
-                        <input type="hidden" id="idPr1">
-                        <input type="text" name="txtNombre" id="nom1" placeholder="Nombre de proyecto"
-                          class="form-control"><br>
-                        <input type="text" name="txtLink" id="link1" placeholder="Link de proyecto"
-                          class="form-control"><br>
-                        <input type="hidden" id="idPr2">
-                        <input type="text" name="txtNombre" id="nom2" placeholder="Nombre de proyecto"
-                          class="form-control"><br>
-                        <input type="text" name="txtLink" id="link2" placeholder="Link de proyecto"
-                          class="form-control"><br>
+                        <div id="formulario" class="col-md-8"></div>
                         <div class="btn btn-success has-icon btn-rounded" id="datosPr">
-                          <i class="mdi mdi-account-check"></i>Guardar</div>
+                          <i class="mdi mdi-account-check"></i>Finalizar</div>
                       </div>
                     </div>
                   </div>
@@ -215,7 +204,9 @@
     <script src="../../assets/js/alumno/perfil.js"></script>
     <script src="../../assets/js/alumno/menu.js"></script>
     <script src="../../assets/js/alumno/modificarDatos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
+    <!-- Modal cargar imagen -->
     <div class="modal fade" id="im" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -227,7 +218,7 @@
           </div>
           <div class="modal-body">
             <input type="file" name="file" id="archivo" /><br><br>
-    
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -237,6 +228,7 @@
       </div>
     </div>
 
+    <!-- Cargar curriculum -->
     <div class="modal fade" id="cv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -257,6 +249,7 @@
         </div>
       </div>
     </div>
+
 </body>
 
 </html>
