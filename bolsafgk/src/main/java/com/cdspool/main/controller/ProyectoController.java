@@ -25,14 +25,14 @@ public class ProyectoController {
 
 	// Listar Proyectos
 	@GetMapping
-	@Secured("ROLE_ADMIN")
+	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO" })
 	public List<Proyecto> listar() {
 		return (List<Proyecto>) sProyecto.listar();
 	}
 
 	// Eliminar Proyecto
 	@DeleteMapping("/{id}")
-	@Secured("ROLE_ADMIN")
+	@Secured({ "ROLE_ADMIN", "ROLE_ALUMNO" })
 	public void eliminar(@PathVariable Integer id) {
 		sProyecto.eliminar(id);
 	}
