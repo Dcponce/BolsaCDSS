@@ -4,6 +4,7 @@
     $("#btn_next").css("visibility", "hidden");
     $("#btn_prev").css("visibility", "hidden");
     $("#btn-pagination").css("display", "none");
+    
 
     $(document).ready(function () {
 
