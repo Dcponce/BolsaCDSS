@@ -361,7 +361,7 @@ public class UsuarioController {
 				"                                </tr>\r\n" + 
 				"                                <tr>\r\n" + 
 				"                                    <td align=\"center\" style=\"font-size: 17px; color: #1c1c1c; line-height: 24px;\">\r\n" + 
-				"                                        <a href='http://jobapplicantpool.com/activacion.html'>Click Aquí</a>\r\n" + 
+				"                                        <a href='http://jobapplicantpool.com/activacion.html?id="+usua.getId()+"'>Click Aquí</a>\r\n" + 
 				"                                    </td>\r\n" + 
 				"                                </tr>\r\n" + 
 				"                            </table>\r\n" + 
