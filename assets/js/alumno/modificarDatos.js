@@ -14,7 +14,7 @@ function modificar() {
         method: "GET",
         contentType: "json",
         success: function (data) {
-            if (data != null) {
+            if (data != null) {                   
                 $('#id').val(data.id);
                 $('#nombre').val(data.nombre);
                 $('#apellido').val(data.apellido);
@@ -33,7 +33,7 @@ function modificar() {
 
                 getDepto(uri, idDepto);
                 getMunicipioByDepto(uri, idDepto, idMuni);
-            }
+            } 
         }
     });
 }
