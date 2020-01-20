@@ -24,7 +24,9 @@ function modificar() {
                 $('#celular').val(data.celular);
                 $('#direccion').val(data.direccion);
                 $('#proyecto').val(data.proyecto);
-                $('#nacimiento').val(data.fecha);
+                var fe = new Date(data.fecha);
+                var fecha = fe.getFullYear() + "-" + fe.getMonth() + "-" + fe.getDate();
+                $('#nacimiento').val(fecha);
                 var uri = "http://localhost:8080/municipios";
                 var idDepto = data.id_municipio.departamento.id;
                 var idMuni = data.id_municipio.id;
@@ -48,7 +50,7 @@ function modificarE() {
                 $('#idE').val(data.id);
                 $('#universidad').val(data.universidad);
                 $('#carrera').val(data.carrera);
-                var idCer= data.id_certificacion.id;
+                var idCer = data.id_certificacion.id;
                 $('#nivel').val(data.nivel);
                 getCert(idCer);
             }
@@ -66,7 +68,7 @@ function modificarPro() {
         success: function (data) {
             if (data != null) {
                 $.each(data, function (i, v) {
-                    $('#idPr'+i).val(v.id);
+                    $('#idPr' + i).val(v.id);
                     $('#nom' + i).val(v.nombre);
                     $('#link' + i).val(v.url);
                 });
