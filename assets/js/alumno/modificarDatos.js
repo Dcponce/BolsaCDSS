@@ -24,7 +24,9 @@ function modificar() {
                 $('#celular').val(data.celular);
                 $('#direccion').val(data.direccion);
                 $('#proyecto').val(data.proyecto);
-                $('#nacimiento').val(data.fecha);
+                var fe = new Date(data.fecha);
+                var fecha = fe.getFullYear() + "-" + fe.getMonth() + "-" + fe.getDate();
+                $('#nacimiento').val(fecha);
                 var uri = "http://localhost:8080/municipios";
                 var idDepto = data.id_municipio.departamento.id;
                 var idMuni = data.id_municipio.id;
@@ -69,10 +71,14 @@ function modificarPro() {
                 var total = data.length;
 
                 $.each(data, function (i, v) {
+
                     $('#formulario').append('<input type="hidden" id="idPr' + i + '" value="' + v.id + '">' +
                         '<input type="text" name="txtNombre" id="nom' + i + '" placeholder="Nombre de proyecto" class="form-control" value="' + v.nombre + '"><br>' +
                         '<input type="text" name="txtLink" id="link' + i + '" placeholder="Link de proyecto" class="form-control" value="' + v.url + '">' +
                         '<a href="#" style=" color:  #c0392b " onclick="borrar(\'' + v.id + '\')" title="Eliminar"><i class="material-icons">delete_forever</i></a>');
+
+                   
+
                 });
 
                 if (total < 3) {

@@ -25,7 +25,9 @@ function personales() {
                 $('#muni').text(data.id_municipio.nombre);
                 $('#dep').text(data.id_municipio.departamento.nombre);
 
-                var age = calculateAge(data.fecha);
+                var fe = new Date(data.fecha);
+                var fecha = fe.getFullYear() + "-" + fe.getMonth() + "-" + fe.getDate();
+                var age = calculateAge(fecha);
                 function calculateAge(birthday) {
                     var birthday_arr = birthday.split("-");
                     var birthday_date = new Date(birthday_arr[0], birthday_arr[2] - 1, birthday_arr[1]);
