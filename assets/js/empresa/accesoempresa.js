@@ -1,16 +1,6 @@
-var current_page = 1;
-var records_per_page = 10;
-var listData = new Array();
-$("#btn_next").css("visibility", "hidden");
-$("#btn_prev").css("visibility", "hidden");
-$("#btn-pagination").css("display", "none");
-
-
 $(document).ready(function () {
 
     var base_uri = "http://localhost:8080/empresa";
-
-    filtro();
 
     $('#nuevo').on('click', function () {
         nuevo(base_uri);
@@ -25,6 +15,16 @@ $(document).ready(function () {
     getDepto();
     createOptions();
 });
+
+var current_page = 1;
+var records_per_page = 10;
+var listData = new Array();
+$("#btn_next").css("visibility", "hidden");
+$("#btn_prev").css("visibility", "hidden");
+$("#btn-pagination").css("display", "none");
+
+
+
 
 function prevPage() {
     if (current_page > 1) {
