@@ -26,7 +26,10 @@ function personales() {
                 $('#dep').text(data.id_municipio.departamento.nombre);
 
                 var fe = new Date(data.fecha);
-                var fecha = fe.getFullYear() + "-" + fe.getMonth() + "-" + fe.getDate();
+                var mes = fe.getMonth() + 1;           
+                
+                var fecha = fe.getFullYear() + "-" + mes + "-" + fe.getDate();
+
                 var age = calculateAge(fecha);
                 function calculateAge(birthday) {
                     var birthday_arr = birthday.split("-");
