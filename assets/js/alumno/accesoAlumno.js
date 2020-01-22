@@ -16,9 +16,32 @@ $(document).ready(function () {
     });
 
     $('#telefono').mask('9999-9999');
-    $('#celular').mask('9999-9999');
+    $('#celular').mask('9999-9999');    
 
+    $('#error_nombre').hide();
+    var error_apellido = false;
+
+    $('#nombre').focusout(function(){
+        check_nombre();
+    });
 });
+
+function check_nombre(){
+    var pattern = /^[a-zA-Z ]*$/;
+    var error_nombre = false;
+    var nomb = $('#nombre').val();
+    if(pattern.test(nomb) && nomb != ''){
+        $('#nombre_error').hide();
+        $('#nombre').css("border-bottom", "2px solid #34F458");
+        return false;
+    }else{
+        $("#nombre_error").html("Sólo se aceptan letras.");
+        $('#nombre_error').show();
+        $('#nombre').css("border-bottom", "2px solid #F90A0A");
+
+        return true;
+    }
+}
 
 function guardar(uri) {
     var id = $('#id').val();
@@ -32,8 +55,6 @@ function guardar(uri) {
     var muni = $('#municipio').val();
     var metodo = "POST";
 
-
-
     if (id > 0) {
         metodo = "PUT";
         accion = "Actualizado";
@@ -41,7 +62,8 @@ function guardar(uri) {
         id = null;
     }
 
-    if (muni > 0 && nom != "" && apellido != "" && cel != "" && dir != "" && nac != "") {
+    alert(check_nombre());
+    if (muni > 0 && check_nombre() === false && apellido != "" && cel != "" && dir != "" && nac != "") {
 
         var data = {
             "id": id,

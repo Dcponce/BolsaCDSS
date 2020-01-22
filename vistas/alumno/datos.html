@@ -93,78 +93,81 @@
                     <div class="content-wrapper v-centered">
                     </div>
                   </div>
+                  <form id="info">
+                    <div class="mt-auto">
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active p-3 col-md-9 showcase_content_area" id="one"
+                          role="tabpanel" aria-labelledby="one-tab">
+                          <h2>Datos Personales</h2>
+                          <input type="hidden" id="id"><br>
+                          <input type="text" name="txtNombre" id="nombre" placeholder="Nombre" class="form-control">
+                          <span class="error_form" id="nombre_error" style="color: red;"></span><br>
+                          <input type="text" name="txtApellido" id="apellido" placeholder="Apellido"
+                            class="form-control"><br>
+                          <input type="text" name="txtTelefono" id="telefono" placeholder="Teléfono"
+                            class="form-control"><br>
+                          <input type="text" name="txtCelular" id="celular" placeholder="Celular"
+                            class="form-control"><br>
+                          <textarea name="txtDireccion" id="direccion" placeholder="Dirección"
+                            class="form-control"></textarea><br>
+                          <select name="txtProyecto" id="proyecto" class="form-group custom-select">
+                            <option selected disabled value="">Seleccione el proyecto al que pertenece</option>
+                            <option value="PPE">Centros de Desarrollo de Software</option>
+                            <option value="FGK">Oportunidades</option>
+                          </select><br>
+                          <label id="fena">Fecha de nacimiento</label>
+                          <input type="date" name="txtNacimiento" id="nacimiento" class="form-control"><br>
+                          <select name="txtDepartamento" id="departamento"
+                            class="form-group custom-select"></select><br>
+                          <select name="txtMunicipio" id="municipio" class="form-group custom-select"></select><br>
+                          <div class="btn btn-success has-icon btn-rounded" id="datosP">
+                            <i class="mdi mdi-arrow-right"></i>Siguiente</div>
+                        </div>
 
-                  <div class="mt-auto">
-                    <div class="tab-content" id="myTabContent">
-                      <div class="tab-pane fade show active p-3 col-md-9 showcase_content_area" id="one" role="tabpanel"
-                        aria-labelledby="one-tab">
-                        <h2>Datos Personales</h2>
-                        <input type="hidden" id="id"><br>
-                        <input type="text" name="txtNombre" id="nombre" placeholder="Nombre" class="form-control"><br>
-                        <input type="text" name="txtApellido" id="apellido" placeholder="Apellido"
-                          class="form-control"><br>
-                        <input type="text" name="txtTelefono" id="telefono" placeholder="Teléfono"
-                          class="form-control"><br>
-                        <input type="text" name="txtCelular" id="celular" placeholder="Celular"
-                          class="form-control"><br>
-                        <textarea name="txtDireccion" id="direccion" placeholder="Dirección"
-                          class="form-control"></textarea><br>
-                        <select name="txtProyecto" id="proyecto" class="form-group custom-select">
-                          <option selected disabled value="">Seleccione el proyecto al que pertenece</option>
-                          <option value="PPE">Centros de Desarrollo de Software</option>
-                          <option value="FGK">Oportunidades</option>
-                        </select><br>
-                        <label id="fena">Fecha de nacimiento</label>
-                        <input type="date" name="txtNacimiento" id="nacimiento" class="form-control"><br>
-                        <select name="txtDepartamento" id="departamento" class="form-group custom-select"></select><br>
-                        <select name="txtMunicipio" id="municipio" class="form-group custom-select"></select><br>
-                        <div class="btn btn-success has-icon btn-rounded" id="datosP">
-                          <i class="mdi mdi-arrow-right"></i>Siguiente</div>
-                      </div>
+                        <div class="tab-pane fade p-3 col-md-9 showcase_content_area" id="two" role="tabpanel"
+                          aria-labelledby="two-tab">
+                          <h2>Educación</h2>
+                          <input type="hidden" id="idE"><br>
+                          <input type="text" name="txtUniversidad" id="universidad" placeholder="Nombre de universidad"
+                            class="form-control"><br>
+                          <input type="text" name="txtCarrera" id="carrera" placeholder="Nombre de la carrera"
+                            class="form-control"><br>
+                          <select name="txtCertificacion" id="certificacion"
+                            class="form-group custom-select"></select><br>
+                          <select name="txtNivel" id="nivel" class="form-group custom-select">
+                            <option selected disabled>Seleccione su nivel</option>
+                            <option value="1">Nivel 1</option>
+                            <option value="2">Nivel 2</option>
+                            <option value="3">Nivel 3</option>
+                          </select><br>
+                          <div class="btn btn-success has-icon btn-rounded" id="datosE">
+                            <i class="mdi mdi-arrow-right"></i>Siguiente</div>
+                        </div>
 
-                      <div class="tab-pane fade p-3 col-md-9 showcase_content_area" id="two" role="tabpanel"
-                        aria-labelledby="two-tab">
-                        <h2>Educación</h2>
-                        <input type="hidden" id="idE"><br>
-                        <input type="text" name="txtUniversidad" id="universidad" placeholder="Nombre de universidad"
-                          class="form-control"><br>
-                        <input type="text" name="txtCarrera" id="carrera" placeholder="Nombre de la carrera"
-                          class="form-control"><br>
-                        <select name="txtCertificacion" id="certificacion"
-                          class="form-group custom-select"></select><br>
-                        <select name="txtNivel" id="nivel" class="form-group custom-select">
-                          <option selected disabled>Seleccione su nivel</option>
-                          <option value="1">Nivel 1</option>
-                          <option value="2">Nivel 2</option>
-                          <option value="3">Nivel 3</option>
-                        </select><br>
-                        <div class="btn btn-success has-icon btn-rounded" id="datosE">
-                          <i class="mdi mdi-arrow-right"></i>Siguiente</div>
-                      </div>
+                        <div class="tab-pane fade p-3 col-md-9 showcase_content_area" id="three" role="tabpanel"
+                          aria-labelledby="three-tab">
+                          <h2>Habilidades</h2>
+                          <input type="hidden" id="idH"><br>
 
-                      <div class="tab-pane fade p-3 col-md-9 showcase_content_area" id="three" role="tabpanel"
-                        aria-labelledby="three-tab">
-                        <h2>Habilidades</h2>
-                        <input type="hidden" id="idH"><br>
+                          <select id="select" placeholder="Seleccione 10 habilidades máximo"
+                            class="form-group custom-select" multiple>
+                          </select><br>
+                          <div class="btn btn-success has-icon btn-rounded" id="datosH">
+                            <i class="mdi mdi-arrow-right"></i>Siguiente</div>
 
-                        <select id="select" placeholder="Seleccione 10 habilidades máximo"
-                          class="form-group custom-select" multiple>
-                        </select><br>
-                        <div class="btn btn-success has-icon btn-rounded" id="datosH">
-                          <i class="mdi mdi-arrow-right"></i>Siguiente</div>
+                        </div>
 
-                      </div>
-
-                      <div class="tab-pane fade p-4 col-md-11 showcase_content_area" id="four" role="tabpanel"
-                        aria-labelledby="four-tab">
-                        <h2>Proyectos</h2>
-                        <label>Link de proyectos</label><br>
-                        <div id="formulario" class="col-md-8"></div>
-                        <div class="btn btn-success has-icon btn-rounded" id="datosPr">
-                          <i class="mdi mdi-account-check"></i>Finalizar</div>
+                        <div class="tab-pane fade p-4 col-md-11 showcase_content_area" id="four" role="tabpanel"
+                          aria-labelledby="four-tab">
+                          <h2>Proyectos</h2>
+                          <label>Link de proyectos</label><br>
+                          <div id="formulario" class="col-md-8"></div>
+                          <div class="btn btn-success has-icon btn-rounded" id="datosPr">
+                            <i class="mdi mdi-account-check"></i>Finalizar</div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
