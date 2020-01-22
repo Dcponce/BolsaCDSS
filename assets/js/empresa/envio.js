@@ -73,13 +73,21 @@ function envio() {
                     confirmButtonText: 'Ok'
                 }).then((result) => {
                     if (result.value) {
+                        history.back(-1);
                     }
                 })
             }, error: function () {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Operación fallida'
+                    icon: 'Error',
+                    title: 'Opps',
+                    text: 'Algo salió mal',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.value) {
+                        $('#gif').hide();
+                        $('.limiter').removeClass('cuerpo');
+                    }
                 })
             }
         });

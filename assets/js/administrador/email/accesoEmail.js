@@ -23,7 +23,7 @@ function listar(uri) {
                             '<div class="log-details">' + v.emisor.nombre + '</div>' +
                             '<div class="log-details">' + v.receptor.nombre + " " + v.receptor.apellido + '</div>' +
                             '</a>' +
-                            '<a href="#" style="color:#cccccc;" onclick=borrar(' + v.id + ') data-toggle="modal" data-target="#borrar" title="Eliminar"><i class="material-icons">delete_sweep</i></a>' +
+                            '<a href="#" style="color:#DB504A;" onclick=borrar(' + v.id + ') data-toggle="modal" data-target="#borrar" title="Eliminar"><i class="material-icons">delete_sweep</i></a>' +
                             '</div>')
                     } else {
                         $('#bandeja').append(
@@ -33,7 +33,7 @@ function listar(uri) {
                             '<div class="log-details">' + v.emisor.nombre + '</div>' +
                             '<div class="log-details">' + v.receptor.nombre + " " + v.receptor.apellido + '</div>' +
                             '</a>' +
-                            '<a href="#" style="color:#cccccc;" onclick=borrar(' + v.id + ') data-toggle="modal" data-target="#borrar" title="Eliminar"><i class="material-icons">delete_sweep</i></a>' +
+                            '<a href="#" style="color:#DB504A;" onclick=borrar(' + v.id + ') data-toggle="modal" data-target="#borrar" title="Eliminar"><i class="material-icons">delete_sweep</i></a>' +
                             '</div>');
                     }
                 });

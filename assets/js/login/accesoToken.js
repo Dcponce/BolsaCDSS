@@ -57,7 +57,7 @@ function getId(email, rol) {
           ruta = "vistas/administrador/admin.html";
           break;
         case "ROLE_EMPRESA":
-          ruta = "vistas/empresa/inicio.html";
+          ruta = "vistas/empresa/datos.html";
           break;
         case "ROLE_ALUMNO":
           ruta = "vistas/alumno/inicio.html";
