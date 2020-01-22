@@ -49,7 +49,7 @@ function menuDatos() {
         '<a href="#" data-toggle="modal" data-target="#im">Imagen de perfil</a>' +
         ' </li>' +
         ' <li>' +
-        '<a href="#" data-toggle="modal" data-target="#cv">Curriculum</a>' +
+        '<a href="#" data-toggle="modal" data-target="#cv">Currículum</a>' +
         ' </li>' +
         ' </ul>' +
         '</li>' +
@@ -61,7 +61,7 @@ function menuDatos() {
         ' </li>' +
         '<li>' +
         ' <a href="../../../BolsaCDSS/cv/cv_' + JSON.parse(localStorage.getItem('Id')) + '.pdf" target="_blank">' +
-        ' <span class="link-title">Ver curriculum</span>' +
+        ' <span class="link-title">Ver currículum</span>' +
         ' <i class="mdi mdi-eye link-icon"></i>' +
         ' </a>' +
         ' </li>' +
@@ -101,7 +101,7 @@ function footer() {
         '</div>' +
         '<div class="col-sm-6 text-center text-sm-left mt-3 mt-sm-0">' +
         '<small class="text-muted d-block">Copyright © 2020 <a href="https://www.fundaciongloriakriete.org/"' +
-        'target="_blank">FGK</a>. Todos los Derechos ReservadoS</small>' +
+        'target="_blank">FGK</a>. Todos los Derechos Reservados</small>' +
         '</div>' +
         '</div>');
 

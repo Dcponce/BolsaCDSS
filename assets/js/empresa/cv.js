@@ -143,6 +143,6 @@ function Dhabilidades(idUs) {
 }
 function Documentos(idUs, id) {
     $('#img').append('<img src="../../../BolsaCDSS/img/img_' + idUs + '.png" alt="" class="rounded">');
-    $('.nav1').append('<li><a href="../../../BolsaCDSS/cv/cv_' + idUs + '.pdf" class="resp-tab-item" style="color: #fff;" target="_blank"><i class="glyphicon glyphicon-download"></i> Curriculum</a></li>');
+    $('.nav1').append('<li><a href="../../../BolsaCDSS/cv/cv_' + idUs + '.pdf" class="resp-tab-item" style="color: #fff;" target="_blank"><i class="glyphicon glyphicon-download"></i> Currículum</a></li>');
     $('.nav1').append(' <li><a href="envio.html?correo=' + id + '" class="resp-tab-item" style="color: #fff;"><i class="glyphicon glyphicon-send"></i> Enviar propuesta</a></li>');
 }
