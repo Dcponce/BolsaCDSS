@@ -15,6 +15,9 @@ $(document).ready(function () {
         getMunicipioByDepto("http://localhost:8080/municipios", id, 0);
     });
 
+    $('#telefono').mask('9999-9999');
+    $('#celular').mask('9999-9999');
+
 });
 
 function guardar(uri) {
