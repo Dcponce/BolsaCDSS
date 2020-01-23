@@ -75,8 +75,8 @@ function modificarPro() {
                 $.each(data, function (i, v) {
 
                     $('#formulario').append('<input type="hidden" id="idPr' + i + '" value="' + v.id + '">' +
-                        '<input type="text" name="txtNombre" id="nom' + i + '" placeholder="Nombre de proyecto" class="form-control" value="' + v.nombre + '"><br>' +
-                        '<input type="text" name="txtLink" id="link' + i + '" placeholder="Link de proyecto" class="form-control" value="' + v.url + '">' +
+                        '<label>Nombre del proyecto</label>'+'<input type="text" name="txtNombre" id="nom' + i + '" placeholder="Nombre de proyecto" class="form-control" value="' + v.nombre + '"><br>' +
+                        '<label>Link del proyecto</label>'+'<input type="text" name="txtLink" id="link' + i + '" placeholder="Link de proyecto" class="form-control" value="' + v.url + '">' +
                         '<a href="#" style=" color:  #c0392b " onclick="borrar(\'' + v.id + '\')" title="Eliminar"><i class="material-icons">delete_forever</i></a>');
 
                    
@@ -86,16 +86,16 @@ function modificarPro() {
                 if (total < 3) {
                     for (var i = 0; i < (3 - total); i++) {
                         $('#formulario').append('<input type="hidden" id="idPr' + i + '">' +
-                            '<input type="text" name="txtNombre" id="nom' + i + '" placeholder="Nombre de proyecto" class="form-control"><br>' +
-                            '<input type="text" name="txtLink" id="link' + i + '" placeholder="Link de proyecto" class="form-control"><br>');
+                            '<br>'+'<label>Nombre del proyecto</label>'+'<input type="text" name="txtNombre" id="nom' + i + '" placeholder="Nombre de proyecto" class="form-control"><br>' +
+                            '<label>Link del proyecto</label>'+'<input type="text" name="txtLink" id="link' + i + '" placeholder="Link de proyecto" class="form-control"><br>');
                     }
                 }
 
             } else{
                 for (var i = 0; i < 3; i++) {
                     $('#formulario').append('<input type="hidden" id="idPr' + i + '">' +
-                        '<input type="text" name="txtNombre" id="nom' + i + '" placeholder="Nombre de proyecto" class="form-control"><br>' +
-                        '<input type="text" name="txtLink" id="link' + i + '" placeholder="Link de proyecto" class="form-control"><br>');
+                        '<label>Nombre del proyecto</label>'+'<input type="text" name="txtNombre" id="nom' + i + '" placeholder="Nombre de proyecto" class="form-control"><br>' +
+                        '<label>Link del proyecto</label>'+'<input type="text" name="txtLink" id="link' + i + '" placeholder="Link de proyecto" class="form-control"><br>');
                 }
             }
         }
