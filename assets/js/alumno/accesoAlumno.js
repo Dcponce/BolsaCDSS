@@ -2,7 +2,6 @@ $(document).ready(function () {
 
     var uri = "http://localhost:8080/alumnos";
 
-
     getDepto("http://localhost:8080/municipios", 0);
 
     $('#datosP').on('click', function () {
@@ -11,7 +10,6 @@ $(document).ready(function () {
 
     $('#departamento').on('change', function () {
         var id = $('#departamento').val();
-
         getMunicipioByDepto("http://localhost:8080/municipios", id, 0);
     });
 
@@ -19,26 +17,140 @@ $(document).ready(function () {
     $('#celular').mask('9999-9999');    
 
     $('#error_nombre').hide();
-    var error_apellido = false;
 
     $('#nombre').focusout(function(){
         check_nombre();
+    });
+
+    $('#apellido').focusout(function(){
+        check_apellido();
+    });
+
+    $('#celular').focusout(function(){
+        check_celular();
+    });
+
+    $('#direccion').focusout(function(){
+        check_direccion();
+    });
+
+    $('#proyecto').focusout(function(){
+        check_proyecto();
+    });
+
+    $('#nacimiento').focusout(function(){
+        check_fecha();
     });
 });
 
 function check_nombre(){
     var pattern = /^[a-zA-Z ]*$/;
-    var error_nombre = false;
     var nomb = $('#nombre').val();
-    if(pattern.test(nomb) && nomb != ''){
-        $('#nombre_error').hide();
-        $('#nombre').css("border-bottom", "2px solid #34F458");
+    if (nomb != "") {
+        if(pattern.test(nomb)){
+            $('#nombre_error').hide();
+            $('#nombre').css("border-bottom", "2px solid #89D200");
+            return false;
+        }else{
+            $("#nombre_error").html("Sólo se aceptan letras.");
+            $('#nombre_error').show();
+            $('#nombre').css("border-bottom", "2px solid #FE0000");
+            return true;
+        }   
+    }else{
+        $("#nombre_error").html("El campo es requerido.");
+        $('#nombre_error').show();
+        $('#nombre').css("border-bottom", "2px solid #FE0000");
+        return true;
+    }
+}
+
+function check_apellido(){
+    var pattern = /^[a-zA-Z ]*$/;
+    var ape = $('#apellido').val();
+    if (ape != "") {
+        if(pattern.test(ape) && ape != ''){
+            $('#apellido_error').hide();
+            $('#apellido').css("border-bottom", "2px solid #89D200");
+            return false;
+        }else{
+            $("#apellido_error").html("Sólo se aceptan letras.");
+            $('#apellido_error').show();
+            $('#apellido').css("border-bottom", "2px solid #FE0000");
+            return true;
+        }
+    }else{
+        $("#apellido_error").html("El campo es requerido.");
+        $('#apellido_error').show();
+        $('#apellido').css("border-bottom", "2px solid #FE0000");
+        return true;
+    }
+}
+
+function check_celular(){
+    var celu = $('#celular').val();
+    if(celu != ""){
+        $('#celular_error').hide();
+        $('#celular').css("border-bottom", "2px solid #89D200");
         return false;
     }else{
-        $("#nombre_error").html("Sólo se aceptan letras.");
-        $('#nombre_error').show();
-        $('#nombre').css("border-bottom", "2px solid #F90A0A");
+        $("#celular_error").html("Debe ingresar un número de contacto.");
+        $('#celular_error').show();
+        $('#celular').css("border-bottom", "2px solid #FE0000");
+        return true;
+    }
+}
 
+function check_direccion(){
+    var dire = $('#direccion').val();
+    if(dire != ""){
+        $('#direccion_error').hide();
+        $('#direccion').css("border-bottom", "2px solid #89D200");
+        return false;
+    }else{
+        $("#direccion_error").html("Debe de ingresar un domicilio.");
+        $('#direccion_error').show();
+        $('#direccion').css("border-bottom", "2px solid #FE0000");
+        return true;
+    }
+}
+
+function check_proyecto(){
+    var proye = $('#proyecto option:selected').val();
+    if(proye != ""){
+        $('#proyecto_error').hide();
+        $('#proyecto').css("border-bottom", "2px solid #89D200");
+        return false;
+    }else{
+        $("#proyecto_error").html("Debe de seleccionar el proyecto al que pertenece.");
+        $('#proyecto_error').show();
+        $('#proyecto').css("border-bottom", "2px solid #FE0000");
+        return true;
+    }
+}
+
+function check_fecha(){
+    var fena = $('#nacimiento').val();
+    
+    var actual = new Date();
+    var Factual = new Date(actual);
+    var convertir = Factual.getFullYear() + '-' + (Factual.getMonth() + '' + 1) + '-' + Factual.getDate();
+
+    if(fena != ""){
+        if (fena < convertir) {
+            $('#fecha_error').hide();
+            $('#nacimiento').css("border-bottom", "2px solid #89D200");
+            return false;
+        } else {
+            $("#fecha_error").html("La fecha ingresada no puede ser mayor a la actual.");
+            $('#fecha_error').show();
+            $('#nacimiento').css("border-bottom", "2px solid #FE0000");
+            return true;
+        }
+    }else{
+        $("#fecha_error").html("Ingrese su fecha de nacimiento.");
+        $('#fecha_error').show();
+        $('#nacimiento').css("border-bottom", "2px solid #FE0000");
         return true;
     }
 }
@@ -62,8 +174,8 @@ function guardar(uri) {
         id = null;
     }
 
-    alert(check_nombre());
-    if (muni > 0 && check_nombre() === false && apellido != "" && cel != "" && dir != "" && nac != "") {
+    if (muni > 0 && check_nombre() === false && check_apellido() === false && check_celular() === false && 
+    check_direccion() === false && check_proyecto() === false && check_fecha() === false) {
 
         var data = {
             "id": id,
