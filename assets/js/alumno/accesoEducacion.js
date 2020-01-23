@@ -8,37 +8,37 @@ $(document).ready(function () {
         guardarE(uriE);
     });
 
-    $('#certificacion').focusout(function(){
+    $('#certificacion').focusout(function () {
         check_certificacion();
     });
 
-    $('#nivel').focusout(function(){
+    $('#nivel').focusout(function () {
         check_nivel();
     });
 });
 
-function check_certificacion(){
+function check_certificacion() {
     var cer = $('#certificacion option:selected').val();
-    if(cer > 0){
+    if (cer > 0) {
         $('#certificacion_error').hide();
         $('#certificacion').css("border-bottom", "2px solid #89D200");
         return false;
-    }else{
-        $("#certificacion_error").html("Debe de seleccionar el proyecto al que pertenece.");
+    } else {
+        $("#certificacion_error").html("Seleccionar una certificación.");
         $('#certificacion_error').show();
         $('#certificacion').css("border-bottom", "2px solid #FE0000");
         return true;
     }
 }
 
-function check_nivel(){
+function check_nivel() {
     var niv = $('#nivel option:selected').val();
-    if(niv != "Seleccione su nivel"){
+    if (niv != "Seleccione su nivel") {
         $('#nivel_error').hide();
         $('#nivel').css("border-bottom", "2px solid #89D200");
         return false;
-    }else{
-        $("#nivel_error").html("Debe de seleccionar el nivel de certificación alcanzado.");
+    } else {
+        $("#nivel_error").html("Seleccionar el nivel de certificación alcanzado.");
         $('#nivel_error').show();
         $('#nivel').css("border-bottom", "2px solid #FE0000");
         return true;

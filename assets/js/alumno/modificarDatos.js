@@ -25,7 +25,9 @@ function modificar() {
                 $('#direccion').val(data.direccion);
                 $('#proyecto').val(data.proyecto);
                 var fe = new Date(data.fecha);
-                var fecha = fe.getFullYear() + "-" + fe.getMonth() + "-" + fe.getDate();
+
+                var mes = (parseInt(fe.getMonth()+1) < 10 )? "0"+(fe.getMonth()+1): (fe.getMonth()+1);
+                var fecha = fe.getFullYear() +"-"+ mes +"-"+ fe.getDate();
                 $('#nacimiento').val(fecha);
                 var uri = "http://localhost:8080/municipios";
                 var idDepto = data.id_municipio.departamento.id;

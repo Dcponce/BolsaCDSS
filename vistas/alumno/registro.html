@@ -6,12 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-       
+
     </style>
     <link rel="icon" type="image/png" href="../../assets/img/Icono pequeño 24x24.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../../assets/css/registro/css/util.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/registro/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/registro/css/verificarPass.css">
     <!--===============================================================================================-->
 </head>
 
@@ -31,21 +32,29 @@
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
                         <span class="label-input100">Credencial</span>
                         <input class="input100" type="text" name="pass" placeholder="Ingresa tu credencial"
-                            id="credencial" >
+                            id="credencial">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                         <span class="label-input100">Correo</span>
                         <input class="input100" type="email" name="username" placeholder="Ingresa tu correo" id="email">
-                        <span class="focus-input100"></span>
                     </div>
+                    <span class="error_form" id="email_error" style="color: #FE0000; font: bold 12px/0.0 arial;"></span>
 
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                        <span class="label-input100">Clave  <i class="fa fa-eye" id="show"></i></span>
+                        <span class="label-input100">Clave <i class="fa fa-eye" id="show"></i></span>
                         <input class="input100" type="password" name="pass" placeholder="Crea tu clave" id="clave">
-                        <span class="focus-input100"></span>
+                        <div id="mensaje"></div>
                     </div>
+                    <span class="error_form" id="clave_error" style="color: #FE0000; font: bold 12px/0.0 arial;"></span>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span class="label-input100">Confirmar </span>
+                        <input class="input100" type="password" name="pass" placeholder="Confirmar clave" id="clave2">
+                    </div>
+                    <span class="error_form" id="clave2_error"
+                        style="color: #FE0000; font: bold 12px/0.0 arial;"></span><br>
 
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn" id="nuevo" type="button">
@@ -66,7 +75,7 @@
     <script src="../../assets/css/registro/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://use.fontawesome.com/e622d3b53e.js"></script>
- 
+
 
 </body>
 

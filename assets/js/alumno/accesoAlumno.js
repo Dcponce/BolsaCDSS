@@ -14,50 +14,50 @@ $(document).ready(function () {
     });
 
     $('#telefono').mask('9999-9999');
-    $('#celular').mask('9999-9999');    
+    $('#celular').mask('9999-9999');
 
     $('#error_nombre').hide();
 
-    $('#nombre').focusout(function(){
+    $('#nombre').focusout(function () {
         check_nombre();
     });
 
-    $('#apellido').focusout(function(){
+    $('#apellido').focusout(function () {
         check_apellido();
     });
 
-    $('#celular').focusout(function(){
+    $('#celular').focusout(function () {
         check_celular();
     });
 
-    $('#direccion').focusout(function(){
+    $('#direccion').focusout(function () {
         check_direccion();
     });
 
-    $('#proyecto').focusout(function(){
+    $('#proyecto').focusout(function () {
         check_proyecto();
     });
 
-    $('#nacimiento').focusout(function(){
+    $('#nacimiento').focusout(function () {
         check_fecha();
     });
 });
 
-function check_nombre(){
-    var pattern = /^[a-zA-Z ]*$/;
+function check_nombre() {
+    var pattern = /^[a-zA-ZÀ-ÿ\u00f1\u00d1 ]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1 ]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1 ]+$/;
     var nomb = $('#nombre').val();
     if (nomb != "") {
-        if(pattern.test(nomb)){
+        if (pattern.test(nomb)) {
             $('#nombre_error').hide();
             $('#nombre').css("border-bottom", "2px solid #89D200");
             return false;
-        }else{
+        } else {
             $("#nombre_error").html("Sólo se aceptan letras.");
             $('#nombre_error').show();
             $('#nombre').css("border-bottom", "2px solid #FE0000");
             return true;
-        }   
-    }else{
+        }
+    } else {
         $("#nombre_error").html("El campo es requerido.");
         $('#nombre_error').show();
         $('#nombre').css("border-bottom", "2px solid #FE0000");
@@ -65,21 +65,21 @@ function check_nombre(){
     }
 }
 
-function check_apellido(){
-    var pattern = /^[a-zA-Z ]*$/;
+function check_apellido() {
+    var pattern = /^[a-zA-ZÀ-ÿ\u00f1\u00d1 ]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1 ]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1 ]+$/;
     var ape = $('#apellido').val();
     if (ape != "") {
-        if(pattern.test(ape) && ape != ''){
+        if (pattern.test(ape) && ape != '') {
             $('#apellido_error').hide();
             $('#apellido').css("border-bottom", "2px solid #89D200");
             return false;
-        }else{
+        } else {
             $("#apellido_error").html("Sólo se aceptan letras.");
             $('#apellido_error').show();
             $('#apellido').css("border-bottom", "2px solid #FE0000");
             return true;
         }
-    }else{
+    } else {
         $("#apellido_error").html("El campo es requerido.");
         $('#apellido_error').show();
         $('#apellido').css("border-bottom", "2px solid #FE0000");
@@ -87,13 +87,13 @@ function check_apellido(){
     }
 }
 
-function check_celular(){
+function check_celular() {
     var celu = $('#celular').val();
-    if(celu != ""){
+    if (celu != "") {
         $('#celular_error').hide();
         $('#celular').css("border-bottom", "2px solid #89D200");
         return false;
-    }else{
+    } else {
         $("#celular_error").html("Debe ingresar un número de contacto.");
         $('#celular_error').show();
         $('#celular').css("border-bottom", "2px solid #FE0000");
@@ -101,13 +101,13 @@ function check_celular(){
     }
 }
 
-function check_direccion(){
+function check_direccion() {
     var dire = $('#direccion').val();
-    if(dire != ""){
+    if (dire != "") {
         $('#direccion_error').hide();
         $('#direccion').css("border-bottom", "2px solid #89D200");
         return false;
-    }else{
+    } else {
         $("#direccion_error").html("Debe de ingresar un domicilio.");
         $('#direccion_error').show();
         $('#direccion').css("border-bottom", "2px solid #FE0000");
@@ -115,13 +115,13 @@ function check_direccion(){
     }
 }
 
-function check_proyecto(){
+function check_proyecto() {
     var proye = $('#proyecto option:selected').val();
-    if(proye != ""){
+    if (proye != "") {
         $('#proyecto_error').hide();
         $('#proyecto').css("border-bottom", "2px solid #89D200");
         return false;
-    }else{
+    } else {
         $("#proyecto_error").html("Debe de seleccionar el proyecto al que pertenece.");
         $('#proyecto_error').show();
         $('#proyecto').css("border-bottom", "2px solid #FE0000");
@@ -129,14 +129,14 @@ function check_proyecto(){
     }
 }
 
-function check_fecha(){
+function check_fecha() {
     var fena = $('#nacimiento').val();
-    
+
     var actual = new Date();
     var Factual = new Date(actual);
     var convertir = Factual.getFullYear() + '-' + (Factual.getMonth() + '' + 1) + '-' + Factual.getDate();
 
-    if(fena != ""){
+    if (fena != "") {
         if (fena < convertir) {
             $('#fecha_error').hide();
             $('#nacimiento').css("border-bottom", "2px solid #89D200");
@@ -147,7 +147,7 @@ function check_fecha(){
             $('#nacimiento').css("border-bottom", "2px solid #FE0000");
             return true;
         }
-    }else{
+    } else {
         $("#fecha_error").html("Ingrese su fecha de nacimiento.");
         $('#fecha_error').show();
         $('#nacimiento').css("border-bottom", "2px solid #FE0000");
@@ -174,8 +174,8 @@ function guardar(uri) {
         id = null;
     }
 
-    if (muni > 0 && check_nombre() === false && check_apellido() === false && check_celular() === false && 
-    check_direccion() === false && check_proyecto() === false && check_fecha() === false) {
+    if (muni > 0 && check_nombre() === false && check_apellido() === false && check_celular() === false &&
+        check_direccion() === false && check_proyecto() === false && check_fecha() === false) {
 
         var data = {
             "id": id,
@@ -219,16 +219,16 @@ function guardar(uri) {
                     icon: "error",
                     title: "Oops...",
                     text: "No se pudo completar la acción"
-                  });
+                });
             }
         });
 
-    }else{
+    } else {
         Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Todos los campos son requeridos"
-          });
+        });
     }
 }
 
