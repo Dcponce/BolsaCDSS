@@ -72,7 +72,7 @@ function guardarE(uriE) {
                 "id": cer
             },
             "nivel": lvl,
-            "id_usuario": {
+            "usuario": {
                 "id": JSON.parse(localStorage.getItem('Id'))
             }
         };

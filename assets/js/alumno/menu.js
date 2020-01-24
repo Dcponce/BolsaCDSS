@@ -21,12 +21,6 @@ function menuDatos() {
         '</div >' +
         '<ul class="navigation-menu">' +
         ' <li class="nav-category-divider">MENÚ</li>' +
-        ' <li>' +
-        '<a href="inicio.html">' +
-        '<span class="link-title">Inicio</span>' +
-        '<i class="mdi mdi-home link-icon"></i>' +
-        '</a>' +
-        ' </li>' +
         '<li>' +
         ' <a href="datos.html">' +
         '<span class="link-title">Datos personales</span>' +
@@ -81,7 +75,7 @@ function menuDatos() {
 function menuNav() {
     $('.header-fixed').append('<nav class="t-header">' +
         '<div class= "t-header-brand-wrapper">' +
-        '<a href="inicio.html">' +
+        '<a href="datos.html">' +
         '<img class="logo" src="../../assets/img/logos jap-04.png" alt="">' +
         ' <img class="logo-mini" src="../../assets/img/Siglas.png" alt="">' +
         ' </a>' +
