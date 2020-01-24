@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="../../assets/img/Icono pequeño 24x24.png" />
     <link rel="stylesheet" type="text/css" href="../../assets/css/registro/css/util.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/registro/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/registro/css/verificarPass.css">
     <title>Registro Empresa</title>
 </head>
 
@@ -29,11 +30,18 @@
                         <input class="input100" type="email" name="username" placeholder="Ingrese su correo" id="email">
                         <span class="focus-input100"></span>
                     </div>
+                    <span class="error_form" id="email_error" style="color: #FE0000; font: bold 12px/0.0 arial;"></span>
 
                     <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
                         <span class="label-input100">Clave<i class="fa fa-eye" id="show"></i></span>
                         <input class="input100" type="password" name="pass" placeholder="Cree tu clave" id="clave">
-                        <span class="focus-input100"></span>
+                        <div id="mensaje"></div>
+                    </div>
+                    <span class="error_form" id="clave_error" style="color: #FE0000; font: bold 12px/0.0 arial;"></span>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span class="label-input100">Confirmar </span>
+                        <input class="input100" type="password" name="pass" placeholder="Confirmar clave" id="clave2">
                     </div>
                     
                     <div class="container-login100-form-btn">
