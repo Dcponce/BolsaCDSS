@@ -63,12 +63,13 @@ function educacion(idUs) {
                         '<li>' +
                         '<ul class="address-text">' +
                         '<li><b>Carrera </b></li>' +
-                        '<li><span id="carrera"></span></li>' +
+                        '<li><span id="carrera"></span> - <b id="stado"></b></li>' +
                         '</ul>' +
                         '</li>')
                 }
                 $('#uni').text(data.universidad);
                 $('#carrera').text(data.carrera);
+                $('#stado').text(data.estado);
                 $('#certificacion').text(data.id_certificacion.nombre);
                 $('#nivel').text(data.nivel);
                 if (data.nivel == 3) {
