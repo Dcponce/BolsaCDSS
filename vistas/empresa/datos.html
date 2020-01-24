@@ -56,8 +56,10 @@
                                                 <input type="hidden" id="id">
                                                 <input type="text" name="txtNombre" id="nombre" placeholder="Nombre"
                                                     class="form-group form-control">
-                                                <input type="text" name="telefono" id="telefono" placeholder="Telefóno"
+                                                    <span class="error_form" id="nombre_error" style="color: #FE0000;"></span><br>
+                                                <input type="text" name="telefono" id="telefono" placeholder="Teléfono"
                                                     class="form-group form-control">
+                                                <span class="error_form" id="telefonoE_error" style="color: #FE0000;"></span><br>
                                                 <div class="btn btn-success has-icon btn-rounded" id="nuevo">
                                                     <i class="mdi mdi-account-check"></i>Guardar</div>
                                             </div>
@@ -95,6 +97,7 @@
     <script src="../../assets/css/perfil/js/dashboard.js"></script>
     <!-- endbuild -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
     <script src="../../assets/js/empresa/autorizacion.js"></script>
     <script src="../../assets/js/empresa/menu.js"></script>
     <script src="../../assets/js/empresa/accesoempresa.js"></script>

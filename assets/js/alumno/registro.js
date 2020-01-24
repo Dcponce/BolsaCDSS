@@ -17,7 +17,11 @@ $(document).ready(function () {
     $('#mensaje').html(checkClave($('#clave').val()));
   });
 
-  $('#clave2').keyup(function () {
+  $('#clave').change(function () {
+    Cclave();
+  });
+
+  $('#clave2').change(function () {
     Cclave();
   });
 
@@ -90,15 +94,24 @@ function Cclave() {
   var clave = $("#clave").val();
   var clave2 = $("#clave2").val();
 
-    if (clave == clave2) {
-      $('#clave2_error').hide();
-      $('#clave2').css("border-bottom", "2px solid #89D200");
-      return false;
+    if (clave != "") {
+      $("#clave_error").hide();
+      $('#clave').css("border-bottom", "0px solid #FE0000");
+      if (clave == clave2) {
+        $('#clave2_error').hide();
+        $('#clave2').css("border-bottom", "2px solid #89D200");
+        return false;
+      }else{
+        $("#clave2_error").html("Las claves no coinciden.");
+        $('#clave2').css("border-bottom", "2px solid #FE0000");
+        return true;
+      }  
     }else{
-      $("#clave2_error").html("Las claves no coinciden.");
-      $('#clave2').css("border-bottom", "2px solid #FE0000");
+      $("#clave_error").html("Campo requerido.");
+      $('#clave').css("border-bottom", "2px solid #FE0000");
       return true;
-    }  
+    }
+    
 }
 
 function nuevo(idC) {

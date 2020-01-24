@@ -14,7 +14,60 @@ $(document).ready(function () {
     getCert();
     getDepto();
     createOptions();
+
+    $('#telefonoE').mask('9999-9999');
+
+    $('#nombre').change(function(){
+        check_nombre();
+    });
+
+    $('#telefono').focusout(function () {
+        check_telefono();
+    });
 });
+
+function check_nombre() {
+    var pattern = /^[a-zA-ZÀ-ÿ\u00f1\u00d1 ]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1 ]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1 ]+$/;
+    var nomb = $('#nombre').val();
+    if (nomb != "") {
+        if (pattern.test(nomb)) {
+            $('#nombre_error').hide();
+            $('#nombre').css("border-bottom", "2px solid #89D200");
+            return false;
+        } else {
+            $("#nombre_error").html("Sólo se aceptan letras.");
+            $('#nombre_error').show();
+            $('#nombre').css("border-bottom", "2px solid #FE0000");
+            return true;
+        }
+    } else {
+        $("#nombre_error").html("El campo es requerido.");
+        $('#nombre_error').show();
+        $('#nombre').css("border-bottom", "2px solid #FE0000");
+        return true;
+    }
+}
+
+function check_telefono(){
+    var tel = $('#telefono').val();
+    if (tel != "") {
+        if (tel.length == 9) {
+            $('#telefonoE_error').hide();
+            $('#telefono').css("border-bottom", "2px solid #89D200");
+            return false;
+        } else {
+            $("#telefonoE_error").html("Debe ingresar un número de contacto correcto.");
+            $('#telefonoE_error').show();
+            $('#telefono').css("border-bottom", "2px solid #FE0000");
+            return true;
+        }
+    }else{
+        $("#telefonoE_error").html("Campo requerido.");
+        $('#telefonoE_error').show();
+        $('#telefono').css("border-bottom", "2px solid #FE0000");
+        return true;
+    }
+}
 
 var current_page = 1;
 var records_per_page = 10;
@@ -22,9 +75,6 @@ var listData = new Array();
 $("#btn_next").css("visibility", "hidden");
 $("#btn_prev").css("visibility", "hidden");
 $("#btn-pagination").css("display", "none");
-
-
-
 
 function prevPage() {
     if (current_page > 1) {
@@ -44,7 +94,6 @@ function numPages() {
     return Math.ceil(listData.length / records_per_page);
 }
 
-
 function nuevo(base_uri) {
     var id = $('#id').val();
     var nombre = $('#nombre').val();
@@ -57,7 +106,7 @@ function nuevo(base_uri) {
         id = null;
     }
 
-    if (nombre != "" && telefono != "") {
+    if (check_nombre() === false && check_telefono() === false) {
 
         var data = {
             "id": id,

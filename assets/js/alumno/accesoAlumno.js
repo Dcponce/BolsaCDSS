@@ -26,6 +26,10 @@ $(document).ready(function () {
         check_apellido();
     });
 
+    $('#telefono').keyup(function () {
+        check_telefono();
+    });
+
     $('#celular').focusout(function () {
         check_celular();
     });
@@ -89,14 +93,36 @@ function check_apellido() {
 
 function check_celular() {
     var celu = $('#celular').val();
+
     if (celu != "") {
-        $('#celular_error').hide();
-        $('#celular').css("border-bottom", "2px solid #89D200");
-        return false;
+        if (celu.length == 9) {
+            $('#celular_error').hide();
+            $('#celular').css("border-bottom", "2px solid #89D200");
+            return false;
+        } else {
+            $("#celular_error").html("Debe ingresar un número de contacto correcto.");
+            $('#celular_error').show();
+            $('#celular').css("border-bottom", "2px solid #FE0000");
+            return true;
+        }
     } else {
-        $("#celular_error").html("Debe ingresar un número de contacto.");
+        $("#celular_error").html("Campo requerido.");
         $('#celular_error').show();
         $('#celular').css("border-bottom", "2px solid #FE0000");
+        return true;
+    }
+}
+function check_telefono() {
+    var tel = $('#telefono').val();
+
+    if (tel.length == 9) {
+        $('#telefono_error').hide();
+        $('#telefono').css("border-bottom", "2px solid #89D200");
+        return false;
+    } else {
+        $("#telefono_error").html("Ingrese correctamente el número.");
+        $('#telefono_error').show();
+        $('#telefono').css("border-bottom", "2px solid #FE0000");
         return true;
     }
 }
