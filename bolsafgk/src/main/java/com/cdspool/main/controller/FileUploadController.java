@@ -17,20 +17,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.IUsuarioRepository;
-import com.cdspool.main.service.DocumentoService;
+
 
 @RestController
 @RequestMapping(value = "subir")
 public class FileUploadController {
 
 	@Autowired
-	DocumentoController dc;
-
-	@Autowired
 	IUsuarioRepository iUsuarioRepository;
-
-	@Autowired
-	DocumentoService sDocu;
 
 	// Subida de archivos
 	@RequestMapping(value = "/upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
