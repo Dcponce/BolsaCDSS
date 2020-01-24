@@ -52,6 +52,7 @@ function modificarE() {
                 $('#idE').val(data.id);
                 $('#universidad').val(data.universidad);
                 $('#carrera').val(data.carrera);
+                $('#estado').val(data.estado);
                 var idCer = data.id_certificacion.id;
                 $('#nivel').val(data.nivel);
                 getCert(idCer);

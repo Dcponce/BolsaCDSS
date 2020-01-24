@@ -49,6 +49,7 @@ function guardarE(uriE) {
     var id = $('#id').val();
     var uni = $('#universidad').val();
     var carre = $('#carrera').val();
+    var estado = $('#estado').val();
     var cer = $('#certificacion').val();
     var lvl = $('#nivel').val();
     var metodo = "POST";
@@ -66,6 +67,7 @@ function guardarE(uriE) {
             "id": id,
             "universidad": uni,
             "carrera": carre,
+            "estado": estado,
             "id_certificacion": {
                 "id": cer
             },
