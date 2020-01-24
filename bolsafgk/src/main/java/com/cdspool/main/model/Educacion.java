@@ -20,6 +20,8 @@ public class Educacion {
 	private String universidad;
 
 	private String carrera;
+	
+	private String estado;
 
 	@JoinColumn(name = "id_certificacion")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
@@ -55,12 +57,12 @@ public class Educacion {
 		this.carrera = carrera;
 	}
 
-	public String getNivel() {
-		return nivel;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setNivel(String nivel) {
-		this.nivel = nivel;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public Certificacion getId_certificacion() {
@@ -71,12 +73,23 @@ public class Educacion {
 		this.id_certificacion = id_certificacion;
 	}
 
-	public Usuario getId_usuario() {
+	public String getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(String nivel) {
+		this.nivel = nivel;
+	}
+
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setId_usuario(Usuario id_usuario) {
-		this.usuario = id_usuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
+
+	
+	
 
 }
