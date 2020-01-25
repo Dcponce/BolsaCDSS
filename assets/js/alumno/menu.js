@@ -82,7 +82,7 @@ function menuDatos() {
 function menuNav() {
     $('.header-fixed').append('<nav class="t-header">' +
         '<div class= "t-header-brand-wrapper">' +
-        '<a href="datos.html">' +
+        '<a href="inicio.html">' +
         '<img class="logo" src="../../assets/img/logos jap-04.png" alt="">' +
         ' <img class="logo-mini" src="../../assets/img/Siglas.png" alt="">' +
         ' </a>' +
