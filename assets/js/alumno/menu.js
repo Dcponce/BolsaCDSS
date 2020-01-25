@@ -21,6 +21,13 @@ function menuDatos() {
         '</div >' +
         '<ul class="navigation-menu">' +
         ' <li class="nav-category-divider">MENÚ</li>' +
+        ' <li>' +
+        '<a href="inicio.html">' +
+        '<span class="link-title">Inicio</span>' +
+        '<i class="mdi mdi-home link-icon"></i>' +
+        '</a>' +
+        ' </li>' +
+        '<li>' +
         '<li>' +
         ' <a href="datos.html">' +
         '<span class="link-title">Datos personales</span>' +
