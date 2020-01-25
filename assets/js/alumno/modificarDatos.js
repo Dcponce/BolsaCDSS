@@ -86,9 +86,9 @@ function modificarPro() {
 
                 if (total < 3) {
                     for (var i = 0; i < (3 - total); i++) {
-                        $('#formulario').append('<input type="hidden" id="idPr' + i + '">' +
-                            '<br>'+'<label>Nombre del proyecto</label>'+'<input type="text" name="txtNombre" id="nom' + i + '" placeholder="Nombre de proyecto" class="form-control"><br>' +
-                            '<label>Link del proyecto</label>'+'<input type="text" name="txtLink" id="link' + i + '" placeholder="Link de proyecto" class="form-control"><br>');
+                        $('#formulario').append('<input type="hidden" id="idPr' + (i+1) + '">' +
+                            '<br>' + '<label>Nombre del proyecto</label>' + '<input type="text" name="txtNombre" id="nom' + (i + 1) + '" placeholder="Nombre de proyecto" class="form-control"><br>' +
+                            '<label>Link del proyecto</label>' + '<input type="text" name="txtLink" id="link' + (i + 1) + '" placeholder="Link de proyecto" class="form-control"><br>');
                     }
                 }
 

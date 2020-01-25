@@ -46,7 +46,7 @@ function guardarP(uriP) {
             confirmButtonText: 'Ok'
         }).then((result) => {
             if (result.value) {
-                location.href = "inicio.html";
+                window.location.href("inicio.html");
             }
         })
     }
