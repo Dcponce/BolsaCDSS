@@ -54,7 +54,7 @@ function menuDatos() {
         '  </a>' +
         ' </li>' +
         '<li>' +
-        ' <a href="../../../BolsaCDSS/cv/cv_' + JSON.parse(localStorage.getItem('Id')) + '.pdf" target="_blank">' +
+        ' <a onclick="loadPdf()" target="_blank" onerror="pdferror()">' +
         ' <span class="link-title">Ver currículum</span>' +
         ' <i class="mdi mdi-eye link-icon"></i>' +
         ' </a>' +
@@ -120,4 +120,16 @@ function mmovil() {
         $('.page-body').addClass('sidebar-collpased');
     }
 
+}
+
+function loadPdf(){
+    var pdf = '../../../BolsaCDSS/cv/cv_' + JSON.parse(localStorage.getItem('Id')) + '.pdf';
+    window.open(pdf, null);
+
+}
+
+function pdferror() {
+    window.onerror = function(){
+        return this.location.href("editar.html");
+    }
 }
