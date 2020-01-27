@@ -8,6 +8,8 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cdspool.main.model.Usuario;
 import com.cdspool.main.repository.IUsuarioRepository;
-
 
 @RestController
 @RequestMapping(value = "subir")
@@ -99,4 +100,15 @@ public class FileUploadController {
 		return "{'msg':'Archivo cargado correctamente'}";
 	}
 
+
+	@PostMapping("/validate/{id}")
+	public boolean validate(@PathVariable Integer id) {
+		
+		File pdf = new File("C:/Users/Baltimore/Desktop/bolsacds/BolsaCDSS/cv/cv_" + id + ".pdf");
+		if(pdf.exists()){
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
