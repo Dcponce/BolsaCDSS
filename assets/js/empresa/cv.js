@@ -152,8 +152,7 @@ function Documentos(idUs, id) {
     $('.nav1').append(' <li><a href="envio.html?correo=' + id + '" class="resp-tab-item" style="color: #fff;"><i class="glyphicon glyphicon-send"></i> Enviar propuesta</a></li>');
 }
 
-function loadPdf(idS){
-    alert(idS);
+function loadPdf(){
     $.ajax({
         url: "http://localhost:8080/subir/validate/"+idS,
         headers: {
