@@ -61,7 +61,7 @@ function menuDatos() {
         '  </a>' +
         ' </li>' +
         '<li>' +
-        ' <a onclick="loadPdf()" target="_blank" onerror="pdferror()">' +
+        ' <a onclick="loadPdf()">' +
         ' <span class="link-title">Ver currículum</span>' +
         ' <i class="mdi mdi-eye link-icon"></i>' +
         ' </a>' +
@@ -130,13 +130,20 @@ function mmovil() {
 }
 
 function loadPdf(){
-    var pdf = '../../../BolsaCDSS/cv/cv_' + JSON.parse(localStorage.getItem('Id')) + '.pdf';
-    window.open(pdf, null);
+    var pdf = '../../cv/cv_' + JSON.parse(localStorage.getItem('Id')) + '.pdf';
 
-}
-
-function pdferror() {
-    window.onerror = function(){
-        return this.location.href("editar.html");
-    }
+    $.ajax({
+        headers: {
+        'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        url: "http://localhost:8080/subir/validate/"+JSON.parse(localStorage.getItem('Id')),
+        method: "POST",
+        success: function (res) {
+            if(res == true){
+                window.open(pdf);
+            }else{
+                location.assign("../ErrorCV.html");
+            }
+        }
+    })
 }

@@ -24,6 +24,8 @@ $(document).ready(function () {
     $('#telefono').focusout(function () {
         check_telefono();
     });
+
+    $('#telefono').mask('9999-9999');
 });
 
 function check_nombre() {
