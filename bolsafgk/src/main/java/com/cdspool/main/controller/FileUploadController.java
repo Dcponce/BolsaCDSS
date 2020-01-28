@@ -88,7 +88,7 @@ public class FileUploadController {
 
 		File convertFile = new File(builder.toString());
 		convertFile.createNewFile();
-		
+
 		try (FileOutputStream fout = new FileOutputStream(convertFile)) {
 
 			fout.write(file.getBytes());
@@ -100,14 +100,14 @@ public class FileUploadController {
 		return "{'msg':'Archivo cargado correctamente'}";
 	}
 
-
 	@PostMapping("/validate/{id}")
 	public boolean validate(@PathVariable Integer id) {
-		
-		File pdf = new File("C:/Users/Baltimore/Desktop/bolsacds/BolsaCDSS/cv/cv_" + id + ".pdf");
-		if(pdf.exists()){
+
+		File pdf = new File(File.separator + "home" + File.separator + "japuser" + File.separator + "public_html"
+				+ File.separator + "cv" + File.separator + "cv_" + id + ".pdf");
+		if (pdf.exists()) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}

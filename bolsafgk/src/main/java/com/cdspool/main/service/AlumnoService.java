@@ -76,11 +76,11 @@ public class AlumnoService {
 				}
 			}
 
-			return iAlumnos.findAlumnoByCertificacionOrDepartamentoOrHabilidadNamedParamsNative(certi, depto,
+			return iAlumnos.findAllNative(certi, depto,
 					habilidad);
 
 		} else {
-			return iAlumnos.findAlumnoByCertificacionOrDepartamentoOrHabilidadNamedParamsNative(certi, depto, null);
+			return iAlumnos.findAllNative(certi, depto, null);
 		}
 
 	}
