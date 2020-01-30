@@ -35,7 +35,13 @@ function guardarP(uriP) {
         Swal.fire({
             icon: 'success',
             title: 'Excelente',
-            text: 'Datos almacenados correctamente'
+            text: 'Datos almacenados correctamente',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+        }).then((result) => {
+            if (result.value) {
+                location.reload();
+            }
         });
     } else {
         Swal.fire({
@@ -46,7 +52,7 @@ function guardarP(uriP) {
             confirmButtonText: 'Ok'
         }).then((result) => {
             if (result.value) {
-                window.location.href("inicio.html");
+                location.reload();
             }
         })
     }
@@ -81,7 +87,7 @@ function saveH(uri, metodo, id, nom, lnk, idc) {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function () {
-            
+
         }, error: function (error) {
             Swal.fire({
                 icon: "error",
