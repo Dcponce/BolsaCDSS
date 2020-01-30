@@ -30,7 +30,7 @@ function guardarP(uriP) {
         id = null;
     }
 
-    if (nom != "" && lnk != "") {
+    if (nom !== null && lnk !== null && nom !== "" && lnk !== "") {
         saveH(uri, metodo, id1, nom, lnk, idc);
         Swal.fire({
             icon: 'success',
@@ -51,11 +51,11 @@ function guardarP(uriP) {
         })
     }
 
-    if (nom2 != "" && lnk2 != "") {
+    if (nom2 != null && lnk2 != null && nom2 != "" && lnk2 != "") {
         saveH(uri, metodo, id2, nom2, lnk2, idc);
     }
 
-    if (nom3 != "" && lnk3 != "") {
+    if (nom3 != null && lnk3 != null && nom3 != "" && lnk3 != "") {
         saveH(uri, metodo, id3, nom3, lnk3, idc);
     }
 

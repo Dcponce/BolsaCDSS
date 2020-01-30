@@ -30,15 +30,20 @@ function personales() {
                 
                 var fecha = fe.getFullYear() + "-" + mes + "-" + fe.getDate();
 
-                var age = calculateAge(fecha);
+               calculateAge(fecha);
                 function calculateAge(birthday) {
-                    var birthday_arr = birthday.split("-");
-                    var birthday_date = new Date(birthday_arr[0], birthday_arr[2] - 1, birthday_arr[1]);
-                    var ageDifMs = Date.now() - birthday_date.getTime();
-                    var ageDate = new Date(ageDifMs);
-                    return Math.abs(ageDate.getUTCFullYear() - 1970);
+                    var hoy = new Date();
+                    var cumpleanos = new Date(birthday);
+                    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+                    var m = hoy.getMonth() - cumpleanos.getMonth();
+                
+                    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+                        edad--;
+                    }
+                
+                    $('#edad').text(edad);
                 }
-                $('#edad').text(age);
+                
             }
         }
     });
