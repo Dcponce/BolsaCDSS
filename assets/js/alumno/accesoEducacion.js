@@ -46,7 +46,7 @@ function check_nivel() {
 }
 
 function guardarE(uriE) {
-    var id = $('#id').val();
+    var id = $('#idE').val();
     var uni = $('#universidad').val();
     var carre = $('#carrera').val();
     var estado = $('#estado').val();
