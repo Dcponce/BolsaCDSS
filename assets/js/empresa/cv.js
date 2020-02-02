@@ -25,17 +25,23 @@ function personales() {
                 $('#muni').text(data.id_municipio.nombre);
                 $('#dep').text(data.id_municipio.departamento.nombre);
                 var fe = new Date(data.fecha);
-                var fecha = fe.getFullYear() + "-" + fe.getMonth() + "-" + fe.getDate();
+                var mes = fe.getMonth() + 1;
 
-                var age = calculateAge(fecha);
+                var fecha = fe.getFullYear() + "-" + mes + "-" + fe.getDate();
+
+                calculateAge(fecha);
                 function calculateAge(birthday) {
-                    var birthday_arr = birthday.split("-");
-                    var birthday_date = new Date(birthday_arr[0], birthday_arr[2] - 1, birthday_arr[1]);
-                    var ageDifMs = Date.now() - birthday_date.getTime();
-                    var ageDate = new Date(ageDifMs);
-                    return Math.abs(ageDate.getUTCFullYear() - 1970);
+                    var hoy = new Date();
+                    var cumpleanos = new Date(birthday);
+                    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+                    var m = hoy.getMonth() - cumpleanos.getMonth();
+
+                    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+                        edad--;
+                    }
+
+                    $('#edad').text(edad);
                 }
-                $('#edad').text(age);
             }
             educacion(data.id_usuario.id)
             proyectos(data.id_usuario.id)
