@@ -31,7 +31,9 @@ public class Alumno {
 
 	private String direccion;
 
-	private String proyecto;
+	@JoinColumn(name = "proyecto")
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	private Centros proyecto;
 
 	@Temporal(TemporalType.DATE)
 	private Calendar fecha;
@@ -92,14 +94,6 @@ public class Alumno {
 		this.direccion = direccion;
 	}
 
-	public String getProyecto() {
-		return proyecto;
-	}
-
-	public void setProyecto(String proyecto) {
-		this.proyecto = proyecto;
-	}
-
 	public Calendar getFecha() {
 		return fecha;
 	}
@@ -122,6 +116,14 @@ public class Alumno {
 
 	public void setId_usuario(Usuario id_usuario) {
 		this.usuario = id_usuario;
+	}
+
+	public Centros getProyecto() {
+		return proyecto;
+	}
+
+	public void setProyecto(Centros proyecto) {
+		this.proyecto = proyecto;
 	}
 
 }
