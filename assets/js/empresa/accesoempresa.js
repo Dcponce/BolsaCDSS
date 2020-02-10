@@ -301,10 +301,9 @@ function filtro() {
         contentType: "json",
         success: function (data) {
             if (data != null) {
-
                 var content = '';
                 listData.length = 0
-
+                var contador = 0;
                 $.each(data, function (i, v) {
                     content =
                         '<div class="col-md-6">' +
@@ -313,8 +312,9 @@ function filtro() {
                         '<img class="profile-img img-lg rounded-circle" src="../../../BolsaCDSS/img/img_' + v.id_usuario.id + '.png">' +
                         '</div> ' +
                         '<div class="text pl-md-4">' +
-                        '<span class="location mb-0">' + v.id_municipio.departamento.nombre + ' / ' + v.id_municipio.nombre + '</span>' +
+                        '<p>' + v.proyecto.nombre + '</p>' +
                         '<h4>' + v.nombre + ' ' + v.apellido + '</h4>' +
+                        '<span class="location mb-0">' + v.id_municipio.departamento.nombre + ' / ' + v.id_municipio.nombre + '</span>' +
                         '<span class="position"></span>' +
                         '<p class="cn"></p>' +
                         '<span class="position"></span>' +
@@ -324,11 +324,12 @@ function filtro() {
                         '</div>' +
                         '</div>' +
                         '</div>';
-
+                    contador++;
                     listData.push(content);
                     idUsuarios.push(v.id_usuario.id);
 
                 });
+                $('#cantidad').text(contador);
             }
             educacion(idUsuarios);
         }
@@ -340,19 +341,19 @@ function filtro() {
 
 function educacion(id) {
     $.each(id, function (i, v) {
-            $.ajax({
-                url: "http://localhost:8080/educacion/usuario/" + v,
-                headers: {
-                    'Authorization': JSON.parse(localStorage.getItem('Token'))
-                },
-                method: "GET",
-                contentType: "json",
-                success: function (data) {
-                    if (data != null) {
-                        $('.cn').text(data.id_certificacion.nombre);
-                    }
+        $.ajax({
+            url: "http://localhost:8080/educacion/usuario/" + v,
+            headers: {
+                'Authorization': JSON.parse(localStorage.getItem('Token'))
+            },
+            method: "GET",
+            contentType: "json",
+            success: function (data) {
+                if (data != null) {
+                    $('.cn').text(data.id_certificacion.nombre);
                 }
-            });
+            }
+        });
 
     });
 }
