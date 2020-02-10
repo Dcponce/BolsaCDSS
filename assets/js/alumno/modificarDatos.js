@@ -23,18 +23,22 @@ function modificar() {
                 $('#telefono').val(data.telefono);
                 $('#celular').val(data.celular);
                 $('#direccion').val(data.direccion);
-                $('#proyecto').val(data.proyecto);
                 var fe = new Date(data.fecha);
 
                 var mes = (parseInt(fe.getMonth()+1) < 10 )? "0"+(fe.getMonth()+1): (fe.getMonth()+1);
                 var fecha = fe.getFullYear() +"-"+ mes +"-"+ fe.getDate();
                 $('#nacimiento').val(fecha);
+
                 var uri = "http://localhost:8080/municipios";
                 var idDepto = data.id_municipio.departamento.id;
                 var idMuni = data.id_municipio.id;
 
                 getDepto(uri, idDepto);
                 getMunicipioByDepto(uri, idDepto, idMuni);
+
+                var url = "http://localhost:8080/centros";
+                var idCentro = data.proyecto.id;
+                getCentros(url, idCentro);
             } 
         }
     });

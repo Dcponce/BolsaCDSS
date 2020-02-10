@@ -28,6 +28,7 @@ function getData(base_uri) {
                         { data: 'telefono' },
                         { data: 'celular' },
                         { data: 'id_usuario.email' },
+                        { data: 'proyecto.nombre' },
                         //{data: null, "defaultContent": "<div class='row ValAcc'><div class='col-xs-12 Val-UDP'><a class='btn btn-info btn-sm' class='btnModificar'> <span class='glyphicon glyphicon-wrench'></span></a> <a class='btn btn-danger btn-sm' id='btnEliminar'><span class='glyphicon glyphicon-remove'></span></a>   </div></div>"},
                         //botones
                         //{

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Alumnos</title>
+    <title>Empresa</title>
     <!-- plugins:css -->
     <link rel="icon" type="image/png" href="../../assets/img/Icono pequeño 24x24.png" />
     <link rel="stylesheet" href="../../assets/css/perfil/vendors/iconfonts/mdi/css/materialdesignicons.css">
@@ -43,11 +43,13 @@
                 <div class="content-viewport">
                     <div class="row">
                         <div class="col-12 py-5">
-                            <h4>Alumnos</h4>
-
+                            <h4>Centros</h4>
                         </div>
                     </div>
-                    
+                    <div style="text-align: right; margin-bottom: 2em;">
+                        <a class="btn btn-success has-icon btn-rounded" data-toggle="modal" data-target="#nuevoU"
+                            onclick="titulo()"> <i class="mdi mdi-plus"></i>Nuevo</a>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-6 equel-grid">
                             <div class="grid table-responsive">
@@ -55,13 +57,10 @@
                                     <thead>
                                         <th>#</th>
                                         <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Teléfono</th>
-                                        <th>Celular</th>
-                                        <th>Email</th>
-                                        <th>Proyecto</th>
+                                        <th>Acciones</th>
                                     </thead>
                                     <tbody>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -96,11 +95,53 @@
 
     <script src="../../assets/js/administrador/autorizacion.js"></script>
     <script src="../../assets/js/administrador/menu.js"></script>
+    <script src="../../assets/js/administrador/centros/accesoCentros.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="../../assets/js/administrador/alumno/accesoAlumno.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    <!-- modal save / update -->
+    <div class="modal fade" id="nuevoU" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id" class="form-control">
+                    <input class="form-control" type="text" name="nombre" id="nombre"  placeholder="Nombre">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" id="nuevo">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal-->
+    <div class="modal fade" id="borrar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Eliminar</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Seguro que quieres eliminar este registro?</p>
+                    <p class="text-warning"><small>Esta acción no se puede deshacer.</small></p>
+                    <input type="hidden" id="idDelete">
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-light" data-dismiss="modal" value="Cancelar">
+                    <button type="button" class="btn btn-danger" id="delete">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
-
-    

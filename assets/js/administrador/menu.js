@@ -102,6 +102,9 @@ function menuDatos() {
         '<a href="usuario.html">Usuario</a>' +
         '</li>' +
         '<li>' +
+        '<a href="centros.html">Centros</a>' +
+        '</li>' +
+        '<li>' +
         '<a href="glosario.html">Glosario</a>' +
         '</li>' +
         

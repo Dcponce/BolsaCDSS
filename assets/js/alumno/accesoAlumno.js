@@ -4,6 +4,8 @@ $(document).ready(function () {
 
     getDepto("http://localhost:8080/municipios", 0);
 
+    getCentros("http://localhost:8080/centros", 0);
+
     $('#datosP').on('click', function () {
         guardar(uri);
     });
@@ -210,7 +212,9 @@ function guardar(uri) {
             "telefono": tel,
             "celular": cel,
             "direccion": dir,
-            "proyecto": pro,
+            "proyecto": {
+                "id": pro
+            },
             "fecha": nac,
             "id_municipio": {
                 "id": muni
@@ -309,6 +313,35 @@ function getMunicipioByDepto(uriD, idDepto, id) {
                     }
 
                     $('#municipio').append(fila);
+                });
+            }
+        }
+    });
+}
+
+function getCentros(uriD, id) {
+    $.ajax({
+        url: uriD,
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            if (result != null) {
+
+                $('#proyecto').empty();
+                $('#proyecto').append("<option selected disabled>Seleccione el proyecto al que pertenece</option>");
+
+                var fila = "";
+                $.each(result, function (i, v) {
+
+                    if (v.id == id) {
+                        fila = '<option value="' + v.id + '" selected>' + v.nombre + '</option>';
+                    } else {
+                        fila = '<option value="' + v.id + '">' + v.nombre + '</option>';
+                    }
+                    $('#proyecto').append(fila);
                 });
             }
         }
