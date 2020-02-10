@@ -248,7 +248,6 @@ function createOptions() {
     });
 }
 
-
 function changePage(page) {
     var listing_table = document.getElementById("resultado"); //listingTable
     var page_span = document.getElementById("page");
@@ -282,7 +281,6 @@ function changePage(page) {
     }
 }
 
-
 function filtro() {
     var certi = $('#certi').val();
     var depto = $('#depa').val();
@@ -292,7 +290,6 @@ function filtro() {
         current_page = 1;
         listData = [];
     }
-
 
     $.ajax({
         url: "http://localhost:8080/alumnos/filter?depto=" + depto + "&certi=" + certi + "&habil=" + habil + "",
@@ -304,10 +301,10 @@ function filtro() {
         success: function (data) {
             if (data != null) {
 
-
                 var content = '';
-                $.each(data, function (i, v) {
+                listData.length = 0
 
+                $.each(data, function (i, v) {
                     content =
                         '<div class="col-md-6">' +
                         '<div class= "team d-md-flex" >' +
