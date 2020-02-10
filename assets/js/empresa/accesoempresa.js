@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     $('#telefonoE').mask('9999-9999');
 
-    $('#nombre').change(function(){
+    $('#nombre').change(function () {
         check_nombre();
     });
 
@@ -50,7 +50,7 @@ function check_nombre() {
     }
 }
 
-function check_telefono(){
+function check_telefono() {
     var tel = $('#telefono').val();
     if (tel != "") {
         if (tel.length == 9) {
@@ -63,7 +63,7 @@ function check_telefono(){
             $('#telefono').css("border-bottom", "2px solid #FE0000");
             return true;
         }
-    }else{
+    } else {
         $("#telefonoE_error").html("Campo requerido.");
         $('#telefonoE_error').show();
         $('#telefono').css("border-bottom", "2px solid #FE0000");
@@ -280,6 +280,7 @@ function changePage(page) {
         $("#btn-pagination").css("display", "block");
     }
 }
+var idUsuarios = new Array();
 
 function filtro() {
     var certi = $('#certi').val();
@@ -315,6 +316,8 @@ function filtro() {
                         '<span class="location mb-0">' + v.id_municipio.departamento.nombre + ' / ' + v.id_municipio.nombre + '</span>' +
                         '<h4>' + v.nombre + ' ' + v.apellido + '</h4>' +
                         '<span class="position"></span>' +
+                        '<p class="cn"></p>' +
+                        '<span class="position"></span>' +
                         '<p>' + v.celular + '</p>' +
                         '<span class="seen">' + v.id_usuario.email + '</span>' +
                         '<p><a href="cv.html?id=' + v.id + '" class="btn btn-danger" target="_blank">Ver currículum</a></p>' +
@@ -323,12 +326,33 @@ function filtro() {
                         '</div>';
 
                     listData.push(content);
-                    //$('#resultado').append(content);
+                    idUsuarios.push(v.id_usuario.id);
+
                 });
             }
+            educacion(idUsuarios);
         }
 
     }).done(function () {
         changePage(current_page);
+    });
+}
+
+function educacion(id) {
+    $.each(id, function (i, v) {
+            $.ajax({
+                url: "http://localhost:8080/educacion/usuario/" + v,
+                headers: {
+                    'Authorization': JSON.parse(localStorage.getItem('Token'))
+                },
+                method: "GET",
+                contentType: "json",
+                success: function (data) {
+                    if (data != null) {
+                        $('.cn').text(data.id_certificacion.nombre);
+                    }
+                }
+            });
+
     });
 }
