@@ -50,4 +50,10 @@ public class CentrosController {
 	public void update(@RequestBody Centros centros) {
 		rCentros.save(centros);
 	}
+	
+	// Listar por id
+	@GetMapping("/{id}")
+	public Centros byId(@PathVariable Integer id) {
+		return rCentros.findById(id).get();
+	}
 }

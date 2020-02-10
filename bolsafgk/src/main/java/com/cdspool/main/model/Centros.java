@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Centros {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String nombre;
 	
 	public Integer getId() {
