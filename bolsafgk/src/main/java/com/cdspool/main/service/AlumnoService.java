@@ -56,7 +56,7 @@ public class AlumnoService {
 		return iAlumnos.findByUsuario(user);
 	}
 
-	public List<Alumno> filter(Integer depto, Integer certi, Integer[] habilidades) {
+	public List<Alumno> filter(Integer depto, Integer certi, Integer[] habilidades, Integer centro) {
 
 		// Se recibe un arreglo de tipo Integer el cual se convierte a String
 		if (habilidades != null) {
@@ -77,10 +77,10 @@ public class AlumnoService {
 			}
 
 			return iAlumnos.findAllNative(certi, depto,
-					habilidad);
+					habilidad, centro);
 
 		} else {
-			return iAlumnos.findAllNative(certi, depto, null);
+			return iAlumnos.findAllNative(certi, depto, null, centro);
 		}
 
 	}

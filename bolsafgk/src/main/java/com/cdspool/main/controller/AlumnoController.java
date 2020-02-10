@@ -69,7 +69,8 @@ public class AlumnoController {
 	@GetMapping("filter")
 	@Secured({ "ROLE_EMPRESA", "ROLE_ADMIN" })
 	public List<Alumno> filterEmp(@RequestParam(required = false) String depto,
-			@RequestParam(required = false) String certi, @RequestParam(required = false) String habil) {
+			@RequestParam(required = false) String certi, @RequestParam(required = false) String habil,
+			@RequestParam(required = false) String cent) {
 
 		/************************************************************************************************************/
 
@@ -93,14 +94,25 @@ public class AlumnoController {
 
 		/************************************************************************************************************/
 
+		Integer centro = null;
+		
+		if (cent.equals("null") || cent.equals("") || cent == null) {
+			
+		}else {
+			centro = Integer.parseInt(cent);
+			
+		}
+		
+		/************************************************************************************************************/
+		
 		if (habil.equals("") || habil.equals("null") || habil == null) {
 
-			if (departamento == null && certificacion == null) {
+			if (departamento == null && certificacion == null && centro == null) {
 
 				return sAlumno.findAll();
 				
 			} else {
-				return sAlumno.filter(departamento, certificacion, null);
+				return sAlumno.filter(departamento, certificacion, null, centro);
 			}
 
 		} else {
@@ -122,7 +134,7 @@ public class AlumnoController {
 				}
 			}
 
-			return sAlumno.filter(departamento, certificacion, results);
+			return sAlumno.filter(departamento, certificacion, results, centro);
 
 		}
 
