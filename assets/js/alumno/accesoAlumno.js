@@ -331,7 +331,7 @@ function getCentros(uriD, id) {
             if (result != null) {
 
                 $('#proyecto').empty();
-                $('#proyecto').append("<option selected disabled>Seleccione el proyecto al que pertenece</option>");
+                $('#proyecto').append("<option selected disabled>Seleccione el CDS al que pertenece</option>");
 
                 var fila = "";
                 $.each(result, function (i, v) {

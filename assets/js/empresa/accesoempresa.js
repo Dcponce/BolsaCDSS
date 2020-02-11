@@ -14,6 +14,7 @@ $(document).ready(function () {
     getCert();
     getDepto();
     createOptions();
+    getCentros();
 
     $('#telefonoE').mask('9999-9999');
 
@@ -286,6 +287,7 @@ function filtro() {
     var certi = $('#certi').val();
     var depto = $('#depa').val();
     var habil = [$('#select').val()];
+    var centro = $('#proyecto').val();
 
     if (certi > 0 || depto > 0 || habil[0].length > 0) {
         current_page = 1;
@@ -293,7 +295,7 @@ function filtro() {
     }
 
     $.ajax({
-        url: "http://localhost:8080/alumnos/filter?depto=" + depto + "&certi=" + certi + "&habil=" + habil + "",
+        url: "http://localhost:8080/alumnos/filter?depto=" + depto + "&certi=" + certi + "&habil=" + habil + "&cent="+centro+"",
         headers: {
             'Authorization': JSON.parse(localStorage.getItem('Token'))
         },
@@ -316,7 +318,7 @@ function filtro() {
                         '<h4>' + v.nombre + ' ' + v.apellido + '</h4>' +
                         '<span class="location mb-0">' + v.id_municipio.departamento.nombre + ' / ' + v.id_municipio.nombre + '</span>' +
                         '<span class="position"></span>' +
-                        '<p class="cn"></p>' +
+                        '<p id="cn'+i+'"></p>' +
                         '<span class="position"></span>' +
                         '<p>' + v.celular + '</p>' +
                         '<span class="seen">' + v.id_usuario.email + '</span>' +
@@ -350,10 +352,34 @@ function educacion(id) {
             contentType: "json",
             success: function (data) {
                 if (data != null) {
-                    $('.cn').text(data.id_certificacion.nombre);
+                    $('#cn'+i).text(data.id_certificacion.nombre);
                 }
             }
         });
+    });
+    idUsuarios.length=0;
+}
 
+function getCentros() {
+    $.ajax({
+        url: "http://localhost:8080/centros",
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            if (result != null) {
+
+                $('#proyecto').empty();
+                $('#proyecto').append("<option selected disabled>Seleccione centro de formación</option>");
+
+                var fila = "";
+                $.each(result, function (i, v) {
+                    fila = '<option value="' + v.id + '">' + v.nombre + '</option>';
+                    $('#proyecto').append(fila);
+                });
+            }
+        }
     });
 }
