@@ -78,7 +78,7 @@ function envio() {
                 })
             }, error: function () {
                 Swal.fire({
-                    icon: 'Error',
+                    icon: 'error',
                     title: 'Opps',
                     text: 'Algo salió mal',
                     confirmButtonColor: '#3085d6',
