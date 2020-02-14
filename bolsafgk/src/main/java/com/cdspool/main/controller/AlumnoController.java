@@ -26,7 +26,7 @@ public class AlumnoController {
 
 	// Listar Alumnos
 	@GetMapping
-	@Secured({"ROLE_ADMIN","ROLE_EMPRESA"})
+	@Secured({ "ROLE_ADMIN", "ROLE_EMPRESA" })
 	public List<Alumno> lista() {
 		return (List<Alumno>) sAlumno.findAll();
 	}
@@ -95,34 +95,26 @@ public class AlumnoController {
 		/************************************************************************************************************/
 
 		Integer centro = null;
-		
+
 		if (cent.equals("null") || cent.equals("") || cent == null) {
-			
-		}else {
-			centro = Integer.parseInt(cent);
-			
-		}
-		
-		/************************************************************************************************************/
-		
-		if (habil.equals("") || habil.equals("null") || habil == null) {
-
-			if (departamento == null && certificacion == null && centro == null) {
-
-				return sAlumno.findAll();
-				
-			} else {
-				return sAlumno.filter(departamento, certificacion, null, centro);
-			}
 
 		} else {
+			centro = Integer.parseInt(cent);
+
+		}
+
+		/************************************************************************************************************/
+
+		Integer[] results = null;
+
+		if (habil != "" && habil != "null" && habil != null) {
 
 			// Se recibe un arreglo de tipo String y se convierte a un arreglo de tipo
 			// Integer
 
 			String[] items = habil.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");
 
-			Integer[] results = new Integer[items.length];
+			results = new Integer[items.length];
 
 			for (Integer i = 0; i < items.length; i++) {
 
@@ -134,11 +126,62 @@ public class AlumnoController {
 				}
 			}
 
-			return sAlumno.filter(departamento, certificacion, results, centro);
-
 		}
-
+		
 		/************************************************************************************************************/
+		
+		if(departamento == null && certificacion == null && centro == null && results == null) {
+			
+			return sAlumno.findAll();
+			
+		}else if(departamento != null && certificacion != null && centro != null && results != null) {
+			
+			return sAlumno.filter2(departamento, certificacion, results, centro);
+			
+		}else if(departamento != null && certificacion != null && centro != null) {
+			
+			return sAlumno.filter3(certificacion, departamento, centro);
+			
+		}else if(results != null && certificacion != null && departamento != null) {
+			
+			return sAlumno.filter4(certificacion, departamento, results);
+			
+		}else if(results != null && centro != null && departamento != null) {
+			
+			return sAlumno.filter5(departamento, results, centro);
+			
+		}else if(results != null && centro != null && certificacion != null) {
+			
+			return sAlumno.filter6(results, centro, certificacion);
+			
+		}else if(departamento != null && certificacion != null){
+			
+			return sAlumno.filter7(departamento, certificacion);
+			
+		}else if(certificacion != null && centro != null) {
+			
+			return sAlumno.filter8(certificacion, centro);
+			
+		}else if(centro != null && departamento != null) {
+			
+			return sAlumno.filter9(centro, departamento);
+			
+		}else if(results != null && certificacion != null) {
+			
+			return sAlumno.filter10(results, certificacion);
+			
+		}else if(results != null && departamento != null) {
+			
+			return sAlumno.filter11(results, departamento);
+			
+		}else if(results != null && centro != null) {
+			
+			return sAlumno.filter12(results, centro);
+			
+		}else {
+			
+			return sAlumno.filter(departamento, certificacion, results, centro);
+		}
 
 	}
 }

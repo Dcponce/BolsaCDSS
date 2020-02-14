@@ -25,7 +25,7 @@ public class CentrosController {
 	
 	//Listar centros cds
 	@GetMapping
-	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN" })
+	@Secured({ "ROLE_ALUMNO", "ROLE_ADMIN", "ROLE_EMPRESA" })
 	public List<Centros> lista(){
 		return (List<Centros>) rCentros.findAll();
 	}
