@@ -23,20 +23,23 @@
     <!-- Layout style -->
     <style>
         .item-purchase-banner {
-          display: none;
+            display: none;
         }
-    
-    .choices__list--dropdown  {
-        color: #000;
-    }
-    .choices__list--multiple .choices__item{
-      background-color: #DB504A;
-      border: none;
-    }
-    
-    .choices__inner, .choices__input{
-      background-color: #383838;
-    }
+
+        .choices__list--dropdown {
+            color: #000;
+        }
+
+        .choices__list--multiple .choices__item {
+            background-color: #DB504A;
+            border: none;
+        }
+
+        .choices__inner,
+        .choices__input {
+            background-color: #383838;
+            color: #ffff;
+        }
     </style>
 </head>
 
@@ -64,16 +67,20 @@
                             <div class="grid widget-revenue-card">
                                 <div class="grid-body d-flex flex-column h-100">
                                     <div>
+
                                         <select id="select" placeholder="Seleccione 10 habilidades máximo" multiple>
                                         </select>
                                         <select id="certi" name="certi" class="custom-select col-4"></select>
                                         <select id="depa" name="depa" class="custom-select col-3"></select>
                                         <select id="proyecto" name="proyecto" class="custom-select col-4"></select>
-                                        <button type="button" id="buscar"
-                                            class=" from-control btn btn-success">Buscar</button>
-                                            Resultados: <span id="cantidad"></span>
                                     </div>
-                                    
+                                    <div>
+                                        <button type="button" id="buscar" class=" from-control btn btn-success"
+                                            style="float: right">Buscar</button>
+                                    </div>
+                                    <div style="float: left;">
+                                       Resultados: <span id="cantidad"></span> candidatos
+                                    </div>
                                     <div class="row" id="resultado" style="margin-top: 5em ;">
                                     </div>
                                     <div id="btn-pagination">
@@ -84,7 +91,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 página: <span id="page"></span>
-                                                
+
                                             </div>
                                             <div class="col-md-4">
                                                 <button type="button" id="btn_next" class="btn btn-primary"
@@ -128,6 +135,7 @@
     <script src="../../assets/js/bootstrap/jquery-3.4.1.min.js"></script>
     <script src="../../assets/js/empresa/autorizacion.js"></script>
     <script src="../../assets/js/empresa/menu.js"></script>
+    <script src="../../assets/js/empresa/filtro.js"></script>
     <script src="../../assets/js/empresa/accesoempresa.js"></script>
     <script src="../../assets/js/empresa/perfil.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

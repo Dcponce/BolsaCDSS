@@ -77,7 +77,7 @@ function menuDatos() {
         '</a>' +
         '</li>' +
         '<li>' +
-        '<a href="../../glosario.html">' +
+        '<a href="../../glosario.html" target="_blank">' +
         '<span class="link-title">Glosario</span>' +
         '<i class="mdi mdi-book-open-variant link-icon"></i>' +
         '</a>' +
