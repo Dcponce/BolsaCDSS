@@ -399,7 +399,7 @@ public class UsuarioController {
 				"                                </tr>\r\n" + 
 				"                                <tr>\r\n" + 
 				"                                    <td align=\"center\" style=\"font-size: 12px; color: #9b9a9c; line-height: 18px;\">\r\n" + 
-				"                                        Copyright © 2019. Todos los derechos reservados<a\r\n" + 
+				"                                        Copyright © 2020. Todos los derechos reservados<a\r\n" + 
 				"                                            style=\"color: #1d44b8; font-weight: bold;\" target=\"_blanck\"\r\n" + 
 				"                                            href=\"https://www.fundaciongloriakriete.org/\">&nbsp;FGK</a></td>\r\n" + 
 				"                                </tr>\r\n" + 
