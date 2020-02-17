@@ -61,9 +61,10 @@ function leer(id) {
                 $('#descr').text(pri[1]);
                 $('#sa').text(pri[2]);
                 $('#contac').text(pri[3]);
-                $('#direct').text(pri[4]);
-                $('#como').text(pri[5]);
-                $('#info').text(pri[6]);
+                $('#email').text(pri[4]);
+                $('#direct').text(pri[5]);
+                $('#como').text(pri[6]);
+                $('#info').text(pri[7]);
 
                 modificar(result.id, result.emisor.id, result.receptor.id, result.asunto, result.contenido);
             }

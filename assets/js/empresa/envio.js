@@ -30,6 +30,7 @@ function envio() {
     var asunto = $("#asunto").val();
     var contenido = $("#msg").val();
     var contacto = $("#contac").val();
+    var emailC = $("#emailC").val();
     var puesto = $("#puesto").val();
     var salario = $("#sal").val();
     var direccion = $("#direc").val();
@@ -53,7 +54,7 @@ function envio() {
         $('.limiter').addClass('cuerpo');
 
         $.ajax({
-            url: "http://localhost:8080/envio/propuesta?contacto=" + contacto + "&puesto=" + puesto + "&salario=" + salario + "&direccion=" + direccion + "&link=" + link + "&info=" + info + "",
+            url: "http://localhost:8080/envio/propuesta?contacto=" + contacto + "&emailC="+emailC+"&puesto=" + puesto + "&salario=" + salario + "&direccion=" + direccion + "&link=" + link + "&info=" + info + "",
             headers: {
                 'Authorization': JSON.parse(localStorage.getItem('Token'))
             },
