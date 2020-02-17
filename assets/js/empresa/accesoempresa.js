@@ -2,6 +2,8 @@ $(document).ready(function () {
 
     var base_uri = "http://localhost:8080/empresa";
 
+    getPais(0);
+
     $('#nuevo').on('click', function () {
         nuevo(base_uri);
     });
@@ -68,10 +70,39 @@ function check_telefono() {
     }
 }
 
+function getPais(id) {
+    $.ajax({
+        url: "http://localhost:8080/pais",
+        headers: {
+            'Authorization': JSON.parse(localStorage.getItem('Token'))
+        },
+        type: 'GET',
+        dataType: "json",
+        success: function (result) {
+            if (result != null) {
+
+                $('#pais').empty();
+                $('#pais').append("<option selected disabled>Seleccione el pais</option>");
+                var fila = "";
+                $.each(result, function (i, v) {
+
+                    if (v.id == id) {
+                        fila = '<option value="' + v.id + '" selected>' + v.nombre + '</option>';
+                    } else {
+                        fila = '<option value="' + v.id + '">' + v.nombre + '</option>';
+                    }
+                    $('#pais').append(fila);
+                });
+            }
+        }
+    });
+}
+
 function nuevo(base_uri) {
     var id = $('#id').val();
     var nombre = $('#nombre').val();
     var telefono = $('#telefono').val();
+    var pais = $("#pais").val();
     var metodo = "POST";
 
     if (id > 0) {
@@ -86,8 +117,11 @@ function nuevo(base_uri) {
             "id": id,
             "nombre": nombre,
             "telefono": telefono,
-            "id_usuario": {
+            "usuario": {
                 "id": JSON.parse(localStorage.getItem('Id')),
+            },
+            "pais": {
+                "id": pais
             }
         };
 
@@ -132,6 +166,7 @@ function editar(base_uri) {
                 $('#nombre').val(data.nombre);
                 $('#nom').text(data.nombre);
                 $('#telefono').val(data.telefono);
+                getPais(data.pais.id);
             }
         }
     });
