@@ -16,16 +16,18 @@ public class Empresa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String nombre;
-	
+
 	private String telefono;
-	
-	
+
 	@JoinColumn(name = "id_usuario")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Usuario usuario;
-	
+
+	@JoinColumn(name = "id_pais")
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Pais pais;
 
 	public Integer getId() {
 		return id;
@@ -51,14 +53,20 @@ public class Empresa {
 		this.telefono = telefono;
 	}
 
-
-	public Usuario getId_usuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setId_usuario(Usuario usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
 }

@@ -69,7 +69,7 @@ public class EnviodEmailController {
 	// Envio de Propuesta Laboral
 	@PostMapping("/propuesta")
 	@Secured("ROLE_EMPRESA")
-	public void sendEmailWithAttachment(@RequestBody Email email, @RequestParam String contacto, String puesto,
+	public void sendEmailWithAttachment(@RequestBody Email email, @RequestParam String contacto, String emailC, String puesto,
 			String salario, String direccion, String link, String info) throws MessagingException, IOException {
 
 		Alumno alu = rAlumno.findById(email.getReceptor().getId());
@@ -82,13 +82,6 @@ public class EnviodEmailController {
 		MimeMessage msg = javaMailSender.createMimeMessage();
 
 		MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-		
-		System.err.println("Contacto: "+contacto);
-		System.err.println("Puesto: "+puesto);
-		System.err.println("Salario: "+salario);
-		System.err.println("Direccion: "+direccion);
-		System.err.println("Link: "+link);
-		System.err.println("Informacion: "+info);
 		
 		// Maquetado de Correo Electronico
 		String contenido = "<!DOCTYPE html>\r\n" + 
@@ -356,6 +349,8 @@ public class EnviodEmailController {
 				"                                        <p><b>Salario: </b>"+salario+"</p>\r\n" + 
 				"                                        <label><b>Contacto:</b></label>\r\n" + 
 				"                                        <p>"+contacto+"</p>\r\n" + 
+				"                                        <label><b>Correo de Contacto:</b></label>\r\n" + 
+				"                                        <p>"+emailC+"</p>\r\n" +
 				"                                        <label><b>Datos de entrevista:</b></label>\r\n" +
 				"                                        <p>"+info+"</p>\r\n" +
 				"                                        <label><b>Direccion:</b></label>\r\n" +
@@ -423,7 +418,7 @@ public class EnviodEmailController {
 				"</html>";
 		
 		String cont = "Puesto: " + puesto + ", Descripción: " + email.getContenido() + " , Salario: " + salario
-				+ ", Contacto: " + contacto + ", Dirección: " + direccion + ", Como llegar: " + link + " ,Más detalles: "
+				+ ", Contacto: " + contacto + " , Correo de contacto: " + emailC + ", Dirección: " + direccion + ", Como llegar: " + link + " ,Más detalles: "
 				+ info+"";
 		
 
