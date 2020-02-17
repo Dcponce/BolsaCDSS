@@ -343,6 +343,9 @@ public class EnviodEmailController {
 				"                                </tr>\r\n" + 
 				"                                <tr>\r\n" + 
 				"                                    <td align=\"center\" style=\"color: #1c1c1c; line-height: 24px;font-size: 15px;\">\r\n" + 
+				"<p>Agradeceríamos te comunicaras al correo que aparece en la oferta para que la empresa\r\n" + 
+				"\r\n" + 
+				"sepa si estás interesado o no en aceptar la plaza.</p>"+
 				"                                        <h2 style=\"color: rgb(245, 152, 1)\">"+puesto+"</h2>\r\n" + 
 				"                                        <label><b>Descripcion del puesto:</b></label>\r\n" + 
 				"                                        <p>"+email.getContenido()+"</p>\r\n" + 
