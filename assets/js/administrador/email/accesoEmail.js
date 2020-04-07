@@ -1,6 +1,10 @@
 $(document).ready(function () {
 
     var uri = "http://localhost:8080/email";
+    $("#delete").on("click", function () {
+        var idE = $('#idDelete').val();
+        eliminar(idE);
+      });
 
     listar(uri);
 

@@ -117,14 +117,14 @@ function Cclave() {
 function nuevo(idC) {
   var email = $("#email").val();
   var clave = $("#clave").val();
-  var credencial = idC;
+  var cred = idC;
 
-  if (credencial != null && email != "" && checkClave(clave) == 'Buena' || checkClave(clave) == 'Fuerte' && Cclave() === false) {
+  if (cred != null && email != "" && checkClave(clave) == 'Buena' || checkClave(clave) == 'Fuerte' && Cclave() === false) {
     var data = {
       id: null,
       email: email,
-      id_credencial: {
-        id: credencial
+      credencial: {
+        id: cred
       },
       clave: clave,
       id_tipo: {
@@ -169,21 +169,84 @@ function nuevo(idC) {
 
 function getCred() {
   var credencial = $("#credencial").val();
+
+  if(credencial != ""){
+    $.ajax({
+      url: "http://localhost:8080/usuarios/usu/" + credencial,
+      method: "GET",
+      dataType: "json",
+      contentType: "application/json",
+      success: function (res) {
+        var idC = res["id"];
+        verificacionEmail(idC);
+      },
+      error: function () {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Operación fallida"
+        });
+      }
+    });
+
+  }else{
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Todos los campos son requeridos"
+    });
+  }
+  
+}
+
+function verificacionEmail(idC){
+  var usuario = $("#email").val();
+  if(usuario != ""){
+    $.ajax({
+      url: "http://localhost:8080/usuarios/getId/" + usuario,
+      method: "GET",
+      dataType: "json",
+      contentType: "application/json",
+      success: function (res){
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "El usuario ya existe!"
+          });
+
+      },
+      error: function(){
+        verificacionCred(idC);
+      }
+    });
+
+  }else{
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Todos los campos son requeridos"
+    });
+  }
+  
+
+}
+
+function verificacionCred(idC){
   $.ajax({
-    url: "http://localhost:8080/usuarios/usu/" + credencial,
+    url: "http://localhost:8080/usuarios/byId_cred/" + idC,
     method: "GET",
     dataType: "json",
     contentType: "application/json",
-    success: function (res) {
-      var idC = res["id"];
-      nuevo(idC);
+    success: function (res){
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "La credencial le pertenece a otro usuario!"
+        });
+
     },
-    error: function () {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Operación fallida"
-      });
+    error: function(){
+      nuevo(idC);
     }
   });
 }

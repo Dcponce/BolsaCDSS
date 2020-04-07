@@ -56,8 +56,8 @@ function edit(res) {
     var data = {
       id: res["id"],
       email: emailU,
-      id_credencial: {
-        id: res["id_credencial"]["id"]
+      credencial: {
+        id: res["credencial"]["id"]
       },
       clave: claveU,
       id_tipo: {

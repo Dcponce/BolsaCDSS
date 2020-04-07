@@ -91,8 +91,8 @@ function updateClave(res, id, password) {
   var data = {
     id: res["id"],
     email: res["email"],
-    id_credencial: {
-      id: res["id_credencial"]["id"]
+    credencial: {
+      id: res["credencial"]["id"]
     },
     clave: password,
     id_tipo: {

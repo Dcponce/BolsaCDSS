@@ -126,7 +126,7 @@ function nuevo(idC) {
         var data = {
             "id": null,
             "email": email,
-            "id_credencial": {
+            "credencial": {
                 "id": credencial
             },
             "clave": clave,
@@ -179,7 +179,7 @@ function getCred() {
         contentType: "application/json",
         success: function (res) {
             var idC = res["id"];
-            nuevo(idC);
+            verificacionEmail(idC);
         },
         error: function () {
             Swal.fire({
@@ -190,6 +190,36 @@ function getCred() {
         }
     });
 }
+
+function verificacionEmail(idC){
+    var usuario = $("#email").val();
+    if(usuario != ""){
+      $.ajax({
+        url: "http://localhost:8080/usuarios/getId/" + usuario,
+        method: "GET",
+        dataType: "json",
+        contentType: "application/json",
+        success: function (res){
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "El usuario ya existe!"
+            });
+  
+        },
+        error: function(){
+            nuevo(idC);
+        }
+      });
+  
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Todos los campos son requeridos"
+      });
+    }
+  }
 
 function activar(data) {
     $.ajax({

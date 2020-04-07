@@ -31,7 +31,7 @@ function getData(uri) {
           columns: [
             { data: 'id' },
             { data: 'email' },
-            { data: 'id_credencial.codigo' },
+            { data: 'credencial.codigo' },
             { data: 'id_tipo.descripcion' },
             { data: 'estado' },
             { data: 'activo' },
@@ -142,7 +142,7 @@ function nuevo(uri, idC) {
     var data = {
       "id": null,
       "email": email,
-      "id_credencial": {
+      "credencial": {
         "id": idC
       },
       "clave": clave,
