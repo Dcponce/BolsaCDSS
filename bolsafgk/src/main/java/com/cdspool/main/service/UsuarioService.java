@@ -52,6 +52,12 @@ public class UsuarioService {
 	public Usuario findByEmail(String email) {
 		return iUsu.findByEmail(email);
 	}
+	
+	public Usuario findByCredencial(Integer id) {
+		Credencial cred = iCreden.findById(id).get();
+		
+		return iUsu.findByCredencial(cred);
+	}
 
 	public List<TipoUsuario> findAllTipo() {
 		return (List<TipoUsuario>) iTipo.findAll();

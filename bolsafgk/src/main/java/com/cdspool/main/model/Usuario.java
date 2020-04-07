@@ -23,7 +23,7 @@ public class Usuario implements Serializable {
 
 	@JoinColumn(name = "id_credencial")
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
-	private Credencial id_credencial;
+	private Credencial credencial;
 
 	private String clave;
 
@@ -51,12 +51,12 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public Credencial getId_credencial() {
-		return id_credencial;
+	public Credencial getCredencial() {
+		return credencial;
 	}
 
-	public void setId_credencial(Credencial id_credencial) {
-		this.id_credencial = id_credencial;
+	public void setCredencial(Credencial credencial) {
+		this.credencial = credencial;
 	}
 
 	public String getClave() {

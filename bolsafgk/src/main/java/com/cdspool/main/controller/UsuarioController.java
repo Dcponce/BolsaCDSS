@@ -58,7 +58,7 @@ public class UsuarioController {
 		Usuario usua = new Usuario();
 
 		usua.setEmail(usu.getEmail());
-		usua.setId_credencial(usu.getId_credencial());
+		usua.setCredencial(usu.getCredencial());
 		usua.setClave(bCryptPasswordEncoder.encode(usu.getClave()));
 		usua.setId_tipo(usu.getId_tipo());
 		usua.setEstado(usu.getEstado());
@@ -76,7 +76,7 @@ public class UsuarioController {
 		
 		usua.setId(usuario.getId());
 		usua.setEmail(usuario.getEmail());
-		usua.setId_credencial(usuario.getId_credencial());
+		usua.setCredencial(usuario.getCredencial());
 		usua.setClave(usuario.getClave());
 		usua.setId_tipo(usuario.getId_tipo());
 		if(usuario.getEstado()== true) {
@@ -484,7 +484,7 @@ public class UsuarioController {
 
 		usuario.setId(usu.getId());
 		usuario.setEmail(usu.getEmail());
-		usuario.setId_credencial(usu.getId_credencial());
+		usuario.setCredencial(usu.getCredencial());
 		usuario.setClave(bCryptPasswordEncoder.encode(usu.getClave()));
 		usuario.setId_tipo(usu.getId_tipo());
 		usuario.setEstado(usu.getEstado());
@@ -506,7 +506,7 @@ public class UsuarioController {
 
 		usuario.setId(usu.getId());
 		usuario.setEmail(usu.getEmail());
-		usuario.setId_credencial(usu.getId_credencial());
+		usuario.setCredencial(usu.getCredencial());
 		
 		if(usua.getClave().equals(usu.getClave())) {
 			usuario.setClave(usu.getClave());
@@ -551,6 +551,12 @@ public class UsuarioController {
 	@GetMapping("getUsu/{id}")
 	public Usuario findById(@PathVariable Integer id) {
 		return uService.findById(id);
+	}
+	
+	// Listar Usuario por id credencial
+	@GetMapping("byId_cred/{credencial}")
+	public Usuario findByCred(@PathVariable Integer credencial) {
+		return uService.findByCredencial(credencial);
 	}
 
 }
