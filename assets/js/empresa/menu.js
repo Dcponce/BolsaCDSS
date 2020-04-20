@@ -109,7 +109,7 @@ function cerrarSesion() {
 function imgPerfil() {
 
 
-    $('#img').append('<img class="profile-img img-lg rounded-circle" src="../../../BolsaCDSS/img/img_' + JSON.parse(localStorage.getItem('Id')) + '.png' + '"alt = "profile image">');
+    $('#img').append('<img class="profile-img img-lg rounded-circle" src="../../../BolsaCDSS/img/img_' + JSON.parse(localStorage.getItem('Id')) + '.png' + '"alt = "profile image " onerror="imgError(this);">');
 
 }
 function mmovil() {
@@ -119,6 +119,12 @@ function mmovil() {
         $('.page-body').addClass('sidebar-collpased');
     }
 
+}
+
+function imgError(image) {
+    image.onerror = "";
+    image.src = "../../img/porDefecto/usuario.png"
+    return true;
 }
 
 

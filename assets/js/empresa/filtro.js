@@ -93,7 +93,7 @@ function filtro() {
                         '<div class="col-md-6">' +
                         '<div class= "team d-md-flex" >' +
                         '<div>' +
-                        '<img class="profile-img img-lg rounded-circle" src="../../img/img_' + v.id_usuario.id + '.png">' +
+                        '<img class="profile-img img-lg rounded-circle" src="../../img/img_' + v.id_usuario.id + '.png" onerror="imgError(this);">' +
                         '</div> ' +
                         '<div class="text pl-md-4">' +
                         '<p>' + v.proyecto.nombre + '</p>' +

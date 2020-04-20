@@ -149,5 +149,11 @@ function Dhabilidades() {
     });
 }
 function Documentos() {
-    $('#img').append('<img src="../../../BolsaCDSS/img/img_' + JSON.parse(localStorage.getItem('Id')) + '.png" alt="" class="rounded">');
+    $('#img').append('<img src="../../../BolsaCDSS/img/img_' + JSON.parse(localStorage.getItem('Id')) + '.png" alt="" class="rounded"  onerror="imgError(this);">');
+}
+
+function imgError(image) {
+    image.onerror = "";
+    image.src = "../../img/porDefecto/usuario.png"
+    return true;
 }
